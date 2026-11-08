@@ -1,0 +1,29 @@
+:root{
+    --fondo-color-primario: #f5f5f5;
+    --fondo-color-secundario: #ffffff;
+
+
+    --texto-color-primario: #333333;
+    --texto-color-secundario: #666666;
+    --texto-fuente-principal: 'Arial', sans-serif;
+    --texto-fuente-secundaria: 'Helvetica', sans-serif;
+    --texto-negrita: bold;
+
+
+    --padding-principal: 20px;
+    --padding-secundario: 10px;
+    --margin-principal: 20px;
+    --margin-secundario: 10px;
+    --width-principal: 100%;
+    --height-principal: 100vh;
+    --border-radius-principal: 5px;
+    --border-radius-secundario: 10px;
+    
+    --caja-flexible:flex;
+
+
+
+
+
+
+}
