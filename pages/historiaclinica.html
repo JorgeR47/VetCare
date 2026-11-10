@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Cita Veterinaria</title>
+    <!-- Integración de Bootstrap para el layout -->
+   
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #18bc9c;
+            --bg-light: #f8f9fa;
+        }
+        body {
+            background-color: var(--bg-light);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .form-section-title {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container my-5">
+    <div class="card shadow-sm">
+        <div class="card-header bg-dark text-white">
+            <h3 class="mb-0">Registro de Cita Veterinaria</h3>
+        </div>
+        <div class="card-body">
+            <form action="/api/citas/registrar" method="POST" id="formCitaVeterinaria">
+                
+                <!-- 1. DATOS DEL TUTOR (Responsable legal) -->
+                <h4 class="form-section-title">1. Datos del Tutor</h4>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label for="tutorNombre" class="form-label">Nombre Completo *</label>
+                        <input type="text" class="form-control" id="tutorNombre" name="tutorNombre" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="tutorCI" class="form-label">Cédula de Identidad / Pasaporte *</label>
+                        <input type="text" class="form-control" id="tutorCI" name="tutorCI" required pattern="\d{10}">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="tutorTelefono" class="form-label">Teléfono de Contacto *</label>
+                        <input type="tel" class="form-control" id="tutorTelefono" name="tutorTelefono" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="tutorEmail" class="form-label">Correo Electrónico</label>
+                        <input type="email" class="form-control" id="tutorEmail" name="tutorEmail">
+                    </div>
+                </div>
+
+                <!-- 2. DATOS DEL PACIENTE (Requerimientos estándar de salud animal) -->
+                <h4 class="form-section-title">2. Datos del Paciente</h4>
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <label for="pacienteNombre" class="form-label">Nombre del Paciente *</label>
+                        <input type="text" class="form-control" id="pacienteNombre" name="pacienteNombre" required>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="pacienteEspecie" class="form-label">Especie *</label>
+                        <select class="form-select" id="pacienteEspecie" name="pacienteEspecie" required>
+                            <option value="" disabled selected>Seleccione...</option>
+                            <option value="Canina">Canina</option>
+                            <option value="Felina">Felina</option>
+                            <option value="Exotico">Exótico / Otro</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="pacienteRaza" class="form-label">Raza</label>
+                        <input type="text" class="form-control" id="pacienteRaza" name="pacienteRaza">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="pacienteSexo" class="form-label">Sexo *</label>
+                        <select class="form-select" id="pacienteSexo" name="pacienteSexo" required>
+                            <option value="" disabled selected>Seleccione...</option>
+                            <option value="M">Macho</option>
+                            <option value="H">Hembra</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="pacienteEstadoReproductivo" class="form-label">Estado Reproductivo</label>
+                        <select class="form-select" id="pacienteEstadoReproductivo" name="pacienteEstadoReproductivo">
+                            <option value="Entero">Entero (Intacto)</option>
+                            <option value="Castrado">Castrado / Esterilizada</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="pacienteEdad" class="form-label">Edad (Años/Meses)</label>
+                        <input type="text" class="form-control" id="pacienteEdad" name="pacienteEdad" placeholder="Ej. 2 años 3 meses">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="pacientePeso" class="form-label">Peso aprox. (kg)</label>
+                        <input type="number" step="0.1" class="form-control" id="pacientePeso" name="pacientePeso">
+                    </div>
+                </div>
+
+                <!-- 3. DETALLES DE LA CITA Y ANAMNESIS PRELIMINAR -->
+                <h4 class="form-section-title">3. Detalles de la Cita</h4>
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <label for="citaFecha" class="form-label">Fecha Solicitada *</label>
+                        <input type="date" class="form-control" id="citaFecha" name="citaFecha" required>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="citaHora" class="form-label">Hora Preferida *</label>
+                        <input type="time" class="form-control" id="citaHora" name="citaHora" required>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="citaMotivo" class="form-label">Motivo Principal *</label>
+                        <select class="form-select" id="citaMotivo" name="citaMotivo" required>
+                            <option value="" disabled selected>Seleccione...</option>
+                            <option value="Consulta General">Consulta General</option>
+                            <option value="Vacunacion">Vacunación / Desparasitación</option>
+                            <option value="Emergencia">Emergencia / Urgencia</option>
+                            <option value="Control">Control Post-operatorio</option>
+                            <option value="Especialidad">Consulta de Especialidad</option>
+                        </select>
+                    </div>
+                    <div class="col-12">
+                        <label for="citaSintomas" class="form-label">Breve descripción de los síntomas o motivo de visita</label>
+                        <textarea class="form-control" id="citaSintomas" name="citaSintomas" rows="3" placeholder="Ej. Decaimiento, falta de apetito desde hace 2 días..."></textarea>
+                    </div>
+                </div>
+
+                <div class="mt-4 text-end">
+                    <button type="reset" class="btn btn-secondary me-2">Limpiar Formulario</button>
+                    <button type="submit" class="btn btn-primary">Registrar Cita</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
