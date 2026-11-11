@@ -1,0 +1,76 @@
+@startuml CU_Administracion
+' ==========================================================
+' VetCare · Diagrama de casos de uso (UML 2.5)
+' Se abre en IntelliJ IDEA con el plugin "PlantUML Integration".
+' "smetana" es el motor de diagramación incluido en PlantUML:
+' no requiere instalar Graphviz. (Si tienen Graphviz, pueden borrar la línea.)
+' ==========================================================
+!pragma layout smetana
+left to right direction
+title Módulo 6: Administración (AD)
+
+skinparam actorStyle stickman
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam defaultFontName "Segoe UI", "Helvetica", sans-serif
+skinparam defaultFontSize 12
+skinparam ArrowColor #1B4F72
+skinparam ArrowThickness 1.2
+
+skinparam actor {
+    BackgroundColor #D4E6F1
+    BorderColor #1B4F72
+    FontColor #0B172A
+    FontStyle bold
+}
+
+skinparam usecase {
+    BackgroundColor #EBF5FB
+    BorderColor #2980B9
+    FontColor #154360
+    FontSize 12
+}
+
+skinparam rectangle {
+    BackgroundColor #F8FBFE
+    BorderColor #5DADE2
+    FontColor #1B4F72
+    FontStyle bold
+}
+
+skinparam package {
+    BorderColor #5DADE2
+    FontColor #1B4F72
+    FontStyle bold
+}
+
+' Casos de uso de OTRO módulo (solo referencia en diagramas por módulo)
+skinparam usecase<<Externo>> {
+    BackgroundColor #F4F6F7
+    BorderColor #AAB7B8
+    FontColor #5D6D7E
+}
+hide <<Externo>> stereotype
+
+' ==========================================================
+' ACTORES
+' ==========================================================
+actor "Administrador" as Administrador
+
+' ==========================================================
+' CASOS DE USO
+' ==========================================================
+rectangle "Módulo 6: Administración (AD) - Integrante 4" {
+  usecase "CU-09: Gestionar\nveterinarios" as CU09
+  usecase "CU-12: Gestionar\nrecepcionistas" as CU12
+  usecase "CU-10: Gestionar servicios\ny precios" as CU10
+}
+
+' ==========================================================
+' ASOCIACIONES
+' ==========================================================
+Administrador --> CU09
+Administrador --> CU12
+Administrador --> CU10
+
+@enduml
