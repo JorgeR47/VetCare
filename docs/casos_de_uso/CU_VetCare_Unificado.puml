@@ -1,0 +1,148 @@
+@startuml CU_VetCare_Unificado
+' ==========================================================
+' VetCare · Diagrama de casos de uso (UML 2.5)
+' Se abre en IntelliJ IDEA con el plugin "PlantUML Integration".
+' "smetana" es el motor de diagramación incluido en PlantUML:
+' no requiere instalar Graphviz. (Si tienen Graphviz, pueden borrar la línea.)
+' ==========================================================
+!pragma layout smetana
+left to right direction
+title VetCare - Diagrama de casos de uso unificado (por módulos)
+
+skinparam actorStyle stickman
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam defaultFontName "Segoe UI", "Helvetica", sans-serif
+skinparam defaultFontSize 12
+skinparam ArrowColor #1B4F72
+skinparam ArrowThickness 1.2
+
+skinparam actor {
+    BackgroundColor #D4E6F1
+    BorderColor #1B4F72
+    FontColor #0B172A
+    FontStyle bold
+}
+
+skinparam usecase {
+    BackgroundColor #EBF5FB
+    BorderColor #2980B9
+    FontColor #154360
+    FontSize 12
+}
+
+skinparam rectangle {
+    BackgroundColor #F8FBFE
+    BorderColor #5DADE2
+    FontColor #1B4F72
+    FontStyle bold
+}
+
+skinparam package {
+    BorderColor #5DADE2
+    FontColor #1B4F72
+    FontStyle bold
+}
+
+' Casos de uso de OTRO módulo (solo referencia en diagramas por módulo)
+skinparam usecase<<Externo>> {
+    BackgroundColor #F4F6F7
+    BorderColor #AAB7B8
+    FontColor #5D6D7E
+}
+hide <<Externo>> stereotype
+
+' ==========================================================
+' ACTORES Y JERARQUÍA
+' ==========================================================
+actor "Recepcionista" as Recepcionista
+actor "Veterinario" as Veterinario
+actor "Administrador" as Administrador
+actor "Usuario\n(Personal autenticado)" as Usuario
+
+' Generalización: los tres roles son usuarios autenticados del sistema
+Usuario <|-- Recepcionista
+Usuario <|-- Veterinario
+Usuario <|-- Administrador
+
+' ==========================================================
+' LÍMITE DEL SISTEMA
+' ==========================================================
+rectangle "VetCare - Sistema de Gestión de Citas y Pacientes - Clínica Veterinaria Huellitas" {
+
+    ' 2. MÓDULO PROPIETARIOS Y MASCOTAS (PM)
+    package "Módulo 2: Propietarios y Mascotas (PM)" {
+        usecase "CU-02: Gestionar\npropietarios" as CU02
+        usecase "CU-03: Gestionar\nmascotas" as CU03
+    }
+
+    ' 5. MÓDULO CAJA Y COBROS (CC)
+    package "Módulo 5: Caja y Cobros (CC)" {
+        usecase "CU-13: Registrar cobro de atención\n(presencial, con comprobante)" as CU13
+    }
+
+    ' 3. MÓDULO CITAS Y AGENDA (CA)
+    package "Módulo 3: Citas y Agenda (CA)" {
+        usecase "CU-04: Agendar cita\n--\npunto de extensión:\nmascota no registrada" as CU04
+        usecase "CU-15: Buscar propietario\n(por cédula o nombre)" as CU15
+        usecase "CU-05: Gestionar citas\n(consultar, reprogramar, cancelar)" as CU05
+        usecase "CU-06: Consultar agenda\ndel día" as CU06
+
+        CU04 .> CU15 : <<include>>
+    }
+
+    ' 4. MÓDULO ATENCIÓN CLÍNICA (AC)
+    package "Módulo 4: Atención Clínica (AC)" {
+        usecase "CU-14: Emitir receta\nmédica" as CU14
+        usecase "CU-07: Registrar atención médica\n(cita pasa a Atendida)\n--\npunto de extensión:\ntratamiento con medicación" as CU07
+        usecase "CU-08: Consultar historial\nclínico" as CU08
+
+        CU14 .> CU07 : <<extend>>\n(tratamiento con medicación)
+        CU07 .> CU08 : <<include>>
+    }
+
+    ' 6. MÓDULO ADMINISTRACIÓN (AD)
+    package "Módulo 6: Administración (AD)" {
+        usecase "CU-09: Gestionar\nveterinarios" as CU09
+        usecase "CU-12: Gestionar\nrecepcionistas" as CU12
+        usecase "CU-10: Gestionar servicios\ny precios" as CU10
+    }
+
+    ' 1. MÓDULO ACCESO Y SEGURIDAD (AS)
+    package "Módulo 1: Acceso y Seguridad (AS)" {
+        usecase "CU-01: Iniciar sesión" as CU01
+        usecase "CU-11: Restablecer contraseña\n(asigna contraseña temporal)" as CU11
+    }
+
+    ' RELACIONES ENTRE MÓDULOS
+    ' (la etiqueta de CU-13 va junto a su origen para no tapar el título del Módulo 3)
+    CU03 .> CU04 : <<extend>>\n(mascota no registrada)
+    CU13 "<<include>>" .> CU15
+}
+
+' ==========================================================
+' ASOCIACIONES DE ACTORES
+' ==========================================================
+
+' TODOS LOS USUARIOS (vía generalización)
+Usuario --> CU01
+
+' RECEPCIONISTA
+Recepcionista --> CU02
+Recepcionista --> CU03
+Recepcionista --> CU13
+Recepcionista --> CU04
+Recepcionista --> CU05
+
+' VETERINARIO
+Veterinario --> CU06
+Veterinario --> CU07
+Veterinario --> CU08
+
+' ADMINISTRADOR
+Administrador --> CU09
+Administrador --> CU12
+Administrador --> CU10
+Administrador --> CU11
+
+@enduml
