@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Registrar mascota | Veterinaria</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+
+<body>
+    <header><strong>Veterinaria · Recepción</strong>
+        <nav aria-label="Navegación principal"><a href="menu_recepcionista.html">Inicio</a><a
+                href="listar_mascota.html">Mascotas</a><a href="listar_cita.html">Citas</a><a
+                href="nuevo_cita.html">Agendar cita</a></nav>
+    </header>
+    <main>
+        <h1>Registrar mascota</h1>
+        <p class="note">Prototipo de navegación con datos ficticios. Los formularios validan los campos y abren la
+            pantalla siguiente; no guardan, modifican ni eliminan registros.</p>
+        <p>Los campos marcados con * son obligatorios.</p>
+        <form class="panel" action="listar_mascota.html" method="get">
+            <div class="grid">
+                <div class="field"><label for="nombre">Nombre de la mascota *</label><input id="nombre" name="nombre"
+                        required maxlength="60" pattern=".*\S.*" value=""></div>
+                <div class="field"><label for="propietario">Propietario *</label><select id="propietario"
+                        name="propietario" required>
+                        <option value="" selected disabled>Selecciona un propietario</option>
+                        <option value="1">Ana Pérez · 0102030405</option>
+                    </select></div>
+                <div class="field"><label for="especie">Especie *</label><select id="especie" name="especie" required>
+                        <option value="" selected disabled>Selecciona una especie</option>
+                        <option value="canina">Canina</option>
+                        <option value="felina">Felina</option>
+                    </select></div>
+                <div class="field"><label for="raza">Raza</label><input id="raza" name="raza" maxlength="60" value="">
+                </div>
+                <div class="field"><label for="sexo">Sexo *</label><select id="sexo" name="sexo" required>
+                        <option value="" selected disabled>Selecciona una opción</option>
+                        <option value="hembra">Hembra</option>
+                        <option value="macho">Macho</option>
+                    </select></div>
+                <div class="field"><label for="nacimiento">Fecha de nacimiento</label><input id="nacimiento"
+                        name="nacimiento" type="date" data-past value=""></div>
+            </div>
+            <p class="muted">El sistema definitivo creará automáticamente la historia clínica al registrar la mascota.
+            </p>
+            <div class="actions"><button type="submit">Registrar mascota</button><a class="btn secondary"
+                    href="listar_mascota.html">Cancelar</a></div>
+        </form>
+    </main>
+    <footer>Prototipo HTML · Gestión veterinaria</footer>
+    <script src="interacciones.js"></script>
+</body>
+
+</html>

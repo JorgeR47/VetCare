@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Listado de mascotas | Veterinaria</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+
+<body>
+    <header><strong>Veterinaria · Recepción</strong>
+        <nav aria-label="Navegación principal"><a href="menu_recepcionista.html">Inicio</a><a
+                href="listar_mascota.html">Mascotas</a><a href="listar_cita.html">Citas</a><a
+                href="nuevo_cita.html">Agendar cita</a></nav>
+    </header>
+    <main>
+        <h1>Listado de mascotas</h1>
+        <p class="note">Prototipo de navegación con datos ficticios. Los formularios validan los campos y abren la
+            pantalla siguiente; no guardan, modifican ni eliminan registros.</p>
+        <div class="actions"><a class="btn" href="nuevo_mascota.html">Registrar mascota</a></div>
+        <div class="card">
+            <div class="grid">
+                <div><label for="buscar">Buscar mascota o propietario</label><input id="buscar" type="search"
+                        placeholder="Ej.: Luna o Ana" data-search="mascotas"></div>
+                <div><label for="especie-filtro">Filtrar por especie</label><select id="especie-filtro">
+                        <option value="">Todas las especies</option>
+                        <option>Canina</option>
+                        <option>Felina</option>
+                    </select></div>
+            </div>
+        </div>
+        <div class="table-wrap">
+            <table id="mascotas">
+                <caption>Datos de ejemplo · 1 mascota</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">Mascota</th>
+                        <th scope="col">Especie</th>
+                        <th scope="col">Propietario</th>
+                        <th scope="col">N.º HC</th>
+                        <th scope="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr data-especie="Canina">
+                        <td>Luna</td>
+                        <td>Canina</td>
+                        <td>Ana Pérez</td>
+                        <td>HC-001</td>
+                        <td><a href="detalle_mascota.html">Ver detalle</a><a href="editar_mascota.html">Editar</a><a
+                                href="eliminar_mascota.html">Eliminar</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p id="sin-resultados" hidden role="status">No hay coincidencias.</p>
+    </main>
+    <footer>Prototipo HTML · Gestión veterinaria</footer>
+    <script src="interacciones.js"></script>
+</body>
+
+</html>

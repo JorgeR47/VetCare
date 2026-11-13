@@ -1,0 +1,210 @@
+* {
+    box-sizing: border-box
+}
+
+body {
+    margin: 0;
+    background: #f2f6f8;
+    color: #193343;
+    font: 16px/1.55 system-ui, sans-serif
+}
+
+header {
+    background: #124b54;
+    color: white;
+    padding: 22px max(24px, calc((100% - 1080px)/2))
+}
+
+header strong {
+    font-size: 22px
+}
+
+header a {
+    color: white
+}
+
+nav {
+    display: flex;
+    gap: 22px;
+    flex-wrap: wrap;
+    margin-top: 12px
+}
+
+main {
+    max-width: 1080px;
+    margin: 32px auto;
+    padding: 0 24px
+}
+
+h1 {
+    line-height: 1.2
+}
+
+h2 {
+    font-size: 21px
+}
+
+.note {
+    background: #e3eff2;
+    border-left: 4px solid #227d88;
+    padding: 14px 18px
+}
+
+.card,
+form.panel {
+    background: white;
+    border: 1px solid #d5e1e6;
+    border-radius: 12px;
+    padding: 24px;
+    margin: 20px 0
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px
+}
+
+.grid .card {
+    margin: 0
+}
+
+label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 6px
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 11px;
+    border: 1px solid #879eaa;
+    border-radius: 6px;
+    font: inherit;
+    background: white
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: 3px solid #b5e2e7;
+    outline-offset: 2px
+}
+
+.field {
+    margin-bottom: 18px
+}
+
+.actions {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 24px
+}
+
+.btn,
+button {
+    display: inline-block;
+    background: #126773;
+    color: white;
+    padding: 11px 18px;
+    border: 0;
+    border-radius: 6px;
+    font: inherit;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer
+}
+
+.secondary {
+    background: #e8eff2;
+    color: #193343
+}
+
+.danger {
+    background: #a33135
+}
+
+a {
+    color: #096675
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white
+}
+
+th,
+td {
+    text-align: left;
+    padding: 14px;
+    border-bottom: 1px solid #d5e1e6
+}
+
+th {
+    background: #e7f0f3
+}
+
+.table-wrap {
+    overflow-x: auto;
+    margin: 20px 0
+}
+
+td a {
+    display: inline-block;
+    margin-right: 12px
+}
+
+small,
+.muted {
+    color: #526a76
+}
+
+dt {
+    font-weight: 700
+}
+
+dd {
+    margin: 0 0 14px
+}
+
+.warning {
+    border-left: 4px solid #a33135;
+    padding: 14px;
+    background: #fff0ef
+}
+
+.check {
+    width: auto
+}
+
+footer {
+    max-width: 1080px;
+    margin: 40px auto;
+    padding: 0 24px;
+    color: #526a76
+}
+
+:disabled {
+    opacity: .55;
+    cursor: not-allowed
+}
+
+@media(max-width:600px) {
+    main {
+        padding: 0 16px
+    }
+
+    header {
+        padding: 20px 16px
+    }
+
+    .card,
+    form.panel {
+        padding: 18px
+    }
+}

@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Listado de citas | Veterinaria</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+
+<body>
+    <header><strong>Veterinaria · Recepción</strong>
+        <nav aria-label="Navegación principal"><a href="menu_recepcionista.html">Inicio</a><a
+                href="listar_mascota.html">Mascotas</a><a href="listar_cita.html">Citas</a><a
+                href="nuevo_cita.html">Agendar cita</a></nav>
+    </header>
+    <main>
+        <h1>Listado de citas</h1>
+        <p class="note">Prototipo de navegación con datos ficticios. Los formularios validan los campos y abren la
+            pantalla siguiente; no guardan, modifican ni eliminan registros.</p>
+        <p id="confirmacion" class="note" hidden role="status">Validación completada: llegaste al listado desde el
+            formulario de cita. En este prototipo no se guardó una nueva cita.</p><a class="btn"
+            href="nuevo_cita.html">Agendar cita</a>
+        <div class="card"><label for="buscar-cita">Buscar citas</label><input type="search" id="buscar-cita"
+                data-search="citas" placeholder="Buscar por mascota, propietario o veterinario">
+            <div class="grid">
+                <div class="field"><label for="filtro-fecha">Fecha</label><input id="filtro-fecha" type="date"></div>
+                <div class="field"><label for="filtro-estado">Estado</label><select id="filtro-estado">
+                        <option value="">Todos</option>
+                        <option>Programada</option>
+                        <option>Atendida</option>
+                        <option>Cancelada</option>
+                    </select></div>
+                <div class="field"><label for="filtro-veterinario">Veterinario</label><select id="filtro-veterinario">
+                        <option value="">Todos</option>
+                        <option>Dra. María Torres</option>
+                        <option>Dr. Carlos Ruiz</option>
+                    </select></div>
+            </div>
+        </div>
+        <div class="table-wrap">
+            <table id="citas">
+                <caption>Cita de ejemplo independiente de Luna</caption>
+                <thead>
+                    <tr>
+                        <th>Fecha y hora</th>
+                        <th>Mascota / propietario</th>
+                        <th>Servicio</th>
+                        <th>Veterinario</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr data-fecha="2026-11-20" data-estado="Programada" data-veterinario="Dra. María Torres">
+                        <td>20/11/2026 · 10:00</td>
+                        <td>Max / Luis Gómez</td>
+                        <td>Consulta general</td>
+                        <td>Dra. María Torres</td>
+                        <td>Programada</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p id="sin-resultados" hidden role="status">No hay coincidencias.</p>
+        <p class="muted">Las pantallas de detalle, reprogramación y cancelación de citas están fuera de esta entrega.
+        </p>
+    </main>
+    <footer>Prototipo HTML · Gestión veterinaria</footer>
+    <script src="interacciones.js"></script>
+</body>
+
+</html>

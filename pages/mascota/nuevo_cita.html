@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Agendar cita | Veterinaria</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+
+<body>
+    <header><strong>Veterinaria · Recepción</strong>
+        <nav aria-label="Navegación principal"><a href="menu_recepcionista.html">Inicio</a><a
+                href="listar_mascota.html">Mascotas</a><a href="listar_cita.html">Citas</a><a
+                href="nuevo_cita.html">Agendar cita</a></nav>
+    </header>
+    <main>
+        <h1>Agendar cita</h1>
+        <p class="note">Prototipo de navegación con datos ficticios. Los formularios validan los campos y abren la
+            pantalla siguiente; no guardan, modifican ni eliminan registros.</p>
+        <p>Todos los campos son obligatorios. La cita se crea en estado <strong>Programada</strong>.</p>
+        <form class="panel" action="listar_cita.html" method="get">
+            <div class="grid">
+                <div class="field"><label for="mascota">Mascota *</label><select id="mascota" name="mascota" required>
+                        <option value="" selected disabled>Selecciona una mascota</option>
+                        <option value="1">Luna · Ana Pérez</option>
+                    </select></div>
+                <div class="field"><label for="servicio">Servicio *</label><select id="servicio" name="servicio"
+                        required>
+                        <option value="" selected disabled>Selecciona un servicio</option>
+                        <option value="consulta">Consulta general</option>
+                        <option value="vacunacion">Vacunación</option>
+                    </select></div>
+                <div class="field"><label for="veterinario">Veterinario *</label><select id="veterinario"
+                        name="veterinario" required>
+                        <option value="" selected disabled>Selecciona un veterinario</option>
+                        <option value="1">Dra. María Torres</option>
+                        <option value="2">Dr. Carlos Ruiz</option>
+                    </select></div>
+                <div class="field"><label for="fecha">Fecha *</label><input id="fecha" name="fecha" type="date"
+                        required></div>
+                <div class="field"><label for="hora">Hora *</label><input id="hora" name="hora" type="time" required>
+                </div>
+            </div>
+            <div class="actions"><button type="submit">Agendar cita</button><a class="btn secondary"
+                    href="listar_cita.html">Cancelar</a></div>
+        </form>
+    </main>
+    <footer>Prototipo HTML · Gestión veterinaria</footer>
+    <script src="interacciones.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Confirmar eliminación | Veterinaria</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+
+<body>
+    <header><strong>Veterinaria · Recepción</strong>
+        <nav aria-label="Navegación principal"><a href="menu_recepcionista.html">Inicio</a><a
+                href="listar_mascota.html">Mascotas</a><a href="listar_cita.html">Citas</a><a
+                href="nuevo_cita.html">Agendar cita</a></nav>
+    </header>
+    <main>
+        <h1>Confirmar eliminación</h1>
+        <p class="note">Prototipo de navegación con datos ficticios. Los formularios validan los campos y abren la
+            pantalla siguiente; no guardan, modifican ni eliminan registros.</p>
+        <section class="card">
+            <h2>Registro seleccionado</h2>
+            <dl>
+                <dt>Mascota</dt>
+                <dd>Luna · Canina · Mestiza</dd>
+                <dt>Propietario</dt>
+                <dd>Ana Pérez</dd>
+                <dt>Historia clínica</dt>
+                <dd>HC-001</dd>
+                <dt>Citas / atenciones asociadas</dt>
+                <dd>0 citas / 0 atenciones</dd>
+            </dl>
+            <p class="warning">¿Confirmas la eliminación de Luna? La eliminación se bloquea cuando existen citas o
+                atenciones asociadas.</p>
+            <form action="listar_mascota.html" method="get" data-delete data-citas="0" data-atenciones="0"><input
+                    type="hidden" name="mascota" value="1">
+                <p data-blocked hidden role="alert">No se puede eliminar: existen citas o atenciones asociadas.</p>
+                <div class="actions"><button class="danger" type="submit">Confirmar</button><a class="btn secondary"
+                        href="listar_mascota.html">Cancelar</a></div>
+            </form>
+        </section>
+    </main>
+    <footer>Prototipo HTML · Gestión veterinaria</footer>
+    <script src="interacciones.js"></script>
+</body>
+
+</html>

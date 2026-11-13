@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Ficha de mascota: Luna | Veterinaria</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+
+<body>
+    <header><strong>Veterinaria · Recepción</strong>
+        <nav aria-label="Navegación principal"><a href="menu_recepcionista.html">Inicio</a><a
+                href="listar_mascota.html">Mascotas</a><a href="listar_cita.html">Citas</a><a
+                href="nuevo_cita.html">Agendar cita</a></nav>
+    </header>
+    <main>
+        <h1>Ficha de mascota: Luna</h1>
+        <p class="note">Prototipo de navegación con datos ficticios. Los formularios validan los campos y abren la
+            pantalla siguiente; no guardan, modifican ni eliminan registros.</p>
+        <div class="grid">
+            <section class="card">
+                <h2>Datos de la mascota</h2>
+                <dl>
+                    <dt>Nombre</dt>
+                    <dd>Luna</dd>
+                    <dt>Especie / raza</dt>
+                    <dd>Canina / Mestiza</dd>
+                    <dt>Sexo</dt>
+                    <dd>Hembra</dd>
+                    <dt>Fecha de nacimiento</dt>
+                    <dd>10/05/2022</dd>
+                    <dt>N.º de historia clínica</dt>
+                    <dd>HC-001</dd>
+                    <dt>Atenciones registradas</dt>
+                    <dd>0</dd>
+                </dl>
+            </section>
+            <section class="card">
+                <h2>Propietario</h2>
+                <dl>
+                    <dt>Nombre</dt>
+                    <dd>Ana Pérez</dd>
+                    <dt>Cédula</dt>
+                    <dd>0102030405</dd>
+                    <dt>Celular</dt>
+                    <dd>0990000000</dd>
+                    <dt>Correo</dt>
+                    <dd>ana@example.com</dd>
+                </dl>
+            </section>
+        </div>
+        <div class="actions"><a class="btn" href="nuevo_cita.html?mascota=1">Agendar cita para Luna</a><a
+                class="btn secondary" href="editar_mascota.html">Editar</a><a class="btn danger"
+                href="eliminar_mascota.html">Eliminar</a><a href="listar_mascota.html">Volver al listado</a></div>
+    </main>
+    <footer>Prototipo HTML · Gestión veterinaria</footer>
+    <script src="interacciones.js"></script>
+</body>
+
+</html>
