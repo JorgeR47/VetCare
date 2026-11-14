@@ -1,0 +1,212 @@
+@startuml mapa_navegacional
+title Mapa navegacional VetCare\n(máquina de estados: cada estado es una pantalla; cada flecha, la acción que provoca la transición)
+left to right direction
+hide empty description
+skinparam shadowing false
+skinparam defaultFontName "DejaVu Sans"
+skinparam ArrowFontSize 10
+skinparam StateFontSize 11
+skinparam nodesep 30
+skinparam ranksep 55
+skinparam state {
+    BackgroundColor #FFFFFF
+    BorderColor #3F3F3F
+    ArrowColor #2E2E2E
+    BackgroundColor<<menu>> #DCE8FA
+    BackgroundColor<<boton>> #FFF1BF
+    BorderColor<<boton>> #B38600
+}
+
+legend right
+    <b>Convenciones</b>
+    Estado = pantalla (archivo .html). Fondo amarillo = botón sin archivo propio.
+    ● = inicio del sistema    ◉ = sesión cerrada
+    [datos válidos] = validación HTML5 superada; si no, se permanece en la misma pantalla.
+    Dos flechas con el mismo origen y destino son acciones distintas (Guardar / Cancelar).
+    El enlace «Cerrar sesión» está en el encabezado de todas las pantallas; se dibuja solo desde el menú.
+endlegend
+
+' ===== Inicio de sesión =====
+state "index.html\nInicio de sesión · M1" as LOGIN
+[*] --> LOGIN : Abrir el sistema
+LOGIN --> LOGIN : Ingresar\n[credenciales inválidas]
+
+' ===== Rol: Recepcionista =====
+state "ROL · RECEPCIONISTA" as ROLR #EAF6EF {
+    state "menu_recepcionista.html\nMenú de recepcionista · M1" as REC <<menu>>
+        state "M2 · Propietarios · CU-02" as M2 {
+            state "listado_propietario.html" as LP
+            state "nuevo_propietario.html" as NP
+            state "detalle_propietario.html" as DP
+            state "editar_propietario.html" as EP
+            state "eliminar_propietario.html" as XP
+        }
+        state "M3 · Mascotas e historia clínica · CU-03" as M3 {
+            state "listar_mascota.html" as LM
+            state "nuevo_mascota.html" as NM
+            state "detalle_mascota.html" as DM
+            state "editar_mascota.html" as EM
+            state "eliminar_mascota.html" as XM
+        }
+        state "M4 · Citas · CU-04 / CU-05" as M4 {
+            state "listar_cita.html" as LC
+            state "nuevo_cita.html" as NC
+            state "detalle_cita.html" as DC
+            state "editar_cita.html" as EC
+            state "eliminar_cita.html" as XC
+        }
+}
+
+' ===== Rol: Veterinario =====
+state "ROL · VETERINARIO" as ROLV #F1ECFA {
+    state "menu_veterinario.html\nMenú del veterinario · M1 / M5" as VET <<menu>>
+    state "M5 · Atención clínica · CU-06 / CU-07 / CU-08" as M5 {
+        state "listar_agenda.html" as LA
+        state "detalle-agenda.html" as DA
+        state "nuevo_atencion.html" as NA
+        state "confirmacion-atencion.html" as CA
+        state "Boton historial-clínico\n(botón: buscar y seleccionar mascota)" as BH <<boton>>
+        state "Detalle-historial.html\nConsulta de solo lectura" as DH
+    }
+}
+
+' ===== Rol: Administrador =====
+state "ROL · ADMINISTRADOR" as ROLA #FCEFE6 {
+    state "menu_administrador.html\nMenú del administrador · M1" as ADM <<menu>>
+        state "M6 · Veterinarios · CU-09" as M6V {
+            state "listar_Veterinario.html" as LV
+            state "nuevo_veterinario.html" as NV
+            state "detalle_veterinario.html" as DV
+            state "editar_veterinario.html" as EV
+            state "eliminar_veterinario.html" as XV
+        }
+        state "M6 · Recepcionistas · CU-11" as M6R {
+            state "listar_recepcionista.html" as LR
+            state "nuevo_recepcionista.html" as NR
+            state "detalle_recepcionista.html" as DR
+            state "editar_recepcionista.html" as ER
+            state "eliminar_recepcionista.html" as XR
+        }
+        state "M7 · Catálogo de servicios · CU-10" as M7 {
+            state "listar_servicio.html" as LS
+            state "nuevo_servicio.html" as NS
+            state "detalle_servicio.html" as DS
+            state "editar_servicio.html" as ES
+            state "eliminar_servicio.html" as XS
+        }
+}
+
+' ===== Transiciones desde el inicio de sesión =====
+LOGIN --> REC : Ingresar\n[rol: recepcionista]
+LOGIN --> VET : Ingresar\n[rol: veterinario]
+LOGIN --> ADM : Ingresar\n[rol: administrador]
+
+' ===== Recepcionista: enlaces del menú y atajos =====
+REC --> LP : Enlace «Propietarios»
+REC --> LM : Enlace «Mascotas»
+REC --> LC : Enlace «Citas»
+REC --> NC : Atajo «Agendar cita»
+DM --> NC : Atajo «Agendar cita»
+
+' --- M2 · Propietarios · CU-02
+LP --> NP : Registrar
+LP --> DP : Ver
+LP --> EP : Editar
+LP --> XP : Eliminar
+NP --> LP : Guardar\n[datos válidos]
+NP --> LP : Cancelar
+EP --> LP : Guardar\n[datos válidos]
+EP --> LP : Cancelar
+XP --> LP : Confirmar eliminación
+XP --> LP : Cancelar
+DP --> LP : Volver
+' --- M3 · Mascotas e historia clínica · CU-03
+LM --> NM : Registrar
+LM --> DM : Ver ficha
+LM --> EM : Editar
+LM --> XM : Eliminar
+NM --> LM : Guardar\n[datos válidos]
+NM --> LM : Cancelar
+EM --> LM : Guardar\n[datos válidos]
+EM --> LM : Cancelar
+XM --> LM : Confirmar eliminación
+XM --> LM : Cancelar
+DM --> LM : Volver
+' --- M4 · Citas · CU-04 / CU-05
+LC --> NC : Agendar
+LC --> DC : Ver
+LC --> EC : Reprogramar
+LC --> XC : Cancelar cita
+NC --> LC : Guardar\n[datos válidos]
+NC --> LC : Cancelar
+EC --> LC : Guardar\n[datos válidos]
+EC --> LC : Cancelar
+XC --> LC : Confirmar cancelación\n[motivo ingresado]
+XC --> LC : Cancelar
+DC --> LC : Volver
+
+' ===== Veterinario: atención clínica =====
+VET --> LA : Enlace «Agenda del día»\n(selección de fecha)
+VET --> BH : Enlace «Historial clínico»
+LA --> DA : Seleccionar cita
+DA --> NA : Registrar atención
+NA --> CA : Guardar\n[datos válidos]
+BH --> DH : Seleccionar mascota
+DA --> LA : Volver
+NA --> DA : Cancelar
+CA --> LA : Volver a la agenda
+DH --> VET : Enlace «Inicio»
+
+' ===== Administrador =====
+ADM --> LV : Enlace «Veterinarios»
+ADM --> LR : Enlace «Recepcionistas»
+ADM --> LS : Enlace «Servicios»
+
+' --- M6 · Veterinarios · CU-09
+LV --> NV : Registrar
+LV --> DV : Ver ficha
+LV --> EV : Editar
+LV --> XV : Eliminar
+NV --> LV : Guardar\n[datos válidos]
+NV --> LV : Cancelar
+EV --> LV : Guardar\n[datos válidos]
+EV --> LV : Cancelar
+XV --> LV : Confirmar eliminación
+XV --> LV : Cancelar
+DV --> LV : Volver
+' --- M6 · Recepcionistas · CU-11
+LR --> NR : Registrar
+LR --> DR : Ver ficha
+LR --> ER : Editar
+LR --> XR : Eliminar
+NR --> LR : Guardar\n[datos válidos]
+NR --> LR : Cancelar
+ER --> LR : Guardar\n[datos válidos]
+ER --> LR : Cancelar
+XR --> LR : Confirmar eliminación
+XR --> LR : Cancelar
+DR --> LR : Volver
+' --- M7 · Catálogo de servicios · CU-10
+LS --> NS : Registrar
+LS --> DS : Ver ficha
+LS --> ES : Editar
+LS --> XS : Eliminar
+NS --> LS : Guardar\n[datos válidos]
+NS --> LS : Cancelar
+ES --> LS : Guardar\n[datos válidos]
+ES --> LS : Cancelar
+XS --> LS : Confirmar eliminación
+XS --> LS : Cancelar
+DS --> LS : Volver
+
+' ===== Disposición: módulos de un mismo rol apilados (flechas ocultas, no son transiciones) =====
+LP -[hidden]down-> LM
+LM -[hidden]down-> LC
+LV -[hidden]down-> LR
+LR -[hidden]down-> LS
+
+' ===== Cierre de sesión =====
+REC --> [*] : Cerrar sesión
+VET --> [*] : Cerrar sesión
+ADM --> [*] : Cerrar sesión
+@enduml

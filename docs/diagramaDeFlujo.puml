@@ -1,0 +1,123 @@
+@startuml
+top to bottom direction
+skinparam packageStyle rectangle
+
+rectangle "index.html\nInicio de sesión · M1" as LOGIN
+rectangle "menu_recepcionista.html\nMenú de recepcionista · M1" as REC
+rectangle "menu_veterinario.html\nMenú del veterinario · M1 / M5" as VET
+rectangle "menu_administrador.html\nMenú del administrador · M1" as ADM
+
+LOGIN --> REC : Rol: recepcionista
+LOGIN --> VET : Rol: veterinario
+LOGIN --> ADM : Rol: administrador
+
+package "M2 · Propietarios · CU-02" as M2 {
+    rectangle "listado_propietario.html" as LP
+    rectangle "nuevo_propietario.html" as NP
+    rectangle "detalle_propietario.html" as DP
+    rectangle "editar_propietario.html" as EP
+    rectangle "eliminar_propietario.html" as XP
+
+    LP ..> NP : Registrar
+    LP --> DP : Ver
+    LP --> EP : Editar
+    LP --> XP : Eliminar
+    NP --> LP : Retorno al listado
+    DP --> LP : Retorno al listado
+    EP --> LP : Retorno al listado
+    XP --> LP : Retorno al listado
+}
+
+package "M3 · Mascotas e historia clínica · CU-03" as M3 {
+    rectangle "listar_mascota.html" as LM
+    rectangle "nuevo_mascota.html" as NM
+    rectangle "detalle_mascota.html" as DM
+    rectangle "editar_mascota.html" as EM
+    rectangle "eliminar_mascota.html" as XM
+
+    LM ..> NM : Registrar
+    LM ..> DM : Ver ficha
+    LM ..> EM : Editar
+    LM ..> XM : Eliminar
+}
+
+package "M4 · Citas · CU-04 / CU-05" as M4 {
+    rectangle "listar_cita.html" as LC
+    rectangle "nuevo_cita.html" as NC
+    rectangle "detalle_cita.html" as DC
+    rectangle "editar_cita.html" as EC
+    rectangle "eliminar_cita.html" as XC
+
+    LC ..> NC : Agendar
+    LC ..> DC : Ver
+    LC ..> EC : Reprogramar
+    LC ..> XC : Cancelar
+    NC --> LC : Confirmación al agendar
+}
+
+package "M5 · Atención clínica · CU-06 / CU-07 / CU-08" as M5 {
+    rectangle "listar_agenda.html" as LA
+    rectangle "detalle-agenda.html" as DA
+    rectangle "nuevo_atencion.html" as NA
+    rectangle "confirmacion-atencion.html" as CA
+    rectangle "Boton historial-clínico\nBuscar y seleccionar mascota" as BH
+    rectangle "Detalle-historial.html\nConsulta de solo lectura" as DH
+
+    LA ..> DA : Seleccionar cita
+    DA --> NA : Registrar atención
+    NA ..> CA : Registro realizado
+    BH ..> DH : Seleccionar mascota
+}
+
+package "M6 · Personal: Veterinarios · CU-09" as M6V {
+    rectangle "listar_Veterinario.html" as LV
+    rectangle "nuevo_veterinario.html" as NV
+    rectangle "detalle_veterinario.html" as DV
+    rectangle "editar_veterinario.html" as EV
+    rectangle "eliminar_veterinario.html" as XV
+
+    LV ..> NV : Registrar
+    LV ..> DV : Ver ficha
+    LV ..> EV : Editar
+    LV ..> XV : Eliminar
+}
+
+package "M6 · Personal: Recepcionistas · CU-11" as M6R {
+    rectangle "listar_recepcionista.html" as LR
+    rectangle "nuevo_recepcionista.html" as NR
+    rectangle "detalle_recepcionista.html" as DR
+    rectangle "editar_recepcionista.html" as ER
+    rectangle "eliminar_recepcionista.html" as XR
+
+    LR ..> NR : Registrar
+    LR ..> DR : Ver ficha
+    LR ..> ER : Editar
+    LR ..> XR : Eliminar
+}
+
+package "M7 · Catálogo de servicios · CU-10" as M7 {
+    rectangle "listar_servicio.html" as LS
+    rectangle "nuevo_servicio.html" as NS
+    rectangle "detalle_servicio.html" as DS
+    rectangle "editar_servicio.html" as ES
+    rectangle "eliminar_servicio.html" as XS
+
+    LS ..> NS : Registrar
+    LS ..> DS : Ver ficha
+    LS ..> ES : Editar
+    LS ..> XS : Eliminar
+}
+
+REC --> LP : Propietarios
+REC --> LM : Mascotas
+REC --> LC : Citas
+REC --> NC : Atajo: Agendar cita
+DM --> NC : Atajo: Agendar cita
+
+VET --> LA : Agenda del día / selección de fecha
+VET --> BH : Historial clínico
+
+ADM --> LV : Veterinarios
+ADM --> LR : Recepcionistas
+ADM --> LS : Servicios
+@enduml
