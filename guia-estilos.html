@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Manual Paso a Paso de CSS | VetCare</title>
+  <link rel="stylesheet" href="css/estilos.css">
+  <style>
+    /* Estilos complementarios para la documentación */
+    pre.codigo-bloque {
+      background-color: #1a2927;
+      color: #e2f0ed;
+      padding: 16px 20px;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 14px;
+      line-height: 1.6;
+      margin: 12px 0;
+      border-left: 4px solid var(--color-secundario);
+      white-space: pre;
+    }
+    .ejemplo-marco {
+      padding: 20px;
+      margin: 12px 0 16px 0;
+      border: 2px dashed #b0c5c1;
+      border-radius: 8px;
+      background-color: #ffffff;
+    }
+    .etiqueta-seccion {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--color-principal);
+      margin-bottom: 6px;
+    }
+    .explicacion-caja {
+      background-color: #eef6f4;
+      border-left: 4px solid var(--color-principal);
+      padding: 14px 18px;
+      border-radius: 0 8px 8px 0;
+      margin: 12px 0;
+      font-size: 14.5px;
+      line-height: 1.55;
+    }
+    .paleta-colores {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 12px 0;
+    }
+    .color-tarjeta {
+      flex: 1 1 140px;
+      padding: 16px 12px;
+      border-radius: 8px;
+      color: #ffffff;
+      font-weight: bold;
+      text-align: center;
+      font-size: 13px;
+    }
+    .indice-navegacion {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+    .indice-navegacion a {
+      display: inline-block;
+      padding: 6px 12px;
+      background-color: #e8f3f0;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: bold;
+    }
+    .indice-navegacion a:hover {
+      background-color: var(--color-principal);
+      color: #ffffff;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Encabezado del manual -->
+  <header class="encabezado">
+    <div class="contenedor encabezado__interior">
+      <a class="marca" href="index.html">
+        <span class="marca__simbolo">V</span>
+        <span class="marca__texto">VetCare</span>
+      </a>
+
+      <div class="navegacion">
+        <div class="usuario-sesion">
+          <div class="usuario-avatar" title="Equipo de Desarrollo">
+            A
+          </div>
+          <div class="usuario-datos">
+            <span class="usuario-nombre">Aprendizaje Web</span>
+            <span class="usuario-rol">Guía de Estilos</span>
+          </div>
+        </div>
+        <nav>
+          <a href="index.html">Página Principal</a>
+          <a href="pages/servicios.html">Catálogo</a>
+          <a href="pages/recepcionista/menu-recepcionista.html">Menú Recepción</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main class="contenedor seccion-principal">
+    <div class="encabezado-pagina">
+      <p class="texto-secundario">Aprende CSS paso a paso</p>
+      <h1 class="titulo-pagina">Guía Visual y Práctica de estilos.css</h1>
+      <p class="texto-secundario">
+        En esta guía aprenderás cómo funciona cada clase CSS de nuestro proyecto. Cada sección te muestra primero la explicación detallada, luego el resultado visual exacto y finalmente el código HTML identado y listo para copiar en tus páginas.
+      </p>
+
+      <!-- Índice de temas -->
+      <nav class="indice-navegacion">
+        <a href="#tema-enlace">1. Enlazar el CSS</a>
+        <a href="#tema-colores">2. Colores y Variables</a>
+        <a href="#tema-contenedor">3. El Contenedor</a>
+        <a href="#tema-header">4. Encabezado y Avatar</a>
+        <a href="#tema-titulos">5. Títulos y Textos</a>
+        <a href="#tema-tarjetas">6. Tarjetas y Paneles</a>
+        <a href="#tema-botones">7. Botones</a>
+        <a href="#tema-formularios">8. Formularios y Campos</a>
+        <a href="#tema-alertas">9. Mensajes de Aviso</a>
+        <a href="#tema-tablas">10. Tablas</a>
+        <a href="#tema-datos">11. Fichas de Datos</a>
+        <a href="#tema-cuadricula">12. Cuadrículas Flexibles</a>
+        <a href="#tema-buscador">13. El Buscador</a>
+        <a href="#tema-estados">14. Etiquetas de Estado</a>
+        <a href="#tema-espaciados">15. Espaciados y Footer</a>
+        <a href="#tema-resumen">16. Tabla Resumen</a>
+      </nav>
+    </div>
+
+    <!-- TEMA 1: ENLACE CSS -->
+    <article id="tema-enlace" class="tarjeta panel espacio-abajo">
+      <span class="etiqueta-seccion">Paso 1: Fundamento</span>
+      <h2>1. Cómo conectar el archivo estilos.css a tus páginas HTML</h2>
+      
+      <div class="explicacion-caja">
+        <strong>¿Qué hace esta línea?</strong><br>
+        La etiqueta <code>&lt;link rel="stylesheet" href="..."&gt;</code> va obligatoriamente dentro de <code>&lt;head&gt;</code>. Le indica al navegador en qué carpeta se encuentra el archivo CSS que le dará colores, fuentes y orden a la página.<br><br>
+        <strong>¿Cómo saber qué poner en href?</strong><br>
+        Depende de la carpeta donde guardaste tu HTML. Si el HTML está en la misma carpeta que <code>css/</code>, usas <code>css/estilos.css</code>. Si tu archivo está dentro de una carpeta más profunda, usas <code>../</code> para retroceder un nivel hacia afuera.
+      </div>
+
+      <pre class="codigo-bloque">&lt;!-- Si tu página está en la carpeta raíz (ejemplo: index.html o guia-estilos.html) --&gt;
+&lt;link rel="stylesheet" href="css/estilos.css"&gt;
+
+&lt;!-- Si tu página está dentro de la carpeta pages (ejemplo: pages/servicios.html) --&gt;
+&lt;link rel="stylesheet" href="../css/estilos.css"&gt;
+
+&lt;!-- Si tu página está dentro de pages/recepcionista (ejemplo: menu-recepcionista.html) --&gt;
+&lt;link rel="stylesheet" href="../../css/estilos.css"&gt;
+
+&lt;!-- Si tu página está dentro de pages/recepcionista/propietarios (ejemplo: propietarios-listado.html) --&gt;
+&lt;link rel="stylesheet" href="../../../css/estilos.css"&gt;</pre>
+    </article>
+
+    <!-- TEMA 2: COLORES -->
+    <article id="tema-colores" class="tarjeta panel espacio-abajo">
+      <span class="etiqueta-seccion">Paso 2: Identidad Gráfica</span>
+      <h2>2. Los colores de VetCare y cómo usarlos</h2>
+
+      <div class="explicacion-caja">
+        <strong>¿Por qué usamos variables (:root)?</strong><br>
+        En CSS creamos "nombres" para los colores (variables) para no tener que memorizar códigos como <code>#0b6b68</code>. Así, si alguna vez queremos cambiar el tono de verde de toda la web, solo lo cambiamos en un lugar.
+      </div>
+
+      <!-- Muestra visual de los colores -->
+      <div class="paleta-colores">
+        <div class="color-tarjeta" style="background-color: #0b6b68;">
+          --color-principal<br>#0b6b68<br><small>Verde de la clínica</small>
+        </div>
+        <div class="color-tarjeta" style="background-color: #084c4b;">
+          --color-principal-oscuro<br>#084c4b<br><small>Tono al pasar el ratón</small>
+        </div>
+        <div class="color-tarjeta" style="background-color: #f3bd55; color: #203432;">
+          --color-secundario<br>#f3bd55<br><small>Amarillo de acento</small>
+        </div>
+        <div class="color-tarjeta" style="background-color: #18794e;">
+          --color-exito<br>#18794e<br><small>Acciones correctas</small>
+        </div>
+        <div class="color-tarjeta" style="background-color: #b42318;">
+          --color-error<br>#b42318<br><small>Alertas y peligro</small>
+        </div>
+        <div class="color-tarjeta" style="background-color: #f5f8f6; color: #203432; border: 1px solid #d7e2df;">
+          --color-fondo<br>#f5f8f6<br><small>Fondo suave general</small>
+        </div>
+      </div>
+
+      <pre class="codigo-bloque">/* Ejemplo: Si quieres usar estos colores en algún estilo propio */
+.mi-caja {
+  background-color: var(--color-principal); /* Pinta el fondo con el verde oficial */
+  color: #ffffff;                           /* Letra blanca para que contraste */
+  border: 1px solid var(--color-borde);     /* Borde gris clarito */
+}</pre>
+    </article>
+
+    <!-- TEMA 3: CONTENEDOR -->
+    <article id="tema-contenedor" class="tarjeta panel espacio-abajo">
+      <span class="etiqueta-seccion">Paso 3: Estructura de la Pantalla</span>
+      <h2>3. El Contenedor (.contenedor)</h2>
+
+      <div class="explicacion-caja">
+        <strong>¿Para qué sirve la clase .contenedor?</strong><br>
+        Sin esta clase, el texto y las tablas se pegarían a los bordes de la pantalla del monitor y se verían muy anchos y difíciles de leer. La clase <code>.contenedor</code> limita el ancho máximo a 1100 píxeles y centra todo de manera ordenada en medio de la pantalla.
+      </div>
+
+      <!-- Ejemplo visual exacto -->
+      <p><strong>Resultado visual en pantalla:</strong></p>
+      <div class="ejemplo-marco" style="background-color: #f5f8f6;">
+        <div class="contenedor" style="background-color: #ffffff; border: 2px solid var(--color-principal); padding: 20px; text-align: center;">
+          <strong>Este recuadro blanco tiene la clase .contenedor</strong><br>
+          <span class="texto-secundario">Observa cómo tiene un ancho delimitado y está centrado automáticamente.</span>
+        </div>
+      </div>
+
+      <p><strong>Código HTML identado para lograr este resultado:</strong></p>
+      <pre class="codigo-bloque">&lt;!-- Usamos .contenedor en cada sección principal de la página --&gt;
+&lt;main class="contenedor seccion-principal"&gt;
+  &lt;p&gt;Todo el contenido que pongas aquí quedará centrado y con márgenes limpios a los lados.&lt;/p&gt;
+&lt;/main&gt;</pre>
+    </article>
+
+    <!-- TEMA 4: ENCABEZADO Y AVATAR -->
+    <article id="tema-header" class="tarjeta panel espacio-abajo">
+      <span class="etiqueta-seccion">Paso 4: Barra Superior</span>
+      <h2>4. El Encabezado, Logotipo y Avatar de Usuario</h2>
+
+      <div class="explicacion-caja">
+        <strong>¿Cómo funciona el encabezado?</strong><br>
+        - <code>.encabezado</code>: Le da fondo blanco y la línea separadora inferior.<br>
+        - <code>.encabezado__interior</code>: Coloca el logo a la izquierda y el menú a la derecha automáticamente.<br>
+        - <code>.marca</code> y <code>.marca__simbolo</code>: Dibujan el logo cuadrado verde con la letra <strong>V</strong>.<br>
+        - <code>.usuario-avatar</code>: Dibuja el círculo verde con la letra inicial de la persona conectada.
+      </div>
+
+      <!-- Ejemplo visual exacto -->
+      <p><strong>Resultado visual en pantalla:</strong></p>
+      <div class="ejemplo-marco" style="padding: 0; background-color: #f5f8f6;">
+        <header class="encabezado">
+          <div class="encabezado__interior" style="padding: 10px 16px;">
+            <a class="marca" href="#">
+              <span class="marca__simbolo">V</span>
+              <span class="marca__texto">VetCare</span>
+            </a>
+
+            <div class="navegacion">
+              <div class="usuario-sesion">
+                <div class="usuario-avatar">C</div>
+                <div class="usuario-datos">
+                  <span class="usuario-nombre">Camila Silva</span>
+                  <span class="usuario-rol">Recepcionista</span>
+                </div>
+              </div>
+              <a href="#">Cerrar sesión</a>
+            </div>
+          </div>
+        </header>
+      </div>
+
+      <p><strong>Código HTML identado para lograr este resultado:</strong></p>
+      <pre class="codigo-bloque">&lt;header class="encabezado"&gt;
+  &lt;div class="contenedor encabezado__interior"&gt;
+    &lt;!-- Logotipo de VetCare --&gt;
+    &lt;a class="marca" href="index.html"&gt;
+      &lt;span class="marca__simbolo"&gt;V&lt;/span&gt;
+      &lt;span class="marca__texto"&gt;VetCare&lt;/span&gt;
+    &lt;/a&gt;
+
+    &lt;!-- Menú y datos del usuario conectado --&gt;
+    &lt;div class="navegacion"&gt;
+      &lt;div class="usuario-sesion"&gt;
+        &lt;div class="usuario-avatar" title="Camila Silva"&gt;C&lt;/div&gt;
+        &lt;div class="usuario-datos"&gt;
+          &lt;span class="usuario-nombre"&gt;Camila Silva&lt;/span&gt;
+          &lt;span class="usuario-rol"&gt;Recepcionista&lt;/span&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;nav&gt;
+        &lt;a href="index.html"&gt;Cerrar sesión&lt;/a&gt;
+      &lt;/nav&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/header&gt;</pre>
+    </article>
+
+    <!-- TEMA 5: TÍTULOS Y TEXTOS -->
+    <article id="tema-titulos" class="tarjeta panel espacio-abajo">
+      <span class="etiqueta-seccion">Paso 5: Jerarquía de Textos</span>
+      <h2>5. Títulos y Textos Secundarios</h2>
+
+      <div class="explicacion-caja">
+        <strong>¿Cómo organizar el encabezado de cada página?</strong><br>
+        Cada pantalla debe tener su título claro. Usamos <code>.encabezado-pagina</code> para agruparlo, <code>.titulo-pagina</code> para darle el tamaño adecuado (28 píxeles) y <code>.texto-secundario</code> para los subtítulos en color gris suave.
+      </div>
+
+      <!-- Ejemplo visual exacto -->
+      <p><strong>Resultado visual en pantalla:</strong></p>
+      <div class="ejemplo-marco">
+        <div class="encabezado-pagina" style="margin-bottom: 0;">
+          <p class="texto-secundario">Módulo de recepción &gt; Propietarios</p>
+          <h1 class="titulo-pagina">Listado de Propietarios</h1>
+          <p class="texto-secundario">Busca y administra la información de contacto de los clientes de la clínica.</p>
+        </div>
+      </div>
+
+      <p><strong>Código HTML identado para lograr este resultado:</strong></p>
+      <pre class="codigo-bloque">&lt;div class="encabezado-pagina"&gt;
+  &lt;p class="texto-secundario"&gt;Módulo de recepción &gt; Propietarios&lt;/p&gt;
+  &lt;h1 class="titulo-pagina"&gt;Listado de Propietarios&lt;/h1&gt;
+  &lt;p class="texto-secundario"&gt;Busca y administra la información de contacto de los clientes de la clínica.&lt;/p&gt;
+&lt;/div&gt;</pre>
+    </article>
+
+    <!-- TEMA 6: TARJETAS Y PANELES -->
+    <article id="tema-tarjetas" class="tarjeta panel espacio-abajo">
+      <span class="etiqueta-seccion">Paso 6: Contenedores Visuales</span>
+      <h2>6. Tarjetas (.tarjeta) y Paneles (.panel)</h2>
+
+      <div class="explicacion-caja">
+        <strong>¿Cuál es la diferencia entre .tarjeta y .panel?</strong><br>
+        - <code>.tarjeta</code>: Aplica el fondo blanco, las esquinas redondeadas y la sombra suave.<br>
+        - <code>.panel</code>: Aplica el relleno interior (padding de 24 píxeles) para que el texto o los botones no queden pegados a los bordes de la tarjeta.<br>
+        Casi siempre se usan juntas: <code>class="tarjeta panel"</code>.
+      </div>
+
+      <!-- Ejemplo visual exacto -->
+      <p><strong>Resultado visual en pantalla:</strong></p>
+      <div class="ejemplo-marco" style="background-color: #f5f8f6;">
+        <div class="tarjeta panel">
+          <h3 style="margin-top: 0;">Ficha Informativa</h3>
+          <p style="margin-bottom: 0;">Este contenido se encuentra protegido dentro de una tarjeta con esquinas redondeadas, fondo blanco y sombra suave.</p>
+        </div>
+      </div>
+
+      <p><strong>Código HTML identado para lograr este resultado:</strong></p>
+      <pre class="codigo-bloque">&lt;div class="tarjeta panel"&gt;
+  &lt;h3&gt;Ficha Informativa&lt;/h3&gt;
+  &lt;p&gt;Este contenido se encuentra protegido dentro de una tarjeta con esquinas redondeadas, fondo blanco y sombra suave.&lt;/p&gt;
+&lt;/div&gt;</pre>
+    </article>
+
+    <!-- TEMA 7: BOTONES -->
+    <article id="tema-botones" class="tarjeta panel espacio-abajo">
+      <span class="etiqueta-seccion">Paso 7: Acciones y Clics</span>
+      <h2>7. Botones y Botoneras (.boton, .botonera)</h2>
+
+      <div class="explicacion-caja">
+        <strong>¿Qué tipos de botones tenemos?</strong><br>
+        - <code>.boton</code>: El botón verde principal para guardar, enviar o confirmar.<br>
+        - <code>.boton--secundario</code>: Botón blanco con borde gris para cancelar o volver atrás.<br>
+        - <code>.boton--peligro</code>: Botón rojo para eliminar registros o dar de baja.<br>
+        - <code>.botonera</code>: Una caja que agrupa varios botones en una misma fila con espacio entre ellos.
+      </div>
+
+      <!-- Ejemplo visual exacto -->
+      <p><strong>Resultado visual en pantalla:</strong></p>
+      <div class="ejemplo-marco">
+        <div class="botonera">
+          <button class="boton" type="button">Guardar propietario</button>
+          <button class="boton boton--secundario" type="button">Cancelar</button>
+          <button class="boton boton--peligro" type="button">Eliminar registro</button>
+        </div>
+      </div>
+
+      <p><strong>Código HTML identado para lograr este resultado:</strong></p>
+      <pre class="codigo-bloque">&lt;div class="botonera"&gt;
+  &lt;!-- Botón principal verde --&gt;
+  &lt;button class="boton" type="submit"&gt;Guardar propietario&lt;/button&gt;
+
+  &lt;!-- Botón secundario blanco --&gt;
+  &lt;a class="boton boton--secundario" href="listado.html"&gt;Cancelar&lt;/a&gt;
+
+  &lt;!-- Botón de peligro rojo --&gt;
+  &lt;button class="boton boton--peligro" type="button"&gt;Eliminar registro&lt;/button&gt;
+&lt;/div&gt;</pre>
+    </article>
+
+    <!-- TEMA 8: FORMULARIOS -->
+    <article id="tema-formularios" class="tarjeta panel espacio-abajo">
+      <span class="etiqueta-seccion">Paso 8: Entrada de Datos</span>
+      <h2>8. Formularios y Campos (.formulario, .campo)</h2>
+
+      <div class="explicacion-caja">
+        <strong>¿Cómo armar campos de formulario ordenados?</strong><br>
+        Cada dato debe ir envuelto en un <code>&lt;div class="campo"&gt;</code>. Este div coloca automáticamente el <code>&lt;label&gt;</code> arriba y el <code>&lt;input&gt;</code> o <code>&lt;select&gt;</code> abajo.<br>
+        <strong>Detalle especial:</strong> Si agregas el atributo estándar <code>required</code>, el CSS le colocará automáticamente una línea verde a la izquierda para avisarle visualmente a la persona que ese campo es obligatorio.
+      </div>
+
+      <!-- Ejemplo visual exacto -->
+      <p><strong>Resultado visual en pantalla:</strong></p>
+      <div class="ejemplo-marco">
+        <form class="formulario" action="#" method="get" onsubmit="return false;">
+          <fieldset>
+            <legend class="etiqueta">Datos Personales del Cliente</legend>
+
+            <div class="campo">
+              <label for="ejemplo-cedula">Cédula de Identidad *</label>
+              <input id="ejemplo-cedula" type="text" placeholder="Ej. 0105489632" required>
+            </div>
+
+            <div class="campo">
+              <label for="ejemplo-tipo">Especie de la Mascota *</label>
+              <select id="ejemplo-tipo" required>
+                <option value="">Seleccione una especie...</option>
+                <option value="perro">Canino (Perro)</option>
+                <option value="gato">Felino (Gato)</option>
+              </select>
+            </div>
+
+            <div class="campo">
+              <label for="ejemplo-observacion">Observaciones o Síntomas</label>
+              <textarea id="ejemplo-observacion" placeholder="Escribe aquí los motivos de la consulta médica..."></textarea>
+            </div>
+
+            <p class="texto-secundario">Los campos con borde verde a la izquierda son obligatorios.</p>
+          </fieldset>
+
+          <div class="botonera">
+            <button class="boton" type="submit">Registrar Paciente</button>
+            <button class="boton boton--secundario" type="reset">Limpiar Campos</button>
+          </div>
+        </form>
+      </div>
+
+      <p><strong>Código HTML identado para lograr este resultado:</strong></p>
+      <pre class="codigo-bloque">&lt;form class="tarjeta panel formulario" action="guardar.html" method="get"&gt;
+  &lt;fieldset&gt;
+    &lt;legend class="etiqueta"&gt;Datos Personales del Cliente&lt;/legend&gt;
+
+    &lt;!-- Campo de texto requerido (borde verde) --&gt;
+    &lt;div class="campo"&gt;
+      &lt;label for="cedula"&gt;Cédula de Identidad *&lt;/label&gt;
+      &lt;input id="cedula" name="cedula" type="text" placeholder="Ej. 0105489632" required&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Campo de selección desplegable --&gt;
+    &lt;div class="campo"&gt;
+      &lt;label for="tipo"&gt;Especie de la Mascota *&lt;/label&gt;
+      &lt;select id="tipo" name="tipo" required&gt;
+        &lt;option value=""&gt;Seleccione una especie...&lt;/option&gt;
+        &lt;option value="perro"&gt;Canino (Perro)&lt;/option&gt;
+        &lt;option value="gato"&gt;Felino (Gato)&lt;/option&gt;
+      &lt;/select&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Campo de texto multilínea --&gt;
+    &lt;div class="campo"&gt;
+      &lt;label for="observacion"&gt;Observaciones o Síntomas&lt;/label&gt;
+      &lt;textarea id="observacion" name="observacion" placeholder="Escribe aquí los motivos de la consulta médica..."&gt;&lt;/textarea&gt;
+    &lt;/div&gt;
+
+    &lt;p class="texto-secundario"&gt;Los campos con borde verde a la izquierda son obligatorios.&lt;/p&gt;
+  &lt;/fieldset&gt;
+
+  &lt;!-- Botones de acción del formulario --&gt;
+  &lt;div class="botonera"&gt;
+    &lt;button class="boton" type="submit"&gt;Registrar Paciente&lt;/button&gt;
+    &lt;button class="boton boton--secundario" type="reset"&gt;Limpiar Campos&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/form&gt;</pre>
+    </article>
+
+    <!-- TEMA 9: MENSAJES DE ESTADO -->
+    <article id="tema-alertas" class="tarjeta panel espacio-abajo">
+      <span class="etiqueta-seccion">Paso 9: Mensajes al Usuario</span>
+      <h2>9. Mensajes de Aviso y Alertas (.mensaje)</h2>
+
+      <div class="explicacion-caja">
+        <strong>¿Cuándo usar cada tipo de mensaje?</strong><br>
+        - <code>.mensaje--exito</code>: Fondo verde claro con texto verde oscuro. Se usa cuando se guardó un registro o se completó una acción correctamente.<br>
+        - <code>.mensaje--error</code>: Fondo rojo claro con borde y texto rojo. Se usa para advertencias importantes, errores o confirmaciones de eliminación.
+      </div>
+
+      <!-- Ejemplo visual exacto -->
+      <p><strong>Resultado visual en pantalla:</strong></p>
+      <div class="ejemplo-marco" style="display: flex; flex-direction: column; gap: 12px;">
+        <div class="mensaje mensaje--exito">
+          Operación realizada con éxito: El propietario fue registrado en el sistema.
+        </div>
+        <div class="mensaje mensaje--error">
+          Advertencia sanitaria: Al dar de baja a un propietario se debe preservar el historial médico de sus mascotas.
+        </div>
+      </div>
+
+      <p><strong>Código HTML identado para lograr este resultado:</strong></p>
+      <pre class="codigo-bloque">&lt;!-- Mensaje verde de éxito --&gt;
+&lt;div class="mensaje mensaje--exito"&gt;
+  Operación realizada con éxito: El propietario fue registrado en el sistema.
+&lt;/div&gt;
+
+&lt;!-- Mensaje rojo de advertencia o error --&gt;
+&lt;div class="mensaje mensaje--error"&gt;
+  Advertencia sanitaria: Al dar de baja a un propietario se debe preservar el historial médico de sus mascotas.
+&lt;/div&gt;</pre>
+    </article>
+
+    <!-- TEMA 10: TABLAS -->
+    <article id="tema-tablas" class="tarjeta panel espacio-abajo">
+      <span class="etiqueta-seccion">Paso 10: Datos Tabulares</span>
+      <h2>10. Tablas de Registros (.tabla-contenedor, .tabla)</h2>
+
+      <div class="explicacion-caja">
+        <strong>¿Cómo se construyen las tablas en VetCare?</strong><br>
+        1. Envuelves la tabla dentro de <code>&lt;div class="tabla-contenedor"&gt;</code>. Esto garantiza que si la tabla tiene muchas columnas, aparezca una barra de desplazamiento horizontal suave sin deformar la pantalla.<br>
+        2. Le pones la clase <code>.tabla</code> a la etiqueta <code>&lt;table&gt;</code>. El CSS le dará fondo verde claro a los encabezados (<code>&lt;th&gt;</code>) y alternará las filas con un tono gris suave para facilitar la lectura.
+      </div>
+
+      <!-- Ejemplo visual exacto -->
+      <p><strong>Resultado visual en pantalla:</strong></p>
+      <div class="ejemplo-marco">
+        <div class="tabla-contenedor">
+          <table class="tabla">
+            <caption>Listado de Citas Veterinarias de Hoy</caption>
+            <thead>
+              <tr>
+                <th>Hora</th>
+                <th>Paciente</th>
+                <th>Tutor Responsable</th>
+                <th>Motivo de Visita</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>09:30</strong></td>
+                <td>Luna (Husky)</td>
+                <td>María Fernanda Torres</td>
+                <td>Vacunación anual</td>
+                <td><a href="#">Ver</a> | <a href="#">Atender</a></td>
+              </tr>
+              <tr>
+                <td><strong>10:15</strong></td>
+                <td>Rocky (Pastor)</td>
+                <td>Carlos Alberto Mendoza</td>
+                <td>Consulta preventiva</td>
+                <td><a href="#">Ver</a> | <a href="#">Atender</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <p><strong>Código HTML identado para lograr este resultado:</strong></p>
+      <pre class="codigo-bloque">&lt;div class="tabla-contenedor"&gt;
+  &lt;table class="tabla"&gt;
+    &lt;caption&gt;Listado de Citas Veterinarias de Hoy&lt;/caption&gt;
+    &lt;thead&gt;
+      &lt;tr&gt;
+        &lt;th&gt;Hora&lt;/th&gt;
+        &lt;th&gt;Paciente&lt;/th&gt;
+        &lt;th&gt;Tutor Responsable&lt;/th&gt;
+        &lt;th&gt;Motivo de Visita&lt;/th&gt;
+        &lt;th&gt;Acciones&lt;/th&gt;
+      &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+      &lt;tr&gt;
+        &lt;td&gt;&lt;strong&gt;09:30&lt;/strong&gt;&lt;/td&gt;
+        &lt;td&gt;Luna (Husky)&lt;/td&gt;
+        &lt;td&gt;María Fernanda Torres&lt;/td&gt;
+        &lt;td&gt;Vacunación anual&lt;/td&gt;
+        &lt;td&gt;&lt;a href="#"&gt;Ver&lt;/a&gt; | &lt;a href="#"&gt;Atender&lt;/a&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;&lt;strong&gt;10:15&lt;/strong&gt;&lt;/td&gt;
+        &lt;td&gt;Rocky (Pastor)&lt;/td&gt;
+        &lt;td&gt;Carlos Alberto Mendoza&lt;/td&gt;
+        &lt;td&gt;Consulta preventiva&lt;/td&gt;
+        &lt;td&gt;&lt;a href="#"&gt;Ver&lt;/a&gt; | &lt;a href="#"&gt;Atender&lt;/a&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+&lt;/div&gt;</pre>
+    </article>
+
+    <!-- TEMA 11: FICHAS DE DATOS -->
+    <article id="tema-datos" class="tarjeta panel espacio-abajo">
+      <span class="etiqueta-seccion">Paso 11: Detalles de Registros</span>
+      <h2>11. Fichas de Datos en Bloque (.datos)</h2>
+
+      <div class="explicacion-caja">
+        <strong>¿Cuándo usar la lista de datos (.datos)?</strong><br>
+        En HTML existe la etiqueta <code>&lt;dl&gt;</code> (lista de descripción), donde <code>&lt;dt&gt;</code> es el título y <code>&lt;dd&gt;</code> es el valor. Con nuestra clase <code>.datos</code>, cada pareja de título y valor se convierte en una cajita gris muy limpia, ideal para páginas como <em>"Detalle del Propietario"</em> o <em>"Confirmar Eliminación"</em>.
+      </div>
+
+      <!-- Ejemplo visual exacto -->
+      <p><strong>Resultado visual en pantalla:</strong></p>
+      <div class="ejemplo-marco">
+        <dl class="datos">
+          <div>
+            <dt>Cédula de Identidad</dt>
+            <dd>0105489632</dd>
+          </div>
+          <div>
+            <dt>Nombre Completo</dt>
+            <dd>María Fernanda Torres</dd>
+          </div>
+          <div>
+            <dt>Teléfono Celular</dt>
+            <dd>0998451230</dd>
+          </div>
+          <div>
+            <dt>Correo Electrónico</dt>
+            <dd>maria.torres@gmail.com</dd>
+          </div>
+        </dl>
+      </div>
+
+      <p><strong>Código HTML identado para lograr este resultado:</strong></p>
+      <pre class="codigo-bloque">&lt;dl class="datos"&gt;
+  &lt;div&gt;
+    &lt;dt&gt;Cédula de Identidad&lt;/dt&gt;
+    &lt;dd&gt;0105489632&lt;/dd&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;dt&gt;Nombre Completo&lt;/dt&gt;
+    &lt;dd&gt;María Fernanda Torres&lt;/dd&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;dt&gt;Teléfono Celular&lt;/dt&gt;
+    &lt;dd&gt;0998451230&lt;/dd&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;dt&gt;Correo Electrónico&lt;/dt&gt;
+    &lt;dd&gt;maria.torres@gmail.com&lt;/dd&gt;
+  &lt;/div&gt;
+&lt;/dl&gt;</pre>
+    </article>
+
+    <!-- TEMA 12: CUADRÍCULAS FLEXIBLES -->
+    <article id="tema-cuadricula" class="tarjeta panel espacio-abajo">
+      <span class="etiqueta-seccion">Paso 12: Columnas y Distribución</span>
+      <h2>12. Cuadrículas Flexibles (.cuadricula, .cuadricula--tres)</h2>
+
+      <div class="explicacion-caja">
+        <strong>¿Cómo poner elementos lado a lado sin complicaciones?</strong><br>
+        En lugar de calcular anchos difíciles, usamos <code>.cuadricula</code> combinado con:<br>
+        - <code>.cuadricula--dos</code>: Para formularios de dos columnas.<br>
+        - <code>.cuadricula--tres</code>: Para menús o catálogos de tres tarjetas por fila. Los elementos se distribuyen con espacio uniforme entre ellos.
+      </div>
+
+      <!-- Ejemplo visual exacto -->
+      <p><strong>Resultado visual en pantalla:</strong></p>
+      <div class="ejemplo-marco" style="background-color: #f5f8f6;">
+        <div class="cuadricula cuadricula--tres">
+          <div class="tarjeta panel">
+            <h3>1. Propietarios</h3>
+            <p>Registrar y consultar datos de contacto.</p>
+          </div>
+          <div class="tarjeta panel">
+            <h3>2. Mascotas</h3>
+            <p>Expediente clínico de los animales.</p>
+          </div>
+          <div class="tarjeta panel">
+            <h3>3. Servicios</h3>
+            <p>Tarifas y atenciones disponibles.</p>
+          </div>
+        </div>
+      </div>
+
+      <p><strong>Código HTML identado para lograr este resultado:</strong></p>
+      <pre class="codigo-bloque">&lt;div class="cuadricula cuadricula--tres"&gt;
+  &lt;div class="tarjeta panel"&gt;
+    &lt;h3&gt;1. Propietarios&lt;/h3&gt;
+    &lt;p&gt;Registrar y consultar datos de contacto.&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="tarjeta panel"&gt;
+    &lt;h3&gt;2. Mascotas&lt;/h3&gt;
+    &lt;p&gt;Expediente clínico de los animales.&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="tarjeta panel"&gt;
+    &lt;h3&gt;3. Servicios&lt;/h3&gt;
+    &lt;p&gt;Tarifas y atenciones disponibles.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+    </article>
+
+    <!-- TEMA 13: BUSCADOR -->
+    <article id="tema-buscador" class="tarjeta panel espacio-abajo">
+      <span class="etiqueta-seccion">Paso 13: Búsqueda</span>
+      <h2>13. Buscador Integrado (.buscador)</h2>
+
+      <div class="explicacion-caja">
+        <strong>¿Cómo funciona la clase .buscador?</strong><br>
+        La clase <code>.buscador</code> alinea perfectamente la caja de texto con el botón "Buscar", haciendo que el input ocupe la mayor parte del espacio disponible y el botón quede a su lado a la misma altura.
+      </div>
+
+      <!-- Ejemplo visual exacto -->
+      <p><strong>Resultado visual en pantalla:</strong></p>
+      <div class="ejemplo-marco">
+        <form class="buscador" action="#" method="get" onsubmit="return false;">
+          <div class="campo">
+            <label for="buscar-cliente">Buscar propietario</label>
+            <input id="buscar-cliente" type="search" placeholder="Escribe cédula, nombre, teléfono o correo...">
+          </div>
+          <button class="boton" type="submit">Buscar</button>
+        </form>
+      </div>
+
+      <p><strong>Código HTML identado para lograr este resultado:</strong></p>
+      <pre class="codigo-bloque">&lt;form class="buscador espacio-abajo" action="propietarios-listado.html" method="get"&gt;
+  &lt;div class="campo"&gt;
+    &lt;label for="buscar-cliente"&gt;Buscar propietario&lt;/label&gt;
+    &lt;input id="buscar-cliente" name="q" type="search" placeholder="Escribe cédula, nombre, teléfono o correo..."&gt;
+  &lt;/div&gt;
+  &lt;button class="boton" type="submit"&gt;Buscar&lt;/button&gt;
+&lt;/form&gt;</pre>
+    </article>
+
+    <!-- TEMA 14: BADGES Y ESTADOS -->
+    <article id="tema-estados" class="tarjeta panel espacio-abajo">
+      <span class="etiqueta-seccion">Paso 14: Indicadores Visuales</span>
+      <h2>14. Etiquetas de Estado (.estado)</h2>
+
+      <div class="explicacion-caja">
+        <strong>¿Para qué sirve la clase .estado?</strong><br>
+        Es una pequeña pastilla verde redondeada que se usa para mostrar estados como <em>"Módulo activo"</em>, <em>"Atendido"</em> o <em>"Confirmado"</em> de manera muy visual en menús o tablas.
+      </div>
+
+      <!-- Ejemplo visual exacto -->
+      <p><strong>Resultado visual en pantalla:</strong></p>
+      <div class="ejemplo-marco">
+        <span class="estado">Módulo activo</span>
+      </div>
+
+      <p><strong>Código HTML identado para lograr este resultado:</strong></p>
+      <pre class="codigo-bloque">&lt;span class="estado"&gt;Módulo activo&lt;/span&gt;</pre>
+    </article>
+
+    <!-- TEMA 15: ESPACIADOS Y PIE -->
+    <article id="tema-espaciados" class="tarjeta panel espacio-abajo">
+      <span class="etiqueta-seccion">Paso 15: Separaciones y Cierre</span>
+      <h2>15. Clases de Espaciado y Pie de Página (.pie)</h2>
+
+      <div class="explicacion-caja">
+        <strong>¿Cómo separar secciones sin escribir nuevo CSS?</strong><br>
+        - <code>.espacio-arriba</code>: Agrega un margen de 18 píxeles arriba del elemento.<br>
+        - <code>.espacio-abajo</code>: Agrega un margen de 18 píxeles debajo del elemento.<br>
+        - <code>.pie</code>: Aplica al pie de página un tono gris suave, tamaño adecuado y separación visual con el contenido superior.
+      </div>
+
+      <!-- Ejemplo visual exacto -->
+      <p><strong>Resultado visual en pantalla:</strong></p>
+      <div class="ejemplo-marco">
+        <div style="background-color: #f7faf9; padding: 12px; border: 1px solid #d7e2df;">
+          Bloque superior
+        </div>
+        
+        <div class="espacio-arriba" style="background-color: #e8f3f0; padding: 12px; border: 1px solid var(--color-principal);">
+          Bloque con la clase <strong>.espacio-arriba</strong> (separado automáticamente 18px del bloque anterior).
+        </div>
+
+        <footer class="pie" style="padding-bottom: 0;">
+          VetCare · Clínica Veterinaria Huellitas
+        </footer>
+      </div>
+
+      <p><strong>Código HTML identado para lograr este resultado:</strong></p>
+      <pre class="codigo-bloque">&lt;!-- Separar una sección de la anterior --&gt;
+&lt;div class="espacio-arriba"&gt;
+  &lt;p&gt;Este bloque tiene espacio extra arriba.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;!-- Pie de página estándar al final de cada HTML --&gt;
+&lt;footer class="contenedor pie"&gt;
+  VetCare · Clínica Veterinaria Huellitas
+&lt;/footer&gt;</pre>
+    </article>
+
+    <!-- TEMA 16: TABLA RESUMEN -->
+    <article id="tema-resumen" class="tarjeta panel">
+      <span class="etiqueta-seccion">Paso 16: Chuleta de Referencia</span>
+      <h2>16. Tabla Resumen de Todas las Clases de estilos.css</h2>
+      <p>Ten esta tabla a la mano para saber rápidamente qué clase usar según lo que necesites construir:</p>
+
+      <div class="tabla-contenedor">
+        <table class="tabla">
+          <thead>
+            <tr>
+              <th>Nombre de la Clase</th>
+              <th>¿Para qué sirve?</th>
+              <th>¿Dónde se coloca?</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>.contenedor</code></td>
+              <td>Centra todo el contenido de la página a 1100px con márgenes limpios</td>
+              <td>En <code>&lt;main&gt;</code>, <code>&lt;header&gt;</code> o <code>&lt;footer&gt;</code></td>
+            </tr>
+            <tr>
+              <td><code>.encabezado</code></td>
+              <td>Barra superior blanca con borde gris inferior</td>
+              <td>En <code>&lt;header&gt;</code></td>
+            </tr>
+            <tr>
+              <td><code>.marca</code></td>
+              <td>Logotipo que une el símbolo y el texto VetCare</td>
+              <td>En <code>&lt;a&gt;</code></td>
+            </tr>
+            <tr>
+              <td><code>.usuario-avatar</code></td>
+              <td>Círculo verde que muestra la inicial del usuario</td>
+              <td>En <code>&lt;div&gt;</code></td>
+            </tr>
+            <tr>
+              <td><code>.titulo-pagina</code></td>
+              <td>Título grande y destacado de la pantalla</td>
+              <td>En <code>&lt;h1&gt;</code></td>
+            </tr>
+            <tr>
+              <td><code>.texto-secundario</code></td>
+              <td>Subtítulos o explicaciones en color gris suave</td>
+              <td>En <code>&lt;p&gt;</code> o <code>&lt;span&gt;</code></td>
+            </tr>
+            <tr>
+              <td><code>.tarjeta</code></td>
+              <td>Caja blanca con esquinas redondeadas y sombra suave</td>
+              <td>En <code>&lt;div&gt;</code> o <code>&lt;section&gt;</code></td>
+            </tr>
+            <tr>
+              <td><code>.panel</code></td>
+              <td>Le da 24px de relleno interior a una tarjeta</td>
+              <td>Junto a <code>.tarjeta</code></td>
+            </tr>
+            <tr>
+              <td><code>.boton</code></td>
+              <td>Botón principal verde</td>
+              <td>En <code>&lt;button&gt;</code> o <code>&lt;a&gt;</code></td>
+            </tr>
+            <tr>
+              <td><code>.boton--secundario</code></td>
+              <td>Botón blanco de cancelar o regresar</td>
+              <td>En <code>&lt;button&gt;</code> o <code>&lt;a&gt;</code></td>
+            </tr>
+            <tr>
+              <td><code>.boton--peligro</code></td>
+              <td>Botón rojo de eliminar o dar de baja</td>
+              <td>En <code>&lt;button&gt;</code></td>
+            </tr>
+            <tr>
+              <td><code>.botonera</code></td>
+              <td>Fila que agrupa varios botones con separación</td>
+              <td>En <code>&lt;div&gt;</code></td>
+            </tr>
+            <tr>
+              <td><code>.formulario</code></td>
+              <td>Organiza los campos en columna vertical limpia</td>
+              <td>En <code>&lt;form&gt;</code></td>
+            </tr>
+            <tr>
+              <td><code>.campo</code></td>
+              <td>Une el label y el input uno encima del otro</td>
+              <td>En <code>&lt;div&gt;</code></td>
+            </tr>
+            <tr>
+              <td><code>.mensaje--exito</code></td>
+              <td>Caja verde de confirmación correcta</td>
+              <td>En <code>&lt;div&gt;</code></td>
+            </tr>
+            <tr>
+              <td><code>.mensaje--error</code></td>
+              <td>Caja roja de alerta o advertencia</td>
+              <td>En <code>&lt;div&gt;</code></td>
+            </tr>
+            <tr>
+              <td><code>.tabla-contenedor</code></td>
+              <td>Permite desplazamiento si la tabla es muy ancha</td>
+              <td>En <code>&lt;div&gt;</code></td>
+            </tr>
+            <tr>
+              <td><code>.tabla</code></td>
+              <td>Estilos de encabezado verde y filas alternadas</td>
+              <td>En <code>&lt;table&gt;</code></td>
+            </tr>
+            <tr>
+              <td><code>.datos</code></td>
+              <td>Fichas en cuadrícula para pares título/valor</td>
+              <td>En <code>&lt;dl&gt;</code></td>
+            </tr>
+            <tr>
+              <td><code>.cuadricula--tres</code></td>
+              <td>Organiza 3 tarjetas por fila automáticamente</td>
+              <td>En <code>&lt;div&gt;</code></td>
+            </tr>
+            <tr>
+              <td><code>.buscador</code></td>
+              <td>Alinea el campo de búsqueda y el botón en una línea</td>
+              <td>En <code>&lt;form&gt;</code></td>
+            </tr>
+            <tr>
+              <td><code>.estado</code></td>
+              <td>Pastilla verde para indicar estado activo</td>
+              <td>En <code>&lt;span&gt;</code></td>
+            </tr>
+            <tr>
+              <td><code>.espacio-arriba</code></td>
+              <td>Agrega 18px de margen arriba</td>
+              <td>En cualquier elemento</td>
+            </tr>
+            <tr>
+              <td><code>.pie</code></td>
+              <td>Estilo para el pie de página final</td>
+              <td>En <code>&lt;footer&gt;</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </article>
+  </main>
+
+  <!-- Pie de página general -->
+  <footer class="contenedor pie">
+    VetCare · Clínica Veterinaria Huellitas · Manual de CSS para Principiantes
+  </footer>
+</body>
+
+</html>

@@ -1,108 +1,79 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- Las comillas simples ('') evitan errores dentro del atributo content -->
-        <meta name="description" content="Veterinaria 'Huellitas' - Cuidando a tus mascotas. Ofrecemos servicios médicos y estéticos.">
-        <title>Bienvenido a Veterinaria "Huellitas"</title>
-        <link rel="stylesheet" href="estilos.css">
-    </head>
-    <body>
 
-        <!-- HEADER: Encabezado principal del sitio -->
-        <header class="header">
-            <div class="header__container container">
-                <h1 class="header__title">Veterinaria "Huellitas"</h1>
-                <p class="header__subtitle">Cuidando a tus mascotas como parte de nuestra familia</p>
-                
-                <!-- NAV: Navegación principal -->
-                <nav class="nav">
-                    <ul class="nav__list">
-                        <li class="nav__item"><a href="#inicio" class="nav__link">Inicio</a></li>
-                        <li class="nav__item"><a href="#servicios" class="nav__link">Servicios</a></li>
-                        <li class="nav__item"><a href="#nosotros" class="nav__link">Nosotros</a></li>
-                        <li class="nav__item"><a href="#contacto" class="nav__link">Contacto</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </header>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Acceso al sistema VetCare de la clínica veterinaria Huellitas.">
+  <title>Iniciar sesión | VetCare</title>
+  <link rel="stylesheet" href="css/estilos.css">
+  <link rel="stylesheet" href="css/paginas/login.css">
+</head>
 
-        <!-- MAIN: Contenido principal de la página -->
-        <main> 
+<body class="pagina-acceso">
+  <main class="acceso">
+    <!-- Columna izquierda: Información e Imagen ilustrativa -->
+    <section class="acceso__marca">
+      <a class="marca marca--acceso" href="index.html">
+        <span class="marca__simbolo">V</span>
+        <span class="marca__texto">VetCare</span>
+      </a>
 
-            <!-- SECTION: Sección de bienvenida (Hero) -->
-            <section id="inicio" class="hero">
-                <div class="hero__container container">
-                    <h2>Salud y bienestar para tu mejor amigo</h2>
-                    <p>Atención médica integral con el amor que ellos merecen.</p>
-                    <a href="#contacto" class="hero__button">Agendar Cita</a>
-                </div>
-            </section>
+      <div class="acceso__marca-info">
+        <p class="acceso__ceja">CLÍNICA VETERINARIA HUELLITAS</p>
+        <h1>Cuidamos de quienes llenan tu vida de alegría.</h1>
+        <p class="acceso__descripcion">
+          Sistema integral para el personal de la clínica. Ingresa con las credenciales asignadas a tu rol.
+        </p>
+        <div class="acceso__detalle">
+          <span>🐾</span>
+          <span>Atención veterinaria profesional y organizada.</span>
+        </div>
+      </div>
+    </section>
 
-            <hr>
+    <!-- Columna derecha: Formulario de inicio de sesión -->
+    <section class="acceso__panel">
+      <div class="acceso__formulario">
+        <p class="acceso__ceja">BIENVENIDO/A</p>
+        <h2>Iniciar sesión</h2>
+        <p class="texto-secundario">Ingresa con tus credenciales al sistema.</p>
 
-            <!-- SECTION: Sección de Servicios -->
-            <section id="servicios" class="services">
-                <div class="services__container container">
-                    <h2>Nuestros Servicios</h2>
-                    
-                    <!-- ARTICLE: Contenido independiente (ideal para cada servicio) -->
-                    <div class="services__grid">
-                        <article class="service-card">
-                            <h3>Consulta Médica</h3>
-                            <p>Chequeos generales y especializados para mantener la salud óptima de tu mascota.</p>
-                        </article>
+        <form action="pages/recepcionista/menu-recepcionista.html" method="get">
+          <div class="campo">
+            <label for="correo">Correo electrónico</label>
+            <input id="correo" name="correo" type="email" placeholder="recepcionista@vetcare.com" value="recepcionista@vetcare.com" required>
+          </div>
 
-                        <article class="service-card">
-                            <h3>Vacunación</h3>
-                            <p>Esquemas de vacunación completos y desparasitación para prevenir enfermedades.</p>
-                        </article>
+          <div class="campo">
+            <label for="contrasena">Contraseña</label>
+            <input id="contrasena" name="contrasena" type="password" placeholder="Ingresa tu contraseña" value="123456" required>
+          </div>
 
-                        <article class="service-card">
-                            <h3>Peluquería Canina y Felina</h3>
-                            <p>Servicio de estética animal para que luzcan hermosos y se sientan limpios.</p>
-                        </article>
-                    </div>
-                </div>
-            </section>
+          <button class="boton boton--ancho" type="submit">Ingresar al sistema</button>
+        </form>
 
-            <hr>
+        <!-- Acceso directo por roles -->
+        <div class="acceso__usuarios-prueba">
+          <p class="acceso__usuarios-titulo"><strong>Ingreso por perfil del personal:</strong></p>
+          <div class="usuarios-chips">
+            <a class="chip-usuario" href="pages/recepcionista/menu-recepcionista.html">
+              <span class="chip-rol">Recepcionista</span>
+              <span class="chip-nombre">Camila Silva</span>
+            </a>
+            <a class="chip-usuario" href="pages/veterinario/menu-veterinario.html">
+              <span class="chip-rol">Veterinario</span>
+              <span class="chip-nombre">Dr. Roberto Méndez</span>
+            </a>
+            <a class="chip-usuario" href="pages/administrador/menu-administrador.html">
+              <span class="chip-rol">Administrador</span>
+              <span class="chip-nombre">Carlos Valdivieso</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
 
-            <!-- SECTION: Sección sobre la veterinaria -->
-            <section id="nosotros" class="about">
-                <div class="about__container container">
-                    <div class="about__content">
-                        <h2>Sobre Nosotros</h2>
-                        <p>En Veterinaria Huellitas contamos con más de 10 años de experiencia brindando atención de calidad, urgencias y mucho amor a cada paciente que entra por nuestra puerta.</p>
-                    </div>
-                    
-                    <!-- ASIDE: Información complementaria (ideal para horarios o contacto rápido) -->
-                    <aside class="about__sidebar">
-                        <h3>Horarios de Atención</h3>
-                        <ul>
-                            <li><strong>Lunes a Viernes:</strong> 08:00 - 20:00</li>
-                            <li><strong>Sábados:</strong> 09:00 - 14:00</li>
-                            <li><strong>Urgencias:</strong> ¡Atención 24/7!</li>
-                        </ul>
-                    </aside>
-                </div>
-            </section>
-
-        </main>
-        
-        <!-- El atributo src debe tener una ruta o eliminarse. Aquí ponemos un archivo ficticio -->
-        <script src="app.js" async defer></script>
-
-        <!-- FOOTER: Pie de página -->
-        <footer id="contacto" class="footer">
-            <div class="footer__container container">
-                <p>📍 Dirección: Calle de las Mascotas 123, Ciudad</p>
-                <p>📞 Teléfono: +123 456 7890</p>
-                <p class="footer__text">© 2026 Veterinaria "Huellitas". Todos los derechos reservados.</p>
-                <p class="footer__text">© hecho con ❤️ por el equipo de VetCare</p>
-            </div>
-        </footer>
-
-    </body>
 </html>

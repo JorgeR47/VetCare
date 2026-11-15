@@ -1,0 +1,26 @@
+/* ESTILOS DE PROPIETARIOS */
+
+/* Columna Mascotas (6ª columna) — ancho mínimo para que el contenido sea visible */
+.tabla-propietarios td:nth-child(6),
+.tabla-propietarios th:nth-child(6) {
+  min-width: 180px;
+  white-space: normal;
+}
+
+.tabla-propietarios td:nth-child(6) small {
+  display: block;
+  line-height: 1.6;
+  color: #3d5c59;
+}
+
+/* Columna Acciones (última columna) */
+.tabla-propietarios td:last-child,
+.tabla-propietarios th:last-child {
+  min-width: 170px;
+  white-space: nowrap;
+}
+
+.tabla-propietarios td:last-child a {
+  display: inline-block;
+  margin: 2px 4px;
+}

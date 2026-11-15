@@ -1,29 +1,444 @@
-:root{
-    --fondo-color-primario: #f5f5f5;
-    --fondo-color-secundario: #ffffff;
+/* ===================================================
+   VETCARE - ESTILOS GENERALES DEL SISTEMA
+   =================================================== */
 
+/* Variables de colores y tamaños reutilizables */
+:root {
+  --color-principal: #0b6b68;
+  --color-principal-oscuro: #084c4b;
+  --color-secundario: #f3bd55;
+  --color-fondo: #f5f8f6;
+  --color-superficie: #ffffff;
+  --color-texto: #203432;
+  --color-texto-suave: #5e706e;
+  --color-borde: #d7e2df;
+  --color-error: #b42318;
+  --color-error-fondo: #fff2f0;
+  --color-exito: #18794e;
+  --color-exito-fondo: #ecfdf3;
+  --fuente-principal: Arial, Helvetica, sans-serif;
+  --radio-caja: 12px;
+  --radio-control: 8px;
+  --ancho-contenido: 1100px;
+}
 
-    --texto-color-primario: #333333;
-    --texto-color-secundario: #666666;
-    --texto-fuente-principal: 'Arial', sans-serif;
-    --texto-fuente-secundaria: 'Helvetica', sans-serif;
-    --texto-negrita: bold;
+/* Regla base de dimensionamiento */
+* {
+  box-sizing: border-box;
+}
 
+/* Cuerpo de la página */
+body {
+  margin: 0;
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+  font-family: var(--fuente-principal);
+  font-size: 16px;
+  line-height: 1.5;
+}
 
-    --padding-principal: 20px;
-    --padding-secundario: 10px;
-    --margin-principal: 20px;
-    --margin-secundario: 10px;
-    --width-principal: 100%;
-    --height-principal: 100vh;
-    --border-radius-principal: 5px;
-    --border-radius-secundario: 10px;
-    
-    --caja-flexible:flex;
+/* Enlaces */
+a {
+  color: var(--color-principal-oscuro);
+  text-decoration: none;
+}
 
+a:hover {
+  text-decoration: underline;
+}
 
+/* Contenedor centralizado para el contenido */
+.contenedor {
+  width: 92%;
+  max-width: var(--ancho-contenido);
+  margin-left: auto;
+  margin-right: auto;
+}
 
+/* Encabezado superior */
+.encabezado {
+  background-color: var(--color-superficie);
+  border-bottom: 1px solid var(--color-borde);
+}
 
+.encabezado__interior {
+  min-height: 70px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 0;
+}
 
+/* Logotipo / Marca */
+.marca {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--color-texto);
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 18px;
+}
 
+.marca__simbolo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  background-color: var(--color-principal);
+  color: #ffffff;
+  font-weight: bold;
+}
+
+/* Barra de navegación */
+.navegacion {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+.navegacion a {
+  padding: 8px 14px;
+  border-radius: var(--radio-control);
+  text-decoration: none;
+  font-weight: bold;
+  color: var(--color-principal-oscuro);
+}
+
+.navegacion a:hover {
+  background-color: #e8f3f0;
+}
+
+/* Avatar de usuario en el header */
+.usuario-sesion {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-right: 8px;
+}
+
+.usuario-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background-color: var(--color-principal);
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 16px;
+  border: 2px solid #e8f3f0;
+}
+
+.usuario-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.usuario-nombre {
+  font-weight: bold;
+  font-size: 14px;
+  color: var(--color-texto);
+}
+
+.usuario-rol {
+  font-size: 12px;
+  color: var(--color-texto-suave);
+  text-transform: capitalize;
+}
+
+/* Pie de página */
+.pie {
+  padding: 30px 0;
+  color: var(--color-texto-suave);
+  font-size: 14px;
+}
+
+/* Títulos y textos */
+.titulo-pagina {
+  margin: 0 0 6px 0;
+  font-size: 28px;
+  color: var(--color-texto);
+}
+
+.texto-secundario {
+  color: var(--color-texto-suave);
+  margin-top: 4px;
+  margin-bottom: 8px;
+}
+
+.seccion-principal {
+  padding-top: 30px;
+  padding-bottom: 40px;
+}
+
+.encabezado-pagina {
+  margin-bottom: 24px;
+}
+
+/* Tarjeta y paneles */
+.tarjeta {
+  background-color: var(--color-superficie);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-caja);
+  box-shadow: 0 4px 12px rgba(20, 61, 57, 0.06);
+  text-decoration: none;
+  color: inherit;
+}
+
+a.tarjeta {
+  display: block;
+  text-decoration: none;
+  color: var(--color-texto);
+}
+
+a.tarjeta:hover {
+  border-color: var(--color-principal);
+  transform: translateY(-2px);
+}
+
+a.tarjeta h2,
+a.tarjeta p,
+a.tarjeta strong,
+a.tarjeta span {
+  text-decoration: none;
+}
+
+.panel {
+  padding: 24px;
+}
+
+/* Botones */
+.boton {
+  display: inline-flex;
+  min-height: 42px;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 18px;
+  border: 1px solid transparent;
+  border-radius: var(--radio-control);
+  background-color: var(--color-principal);
+  color: #ffffff;
+  font-family: inherit;
+  font-weight: bold;
+  font-size: 15px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.boton:hover {
+  background-color: var(--color-principal-oscuro);
+}
+
+.boton--secundario {
+  background-color: #ffffff;
+  border-color: var(--color-borde);
+  color: var(--color-texto);
+}
+
+.boton--secundario:hover {
+  background-color: #edf4f2;
+}
+
+.boton--peligro {
+  background-color: var(--color-error);
+}
+
+.boton--peligro:hover {
+  background-color: #8f1d14;
+}
+
+.botonera {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+/* Formularios y campos de entrada */
+.formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.formulario fieldset {
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-control);
+  padding: 16px;
+  margin: 0 0 10px 0;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.campo label,
+.etiqueta {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.campo input,
+.campo select,
+.campo textarea {
+  width: 100%;
+  min-height: 40px;
+  padding: 8px 12px;
+  border: 1px solid #aebfbb;
+  border-radius: var(--radio-control);
+  background-color: #ffffff;
+  color: var(--color-texto);
+  font-family: inherit;
+  font-size: 15px;
+}
+
+.campo textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.campo input:required,
+.campo select:required,
+.campo textarea:required {
+  border-left: 4px solid var(--color-principal);
+}
+
+/* Buscador */
+.buscador {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 12px;
+  max-width: 600px;
+}
+
+.buscador .campo {
+  flex: 1;
+  min-width: 250px;
+  margin-bottom: 0;
+}
+
+/* Cuadrículas */
+.cuadricula {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.cuadricula--dos > * {
+  flex: 1 1 320px;
+}
+
+.cuadricula--tres > * {
+  flex: 1 1 280px;
+}
+
+/* Mensajes de aviso / alerta */
+.mensaje {
+  padding: 12px 16px;
+  border-radius: var(--radio-control);
+  font-size: 14px;
+}
+
+.mensaje--error {
+  border: 1px solid #f2b8b5;
+  background-color: var(--color-error-fondo);
+  color: #8f1d14;
+}
+
+.mensaje--exito {
+  border: 1px solid #a6e2c2;
+  background-color: var(--color-exito-fondo);
+  color: #12643f;
+}
+
+/* Tablas con scroll horizontal */
+.tabla-contenedor {
+  overflow-x: auto;
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-control);
+  background-color: #ffffff;
+}
+
+.tabla {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.tabla caption {
+  padding: 12px;
+  text-align: left;
+  font-weight: bold;
+}
+
+.tabla th,
+.tabla td {
+  padding: 12px;
+  border-bottom: 1px solid var(--color-borde);
+  vertical-align: top;
+}
+
+.tabla th {
+  background-color: #eaf3f1;
+}
+
+.tabla tbody tr:nth-child(even) {
+  background-color: #f7faf9;
+}
+
+/* Ficha de datos (dl, dt, dd) */
+.datos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin: 0 0 20px 0;
+}
+
+.datos div {
+  flex: 1 1 180px;
+  padding: 14px;
+  border-radius: var(--radio-control);
+  background-color: #f4f8f6;
+}
+
+.datos dt {
+  color: var(--color-texto-suave);
+  font-size: 13px;
+}
+
+.datos dd {
+  margin: 4px 0 0 0;
+  font-weight: bold;
+}
+
+/* Etiqueta de estado */
+.estado {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 20px;
+  background-color: #e6f3ed;
+  color: #14623f;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+/* Clases de espaciado */
+.espacio-arriba {
+  margin-top: 18px;
+}
+
+.espacio-abajo {
+  margin-bottom: 18px;
 }

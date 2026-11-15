@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Propietarios | VetCare</title>
+  <link rel="stylesheet" href="../../../css/estilos.css">
+  <link rel="stylesheet" href="../../../css/paginas/propietarios.css">
+</head>
+
+<body>
+  <!-- Encabezado con navegación estándar y avatar -->
+  <header class="encabezado">
+    <div class="contenedor encabezado__interior">
+      <a class="marca" href="../menu-recepcionista.html">
+        <span class="marca__simbolo">V</span>
+        <span class="marca__texto">VetCare</span>
+      </a>
+      <div class="navegacion">
+        <nav>
+          <a href="../menu-recepcionista.html">Menú recepción</a>
+          <a href="../../../index.html">Cerrar sesión</a>
+        </nav>
+        <div class="usuario-sesion">
+          <div class="usuario-avatar" title="Camila Silva">
+            C
+          </div>
+          <div class="usuario-info">
+            <span class="usuario-nombre">Camila Silva</span>
+            <span class="usuario-rol">Recepcionista</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="contenedor seccion-principal">
+    <div class="encabezado-pagina">
+      <h1 class="titulo-pagina">Listado de Propietarios</h1>
+      <p class="texto-secundario">Busca y administra la información de contacto y mascotas de los clientes.</p>
+    </div>
+
+    <!-- Buscador sencillo -->
+    <form class="buscador espacio-abajo" action="propietarios-listado.html" method="get">
+      <div class="campo">
+        <label for="buscar">Buscar propietario</label>
+        <input id="buscar" name="q" type="search" placeholder="Ingresa cédula, nombre, apellido, teléfono o correo...">
+      </div>
+      <button class="boton" type="submit">Buscar</button>
+    </form>
+
+    <!-- Botón para añadir nuevo -->
+    <div class="botonera espacio-arriba">
+      <a class="boton" href="propietarios-nuevo.html">+ Nuevo propietario</a>
+    </div>
+
+    <!-- Tabla de resultados -->
+    <div class="tabla-contenedor espacio-arriba">
+      <table class="tabla tabla-propietarios">
+        <thead>
+          <tr>
+            <th>Cédula</th>
+            <th>Nombres</th>
+            <th>Apellidos</th>
+            <th>Celular</th>
+            <th>Correo</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>0105489632</strong></td>
+            <td>María Fernanda</td>
+            <td>Torres Salgado</td>
+            <td>0998451230</td>
+            <td>maria.torres@gmail.com</td>
+            <td>
+              <a href="propietarios-detalle.html">Ver</a> |
+              <a href="propietarios-editar.html">Editar</a> |
+              <a href="propietarios-eliminar.html">Eliminar</a>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>0912345678</strong></td>
+            <td>Carlos Alberto</td>
+            <td>Mendoza Véliz</td>
+            <td>0987654321</td>
+            <td>carlos.mendoza@hotmail.com</td>
+            <td>
+              <a href="propietarios-detalle.html">Ver</a> |
+              <a href="propietarios-editar.html">Editar</a> |
+              <a href="propietarios-eliminar.html">Eliminar</a>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>1718956321</strong></td>
+            <td>Ana Lucía</td>
+            <td>Gómez Paredes</td>
+            <td>0995123456</td>
+            <td>ana.gomez@yahoo.com</td>
+            <td>
+              <a href="propietarios-detalle.html">Ver</a> |
+              <a href="propietarios-editar.html">Editar</a> |
+              <a href="propietarios-eliminar.html">Eliminar</a>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>0703652148</strong></td>
+            <td>Javier Andrés</td>
+            <td>Zambrano Castro</td>
+            <td>0984123987</td>
+            <td>javier.zambrano@outlook.com</td>
+            <td>
+              <a href="propietarios-detalle.html">Ver</a> |
+              <a href="propietarios-editar.html">Editar</a> |
+              <a href="propietarios-eliminar.html">Eliminar</a>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>0107896541</strong></td>
+            <td>Sofía Elena</td>
+            <td>Herrera Morales</td>
+            <td>0993214567</td>
+            <td>sofia.herrera@gmail.com</td>
+            <td>
+              <a href="propietarios-detalle.html">Ver</a> |
+              <a href="propietarios-editar.html">Editar</a> |
+              <a href="propietarios-eliminar.html">Eliminar</a>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>1104859632</strong></td>
+            <td>Diego Fernando</td>
+            <td>Rivadeneira Paz</td>
+            <td>0982563412</td>
+            <td>diego.riva@gmail.com</td>
+            <td>
+              <a href="propietarios-detalle.html">Ver</a> |
+              <a href="propietarios-editar.html">Editar</a> |
+              <a href="propietarios-eliminar.html">Eliminar</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <footer class="contenedor pie">
+    VetCare · Clínica Veterinaria Huellitas
+  </footer>
+</body>
+
+</html>
