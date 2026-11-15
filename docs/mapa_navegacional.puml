@@ -35,11 +35,11 @@ LOGIN --> LOGIN : Ingresar\n[credenciales inválidas]
 state "ROL · RECEPCIONISTA" as ROLR #EAF6EF {
     state "menu_recepcionista.html\nMenú de recepcionista · M1" as REC <<menu>>
         state "M2 · Propietarios · CU-02" as M2 {
-            state "listado_propietario.html" as LP
-            state "nuevo_propietario.html" as NP
-            state "detalle_propietario.html" as DP
-            state "editar_propietario.html" as EP
-            state "eliminar_propietario.html" as XP
+            state "propietarios-listado.html" as LP
+            state "propietarios-nuevo.html" as NP
+            state "propietarios-detalle.html" as DP
+            state "propietarios-editar.html" as EP
+            state "propietarios-eliminar.html" as XP
         }
         state "M3 · Mascotas e historia clínica · CU-03" as M3 {
             state "listar_mascota.html" as LM
@@ -120,6 +120,21 @@ EP --> LP : Cancelar
 XP --> LP : Confirmar eliminación
 XP --> LP : Cancelar
 DP --> LP : Volver
+DP --> EP : Editar
+' --- Volver al menú desde todas las páginas de Propietarios
+LP --> REC : Volver al menú
+NP --> REC : Volver al menú
+DP --> REC : Volver al menú
+EP --> REC : Volver al menú
+XP --> REC : Volver al menú
+
+' --- Cerrar sesión desde todas las páginas de Propietarios
+LP --> [*] : Cerrar sesión
+NP --> [*] : Cerrar sesión
+DP --> [*] : Cerrar sesión
+EP --> [*] : Cerrar sesión
+XP --> [*] : Cerrar sesión
+
 ' --- M3 · Mascotas e historia clínica · CU-03
 LM --> NM : Registrar
 LM --> DM : Ver ficha
