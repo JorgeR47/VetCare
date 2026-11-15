@@ -193,6 +193,20 @@ EV --> LV : Cancelar
 XV --> LV : Confirmar eliminación
 XV --> LV : Cancelar
 DV --> LV : Volver
+DV --> EV : Editar
+' --- Volver al menú desde todas las páginas de Veterinarios
+LV --> ADM : Volver al menú
+NV --> ADM : Volver al menú
+DV --> ADM : Volver al menú
+EV --> ADM : Volver al menú
+XV --> ADM : Volver al menú
+
+' --- Cerrar sesión desde todas las páginas de Veterinarios
+LV --> LOGIN : Cerrar sesión
+NV --> LOGIN : Cerrar sesión
+DV --> LOGIN : Cerrar sesión
+EV --> LOGIN : Cerrar sesión
+XV --> LOGIN : Cerrar sesión
 ' --- M6 · Recepcionistas · CU-11
 LR --> NR : Registrar
 LR --> DR : Ver detalle
@@ -205,6 +219,20 @@ ER --> LR : Cancelar
 XR --> LR : Confirmar eliminación
 XR --> LR : Cancelar
 DR --> LR : Volver
+DR --> ER : Editar
+' --- Volver al menú desde todas las páginas de Recepcionistas
+LR --> ADM : Volver al menú
+NR --> ADM : Volver al menú
+DR --> ADM : Volver al menú
+ER --> ADM : Volver al menú
+XR --> ADM : Volver al menú
+
+' --- Cerrar sesión desde todas las páginas de Recepcionistas
+LR --> LOGIN : Cerrar sesión
+NR --> LOGIN : Cerrar sesión
+DR --> LOGIN : Cerrar sesión
+ER --> LOGIN : Cerrar sesión
+XR --> LOGIN : Cerrar sesión
 ' --- M7 · Catálogo de servicios · CU-10
 LS --> NS : Registrar
 LS --> DS : Ver detalle
@@ -217,6 +245,20 @@ ES --> LS : Cancelar
 XS --> LS : Confirmar eliminación
 XS --> LS : Cancelar
 DS --> LS : Volver
+DS --> ES : Editar
+' --- Volver al menú desde todas las páginas de Servicios
+LS --> ADM : Volver al menú
+NS --> ADM : Volver al menú
+DS --> ADM : Volver al menú
+ES --> ADM : Volver al menú
+XS --> ADM : Volver al menú
+
+' --- Cerrar sesión desde todas las páginas de Servicios
+LS --> LOGIN : Cerrar sesión
+NS --> LOGIN : Cerrar sesión
+DS --> LOGIN : Cerrar sesión
+ES --> LOGIN : Cerrar sesión
+XS --> LOGIN : Cerrar sesión
 
 ' ===== Disposición: módulos de un mismo rol apilados (flechas ocultas, no son transiciones) =====
 LP -[hidden]down-> LM
