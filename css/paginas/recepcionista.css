@@ -1,0 +1,65 @@
+/* Navegación compartida y ventanas de propietarios para recepción. */
+:root {
+  --color-velo: rgba(16, 38, 36, 0.6);
+  --color-barra-activa: #e8f3f0;
+  --sombra-modal: 0 18px 40px rgba(10, 30, 28, 0.35);
+}
+
+.navegacion:has(.barra-recepcionista) { display: contents; }
+.navegacion:has(.barra-recepcionista) .usuario-sesion { order: 1; margin-left: auto; }
+.barra-recepcionista {
+  order: 2;
+  width: 100%;
+  flex-basis: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding-top: 8px;
+  border-top: 1px solid var(--color-borde);
+}
+.barra-recepcionista a[aria-current="page"] {
+  background-color: var(--color-barra-activa);
+  box-shadow: inset 0 -3px 0 var(--color-principal);
+}
+.barra-recepcionista a[href$="index.html"] { color: var(--color-error); }
+.barra-recepcionista a { flex: 1 1 auto; text-align: center; }
+.barra-recepcionista button {
+  flex: 1 1 auto;
+  padding: 8px 14px;
+  border: 0;
+  border-radius: var(--radio-control);
+  background: transparent;
+  color: var(--color-principal-oscuro);
+  font: inherit;
+  font-weight: bold;
+  cursor: pointer;
+}
+.barra-recepcionista button:hover {
+  background-color: #e8f3f0;
+}
+
+/* Cada fragmento se muestra al apuntar el enlace a su identificador. */
+.modal { display: none; }
+.modal:target {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(12px, 4vw, 48px) clamp(12px, 2vw, 16px);
+  background-color: var(--color-velo);
+}
+.modal__ventana {
+  width: min(100%, 760px);
+  padding: 0;
+  overflow: hidden;
+  box-shadow: var(--sombra-modal);
+}
+.modal__ventana iframe {
+  display: block;
+  width: 100%;
+  height: min(82vh, 760px);
+  border: 0;
+  background: #fff;
+}

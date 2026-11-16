@@ -7,29 +7,27 @@
   <title>Propietarios | VetCare</title>
   <link rel="stylesheet" href="../../../css/estilos.css">
   <link rel="stylesheet" href="../../../css/paginas/propietarios.css">
+  <link rel="stylesheet" href="../../../css/paginas/recepcionista.css">
 </head>
 
 <body>
   <!-- Encabezado con navegación estándar y avatar -->
   <header class="encabezado">
     <div class="contenedor encabezado__interior">
-      <a class="marca" href="../menu-recepcionista.html">
-        <span class="marca__simbolo">V</span>
-        <span class="marca__texto">VetCare</span>
-      </a>
+      <a class="marca" href="propietarios-listado.html"><span class="marca__simbolo">V</span><span
+          class="marca__texto">VetCare</span></a>
       <div class="navegacion">
-        <nav>
-          <a href="../menu-recepcionista.html">Menú recepción</a>
+        <nav class="barra-recepcionista" aria-label="Navegación de recepción">
+          <a href="propietarios-listado.html" aria-current="page">Propietarios</a>
+          <button type="button">Mascotas</button>
+          <button type="button">Citas</button>
+          <a href="../servicios/servicios.html">Servicios</a>
           <a href="../../../index.html">Cerrar sesión</a>
         </nav>
         <div class="usuario-sesion">
-          <div class="usuario-avatar" title="Camila Silva">
-            C
-          </div>
-          <div class="usuario-info">
-            <span class="usuario-nombre">Camila Silva</span>
-            <span class="usuario-rol">Recepcionista</span>
-          </div>
+          <div class="usuario-avatar" title="Camila Silva">C</div>
+          <div class="usuario-info"><span class="usuario-nombre">Camila Silva</span><span
+              class="usuario-rol">Recepcionista</span></div>
         </div>
       </div>
     </div>
@@ -52,7 +50,7 @@
 
     <!-- Botón para añadir nuevo -->
     <div class="botonera espacio-arriba">
-      <a class="boton" href="propietarios-nuevo.html">+ Nuevo propietario</a>
+      <a class="boton" href="#ventana-nuevo">+ Nuevo propietario</a>
     </div>
 
     <!-- Tabla de resultados -->
@@ -76,9 +74,9 @@
             <td>0998451230</td>
             <td>maria.torres@gmail.com</td>
             <td>
-              <a href="propietarios-detalle.html">Ver</a> |
-              <a href="propietarios-editar.html">Editar</a> |
-              <a href="propietarios-eliminar.html">Eliminar</a>
+              <a href="#ventana-detalle">Ver</a> |
+              <a href="#ventana-editar">Editar</a> |
+              <a href="#ventana-eliminar">Eliminar</a>
             </td>
           </tr>
           <tr>
@@ -88,9 +86,9 @@
             <td>0987654321</td>
             <td>carlos.mendoza@hotmail.com</td>
             <td>
-              <a href="propietarios-detalle.html">Ver</a> |
-              <a href="propietarios-editar.html">Editar</a> |
-              <a href="propietarios-eliminar.html">Eliminar</a>
+              <a href="#ventana-detalle">Ver</a> |
+              <a href="#ventana-editar">Editar</a> |
+              <a href="#ventana-eliminar">Eliminar</a>
             </td>
           </tr>
           <tr>
@@ -100,9 +98,9 @@
             <td>0995123456</td>
             <td>ana.gomez@yahoo.com</td>
             <td>
-              <a href="propietarios-detalle.html">Ver</a> |
-              <a href="propietarios-editar.html">Editar</a> |
-              <a href="propietarios-eliminar.html">Eliminar</a>
+              <a href="#ventana-detalle">Ver</a> |
+              <a href="#ventana-editar">Editar</a> |
+              <a href="#ventana-eliminar">Eliminar</a>
             </td>
           </tr>
           <tr>
@@ -112,9 +110,9 @@
             <td>0984123987</td>
             <td>javier.zambrano@outlook.com</td>
             <td>
-              <a href="propietarios-detalle.html">Ver</a> |
-              <a href="propietarios-editar.html">Editar</a> |
-              <a href="propietarios-eliminar.html">Eliminar</a>
+              <a href="#ventana-detalle">Ver</a> |
+              <a href="#ventana-editar">Editar</a> |
+              <a href="#ventana-eliminar">Eliminar</a>
             </td>
           </tr>
           <tr>
@@ -124,9 +122,9 @@
             <td>0993214567</td>
             <td>sofia.herrera@gmail.com</td>
             <td>
-              <a href="propietarios-detalle.html">Ver</a> |
-              <a href="propietarios-editar.html">Editar</a> |
-              <a href="propietarios-eliminar.html">Eliminar</a>
+              <a href="#ventana-detalle">Ver</a> |
+              <a href="#ventana-editar">Editar</a> |
+              <a href="#ventana-eliminar">Eliminar</a>
             </td>
           </tr>
           <tr>
@@ -136,15 +134,37 @@
             <td>0982563412</td>
             <td>diego.riva@gmail.com</td>
             <td>
-              <a href="propietarios-detalle.html">Ver</a> |
-              <a href="propietarios-editar.html">Editar</a> |
-              <a href="propietarios-eliminar.html">Eliminar</a>
+              <a href="#ventana-detalle">Ver</a> |
+              <a href="#ventana-editar">Editar</a> |
+              <a href="#ventana-eliminar">Eliminar</a>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
   </main>
+
+
+  <div class="modal" id="ventana-nuevo" role="dialog" aria-modal="true" aria-label="Registrar propietario">
+    <section class="modal__ventana tarjeta">
+      <iframe src="propietarios-nuevo.html" title="Registrar propietario"></iframe>
+    </section>
+  </div>
+  <div class="modal" id="ventana-detalle" role="dialog" aria-modal="true" aria-label="Detalle de propietario">
+    <section class="modal__ventana tarjeta">
+      <iframe src="propietarios-detalle.html" title="Detalle de propietario"></iframe>
+    </section>
+  </div>
+  <div class="modal" id="ventana-editar" role="dialog" aria-modal="true" aria-label="Editar propietario">
+    <section class="modal__ventana tarjeta">
+      <iframe src="propietarios-editar.html" title="Editar propietario"></iframe>
+    </section>
+  </div>
+  <div class="modal" id="ventana-eliminar" role="dialog" aria-modal="true" aria-label="Eliminar propietario">
+    <section class="modal__ventana tarjeta">
+      <iframe src="propietarios-eliminar.html" title="Eliminar propietario"></iframe>
+    </section>
+  </div>
 
   <footer class="contenedor pie">
     VetCare · Clínica Veterinaria Huellitas

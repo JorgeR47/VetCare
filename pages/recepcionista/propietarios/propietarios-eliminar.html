@@ -4,37 +4,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Eliminar Propietario | VetCare</title>
+  <title>Eliminar propietario | VetCare</title>
   <link rel="stylesheet" href="../../../css/estilos.css">
   <link rel="stylesheet" href="../../../css/paginas/propietarios.css">
 </head>
 
 <body>
-  <header class="encabezado">
-    <div class="contenedor encabezado__interior">
-      <a class="marca" href="../menu-recepcionista.html">
-        <span class="marca__simbolo">V</span>
-        <span class="marca__texto">VetCare</span>
-      </a>
-      <div class="navegacion">
-        <nav>
-          <a href="../menu-recepcionista.html">Menú recepción</a>
-          <a href="../../../index.html">Cerrar sesión</a>
-        </nav>
-        <div class="usuario-sesion">
-          <div class="usuario-avatar" title="Camila Silva">
-            C
-          </div>
-          <div class="usuario-info">
-            <span class="usuario-nombre">Camila Silva</span>
-            <span class="usuario-rol">Recepcionista</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <main class="contenedor seccion-principal">
+  <main class="contenedor seccion-principal popup-propietario">
     <div class="encabezado-pagina">
       <p class="texto-secundario">Propietarios &gt; Confirmar eliminación</p>
       <h1 class="titulo-pagina">Eliminar Propietario</h1>
@@ -71,16 +47,12 @@
         normatividad sanitaria.
       </p>
 
-      <form action="propietarios-listado.html" method="get" class="botonera">
+      <form action="propietarios-listado.html" method="get" class="botonera" target="_top">
         <button class="boton boton--peligro" type="submit">Confirmar baja de registro</button>
-        <a class="boton boton--secundario" href="propietarios-listado.html">Cancelar</a>
+        <a class="boton boton--secundario" href="propietarios-listado.html" target="_top">Cancelar</a>
       </form>
     </section>
   </main>
-
-  <footer class="contenedor pie">
-    VetCare · Clínica Veterinaria Huellitas
-  </footer>
 </body>
 
 </html>
