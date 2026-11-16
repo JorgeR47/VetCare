@@ -1,0 +1,171 @@
+/* ===================================================
+   VETCARE - ESTILOS DEL ROL ADMINISTRADOR
+   Barra de navegación, ventanas flotantes y home.
+   =================================================== */
+
+:root {
+  --color-velo: rgba(16, 38, 36, 0.6);
+  --color-barra-activa: #e8f3f0;
+  --sombra-modal: 0 18px 40px rgba(10, 30, 28, 0.35);
+  --ancho-modal: 760px;
+}
+
+/* ---------- Barra de navegación del administrador ---------- */
+
+/* Encabezado en dos filas: marca y usuario arriba, barra completa abajo */
+.navegacion:has(.barra-admin) {
+  display: contents;
+}
+
+.navegacion:has(.barra-admin) .usuario-sesion {
+  order: 1;
+  margin-left: auto;
+}
+
+.barra-admin {
+  order: 2;
+  flex-basis: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding-top: 8px;
+  border-top: 1px solid var(--color-borde);
+}
+
+/* Opción de la página actual */
+.barra-admin a[aria-current="page"] {
+  background-color: var(--color-barra-activa);
+  box-shadow: inset 0 -3px 0 var(--color-principal);
+}
+
+/* «Cerrar sesión» separado visualmente del resto */
+.barra-admin a[href$="index.html"] {
+  color: var(--color-error);
+}
+
+/* ---------- Barra de acciones del listado (buscador + registrar) ---------- */
+.barra-acciones {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+/* ---------- Home: tarjetas grandes ---------- */
+.tarjetas-home .tarjeta-modulo {
+  min-height: 170px;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tarjetas-home .tarjeta-modulo:hover,
+.tarjetas-home .tarjeta-modulo:focus-visible {
+  box-shadow: 0 10px 24px rgba(20, 61, 57, 0.14);
+}
+
+.tarjetas-home .tarjeta-modulo h2 {
+  margin-top: 0;
+  color: var(--color-principal-oscuro);
+}
+
+/* ---------- Aviso de vista de referencia ---------- */
+.aviso-borrador {
+  border: 1px solid #f0d58c;
+  background-color: #fff8e6;
+  color: #6b4e00;
+}
+
+/* ---------- Ventana flotante (modal) ---------- */
+
+/* Evita que la página de fondo se desplace mientras la ventana está abierta */
+body:has(.modal) {
+  overflow: hidden;
+}
+
+/* Fondo velado que oscurece el listado */
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 48px 16px;
+  overflow-y: auto;
+  background-color: var(--color-velo);
+}
+
+.modal__ventana {
+  width: 100%;
+  max-width: var(--ancho-modal);
+  padding: 28px;
+  box-shadow: var(--sombra-modal);
+  animation: aparecer-modal 0.25s ease-out;
+}
+
+.modal__titulo {
+  margin: 0 0 4px 0;
+  font-size: 24px;
+  color: var(--color-texto);
+}
+
+.modal__ventana .botonera {
+  justify-content: flex-end;
+  margin-top: 8px;
+}
+
+/* Listado de fondo: desactivado mientras la ventana está abierta */
+.fondo-modal {
+  user-select: none;
+}
+
+@keyframes aparecer-modal {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---------- Puntos de quiebre ---------- */
+
+/* Tabletas */
+@media (max-width: 768px) {
+  .barra-admin {
+    width: 100%;
+  }
+
+  .barra-acciones {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .modal {
+    padding: 24px 12px;
+  }
+
+  .modal__ventana {
+    padding: 20px;
+  }
+}
+
+/* Teléfonos */
+@media (max-width: 480px) {
+  .barra-admin a {
+    flex: 1 1 45%;
+    text-align: center;
+  }
+
+  .titulo-pagina {
+    font-size: 24px;
+  }
+
+  .modal__ventana .botonera {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+}

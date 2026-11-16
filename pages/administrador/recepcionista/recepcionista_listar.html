@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Personal Recepcionista | VetCare</title>
+  <link rel="stylesheet" href="../../../css/estilos.css">
+  <link rel="stylesheet" href="../../../css/paginas/administrador.css">
+</head>
+
+<body>
+  <header class="encabezado">
+    <div class="contenedor encabezado__interior">
+      <a class="marca" href="../home_administrador.html">
+        <span class="marca__simbolo">V</span>
+        <span class="marca__texto">VetCare</span>
+      </a>
+      <div class="navegacion">
+        <nav class="barra-admin" aria-label="Navegación del administrador">
+          <a href="../home_administrador.html">Inicio</a>
+          <a href="../servicio/servicio_listar.html">Catálogo servicios</a>
+          <a href="../veterinario/veterinario_listar.html">Personal veterinario</a>
+          <a href="../recepcionista/recepcionista_listar.html" aria-current="page">Personal recepcionista</a>
+          <a href="../auditoria/auditoria_listar.html">Bitácora y auditoría</a>
+          <a href="../../../index.html">Cerrar sesión</a>
+        </nav>
+        <div class="usuario-sesion">
+          <div class="usuario-avatar" title="Carlos Valdivieso">C</div>
+          <div class="usuario-info">
+            <span class="usuario-nombre">Carlos Valdivieso</span>
+            <span class="usuario-rol">Administrador</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="contenedor seccion-principal">
+    <div class="encabezado-pagina">
+      <p class="texto-secundario">Administrador &gt; Personal recepcionista</p>
+      <h1 class="titulo-pagina">Personal Recepcionista</h1>
+      <p class="texto-secundario">Consulta el personal de recepción de la clínica.</p>
+    </div>
+
+    <p class="mensaje aviso-borrador espacio-abajo">Vista de referencia para la navegación: las acciones de este
+      módulo se implementarán más adelante.</p>
+
+    <div class="tabla-contenedor">
+      <table class="tabla tabla-basica">
+        <caption>Personal Recepcionista</caption>
+        <thead>
+          <tr>
+            <th scope="col">Cédula</th>
+            <th scope="col">Nombres</th>
+            <th scope="col">Apellidos</th>
+            <th scope="col">Turno</th>
+            <th scope="col">Teléfono</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1718956321</td>
+            <td>Camila Andrea</td>
+            <td>Silva Romero</td>
+            <td>Mañana</td>
+            <td>0994561237</td>
+          </tr>
+          <tr>
+            <td>0912873465</td>
+            <td>Paúl Esteban</td>
+            <td>Jaramillo Ríos</td>
+            <td>Tarde</td>
+            <td>0981237654</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <footer class="contenedor pie">
+    VetCare · Clínica Veterinaria Huellitas
+  </footer>
+</body>
+
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Catálogo de Servicios | VetCare</title>
+  <link rel="stylesheet" href="../../../css/estilos.css">
+  <link rel="stylesheet" href="../../../css/paginas/administrador.css">
+</head>
+
+<body>
+  <header class="encabezado">
+    <div class="contenedor encabezado__interior">
+      <a class="marca" href="../home_administrador.html">
+        <span class="marca__simbolo">V</span>
+        <span class="marca__texto">VetCare</span>
+      </a>
+      <div class="navegacion">
+        <nav class="barra-admin" aria-label="Navegación del administrador">
+          <a href="../home_administrador.html">Inicio</a>
+          <a href="../servicio/servicio_listar.html" aria-current="page">Catálogo servicios</a>
+          <a href="../veterinario/veterinario_listar.html">Personal veterinario</a>
+          <a href="../recepcionista/recepcionista_listar.html">Personal recepcionista</a>
+          <a href="../auditoria/auditoria_listar.html">Bitácora y auditoría</a>
+          <a href="../../../index.html">Cerrar sesión</a>
+        </nav>
+        <div class="usuario-sesion">
+          <div class="usuario-avatar" title="Carlos Valdivieso">C</div>
+          <div class="usuario-info">
+            <span class="usuario-nombre">Carlos Valdivieso</span>
+            <span class="usuario-rol">Administrador</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="contenedor seccion-principal">
+    <div class="encabezado-pagina">
+      <p class="texto-secundario">Administrador &gt; Catálogo servicios</p>
+      <h1 class="titulo-pagina">Catálogo de Servicios</h1>
+      <p class="texto-secundario">Consulta los servicios que ofrece la clínica y sus precios.</p>
+    </div>
+
+    <p class="mensaje aviso-borrador espacio-abajo">Vista de referencia para la navegación: las acciones de este
+      módulo se implementarán más adelante.</p>
+
+    <div class="tabla-contenedor">
+      <table class="tabla tabla-basica">
+        <caption>Catálogo de Servicios</caption>
+        <thead>
+          <tr>
+            <th scope="col">Código</th>
+            <th scope="col">Servicio</th>
+            <th scope="col">Duración</th>
+            <th scope="col">Precio (USD)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>SRV-001</td>
+            <td>Consulta general</td>
+            <td>30 min</td>
+            <td>25,00</td>
+          </tr>
+          <tr>
+            <td>SRV-002</td>
+            <td>Vacunación</td>
+            <td>30 min</td>
+            <td>18,00</td>
+          </tr>
+          <tr>
+            <td>SRV-003</td>
+            <td>Desparasitación</td>
+            <td>30 min</td>
+            <td>12,50</td>
+          </tr>
+          <tr>
+            <td>SRV-004</td>
+            <td>Cirugía menor</td>
+            <td>90 min</td>
+            <td>150,00</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <footer class="contenedor pie">
+    VetCare · Clínica Veterinaria Huellitas
+  </footer>
+</body>
+
+</html>

@@ -1,0 +1,129 @@
+@startuml vetcare-casos-de-uso
+' ============================================================
+'  VetCare — Diagrama de casos de uso (UML 2.5)
+'  Clínica veterinaria "Huellitas" · Desarrollo de Aplicaciones Web · EPN
+'  Organizado por paquetes (módulos) dentro del límite del sistema.
+'  Empleados a la izquierda, Propietario (portal público) a la derecha.
+' ============================================================
+
+title VetCare — Diagrama de casos de uso por módulos
+
+left to right direction
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam packageStyle rectangle
+skinparam nodesep 20
+skinparam ranksep 60
+skinparam usecase {
+  BackgroundColor #FFFFFF
+  BorderColor #5B3FA8
+  ArrowColor #444444
+}
+skinparam package {
+  BackgroundColor #F4F1FB
+  BorderColor #5B3FA8
+  FontColor #2E1F5E
+}
+skinparam rectangle {
+  BorderColor #2E1F5E
+  FontSize 16
+}
+
+' ---------------- Actores (empleados, lado izquierdo) ----------------
+actor "Empleado" as Empleado <<abstracto>>
+actor "Recepcionista" as Recepcionista
+actor "Veterinario" as Veterinario
+actor "Administrador" as Administrador
+
+' Generalización: los tres empleados heredan "Iniciar sesión"
+Empleado <|-- Recepcionista
+Empleado <|-- Veterinario
+Empleado <|-- Administrador
+
+' ---------------- Sistema ----------------
+rectangle "VetCare" {
+
+  package "Módulo de Acceso" {
+    usecase "CU-01\nIniciar sesión" as CU01
+  }
+
+  package "Módulo de Propietarios y mascotas" {
+    usecase "CU-02\nGestionar propietarios" as CU02
+    usecase "CU-03\nGestionar mascotas" as CU03
+  }
+
+  package "Módulo de Citas" {
+    usecase "CU-04\nAgendar cita" as CU04
+    usecase "CU-05\nGestionar citas" as CU05
+    usecase "CU-15\nGestionar solicitudes\nde cita" as CU15
+    usecase "CU-17\nConsultar disponibilidad\nde turnos" as CU17
+  }
+
+  package "Módulo de Facturación" {
+    usecase "CU-12\nRegistrar cobro\nde atención" as CU12
+  }
+
+  package "Módulo de Atención médica" {
+    usecase "CU-06\nConsultar agenda del día" as CU06
+    usecase "CU-07\nRegistrar atención médica" as CU07
+    usecase "CU-08\nConsultar historial clínico" as CU08
+  }
+
+  package "Módulo de Administración" {
+    usecase "CU-09\nGestionar veterinarios" as CU09
+    usecase "CU-11\nGestionar recepcionistas" as CU11
+    usecase "CU-10\nGestionar servicios" as CU10
+    usecase "CU-13\nConsultar bitácora\nde auditoría" as CU13
+  }
+
+  package "Módulo de Portal público" {
+    usecase "CU-14\nSolicitar cita en línea" as CU14
+    usecase "CU-16\nConsultar catálogo\nde servicios" as CU16
+  }
+}
+
+' ---------------- Actor externo (lado derecho) ----------------
+actor "Propietario" as Propietario
+
+' ---------------- Asociaciones ----------------
+Empleado --> CU01
+
+Recepcionista --> CU02
+Recepcionista --> CU03
+Recepcionista --> CU04
+Recepcionista --> CU05
+Recepcionista --> CU15
+Recepcionista --> CU12
+Recepcionista --> CU16
+
+Veterinario --> CU06
+Veterinario --> CU07
+Veterinario --> CU08
+
+Administrador --> CU09
+Administrador --> CU11
+Administrador --> CU10
+Administrador --> CU13
+
+' Flecha invertida para que el Propietario quede a la derecha
+CU14 <-- Propietario
+CU16 <-- Propietario
+
+' ---------------- Include / Extend ----------------
+CU04 ..> CU17 : <<include>>
+CU14 ..> CU17 : <<include>>
+CU03 .> CU04 : <<extend>>\n(mascota nueva)
+
+' Solo para la disposición visual: ubica el Portal público a la derecha de Citas
+CU17 -[hidden]-> CU14
+
+' ---------------- Leyenda ----------------
+legend bottom
+  **Notas**
+  * CU-14 crea una solicitud en estado //Pendiente//; la cita //Programada// se crea cuando la recepcionista la confirma (CU-15).
+  * La auditoría se registra automáticamente (requisito no funcional): cada creación, modificación,
+    eliminación o cancelación guarda usuario, fecha, hora y acción. CU-13 solo la consulta.
+  * Fuera de alcance: proforma, cuentas de propietarios, pagos en línea, notificaciones, facturación electrónica SRI.
+endlegend
+
+@enduml

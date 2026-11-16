@@ -19,17 +19,6 @@ skinparam state {
     BorderColor<<boton>> #B38600
 }
 
-legend right
-    <b>Convenciones</b>
-    Estado = pantalla (archivo .html). Fondo amarillo = botón sin archivo propio.
-    Fondo azul = home del rol: pantalla con las opciones del rol como tarjetas grandes.
-    Fondo gris = barra de navegación del rol: NO es una pantalla, es un componente
-    que aparece en el encabezado de todas las pantallas del rol (incluida el home).
-    Tiene las mismas opciones que el home, más «Inicio» y «Cerrar sesión».
-    ● = inicio del sistema. «Cerrar sesión» regresa a index.html.
-    [datos válidos] = validación HTML5 superada; si no, se permanece en la misma pantalla.
-    Dos flechas con el mismo origen y destino son acciones distintas (Guardar / Cancelar).
-endlegend
 
 ' ===== Inicio de sesión =====
 state "index.html\nInicio de sesión · M1" as LOGIN
@@ -39,68 +28,67 @@ LOGIN --> LOGIN : Ingresar\n[credenciales inválidas]
 ' ===== Rol: Recepcionista =====
 state "ROL · RECEPCIONISTA" as ROLR #EAF6EF {
     state "home_recepcionista.html\nHome de recepcionista · M1" as HOME_R <<home>>
-    state "Barra de navegación · Recepcionista\n(presente en todas las pantallas del rol)" as BAR_R <<barra>>
+    state FIN_R <<end>>
     state "M2 · Propietarios · CU-02" as M2 {
-        state "propietario-listado.html" as LP
-        state "propietario-nuevo.html" as NP
-        state "propietario-detalle.html" as DP
-        state "propietario-editar.html" as EP
-        state "propietario-eliminar.html" as XP
+        state "propietario_listar.html" as LP
+        state "propietario_nuevo.html" as NP
+        state "propietario_detalle.html" as DP
+        state "propietario_editar.html" as EP
+        state "propietario_eliminar.html" as XP
     }
     state "M3 · Mascotas e historia clínica · CU-03" as M3 {
-        state "mascota-listado.html" as LM
-        state "mascota-nuevo.html" as NM
-        state "mascota-detalle.html" as DM
-        state "mascota-editar.html" as EM
-        state "mascota-eliminar.html" as XM
+        state "mascota_listar.html" as LM
+        state "mascota_nuevo.html" as NM
+        state "mascota_detalle.html" as DM
+        state "mascota_editar.html" as EM
+        state "mascota_eliminar.html" as XM
     }
     state "M4 · Citas · CU-04 / CU-05" as M4 {
-        state "cita-listado.html" as LC
-        state "cita-nuevo.html" as NC
-        state "cita-detalle.html" as DC
-        state "cita-editar.html" as EC
-        state "cita-eliminar.html" as XC
+        state "cita_listar.html" as LC
+        state "cita_nuevo.html" as NC
+        state "cita_detalle.html" as DC
+        state "cita_editar.html" as EC
+        state "cita_eliminar.html" as XC
     }
 }
 
 ' ===== Rol: Veterinario =====
 state "ROL · VETERINARIO" as ROLV #F1ECFA {
     state "home_veterinario.html\nHome del veterinario · M1 / M5" as HOME_V <<home>>
-    state "Barra de navegación · Veterinario\n(presente en todas las pantallas del rol)" as BAR_V <<barra>>
+    state FIN_V <<end>>
     state "M5 · Atención clínica · CU-06 / CU-07 / CU-08" as M5 {
-        state "agenda-listado.html" as LA
-        state "agenda-detalle.html" as DA
-        state "atencion-nuevo.html" as NA
-        state "atencion-confirmacion.html" as CA
-        state "Botón «Historial clínico»\n(botón: buscar y seleccionar mascota)" as BH <<boton>>
-        state "historial-detalle.html\nConsulta de solo lectura" as DH
+        state "agenda_listar.html" as LA
+        state "agenda_detalle.html" as DA
+        state "atencion_nuevo.html" as NA
+        state "atencion_confirmacion.html" as CA
+        state "historial_detalle.html\nConsulta de solo lectura" as DH
     }
 }
 
 ' ===== Rol: Administrador =====
 state "ROL · ADMINISTRADOR" as ROLA #FCEFE6 {
     state "home_administrador.html\nHome del administrador · M1" as HOME_A <<home>>
-    state "Barra de navegación · Administrador\n(presente en todas las pantallas del rol)" as BAR_A <<barra>>
+    state FIN_A <<end>>
     state "M6 · Veterinarios · CU-09" as M6V {
-        state "veterinario-listado.html" as LV
-        state "veterinario-nuevo.html" as NV
-        state "veterinario-detalle.html" as DV
-        state "veterinario-editar.html" as EV
-        state "veterinario-eliminar.html" as XV
+        state "veterinario_listar.html" as LV
+        state "veterinario_nuevo.html" as NV
+        state "veterinario_detalle.html" as DV
+        state "veterinario_editar.html" as EV
+        state "veterinario_eliminar.html" as XV
     }
     state "M6 · Recepcionistas · CU-11" as M6R {
-        state "recepcionista-listado.html" as LR
-        state "recepcionista-nuevo.html" as NR
-        state "recepcionista-detalle.html" as DR
-        state "recepcionista-editar.html" as ER
-        state "recepcionista-eliminar.html" as XR
+        state "recepcionista_listar.html" as LR
+        state "recepcionista_nuevo.html" as NR
+        state "recepcionista_detalle.html" as DR
+        state "recepcionista_editar.html" as ER
+        state "recepcionista_eliminar.html" as XR
     }
     state "M7 · Catálogo de servicios · CU-10" as M7 {
-        state "servicio-listado.html" as LS
-        state "servicio-nuevo.html" as NS
-        state "servicio-detalle.html" as DS
-        state "servicio-editar.html" as ES
-        state "servicio-eliminar.html" as XS
+        state "servicio_listar.html" as LS
+        state "servicio_nuevo.html" as NS
+        state "servicio_detalle.html" as DS
+        state "servicio_editar.html" as ES
+        state "servicio_eliminar.html" as XS
     }
     state "auditoria_listar.html" as LAU
     state "auditoria_detalle.html" as DAU
@@ -117,13 +105,25 @@ HOME_R --> LM : Tarjeta «Mascotas»
 HOME_R --> LC : Tarjeta «Citas»
 HOME_R --> NC : Tarjeta «Agendar cita»
 
-' ===== Recepcionista: opciones de la barra =====
-BAR_R --> HOME_R : «Inicio»
-BAR_R --> LP : «Propietarios»
-BAR_R --> LM : «Mascotas»
-BAR_R --> LC : «Citas»
-BAR_R --> NC : «Agendar cita»
-BAR_R --> LOGIN : Cerrar sesión
+' ===== Recepcionista: barra de navegación (solo en los 3 listados) =====
+LP --> LM : «Mascotas»
+LP --> LC : «Citas»
+LP --> NC : «Agendar cita»
+LP --> HOME_R : «Inicio»
+LP --> FIN_R : Cerrar sesión
+
+LM --> LP : «Propietarios»
+LM --> LC : «Citas»
+LM --> NC : «Agendar cita»
+LM --> HOME_R : «Inicio»
+LM --> FIN_R : Cerrar sesión
+
+LC --> LP : «Propietarios»
+LC --> LM : «Mascotas»
+LC --> HOME_R : «Inicio»
+LC --> FIN_R : Cerrar sesión
+' (desde cita-listado, «Agendar cita» de la barra se une con «Agendar»: ver M4)
+HOME_R --> FIN_R : Cerrar sesión
 
 DM --> NC : Atajo «Agendar cita»
 
@@ -132,12 +132,9 @@ LP --> NP : Registrar
 LP --> DP : Ver detalle
 LP --> EP : Editar
 LP --> XP : Eliminar
-NP --> LP : Guardar\n[datos válidos]
-NP --> LP : Cancelar
-EP --> LP : Guardar\n[datos válidos]
-EP --> LP : Cancelar
-XP --> LP : Confirmar eliminación
-XP --> LP : Cancelar
+NP --> LP : Guardar [datos válidos]\n/ Cancelar
+EP --> LP : Guardar [datos válidos]\n/ Cancelar
+XP --> LP : Confirmar eliminación\n/ Cancelar
 DP --> LP : Volver
 DP --> EP : Editar
 
@@ -146,42 +143,39 @@ LM --> NM : Registrar
 LM --> DM : Ver detalle
 LM --> EM : Editar
 LM --> XM : Eliminar
-NM --> LM : Guardar\n[datos válidos]
-NM --> LM : Cancelar
-EM --> LM : Guardar\n[datos válidos]
-EM --> LM : Cancelar
-XM --> LM : Confirmar eliminación
-XM --> LM : Cancelar
+NM --> LM : Guardar [datos válidos]\n/ Cancelar
+EM --> LM : Guardar [datos válidos]\n/ Cancelar
+XM --> LM : Confirmar eliminación\n/ Cancelar
 DM --> LM : Volver
 
 ' --- M4 · Citas · CU-04 / CU-05
-LC --> NC : Agendar
+LC --> NC : Agendar\n/ «Agendar cita»
 LC --> DC : Ver detalle
 LC --> EC : Reprogramar
 LC --> XC : Cancelar cita
-NC --> LC : Guardar\n[datos válidos]
-NC --> LC : Cancelar
-EC --> LC : Guardar\n[datos válidos]
-EC --> LC : Cancelar
-XC --> LC : Confirmar cancelación\n[motivo ingresado]
-XC --> LC : Cancelar
+NC --> LC : Guardar [datos válidos]\n/ Cancelar
+EC --> LC : Guardar [datos válidos]\n/ Cancelar
+XC --> LC : Confirmar cancelación [motivo ingresado]\n/ Cancelar
 DC --> LC : Volver
 
 ' ===== Veterinario: tarjetas del home =====
 HOME_V --> LA : Tarjeta «Agenda del día»\n(selección de fecha)
-HOME_V --> BH : Tarjeta «Historial clínico»
+HOME_V --> DH : Tarjeta «Historial clínico»
 
-' ===== Veterinario: opciones de la barra =====
-BAR_V --> HOME_V : «Inicio»
-BAR_V --> LA : «Agenda del día»
-BAR_V --> BH : «Historial clínico»
-BAR_V --> LOGIN : Cerrar sesión
+' ===== Veterinario: barra de navegación (solo en agenda_listar e historial_detalle) =====
+LA --> DH : «Historial clínico»
+LA --> HOME_V : «Inicio»
+LA --> FIN_V : Cerrar sesión
+
+DH --> LA : «Agenda del día»
+DH --> FIN_V : Cerrar sesión
+
+HOME_V --> FIN_V : Cerrar sesión
 
 ' --- M5 · Atención clínica
 LA --> DA : Seleccionar cita
 DA --> NA : Registrar atención
 NA --> CA : Guardar\n[datos válidos]
-BH --> DH : Seleccionar mascota
 DA --> LA : Volver
 NA --> DA : Cancelar
 CA --> LA : Volver a la agenda
@@ -193,13 +187,33 @@ HOME_A --> LV : Tarjeta «Personal veterinario»
 HOME_A --> LR : Tarjeta «Personal recepcionista»
 HOME_A --> LAU : Tarjeta «Bitácora y auditoría»
 
-' ===== Administrador: opciones de la barra =====
-BAR_A --> HOME_A : «Inicio»
-BAR_A --> LS : «Catálogo servicios»
-BAR_A --> LV : «Personal veterinario»
-BAR_A --> LR : «Personal recepcionista»
-BAR_A --> LAU : «Bitácora y auditoría»
-BAR_A --> LOGIN : Cerrar sesión
+' ===== Administrador: barra de navegación (solo en los 4 listados) =====
+LS --> LV : «Personal veterinario»
+LS --> LR : «Personal recepcionista»
+LS --> LAU : «Bitácora y auditoría»
+LS --> FIN_A : Cerrar sesión
+
+LV --> LS : «Catálogo servicios»
+LV --> LR : «Personal recepcionista»
+LV --> LAU : «Bitácora y auditoría»
+LV --> FIN_A : Cerrar sesión
+
+LR --> LS : «Catálogo servicios»
+LR --> LV : «Personal veterinario»
+LR --> LAU : «Bitácora y auditoría»
+LR --> FIN_A : Cerrar sesión
+
+LAU --> LS : «Catálogo servicios»
+LAU --> LV : «Personal veterinario»
+LAU --> LR : «Personal recepcionista»
+LAU --> FIN_A : Cerrar sesión
+
+' --- Barra: «Inicio» desde los 4 listados y cierre de sesión desde el home
+LS --> HOME_A : «Inicio»
+LV --> HOME_A : «Inicio»
+LR --> HOME_A : «Inicio»
+LAU --> HOME_A : «Inicio»
+HOME_A --> FIN_A : Cerrar sesión
 
 LAU --> DAU : Ver detalle
 
@@ -208,12 +222,9 @@ LV --> NV : Registrar
 LV --> DV : Ver detalle
 LV --> EV : Editar
 LV --> XV : Eliminar
-NV --> LV : Guardar\n[datos válidos]
-NV --> LV : Cancelar
-EV --> LV : Guardar\n[datos válidos]
-EV --> LV : Cancelar
-XV --> LV : Confirmar eliminación
-XV --> LV : Cancelar
+NV --> LV : Guardar [datos válidos]\n/ Cancelar
+EV --> LV : Guardar [datos válidos]\n/ Cancelar
+XV --> LV : Confirmar eliminación\n/ Cancelar
 DV --> LV : Volver
 DV --> EV : Editar
 
@@ -222,12 +233,9 @@ LR --> NR : Registrar
 LR --> DR : Ver detalle
 LR --> ER : Editar
 LR --> XR : Eliminar
-NR --> LR : Guardar\n[datos válidos]
-NR --> LR : Cancelar
-ER --> LR : Guardar\n[datos válidos]
-ER --> LR : Cancelar
-XR --> LR : Confirmar eliminación
-XR --> LR : Cancelar
+NR --> LR : Guardar [datos válidos]\n/ Cancelar
+ER --> LR : Guardar [datos válidos]\n/ Cancelar
+XR --> LR : Confirmar eliminación\n/ Cancelar
 DR --> LR : Volver
 DR --> ER : Editar
 
@@ -236,21 +244,19 @@ LS --> NS : Registrar
 LS --> DS : Ver detalle
 LS --> ES : Editar
 LS --> XS : Eliminar
-NS --> LS : Guardar\n[datos válidos]
-NS --> LS : Cancelar
-ES --> LS : Guardar\n[datos válidos]
-ES --> LS : Cancelar
-XS --> LS : Confirmar eliminación
-XS --> LS : Cancelar
+NS --> LS : Guardar [datos válidos]\n/ Cancelar
+ES --> LS : Guardar [datos válidos]\n/ Cancelar
+XS --> LS : Confirmar eliminación\n/ Cancelar
 DS --> LS : Volver
 DS --> ES : Editar
 
 ' ===== Disposición: módulos de un mismo rol apilados (flechas ocultas, no son transiciones) =====
-HOME_R -[hidden]down-> BAR_R
-HOME_V -[hidden]down-> BAR_V
-HOME_A -[hidden]down-> BAR_A
 LP -[hidden]down-> LM
 LM -[hidden]down-> LC
+HOME_V -[hidden]right-> LA
 LV -[hidden]down-> LR
 LR -[hidden]down-> LS
+HOME_R -[hidden]down-> FIN_R
+HOME_V -[hidden]down-> FIN_V
+HOME_A -[hidden]down-> FIN_A
 @enduml

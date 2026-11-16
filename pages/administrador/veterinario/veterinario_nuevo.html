@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Registrar veterinario | VetCare</title>
+  <link rel="stylesheet" href="../../../css/estilos.css">
+  <link rel="stylesheet" href="../../../css/paginas/administrador.css">
+  <link rel="stylesheet" href="../../../css/paginas/veterinario.css">
+</head>
+
+<body>
+  <!-- Fondo: el listado queda visible pero desactivado mientras la ventana está abierta -->
+  <div class="fondo-modal" inert>
+    <header class="encabezado">
+      <div class="contenedor encabezado__interior">
+        <a class="marca" href="../home_administrador.html">
+          <span class="marca__simbolo">V</span>
+          <span class="marca__texto">VetCare</span>
+        </a>
+        <div class="navegacion">
+          <nav class="barra-admin" aria-label="Navegación del administrador">
+            <a href="../home_administrador.html">Inicio</a>
+            <a href="../servicio/servicio_listar.html">Catálogo servicios</a>
+            <a href="../veterinario/veterinario_listar.html" aria-current="page">Personal veterinario</a>
+            <a href="../recepcionista/recepcionista_listar.html">Personal recepcionista</a>
+            <a href="../auditoria/auditoria_listar.html">Bitácora y auditoría</a>
+            <a href="../../../index.html">Cerrar sesión</a>
+          </nav>
+          <div class="usuario-sesion">
+            <div class="usuario-avatar" title="Carlos Valdivieso">C</div>
+            <div class="usuario-info">
+              <span class="usuario-nombre">Carlos Valdivieso</span>
+              <span class="usuario-rol">Administrador</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+  
+    <main class="contenedor seccion-principal">
+      <div class="encabezado-pagina">
+        <p class="texto-secundario">Administrador &gt; Personal veterinario</p>
+        <h1 class="titulo-pagina">Personal Veterinario</h1>
+        <p class="texto-secundario">Consulta y administra los médicos veterinarios de la clínica.</p>
+      </div>
+  
+      <div class="barra-acciones espacio-abajo">
+        <!-- Buscador -->
+        <form class="buscador" action="veterinario_listar.html" method="get">
+          <div class="campo">
+            <label for="buscar">Buscar veterinario</label>
+            <input id="buscar" name="q" type="search" placeholder="Cédula, nombres, apellidos o especialidad">
+          </div>
+          <button class="boton" type="submit">Buscar</button>
+        </form>
+  
+        <a class="boton" href="veterinario_nuevo.html">+ Registrar</a>
+      </div>
+  
+      <!-- Tabla de veterinarios -->
+      <div class="tabla-contenedor">
+        <table class="tabla tabla-veterinarios">
+          <caption>Veterinarios registrados</caption>
+          <thead>
+            <tr>
+              <th scope="col">Cédula</th>
+              <th scope="col">Nombres</th>
+              <th scope="col">Apellidos</th>
+              <th scope="col">Especialidad</th>
+              <th scope="col">Teléfono</th>
+              <th scope="col">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>1712345678</strong></td>
+              <td>Andrés Sebastián</td>
+              <td>Paredes Luna</td>
+              <td>Medicina general</td>
+              <td>0991234567</td>
+              <td>
+                <a href="veterinario_detalle.html">Ver detalle</a> |
+                <a href="veterinario_editar.html">Editar</a> |
+                <a href="veterinario_eliminar.html">Eliminar</a>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>0923456781</strong></td>
+              <td>Valeria Cristina</td>
+              <td>Mora Andrade</td>
+              <td>Cirugía</td>
+              <td>0987456123</td>
+              <td>
+                <a href="veterinario_detalle.html">Ver detalle</a> |
+                <a href="veterinario_editar.html">Editar</a> |
+                <a href="veterinario_eliminar.html">Eliminar</a>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>1104567892</strong></td>
+              <td>Diego Alejandro</td>
+              <td>Cevallos Ruiz</td>
+              <td>Dermatología</td>
+              <td>0995678234</td>
+              <td>
+                <a href="veterinario_detalle.html">Ver detalle</a> |
+                <a href="veterinario_editar.html">Editar</a> |
+                <a href="veterinario_eliminar.html">Eliminar</a>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>0602345673</strong></td>
+              <td>Gabriela Estefanía</td>
+              <td>Ortiz Vega</td>
+              <td>Cardiología</td>
+              <td>0983456712</td>
+              <td>
+                <a href="veterinario_detalle.html">Ver detalle</a> |
+                <a href="veterinario_editar.html">Editar</a> |
+                <a href="veterinario_eliminar.html">Eliminar</a>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>1305678904</strong></td>
+              <td>Martín Esteban</td>
+              <td>Salazar Pinto</td>
+              <td>Odontología</td>
+              <td>0976543218</td>
+              <td>
+                <a href="veterinario_detalle.html">Ver detalle</a> |
+                <a href="veterinario_editar.html">Editar</a> |
+                <a href="veterinario_eliminar.html">Eliminar</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+  
+    <footer class="contenedor pie">
+      VetCare · Clínica Veterinaria Huellitas
+    </footer>
+  </div>
+
+  <!-- Ventana flotante -->
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="titulo-modal">
+    <section class="modal__ventana tarjeta">
+      <h2 id="titulo-modal" class="modal__titulo">Registrar veterinario</h2>
+      <p class="texto-secundario">Completa los datos del nuevo médico veterinario.</p>
+
+      <form class="formulario" action="veterinario_listar.html" method="get">
+          <fieldset class="cuadricula cuadricula--dos">
+            <legend class="etiqueta">Datos personales</legend>
+
+            <div class="campo">
+              <label for="cedula">Cédula</label>
+              <input id="cedula" name="cedula" type="text" inputmode="numeric" pattern="[0-9]{10}" maxlength="10"
+                title="La cédula debe tener 10 dígitos" placeholder="Ej. 1712345678" required>
+            </div>
+
+            <div class="campo">
+              <label for="celular">Celular</label>
+              <input id="celular" name="celular" type="tel" pattern="09[0-9]{8}" maxlength="10"
+                title="10 dígitos que empiezan con 09" placeholder="Ej. 0991234567" required>
+            </div>
+
+            <div class="campo">
+              <label for="nombres">Nombres</label>
+              <input id="nombres" name="nombres" type="text" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ ]{2,50}" minlength="2"
+                maxlength="50" title="Solo letras y espacios (2 a 50 caracteres)" placeholder="Ej. Andrés Sebastián"
+                autocomplete="given-name" required>
+            </div>
+
+            <div class="campo">
+              <label for="apellidos">Apellidos</label>
+              <input id="apellidos" name="apellidos" type="text" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ ]{2,50}" minlength="2"
+                maxlength="50" title="Solo letras y espacios (2 a 50 caracteres)" placeholder="Ej. Paredes Luna"
+                autocomplete="family-name" required>
+            </div>
+
+            <div class="campo">
+              <label for="correo">Correo electrónico</label>
+              <input id="correo" name="correo" type="email" placeholder="usuario@vetcare.ec"
+                autocomplete="email" required>
+            </div>
+
+            <div class="campo">
+              <label for="direccion">Dirección de domicilio</label>
+              <input id="direccion" name="direccion" type="text" maxlength="150"
+                placeholder="Ej. Av. 6 de Diciembre N34-120 y Portugal" required>
+            </div>
+          </fieldset>
+
+          <fieldset class="cuadricula cuadricula--dos">
+            <legend class="etiqueta">Datos profesionales</legend>
+
+            <div class="campo">
+              <label for="especialidad">Especialidad</label>
+              <select id="especialidad" name="especialidad" required>
+                <option value="">Selecciona una especialidad</option>
+                <option>Medicina general</option>
+                <option>Cirugía</option>
+                <option>Dermatología</option>
+                <option>Cardiología</option>
+                <option>Odontología</option>
+              </select>
+            </div>
+          </fieldset>
+
+        <div class="botonera">
+          <button class="boton" type="submit">Guardar</button>
+          <a class="boton boton--secundario" href="veterinario_listar.html">Cancelar</a>
+        </div>
+      </form>
+    </section>
+  </div>
+</body>
+
+</html>
