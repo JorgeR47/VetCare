@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Registrar servicio | VetCare</title>
+  <link rel="stylesheet" href="../../../css/estilos.css">
+  <link rel="stylesheet" href="../../../css/paginas/administrador.css">
+</head>
+
+<body>
+  <!-- Fondo: el listado queda visible pero desactivado mientras la ventana está abierta -->
+  <div class="fondo-modal" inert>
+    <header class="encabezado">
+      <div class="contenedor encabezado__interior">
+        <div class="marca">
+          <span class="marca__simbolo">V</span>
+          <span class="marca__texto">VetCare</span>
+        </div>
+        <div class="navegacion navegacion--barra">
+          <nav class="barra-navegacion" aria-label="Navegación del administrador">
+            <a href="../servicio/servicio_listar.html" aria-current="page">Catálogo servicios</a>
+            <a href="../veterinario/veterinario_listar.html">Personal veterinario</a>
+            <a href="../recepcionista/recepcionista_listar.html">Personal recepcionista</a>
+            <a href="../auditoria/auditoria_listar.html">Bitácora y auditoría</a>
+            <a href="../../../index.html">Cerrar sesión</a>
+          </nav>
+          <div class="usuario-sesion">
+            <div class="usuario-avatar" title="Aquiles Brinco">A</div>
+            <div class="usuario-info">
+              <span class="usuario-nombre">Aquiles Brinco</span>
+              <span class="usuario-rol">Administrador</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="contenedor seccion-principal">
+      <div class="encabezado-pagina">
+        <p class="texto-secundario">Administrador &gt; Catálogo servicios</p>
+        <h1 class="titulo-pagina">Catálogo de Servicios</h1>
+        <p class="texto-secundario">Consulta y administra los servicios que ofrece la clínica y sus precios.</p>
+      </div>
+
+      <div class="barra-acciones espacio-abajo">
+        <!-- Buscador -->
+        <form class="buscador" action="servicio_listar.html" method="get">
+          <div class="campo">
+            <label for="buscar">Buscar servicio</label>
+            <input id="buscar" name="q" type="search" maxlength="60" placeholder="Nombre del servicio">
+          </div>
+          <button class="boton" type="submit">Buscar</button>
+        </form>
+
+        <a class="boton" href="servicio_nuevo.html">+ Registrar</a>
+      </div>
+
+      <!-- Tabla de servicios -->
+      <div class="tabla-contenedor">
+        <table class="tabla tabla--listado tabla-servicios">
+          <caption>Servicios registrados</caption>
+          <thead>
+            <tr>
+              <th scope="col">Nombre</th>
+              <th scope="col">Precio (USD)</th>
+              <th scope="col">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Consulta general</strong></td>
+              <td>$ 25.00</td>
+              <td>
+                <a href="servicio_detalle.html">Ver detalle</a> |
+                <a href="servicio_editar.html">Editar</a> |
+                <a href="servicio_dar_baja.html">Dar de baja</a>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Vacunación</strong></td>
+              <td>$ 18.00</td>
+              <td>
+                <a href="servicio_detalle.html">Ver detalle</a> |
+                <a href="servicio_editar.html">Editar</a> |
+                <a href="servicio_dar_baja.html">Dar de baja</a>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Desparasitación</strong></td>
+              <td>$ 12.50</td>
+              <td>
+                <a href="servicio_detalle.html">Ver detalle</a> |
+                <a href="servicio_editar.html">Editar</a> |
+                <a href="servicio_dar_baja.html">Dar de baja</a>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Cirugía menor</strong></td>
+              <td>$ 150.00</td>
+              <td>
+                <a href="servicio_detalle.html">Ver detalle</a> |
+                <a href="servicio_editar.html">Editar</a> |
+                <a href="servicio_dar_baja.html">Dar de baja</a>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Traumatología</strong></td>
+              <td>$ 60.00</td>
+              <td>
+                <a href="servicio_detalle.html">Ver detalle</a> |
+                <a href="servicio_editar.html">Editar</a> |
+                <a href="servicio_dar_baja.html">Dar de baja</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+
+    <footer class="contenedor pie">
+      VetCare · Clínica Veterinaria Huellitas
+    </footer>
+  </div>
+
+  <!-- Ventana flotante -->
+  <div class="modal modal--visible modal--superior" role="dialog" aria-modal="true" aria-labelledby="titulo-modal">
+    <section class="modal__ventana tarjeta">
+      <h2 id="titulo-modal" class="modal__titulo">Registrar servicio</h2>
+      <p class="texto-secundario">Completa los datos del nuevo servicio de la clínica.</p>
+
+      <form class="formulario" action="servicio_listar.html" method="get">
+        <fieldset>
+          <legend class="etiqueta">Datos del servicio</legend>
+
+          <div class="cuadricula cuadricula--dos">
+            <div class="campo">
+              <label for="nombre">Nombre</label>
+              <input id="nombre" name="nombre" type="text" minlength="3" maxlength="60"
+                pattern="[A-Za-zÁÉÍÓÚÜÑáéíóúüñ0-9 ]{3,60}" title="Letras, números y espacios (3 a 60 caracteres)"
+                placeholder="Ej. Consulta general" required>
+            </div>
+
+            <div class="campo">
+              <label for="precio">Precio (USD)</label>
+              <input id="precio" name="precio" type="number" min="0.01" max="1000" step="0.01"
+                placeholder="Ej. 25.00" required>
+            </div>
+          </div>
+
+          <div class="campo">
+            <label for="descripcion">Descripción <span class="texto-secundario">(opcional)</span></label>
+            <textarea id="descripcion" name="descripcion" maxlength="200"
+              placeholder="Describe brevemente el servicio (hasta 200 caracteres)"></textarea>
+          </div>
+
+          <div class="campo">
+            <label for="requisitos">Requisitos previos <span class="texto-secundario">(opcional)</span></label>
+            <textarea id="requisitos" name="requisitos" minlength="5" maxlength="300"
+              placeholder="Una condición por línea. Ej. Orden de un veterinario"></textarea>
+          </div>
+        </fieldset>
+
+        <div class="botonera">
+          <button class="boton" type="submit">Guardar</button>
+          <a class="boton boton--secundario" href="servicio_listar.html">Cancelar</a>
+        </div>
+      </form>
+    </section>
+  </div>
+</body>
+
+</html>
