@@ -1,27 +1,3 @@
-
-/* ---------- Home: tarjetas grandes ---------- */
-.tarjetas-home .tarjeta-modulo {
-  min-height: 170px;
-  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-.tarjetas-home .tarjeta-modulo:hover,
-.tarjetas-home .tarjeta-modulo:focus-visible {
-  box-shadow: 0 10px 24px rgba(20, 61, 57, 0.14);
-}
-
-.tarjetas-home .tarjeta-modulo h2 {
-  margin-top: 0;
-  color: var(--color-principal-oscuro);
-}
-
-/* ---------- Aviso de vista de referencia ---------- */
-.aviso-borrador {
-  border: 1px solid #f0d58c;
-  background-color: #fff8e6;
-  color: #6b4e00;
-}
-
 /* ===================================================
    MÓDULO PERSONAL VETERINARIO (M6 · CU-09)
    =================================================== */
@@ -31,4 +7,60 @@
 .tabla-veterinarios td:nth-child(4) {
   color: var(--color-principal-oscuro);
   font-weight: bold;
+}
+
+/* Columna Acciones (última): encabezado y enlaces centrados */
+.tabla-veterinarios   th:last-child,
+.tabla-veterinarios   td:last-child {
+  text-align: center;
+}
+
+
+/* ===================================================
+   MÓDULO CATÁLOGO DE SERVICIOS (CU-10)
+   =================================================== */
+
+/* Columna Precio (2ª): cifras alineadas a la derecha y sin cortes.
+   Nombre, Acciones y «Dar de baja» vienen de .tabla--listado (estilos.css) */
+.tabla-servicios th:nth-child(2),
+.tabla-servicios td:nth-child(2) {
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* Columna Acciones (última): encabezado y enlaces centrados */
+.tabla-servicios th:last-child,
+.tabla-servicios td:last-child {
+  text-align: center;
+}
+
+/* ===================================================
+   MÓDULO PERSONAL (CU-11)
+   =================================================== */
+
+/* Columna Acciones (última): encabezado y enlaces centrados */
+.tabla-recepcionistas  th:last-child,
+.tabla-recepcionistas  td:last-child {
+  text-align: center;
+}
+
+/* ===================================================
+   MÓDULO BITÁCORA Y AUDITORÍA (CU-12)
+   =================================================== */
+
+/* Filtros: 4 campos por fila en escritorio (fechas y horas arriba,
+   listas abajo); en pantallas pequeñas bajan solos a 2 o 1 por fila */
+.filtros-auditoria > .campo {
+  flex: 1 1 200px;
+}
+
+/* Columna Hora (2ª) sin cortes. Fecha y «Ver detalle» vienen de .tabla--listado */
+.tabla-auditoria td:nth-child(2) {
+  white-space: nowrap;
+}
+
+/* Columna Acciones (última): encabezado y enlace centrados */
+.tabla-auditoria th:last-child,
+.tabla-auditoria td:last-child {
+  text-align: center;
 }
