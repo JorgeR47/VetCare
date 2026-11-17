@@ -7,7 +7,6 @@
   <title>Detalle de veterinario | VetCare</title>
   <link rel="stylesheet" href="../../../css/estilos.css">
   <link rel="stylesheet" href="../../../css/paginas/administrador.css">
-  <link rel="stylesheet" href="../../../css/paginas/veterinario.css">
 </head>
 
 <body>
@@ -19,8 +18,8 @@
           <span class="marca__simbolo">V</span>
           <span class="marca__texto">VetCare</span>
         </a>
-        <div class="navegacion">
-          <nav class="barra-admin" aria-label="Navegación del administrador">
+        <div class="navegacion navegacion--barra">
+          <nav class="barra-navegacion" aria-label="Navegación del administrador">
             <a href="../home_administrador.html">Inicio</a>
             <a href="../servicio/servicio_listar.html">Catálogo servicios</a>
             <a href="../veterinario/veterinario_listar.html" aria-current="page">Personal veterinario</a>
@@ -61,7 +60,7 @@
   
       <!-- Tabla de veterinarios -->
       <div class="tabla-contenedor">
-        <table class="tabla tabla-veterinarios">
+        <table class="tabla tabla--listado tabla-veterinarios">
           <caption>Veterinarios registrados</caption>
           <thead>
             <tr>
@@ -145,7 +144,7 @@
   </div>
 
   <!-- Ventana flotante -->
-  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="titulo-modal">
+  <div class="modal modal--visible modal--superior" role="dialog" aria-modal="true" aria-labelledby="titulo-modal">
     <section class="modal__ventana tarjeta">
       <h2 id="titulo-modal" class="modal__titulo">Detalle del veterinario</h2>
       <p class="texto-secundario">Información registrada del médico veterinario.</p>
