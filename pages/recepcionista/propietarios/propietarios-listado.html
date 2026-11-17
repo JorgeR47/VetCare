@@ -38,31 +38,31 @@
       <p class="texto-secundario">Busca y administra la información de contacto y mascotas de los clientes.</p>
     </div>
 
-    <!-- Buscador sencillo -->
-    <form class="buscador espacio-abajo" action="propietarios-listado.html" method="get">
-      <div class="campo">
-        <label for="buscar">Buscar propietario</label>
-        <input id="buscar" name="q" type="search" placeholder="Ingresa cédula, nombre, apellido, teléfono o correo...">
-      </div>
-      <button class="boton" type="submit">Buscar</button>
-    </form>
+    <div class="barra-acciones espacio-abajo">
+      <!-- Buscador -->
+      <form class="buscador" action="propietarios-listado.html" method="get">
+        <div class="campo">
+          <label for="buscar">Buscar propietario</label>
+          <input id="buscar" name="q" type="search" placeholder="Cédula, nombre, apellido, teléfono o correo">
+        </div>
+        <button class="boton" type="submit">Buscar</button>
+      </form>
 
-    <!-- Botón para añadir nuevo -->
-    <div class="botonera espacio-arriba">
       <a class="boton" href="#ventana-nuevo">+ Nuevo propietario</a>
     </div>
 
-    <!-- Tabla de resultados -->
-    <div class="tabla-contenedor espacio-arriba">
-      <table class="tabla tabla-propietarios">
+    <!-- Tabla de propietarios -->
+    <div class="tabla-contenedor">
+      <table class="tabla tabla--listado tabla-propietarios">
+        <caption>Propietarios registrados</caption>
         <thead>
           <tr>
-            <th>Cédula</th>
-            <th>Nombres</th>
-            <th>Apellidos</th>
-            <th>Celular</th>
-            <th>Correo</th>
-            <th>Acciones</th>
+            <th scope="col">Cédula</th>
+            <th scope="col">Nombres</th>
+            <th scope="col">Apellidos</th>
+            <th scope="col">Celular</th>
+            <th scope="col">Correo</th>
+            <th scope="col">Acciones</th>
           </tr>
         </thead>
         <tbody>

@@ -401,6 +401,28 @@ a.tarjeta span {
   background-color: #f7faf9;
 }
 
+/* Tabla de listado (CRUD):
+   1ª columna = identificador (cédula, código) → no se corta
+   última columna = Acciones (Ver | Editar | Eliminar) */
+.tabla--listado td:first-child {
+  white-space: nowrap;
+}
+
+.tabla--listado th:last-child,
+.tabla--listado td:last-child {
+  white-space: nowrap;
+}
+
+.tabla--listado td:last-child a {
+  display: inline-block;
+  margin: 2px 4px;
+}
+
+/* Enlace «Eliminar» en color de peligro (sirve para eliminar.html y #ventana-eliminar) */
+.tabla--listado td:last-child a[href*="eliminar"] {
+  color: var(--color-error);
+}
+
 /* Ficha de datos (dl, dt, dd) */
 .datos {
   display: flex;
@@ -447,31 +469,42 @@ a.tarjeta span {
 }
 
 
-/* Componentes compartidos: navegación por rol y ventanas emergentes */
+
+/* ===================================================
+   COMPONENTES COMPARTIDOS
+   Navegación por rol, barra de acciones y ventanas emergentes.
+   =================================================== */
+
+/* ---------- Encabezado con barra de navegación ----------
+   «display: contents» hace que el div .navegacion--barra no ocupe
+   espacio propio: sus hijos (usuario y barra) pasan a ser hijos
+   directos de .encabezado__interior. Resultado en dos filas:
+   fila 1 → marca (izquierda) + usuario (derecha)
+   fila 2 → barra de navegación a todo el ancho */
 .navegacion--barra {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 12px;
+  display: contents;
 }
-.navegacion--barra .usuario-sesion { order: 1; margin-left: auto; }
+
+.navegacion--barra .usuario-sesion {
+  order: 1;
+  margin-left: auto;
+}
+
 .barra-navegacion {
   order: 2;
-  width: 100%;
   flex-basis: 100%;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 4px;
+  justify-content: center;            /* botones agrupados al centro */
+  gap: var(--espacio-barra, 24px);    /* distancia fija entre botones */
   padding-top: 8px;
   border-top: 1px solid var(--color-borde);
 }
+
 .barra-navegacion a,
 .barra-navegacion button {
   display: inline-flex;
-  flex: 1 1 auto;
   align-items: center;
   justify-content: center;
   padding: 8px 14px;
@@ -485,14 +518,43 @@ a.tarjeta span {
   text-decoration: none;
   cursor: pointer;
 }
+
 .barra-navegacion a:hover,
-.barra-navegacion button:hover { background-color: #e8f3f0; text-decoration: none; }
+.barra-navegacion button:hover {
+  background-color: #e8f3f0;
+  text-decoration: none;
+}
+
+/* Opción de la página actual */
 .barra-navegacion [aria-current="page"] {
   background-color: #e8f3f0;
   box-shadow: inset 0 -3px 0 var(--color-principal);
 }
-.barra-navegacion a[href$="index.html"] { color: var(--color-error); }
 
+/* «Cerrar sesión» separado visualmente del resto */
+.barra-navegacion a[href$="index.html"] {
+  color: var(--color-error);
+}
+
+/* ---------- Barra de acciones del listado (buscador + botón) ---------- */
+.barra-acciones {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+/* Dentro de la barra, el buscador crece hasta su max-width (600px).
+   Sin esto, como elemento flex mediría solo lo que mide su contenido. */
+.barra-acciones .buscador {
+  flex: 1;
+}
+
+/* ---------- Ventana emergente (modal) ----------
+   Oculta por defecto. Se muestra de dos formas:
+   - .modal:target   → al hacer clic en un enlace href="#id-del-modal"
+   - .modal--visible → siempre visible (pantalla que ES el modal) */
 .modal {
   position: fixed;
   inset: 0;
@@ -500,20 +562,41 @@ a.tarjeta span {
   display: none;
   align-items: center;
   justify-content: center;
-  padding: 32px 16px;
+  padding: 48px 16px;
   overflow-y: auto;
   background-color: var(--color-velo-modal);
 }
+
 .modal:target,
-.modal--visible { display: flex; }
-.modal--superior { align-items: flex-start; }
+.modal--visible {
+  display: flex;
+}
+
+/* Ventana pegada arriba en lugar de centrada */
+.modal--superior {
+  align-items: flex-start;
+}
+
+/* La página de fondo no se desplaza mientras hay un modal abierto */
+body:has(.modal:target),
+body:has(.modal--visible) {
+  overflow: hidden;
+}
+
 .modal__ventana {
   width: 100%;
   max-width: var(--ancho-modal);
   padding: 28px;
   box-shadow: var(--sombra-modal);
+  animation: aparecer-modal 0.25s ease-out;
 }
-.modal__ventana--incrustada { padding: 0; overflow: hidden; }
+
+/* Ventana que muestra otra página dentro de un iframe */
+.modal__ventana--incrustada {
+  padding: 0;
+  overflow: hidden;
+}
+
 .modal__ventana iframe {
   display: block;
   width: 100%;
@@ -521,6 +604,92 @@ a.tarjeta span {
   border: 0;
   background: #fff;
 }
-.modal__titulo { margin: 0 0 4px; font-size: 24px; color: var(--color-texto); }
-.modal__ventana .botonera { justify-content: flex-end; margin-top: 8px; }
-.fondo-modal { user-select: none; }
+
+.modal__titulo {
+  margin: 0 0 4px 0;
+  font-size: 24px;
+  color: var(--color-texto);
+}
+
+.modal__ventana .botonera {
+  justify-content: flex-end;
+  margin-top: 8px;
+}
+
+/* Contenido de fondo desactivado mientras el modal está abierto */
+.fondo-modal {
+  user-select: none;
+}
+
+@keyframes aparecer-modal {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---------- Validación visual de campos ----------
+   :user-invalid / :user-valid solo se activan después de que el
+   usuario interactúa con el campo (no al cargar la página). */
+.campo input:user-invalid,
+.campo select:user-invalid,
+.campo textarea:user-invalid {
+  border-color: var(--color-error);
+  background-color: var(--color-error-fondo);
+}
+
+.campo input:user-valid,
+.campo select:user-valid {
+  border-color: var(--color-exito);
+}
+
+/* ===================================================
+   PUNTOS DE QUIEBRE (responsive)
+   Van al final para sobrescribir las reglas de arriba.
+   =================================================== */
+
+/* Tabletas */
+@media (max-width: 768px) {
+  .barra-acciones {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .modal {
+    padding: 24px 12px;
+  }
+
+  .modal__ventana {
+    padding: 20px;
+  }
+
+  .modal__ventana--incrustada {
+    padding: 0;
+  }
+}
+
+/* Teléfonos */
+@media (max-width: 480px) {
+  .barra-navegacion {
+    --espacio-barra: 8px;
+  }
+
+  .barra-navegacion a,
+  .barra-navegacion button {
+    flex: 1 1 45%;
+  }
+
+  .titulo-pagina {
+    font-size: 24px;
+  }
+
+  .modal__ventana .botonera {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+}
