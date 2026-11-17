@@ -14,13 +14,12 @@
   <div class="fondo-modal" inert>
     <header class="encabezado">
       <div class="contenedor encabezado__interior">
-        <a class="marca" href="../home_administrador.html">
+        <div class="marca">
           <span class="marca__simbolo">V</span>
           <span class="marca__texto">VetCare</span>
-        </a>
+        </div>
         <div class="navegacion navegacion--barra">
           <nav class="barra-navegacion" aria-label="Navegación del administrador">
-            <a href="../home_administrador.html">Inicio</a>
             <a href="../servicio/servicio_listar.html">Catálogo servicios</a>
             <a href="../veterinario/veterinario_listar.html" aria-current="page">Personal veterinario</a>
             <a href="../recepcionista/recepcionista_listar.html">Personal recepcionista</a>
@@ -50,7 +49,7 @@
         <form class="buscador" action="veterinario_listar.html" method="get">
           <div class="campo">
             <label for="buscar">Buscar veterinario</label>
-            <input id="buscar" name="q" type="search" placeholder="Cédula, nombres, apellidos o especialidad">
+            <input id="buscar" name="q" type="search" maxlength="60" placeholder="Cédula o nombres">
           </div>
           <button class="boton" type="submit">Buscar</button>
         </form>
@@ -68,8 +67,7 @@
               <th scope="col">Nombres</th>
               <th scope="col">Apellidos</th>
               <th scope="col">Especialidad</th>
-              <th scope="col">Teléfono</th>
-              <th scope="col">Acciones</th>
+                <th scope="col">Acciones</th>
             </tr>
           </thead>
           <tbody>
@@ -78,11 +76,10 @@
               <td>Andrés Sebastián</td>
               <td>Paredes Luna</td>
               <td>Medicina general</td>
-              <td>0991234567</td>
               <td>
                 <a href="veterinario_detalle.html">Ver detalle</a> |
                 <a href="veterinario_editar.html">Editar</a> |
-                <a href="veterinario_eliminar.html">Eliminar</a>
+                <a href="veterinario_dar_baja.html">Dar de baja</a>
               </td>
             </tr>
             <tr>
@@ -90,11 +87,10 @@
               <td>Valeria Cristina</td>
               <td>Mora Andrade</td>
               <td>Cirugía</td>
-              <td>0987456123</td>
               <td>
                 <a href="veterinario_detalle.html">Ver detalle</a> |
                 <a href="veterinario_editar.html">Editar</a> |
-                <a href="veterinario_eliminar.html">Eliminar</a>
+                <a href="veterinario_dar_baja.html">Dar de baja</a>
               </td>
             </tr>
             <tr>
@@ -102,11 +98,10 @@
               <td>Diego Alejandro</td>
               <td>Cevallos Ruiz</td>
               <td>Dermatología</td>
-              <td>0995678234</td>
               <td>
                 <a href="veterinario_detalle.html">Ver detalle</a> |
                 <a href="veterinario_editar.html">Editar</a> |
-                <a href="veterinario_eliminar.html">Eliminar</a>
+                <a href="veterinario_dar_baja.html">Dar de baja</a>
               </td>
             </tr>
             <tr>
@@ -114,11 +109,10 @@
               <td>Gabriela Estefanía</td>
               <td>Ortiz Vega</td>
               <td>Cardiología</td>
-              <td>0983456712</td>
               <td>
                 <a href="veterinario_detalle.html">Ver detalle</a> |
                 <a href="veterinario_editar.html">Editar</a> |
-                <a href="veterinario_eliminar.html">Eliminar</a>
+                <a href="veterinario_dar_baja.html">Dar de baja</a>
               </td>
             </tr>
             <tr>
@@ -126,11 +120,10 @@
               <td>Martín Esteban</td>
               <td>Salazar Pinto</td>
               <td>Odontología</td>
-              <td>0976543218</td>
               <td>
                 <a href="veterinario_detalle.html">Ver detalle</a> |
                 <a href="veterinario_editar.html">Editar</a> |
-                <a href="veterinario_eliminar.html">Eliminar</a>
+                <a href="veterinario_dar_baja.html">Dar de baja</a>
               </td>
             </tr>
           </tbody>
@@ -150,63 +143,65 @@
       <p class="texto-secundario">Completa los datos del nuevo médico veterinario.</p>
 
       <form class="formulario" action="veterinario_listar.html" method="get">
-          <fieldset class="cuadricula cuadricula--dos">
-            <legend class="etiqueta">Datos personales</legend>
+        <fieldset class="cuadricula cuadricula--dos">
+          <legend class="etiqueta">Datos del veterinario</legend>
 
-            <div class="campo">
-              <label for="cedula">Cédula</label>
-              <input id="cedula" name="cedula" type="text" inputmode="numeric" pattern="[0-9]{10}" maxlength="10"
-                title="La cédula debe tener 10 dígitos" placeholder="Ej. 1712345678" required>
-            </div>
+          <div class="campo">
+            <label for="cedula">Cédula</label>
+            <input id="cedula" name="cedula" type="text" inputmode="numeric" pattern="[0-9]{10}" maxlength="10"
+              title="La cédula debe tener exactamente 10 dígitos" placeholder="Ej. 1712345678" required>
+          </div>
 
-            <div class="campo">
-              <label for="celular">Celular</label>
-              <input id="celular" name="celular" type="tel" pattern="09[0-9]{8}" maxlength="10"
-                title="10 dígitos que empiezan con 09" placeholder="Ej. 0991234567" required>
-            </div>
+          <div class="campo">
+            <label for="nombres">Nombres</label>
+            <input id="nombres" name="nombres" type="text" pattern="[A-Za-zÁÉÍÓÚÜÑáéíóúüñ ]{2,50}" minlength="2"
+              maxlength="50" title="Solo letras y espacios" placeholder="Ej. Andrés Sebastián"
+              autocomplete="given-name" required>
+          </div>
 
-            <div class="campo">
-              <label for="nombres">Nombres</label>
-              <input id="nombres" name="nombres" type="text" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ ]{2,50}" minlength="2"
-                maxlength="50" title="Solo letras y espacios (2 a 50 caracteres)" placeholder="Ej. Andrés Sebastián"
-                autocomplete="given-name" required>
-            </div>
+          <div class="campo">
+            <label for="apellidos">Apellidos</label>
+            <input id="apellidos" name="apellidos" type="text" pattern="[A-Za-zÁÉÍÓÚÜÑáéíóúüñ ]{2,50}" minlength="2"
+              maxlength="50" title="Solo letras y espacios" placeholder="Ej. Paredes Luna"
+              autocomplete="family-name" required>
+          </div>
+          <div class="campo">
+            <label for="especialidad">Especialidad</label>
+            <input id="especialidad" name="especialidad" type="text" minlength="3" maxlength="50"
+              pattern="[A-Za-zÁÉÍÓÚÜÑáéíóúüñ ]{3,50}" title="Solo letras y espacios"
+              placeholder="Ej. Medicina general" required>
+          </div>
 
-            <div class="campo">
-              <label for="apellidos">Apellidos</label>
-              <input id="apellidos" name="apellidos" type="text" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ ]{2,50}" minlength="2"
-                maxlength="50" title="Solo letras y espacios (2 a 50 caracteres)" placeholder="Ej. Paredes Luna"
-                autocomplete="family-name" required>
-            </div>
 
-            <div class="campo">
-              <label for="correo">Correo electrónico</label>
-              <input id="correo" name="correo" type="email" placeholder="usuario@vetcare.ec"
-                autocomplete="email" required>
-            </div>
+          <div class="campo">
+            <label for="celular">Número de teléfono de celular</label>
+            <input id="celular" name="celular" type="tel" pattern="09[0-9]{8}" maxlength="10"
+              title="10 dígitos que empiezan con 09" placeholder="Ej. 0991234567" required>
+          </div>
 
-            <div class="campo">
-              <label for="direccion">Dirección de domicilio</label>
-              <input id="direccion" name="direccion" type="text" maxlength="150"
-                placeholder="Ej. Av. 6 de Diciembre N34-120 y Portugal" required>
-            </div>
-          </fieldset>
+          <div class="campo">
+            <label for="correo">Correo electrónico</label>
+            <input id="correo" name="correo" type="email" placeholder="usuario@vetcare.ec"
+              autocomplete="username" required>
+          </div>
 
-          <fieldset class="cuadricula cuadricula--dos">
-            <legend class="etiqueta">Datos profesionales</legend>
+          <div class="campo">
+            <label for="direccion">Dirección de domicilio</label>
+            <input id="direccion" name="direccion" type="text" minlength="5" maxlength="150"
+              placeholder="Ej. Av. 6 de Diciembre N34-120 y Portugal" autocomplete="street-address" required>
+          </div>
+        </fieldset>
 
-            <div class="campo">
-              <label for="especialidad">Especialidad</label>
-              <select id="especialidad" name="especialidad" required>
-                <option value="">Selecciona una especialidad</option>
-                <option>Medicina general</option>
-                <option>Cirugía</option>
-                <option>Dermatología</option>
-                <option>Cardiología</option>
-                <option>Odontología</option>
-              </select>
-            </div>
-          </fieldset>
+        <fieldset class="cuadricula cuadricula--dos">
+          <legend class="etiqueta">Datos de acceso</legend>
+
+          <div class="campo">
+            <label for="contrasena">Contraseña</label>
+            <input id="contrasena" name="contrasena" type="password" minlength="8"
+              pattern="(?=.*[A-Za-z])(?=.*[0-9]).{8,}" title="Mínimo 8 caracteres con al menos una letra y un número"
+              placeholder="Mínimo 8 caracteres, letras y números" autocomplete="new-password" required>
+          </div>
+        </fieldset>
 
         <div class="botonera">
           <button class="boton" type="submit">Guardar</button>
