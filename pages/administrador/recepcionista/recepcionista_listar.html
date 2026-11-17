@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Personal Recepcionista | VetCare</title>
+  <title>Personal recepcionista | VetCare</title>
   <link rel="stylesheet" href="../../../css/estilos.css">
   <link rel="stylesheet" href="../../../css/paginas/administrador.css">
 </head>
@@ -25,9 +25,9 @@
           <a href="../../../index.html">Cerrar sesión</a>
         </nav>
         <div class="usuario-sesion">
-          <div class="usuario-avatar" title="Carlos Valdivieso">C</div>
+          <div class="usuario-avatar" title="Aquiles Brinco">A</div>
           <div class="usuario-info">
-            <span class="usuario-nombre">Carlos Valdivieso</span>
+            <span class="usuario-nombre">Aquiles Brinco</span>
             <span class="usuario-rol">Administrador</span>
           </div>
         </div>
@@ -39,38 +39,84 @@
     <div class="encabezado-pagina">
       <p class="texto-secundario">Administrador &gt; Personal recepcionista</p>
       <h1 class="titulo-pagina">Personal Recepcionista</h1>
-      <p class="texto-secundario">Consulta el personal de recepción de la clínica.</p>
+      <p class="texto-secundario">Consulta y administra las recepcionistas de la clínica.</p>
     </div>
 
-    <p class="mensaje aviso-borrador espacio-abajo">Vista de referencia para la navegación: las acciones de este
-      módulo se implementarán más adelante.</p>
+    <div class="barra-acciones espacio-abajo">
+      <!-- Buscador -->
+      <form class="buscador" action="recepcionista_listar.html" method="get">
+        <div class="campo">
+          <label for="buscar">Buscar recepcionista</label>
+          <input id="buscar" name="q" type="search" maxlength="60" placeholder="Cédula o nombres">
+        </div>
+        <button class="boton" type="submit">Buscar</button>
+      </form>
 
+      <a class="boton" href="recepcionista_nuevo.html">+ Registrar</a>
+    </div>
+
+    <!-- Tabla de recepcionistas -->
     <div class="tabla-contenedor">
-      <table class="tabla tabla-basica">
-        <caption>Personal Recepcionista</caption>
+      <table class="tabla tabla--listado tabla-recepcionistas">
+        <caption>Recepcionistas registradas</caption>
         <thead>
           <tr>
             <th scope="col">Cédula</th>
             <th scope="col">Nombres</th>
             <th scope="col">Apellidos</th>
-            <th scope="col">Turno</th>
-            <th scope="col">Teléfono</th>
+            <th scope="col">Acciones</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>1718956321</td>
+            <td><strong>1718452369</strong></td>
             <td>Camila Andrea</td>
-            <td>Silva Romero</td>
-            <td>Mañana</td>
-            <td>0994561237</td>
+            <td>Silva Torres</td>
+            <td>
+              <a href="recepcionista_detalle.html">Ver detalle</a> |
+              <a href="recepcionista_editar.html">Editar</a> |
+              <a href="recepcionista_dar_baja.html">Dar de baja</a>
+            </td>
           </tr>
           <tr>
-            <td>0912873465</td>
-            <td>Paúl Esteban</td>
-            <td>Jaramillo Ríos</td>
-            <td>Tarde</td>
-            <td>0981237654</td>
+            <td><strong>0926874512</strong></td>
+            <td>Daniela Sofía</td>
+            <td>Ramírez Cueva</td>
+            <td>
+              <a href="recepcionista_detalle.html">Ver detalle</a> |
+              <a href="recepcionista_editar.html">Editar</a> |
+              <a href="recepcionista_dar_baja.html">Dar de baja</a>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>1103569874</strong></td>
+            <td>María José</td>
+            <td>Benítez Loor</td>
+            <td>
+              <a href="recepcionista_detalle.html">Ver detalle</a> |
+              <a href="recepcionista_editar.html">Editar</a> |
+              <a href="recepcionista_dar_baja.html">Dar de baja</a>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>0604123587</strong></td>
+            <td>Paola Estefanía</td>
+            <td>Guerrero Vaca</td>
+            <td>
+              <a href="recepcionista_detalle.html">Ver detalle</a> |
+              <a href="recepcionista_editar.html">Editar</a> |
+              <a href="recepcionista_dar_baja.html">Dar de baja</a>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>1309876541</strong></td>
+            <td>Lucía Fernanda</td>
+            <td>Ortega Mena</td>
+            <td>
+              <a href="recepcionista_detalle.html">Ver detalle</a> |
+              <a href="recepcionista_editar.html">Editar</a> |
+              <a href="recepcionista_dar_baja.html">Dar de baja</a>
+            </td>
           </tr>
         </tbody>
       </table>
