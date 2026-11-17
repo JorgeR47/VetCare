@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Eliminar veterinario | VetCare</title>
+  <title>Dar de baja veterinario | VetCare</title>
   <link rel="stylesheet" href="../../../css/estilos.css">
   <link rel="stylesheet" href="../../../css/paginas/administrador.css">
 </head>
@@ -14,13 +14,12 @@
   <div class="fondo-modal" inert>
     <header class="encabezado">
       <div class="contenedor encabezado__interior">
-        <a class="marca" href="../home_administrador.html">
+        <div class="marca">
           <span class="marca__simbolo">V</span>
           <span class="marca__texto">VetCare</span>
-        </a>
+        </div>
         <div class="navegacion navegacion--barra">
           <nav class="barra-navegacion" aria-label="Navegación del administrador">
-            <a href="../home_administrador.html">Inicio</a>
             <a href="../servicio/servicio_listar.html">Catálogo servicios</a>
             <a href="../veterinario/veterinario_listar.html" aria-current="page">Personal veterinario</a>
             <a href="../recepcionista/recepcionista_listar.html">Personal recepcionista</a>
@@ -50,7 +49,7 @@
         <form class="buscador" action="veterinario_listar.html" method="get">
           <div class="campo">
             <label for="buscar">Buscar veterinario</label>
-            <input id="buscar" name="q" type="search" placeholder="Cédula, nombres, apellidos o especialidad">
+            <input id="buscar" name="q" type="search" maxlength="60" placeholder="Cédula o nombres">
           </div>
           <button class="boton" type="submit">Buscar</button>
         </form>
@@ -68,8 +67,7 @@
               <th scope="col">Nombres</th>
               <th scope="col">Apellidos</th>
               <th scope="col">Especialidad</th>
-              <th scope="col">Teléfono</th>
-              <th scope="col">Acciones</th>
+                <th scope="col">Acciones</th>
             </tr>
           </thead>
           <tbody>
@@ -78,11 +76,10 @@
               <td>Andrés Sebastián</td>
               <td>Paredes Luna</td>
               <td>Medicina general</td>
-              <td>0991234567</td>
               <td>
                 <a href="veterinario_detalle.html">Ver detalle</a> |
                 <a href="veterinario_editar.html">Editar</a> |
-                <a href="veterinario_eliminar.html">Eliminar</a>
+                <a href="veterinario_dar_baja.html">Dar de baja</a>
               </td>
             </tr>
             <tr>
@@ -90,11 +87,10 @@
               <td>Valeria Cristina</td>
               <td>Mora Andrade</td>
               <td>Cirugía</td>
-              <td>0987456123</td>
               <td>
                 <a href="veterinario_detalle.html">Ver detalle</a> |
                 <a href="veterinario_editar.html">Editar</a> |
-                <a href="veterinario_eliminar.html">Eliminar</a>
+                <a href="veterinario_dar_baja.html">Dar de baja</a>
               </td>
             </tr>
             <tr>
@@ -102,11 +98,10 @@
               <td>Diego Alejandro</td>
               <td>Cevallos Ruiz</td>
               <td>Dermatología</td>
-              <td>0995678234</td>
               <td>
                 <a href="veterinario_detalle.html">Ver detalle</a> |
                 <a href="veterinario_editar.html">Editar</a> |
-                <a href="veterinario_eliminar.html">Eliminar</a>
+                <a href="veterinario_dar_baja.html">Dar de baja</a>
               </td>
             </tr>
             <tr>
@@ -114,11 +109,10 @@
               <td>Gabriela Estefanía</td>
               <td>Ortiz Vega</td>
               <td>Cardiología</td>
-              <td>0983456712</td>
               <td>
                 <a href="veterinario_detalle.html">Ver detalle</a> |
                 <a href="veterinario_editar.html">Editar</a> |
-                <a href="veterinario_eliminar.html">Eliminar</a>
+                <a href="veterinario_dar_baja.html">Dar de baja</a>
               </td>
             </tr>
             <tr>
@@ -126,11 +120,10 @@
               <td>Martín Esteban</td>
               <td>Salazar Pinto</td>
               <td>Odontología</td>
-              <td>0976543218</td>
               <td>
                 <a href="veterinario_detalle.html">Ver detalle</a> |
                 <a href="veterinario_editar.html">Editar</a> |
-                <a href="veterinario_eliminar.html">Eliminar</a>
+                <a href="veterinario_dar_baja.html">Dar de baja</a>
               </td>
             </tr>
           </tbody>
@@ -146,8 +139,8 @@
   <!-- Ventana flotante -->
   <div class="modal modal--visible modal--superior" role="dialog" aria-modal="true" aria-labelledby="titulo-modal">
     <section class="modal__ventana tarjeta">
-      <h2 id="titulo-modal" class="modal__titulo">Eliminar veterinario</h2>
-      <p class="texto-secundario">Revisa la información antes de confirmar la eliminación.</p>
+      <h2 id="titulo-modal" class="modal__titulo">Dar de baja veterinario</h2>
+      <p class="texto-secundario">Revisa la información antes de confirmar la baja.</p>
 
         <dl class="datos">
           <div>
@@ -163,7 +156,11 @@
             <dd>Paredes Luna</dd>
           </div>
           <div>
-            <dt>Celular</dt>
+            <dt>Especialidad</dt>
+            <dd>Medicina general</dd>
+          </div>
+          <div>
+            <dt>Número de teléfono de celular</dt>
             <dd>0991234567</dd>
           </div>
           <div>
@@ -171,26 +168,26 @@
             <dd>andres.paredes@vetcare.ec</dd>
           </div>
           <div>
-            <dt>Especialidad</dt>
-            <dd>Medicina general</dd>
-          </div>
-          <div>
             <dt>Dirección de domicilio</dt>
             <dd>Av. 6 de Diciembre N34-120 y Portugal, Quito</dd>
+          </div>
+          <div>
+            <dt>Estado</dt>
+            <dd><span class="estado">Activo</span></dd>
           </div>
         </dl>
 
       <form class="formulario" action="veterinario_listar.html" method="get">
         <div class="campo">
-          <label for="motivo">Motivo de la eliminación</label>
+          <label for="motivo">Motivo de baja</label>
           <textarea id="motivo" name="motivo" minlength="10" maxlength="200"
             placeholder="Describe el motivo (10 a 200 caracteres)" required></textarea>
         </div>
 
-        <p class="mensaje mensaje--error">Esta acción quitará al veterinario de la agenda de citas.</p>
+        <p class="mensaje mensaje--error">El veterinario y su cuenta de acceso pasarán a estado Inactivo.</p>
 
         <div class="botonera">
-          <button class="boton boton--peligro" type="submit">Confirmar eliminación</button>
+          <button class="boton boton--peligro" type="submit">Confirmar</button>
           <a class="boton boton--secundario" href="veterinario_listar.html">Cancelar</a>
         </div>
       </form>
