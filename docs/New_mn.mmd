@@ -1,0 +1,293 @@
+---
+title: Mapa navegacional y gestión de sesión · VetCare
+config:
+  layout: elk
+  elk:
+    mergeEdges: false
+    nodePlacementStrategy: NETWORK_SIMPLEX
+  theme: base
+  themeVariables:
+    fontFamily: "Segoe UI, Helvetica, Arial, sans-serif"
+    fontSize: 14px
+    lineColor: "#475569"
+    edgeLabelBackground: "#FFFFFF"
+    clusterBkg: "#F8FAFC"
+    clusterBorder: "#CBD5E1"
+    titleColor: "#0F172A"
+  flowchart:
+    curve: linear
+    htmlLabels: true
+    nodeSpacing: 70
+    rankSpacing: 110
+    padding: 24
+    diagramPadding: 24
+    wrappingWidth: 220
+---
+flowchart LR
+    %% Convertido desde docs/mapa_navegacional_simplificado.puml
+    START((" "))
+    LEGEND["<b>Convenciones</b><br/>━━━ Navegación, operación o confirmación<br/>┄┄┄ Cancelar, volver, error o cierre de sesión<br/>Las líneas que regresan a la misma página indican que el usuario permanece en ella."]
+    LOGIN["index.html<br/>Inicio de sesión"]
+    subgraph AUTH["Sesión autenticada"]
+        direction LR
+        subgraph ROLES["Navegación por rol"]
+            direction LR
+            ROLE{"Determinar rol"}
+            subgraph RECEPTION["Recepcionista"]
+                direction LR
+                subgraph OWNERS["M2 · Propietarios · CU-02"]
+                    direction LR
+                    LP["propietarios-listado.html"]
+                    NP["propietarios-nuevo.html"]
+                    DP["propietarios-detalle.html"]
+                    EP["propietarios-editar.html"]
+                    XP["propietarios-eliminar.html"]
+                end
+                subgraph PETS["M3 · Mascotas · CU-03"]
+                    direction LR
+                    LM["mascota-listado.html"]
+                    NM["mascota-nuevo.html"]
+                    DM["mascota-detalle.html"]
+                    EM["mascota-editar.html"]
+                    XM["mascota-eliminar.html"]
+                end
+                subgraph APPOINTMENTS["M4 · Citas · CU-04 / CU-05"]
+                    direction LR
+                    LC["cita-listado.html"]
+                    NC["cita-nuevo.html"]
+                    DC["cita-detalle.html"]
+                    EC["cita-editar.html"]
+                    XC["cita-eliminar.html"]
+                end
+                SRVS["servicios.html<br/>Consulta de servicios"]
+            end
+            subgraph VETERINARY["Veterinario"]
+                direction LR
+                VET_HOME["menu-veterinario.html"]
+                LA["Agenda del día"]
+                DA["Detalle de cita"]
+                NA["Registrar atención"]
+                CA["Atención registrada"]
+                BH["Buscar mascota"]
+                DH["Historial clínico"]
+            end
+            subgraph ADMINISTRATION["Administrador"]
+                direction LR
+                ADM_HOME["home_administrador.html"]
+                subgraph VETS["M6 · Veterinarios · CU-09"]
+                    direction LR
+                    LV["veterinario_listar.html"]
+                    NV["veterinario_nuevo.html"]
+                    DV["veterinario_detalle.html"]
+                    EV["veterinario_editar.html"]
+                    XV["veterinario_eliminar.html"]
+                end
+                subgraph RECEPTIONISTS["M6 · Recepcionistas · CU-11"]
+                    direction LR
+                    LR["recepcionista_listar.html"]
+                    NR["recepcionista_nuevo.html"]
+                    DR["recepcionista_detalle.html"]
+                    ER["recepcionista_editar.html"]
+                    XR["recepcionista_eliminar.html"]
+                end
+                subgraph SERVICES["M7 · Catálogo de servicios · CU-10"]
+                    direction LR
+                    LS["servicio_listar.html"]
+                    NS["servicio_nuevo.html"]
+                    DS["servicio_detalle.html"]
+                    ES["servicio_editar.html"]
+                    XS["servicio_eliminar.html"]
+                end
+                LAU["Bitácora de auditoría"]
+                DAU["Detalle de auditoría"]
+            end
+        end
+    end
+
+    %% Transiciones
+    START -->|"Abrir sistema"| LOGIN
+    LOGIN -.->|"Ingresar [credenciales inválidas]"| LOGIN
+    LOGIN -->|"Ingresar [credenciales válidas]"| AUTH
+    LP -->|"Enlace «Servicios»"| SRVS
+    SRVS -->|"Enlace «Propietarios»"| LP
+    SRVS -->|"Enlace «Mascotas»"| LM
+    SRVS -->|"Enlace «Citas»"| LC
+    LP -->|"Enlace «Mascotas»"| LM
+    LP -->|"Enlace «Citas»"| LC
+    LM -->|"Enlace «Propietarios»"| LP
+    LM -->|"Enlace «Servicios»"| SRVS
+    LM -->|"Enlace «Citas»"| LC
+    LC -->|"Enlace «Propietarios»"| LP
+    LC -->|"Enlace «Mascotas»"| LM
+    LC -->|"Enlace «Servicios»"| SRVS
+    LP -->|"Registrar"| NP
+    LP -->|"Ver detalle"| DP
+    LP -->|"Editar"| EP
+    LP -->|"Eliminar"| XP
+    LP -->|"Buscar [hay coincidencias] / mostrar resultados"| LP
+    LP -.->|"Buscar [sin coincidencias] / mostrar aviso"| LP
+    LP -.->|"Ver detalle [registro no disponible] / mostrar aviso"| LP
+    NP -->|"Guardar [datos válidos]"| LP
+    NP -.->|"Guardar [campos inválidos] / señalar errores"| NP
+    NP -.->|"Guardar [cédula duplicada] / informar duplicado"| NP
+    NP -.->|"Cancelar"| LP
+    DP -.->|"Volver al listado"| LP
+    DP -->|"Editar"| EP
+    EP -->|"Guardar [datos válidos]"| LP
+    EP -.->|"Guardar [campos inválidos] / señalar errores"| EP
+    EP -.->|"Guardar [cédula en uso] / informar conflicto"| EP
+    EP -.->|"Cancelar"| LP
+    XP -->|"Confirmar [eliminación permitida]"| LP
+    XP -.->|"Confirmar [tiene mascotas o citas] / mostrar bloqueo"| XP
+    XP -.->|"Confirmar [motivo inválido] / señalar motivo"| XP
+    XP -.->|"Cancelar"| LP
+    LM -->|"Registrar"| NM
+    LM -->|"Ver detalle"| DM
+    LM -->|"Editar"| EM
+    LM -->|"Eliminar"| XM
+    NM -->|"Guardar [datos válidos]"| LM
+    NM -.->|"Cancelar"| LM
+    EM -->|"Guardar [datos válidos]"| LM
+    EM -.->|"Cancelar"| LM
+    XM -->|"Confirmar eliminación"| LM
+    XM -.->|"Cancelar"| LM
+    DM -.->|"Volver"| LM
+    DM -->|"Atajo «Agendar cita»"| NC
+    LC -->|"Agendar"| NC
+    LC -->|"Ver detalle"| DC
+    LC -->|"Reprogramar"| EC
+    LC -.->|"Cancelar cita"| XC
+    NC -->|"Guardar [datos válidos]"| LC
+    NC -.->|"Cancelar"| LC
+    EC -->|"Guardar [datos válidos]"| LC
+    EC -.->|"Cancelar"| LC
+    XC -->|"Confirmar cancelación [motivo ingresado]"| LC
+    XC -.->|"Cancelar"| LC
+    DC -.->|"Volver"| LC
+    VET_HOME -->|"Enlace «Agenda del día»"| LA
+    VET_HOME -->|"Enlace «Historial clínico»"| BH
+    LA -->|"Seleccionar cita"| DA
+    DA -->|"Registrar atención"| NA
+    NA -->|"Guardar [datos válidos]"| CA
+    BH -->|"Seleccionar mascota"| DH
+    DA -.->|"Volver"| LA
+    NA -.->|"Cancelar"| DA
+    CA -.->|"Volver a la agenda"| LA
+    DH -->|"Enlace «Inicio»"| VET_HOME
+    ADM_HOME -->|"Personal Veterinario"| LV
+    ADM_HOME -->|"Personal Recepcionista"| LR
+    ADM_HOME -->|"Catálogo de servicios"| LS
+    ADM_HOME -->|"Bitácora"| LAU
+    LV -->|"Enlace «Personal recepcionista»"| LR
+    LV -->|"Enlace «Catálogo servicios»"| LS
+    LV -->|"Enlace «Bitácora y auditoría»"| LAU
+    LR -->|"Enlace «Personal veterinario»"| LV
+    LR -->|"Enlace «Catálogo servicios»"| LS
+    LR -->|"Enlace «Bitácora y auditoría»"| LAU
+    LS -->|"Enlace «Personal veterinario»"| LV
+    LS -->|"Enlace «Personal recepcionista»"| LR
+    LS -->|"Enlace «Bitácora y auditoría»"| LAU
+    LAU -->|"Enlace «Personal veterinario»"| LV
+    LAU -->|"Enlace «Personal recepcionista»"| LR
+    LAU -->|"Enlace «Catálogo servicios»"| LS
+    LV -->|"Registrar"| NV
+    LV -->|"Ver detalle"| DV
+    LV -->|"Editar"| EV
+    LV -->|"Dar de baja"| XV
+    LV -->|"Buscar [hay coincidencias] / mostrar resultados"| LV
+    LV -.->|"Buscar [sin coincidencias] / mostrar aviso"| LV
+    LV -.->|"Ver detalle [registro no disponible] / mostrar aviso"| LV
+    NV -->|"Guardar [datos válidos]"| LV
+    NV -.->|"Guardar [campos inválidos] / señalar errores"| NV
+    NV -.->|"Guardar [cédula duplicada] / informar duplicado"| NV
+    NV -.->|"Cancelar"| LV
+    DV -.->|"Volver al listado"| LV
+    DV -->|"Editar"| EV
+    EV -->|"Guardar [datos válidos]"| LV
+    EV -.->|"Guardar [campos inválidos] / señalar errores"| EV
+    EV -.->|"Guardar [cédula en uso] / informar conflicto"| EV
+    EV -.->|"Cancelar"| LV
+    XV -->|"Confirmar baja [baja permitida]"| LV
+    XV -.->|"Confirmar baja [tiene citas o atenciones asignadas] / mostrar bloqueo"| XV
+    XV -.->|"Confirmar baja [motivo inválido] / señalar motivo"| XV
+    XV -.->|"Cancelar"| LV
+    LR -->|"Registrar"| NR
+    LR -->|"Ver detalle"| DR
+    LR -->|"Editar"| ER
+    LR -->|"Dar de baja"| XR
+    LR -->|"Buscar [hay coincidencias] / mostrar resultados"| LR
+    LR -.->|"Buscar [sin coincidencias] / mostrar aviso"| LR
+    LR -.->|"Ver detalle [registro no disponible] / mostrar aviso"| LR
+    NR -->|"Guardar [datos válidos]"| LR
+    NR -.->|"Guardar [campos inválidos] / señalar errores"| NR
+    NR -.->|"Guardar [cédula duplicada] / informar duplicado"| NR
+    NR -.->|"Cancelar"| LR
+    DR -.->|"Volver al listado"| LR
+    DR -->|"Editar"| ER
+    ER -->|"Guardar [datos válidos]"| LR
+    ER -.->|"Guardar [campos inválidos] / señalar errores"| ER
+    ER -.->|"Guardar [cédula en uso] / informar conflicto"| ER
+    ER -.->|"Cancelar"| LR
+    XR -->|"Confirmar baja [baja permitida]"| LR
+    XR -.->|"Confirmar baja [único recepcionista activo] / mostrar bloqueo"| XR
+    XR -.->|"Confirmar baja [motivo inválido] / señalar motivo"| XR
+    XR -.->|"Cancelar"| LR
+    LS -->|"Registrar"| NS
+    LS -->|"Ver detalle"| DS
+    LS -->|"Editar"| ES
+    LS -->|"Dar de baja"| XS
+    LS -->|"Buscar [hay coincidencias] / mostrar resultados"| LS
+    LS -.->|"Buscar [sin coincidencias] / mostrar aviso"| LS
+    LS -.->|"Ver detalle [registro no disponible] / mostrar aviso"| LS
+    NS -->|"Guardar [datos válidos]"| LS
+    NS -.->|"Guardar [campos inválidos] / señalar errores"| NS
+    NS -.->|"Guardar [nombre duplicado] / informar duplicado"| NS
+    NS -.->|"Cancelar"| LS
+    DS -.->|"Volver al listado"| LS
+    DS -->|"Editar"| ES
+    ES -->|"Guardar [datos válidos]"| LS
+    ES -.->|"Guardar [campos inválidos] / señalar errores"| ES
+    ES -.->|"Guardar [nombre en uso] / informar conflicto"| ES
+    ES -.->|"Cancelar"| LS
+    XS -->|"Confirmar baja [baja permitida]"| LS
+    XS -.->|"Confirmar baja [tiene citas agendadas] / mostrar bloqueo"| XS
+    XS -.->|"Confirmar baja [motivo inválido] / señalar motivo"| XS
+    XS -.->|"Cancelar"| LS
+    LAU -->|"Ver detalle"| DAU
+    ROLE -->|"[rol = RECEPCIONISTA]"| RECEPTION
+    ROLE -->|"[rol = VETERINARIO]"| VETERINARY
+    ROLE -->|"[rol = ADMINISTRADOR]"| ADMINISTRATION
+    AUTH -.->|"Cerrar sesión"| LOGIN
+    AUTH -.->|"Sesión expirada"| LOGIN
+
+    %% Páginas: colores intensos con texto blanco
+    classDef login fill:#1D4ED8,stroke:#1E3A8A,stroke-width:2px,color:#FFFFFF,font-weight:bold
+    classDef rec fill:#15803D,stroke:#14532D,stroke-width:1.5px,color:#FFFFFF
+    classDef vet fill:#7C3AED,stroke:#4C1D95,stroke-width:1.5px,color:#FFFFFF
+    classDef adm fill:#EA580C,stroke:#9A3412,stroke-width:1.5px,color:#FFFFFF
+    classDef choice fill:#FACC15,stroke:#A16207,stroke-width:1.5px,color:#1F2937,font-weight:bold
+    classDef inicio fill:#0F172A,stroke:#0F172A
+    classDef leyenda fill:#FFFFFF,stroke:#94A3B8,stroke-width:1px,color:#1F2937,text-align:left
+    class LOGIN login
+    class ROLE choice
+    class LP,NP,DP,EP,XP,LM,NM,DM,EM,XM,LC,NC,DC,EC,XC,SRVS rec
+    class VET_HOME,LA,DA,NA,CA,BH,DH vet
+    class ADM_HOME,LV,NV,DV,EV,XV,LR,NR,DR,ER,XR,LS,NS,DS,ES,XS,LAU,DAU adm
+    class START inicio
+    class LEGEND leyenda
+
+    %% Paquetes: tonos pastel
+    style AUTH fill:#EEF4FF,stroke:#9DB4D6,stroke-width:1.5px,color:#1F2937
+    style ROLES fill:#F8FAFC,stroke:#9DB4D6,stroke-width:1.5px,color:#1F2937
+    style RECEPTION fill:#E6F6EC,stroke:#7FC49B,stroke-width:1.5px,color:#1F2937
+    style OWNERS fill:#F3FBF6,stroke:#7FC49B,stroke-width:1px,stroke-dasharray:4 3,color:#1F2937
+    style PETS fill:#F3FBF6,stroke:#7FC49B,stroke-width:1px,stroke-dasharray:4 3,color:#1F2937
+    style APPOINTMENTS fill:#F3FBF6,stroke:#7FC49B,stroke-width:1px,stroke-dasharray:4 3,color:#1F2937
+    style VETERINARY fill:#F1EAFB,stroke:#B39DDB,stroke-width:1.5px,color:#1F2937
+    style ADMINISTRATION fill:#FDEEE2,stroke:#F0B48A,stroke-width:1.5px,color:#1F2937
+    style VETS fill:#FFF7F0,stroke:#F0B48A,stroke-width:1px,stroke-dasharray:4 3,color:#1F2937
+    style RECEPTIONISTS fill:#FFF7F0,stroke:#F0B48A,stroke-width:1px,stroke-dasharray:4 3,color:#1F2937
+    style SERVICES fill:#FFF7F0,stroke:#F0B48A,stroke-width:1px,stroke-dasharray:4 3,color:#1F2937
+
+    %% Tuberías: un solo color
+    linkStyle default stroke:#475569,stroke-width:1.6px,color:#0F172A
