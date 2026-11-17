@@ -7,7 +7,6 @@
   <title>Propietarios | VetCare</title>
   <link rel="stylesheet" href="../../../css/estilos.css">
   <link rel="stylesheet" href="../../../css/paginas/propietarios.css">
-  <link rel="stylesheet" href="../../../css/paginas/recepcionista.css">
 </head>
 
 <body>
@@ -16,8 +15,8 @@
     <div class="contenedor encabezado__interior">
       <a class="marca" href="propietarios-listado.html"><span class="marca__simbolo">V</span><span
           class="marca__texto">VetCare</span></a>
-      <div class="navegacion">
-        <nav class="barra-recepcionista" aria-label="Navegación de recepción">
+      <div class="navegacion navegacion--barra">
+        <nav class="barra-navegacion" aria-label="Navegación de recepción">
           <a href="propietarios-listado.html" aria-current="page">Propietarios</a>
           <button type="button">Mascotas</button>
           <button type="button">Citas</button>
@@ -146,22 +145,22 @@
 
 
   <div class="modal" id="ventana-nuevo" role="dialog" aria-modal="true" aria-label="Registrar propietario">
-    <section class="modal__ventana tarjeta">
+    <section class="modal__ventana modal__ventana--incrustada tarjeta">
       <iframe src="propietarios-nuevo.html" title="Registrar propietario"></iframe>
     </section>
   </div>
   <div class="modal" id="ventana-detalle" role="dialog" aria-modal="true" aria-label="Detalle de propietario">
-    <section class="modal__ventana tarjeta">
+    <section class="modal__ventana modal__ventana--incrustada tarjeta">
       <iframe src="propietarios-detalle.html" title="Detalle de propietario"></iframe>
     </section>
   </div>
   <div class="modal" id="ventana-editar" role="dialog" aria-modal="true" aria-label="Editar propietario">
-    <section class="modal__ventana tarjeta">
+    <section class="modal__ventana modal__ventana--incrustada tarjeta">
       <iframe src="propietarios-editar.html" title="Editar propietario"></iframe>
     </section>
   </div>
   <div class="modal" id="ventana-eliminar" role="dialog" aria-modal="true" aria-label="Eliminar propietario">
-    <section class="modal__ventana tarjeta">
+    <section class="modal__ventana modal__ventana--incrustada tarjeta">
       <iframe src="propietarios-eliminar.html" title="Eliminar propietario"></iframe>
     </section>
   </div>
