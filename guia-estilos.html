@@ -321,7 +321,14 @@
     &lt;iframe src="elemento-nuevo.html" title="Registrar elemento"&gt;&lt;/iframe&gt;
   &lt;/section&gt;
 &lt;/div&gt;</pre>
-      <p>Las clases <code>.modal</code>, <code>.modal__ventana</code> y <code>.modal__ventana--incrustada</code> son reutilizables. No requieren JavaScript ni reglas <code>@media</code>.</p>
+      <p><strong>Pantalla que es en sí misma una ventana emergente</strong></p>
+      <p>Si la página completa muestra el listado de fondo y el modal ya abierto (por ejemplo <code>veterinario_nuevo.html</code>), agrega <code>.modal--visible</code>. Con <code>.modal--superior</code> la ventana queda arriba en lugar de centrada.</p>
+      <pre class="codigo-bloque">&lt;div class="fondo-modal" inert&gt; ...listado... &lt;/div&gt;
+
+&lt;div class="modal modal--visible modal--superior" role="dialog" aria-modal="true"&gt;
+  &lt;section class="modal__ventana tarjeta"&gt; ...formulario... &lt;/section&gt;
+&lt;/div&gt;</pre>
+      <p>Las clases <code>.modal</code>, <code>.modal__ventana</code> y <code>.modal__ventana--incrustada</code> son reutilizables y no requieren JavaScript. Las adaptaciones para tabletas y teléfonos ya están en <code>css/estilos.css</code>; no hace falta repetir reglas <code>@media</code> en las hojas de cada página.</p>
     </article>
 
     <!-- TEMA 5: TÍTULOS Y TEXTOS -->
@@ -849,6 +856,10 @@
             <tr><td><code>.modal</code></td><td>Fondo superpuesto que se muestra al apuntar a su identificador</td><td>En el contenedor de la ventana</td></tr>
             <tr><td><code>.modal__ventana</code></td><td>Caja visual del popup</td><td>En <code>&lt;section&gt;</code></td></tr>
             <tr><td><code>.modal__ventana--incrustada</code></td><td>Adapta el popup para mostrar otra página en un iframe</td><td>Junto a <code>.modal__ventana</code></td></tr>
+            <tr><td><code>.modal--visible</code></td><td>Muestra el modal siempre, sin necesidad de <code>:target</code></td><td>Junto a <code>.modal</code></td></tr>
+            <tr><td><code>.modal--superior</code></td><td>Coloca la ventana arriba en lugar de centrada</td><td>Junto a <code>.modal</code></td></tr>
+            <tr><td><code>.barra-acciones</code></td><td>Buscador a la izquierda (crece hasta 600px) y botón principal a la derecha</td><td>En el <code>&lt;div&gt;</code> que agrupa <code>.buscador</code> y el botón</td></tr>
+            <tr><td><code>.tabla--listado</code></td><td>Tabla CRUD: 1ª columna sin cortes, última columna Acciones en una línea y «Eliminar» en rojo</td><td>Junto a <code>.tabla</code></td></tr>
 
             <tr>
               <td><code>.titulo-pagina</code></td>
