@@ -148,18 +148,114 @@ state "Sesión autenticada" as AUTH <<sesion>> {
 
     state "Administrador" as ADMINISTRATION <<administracion>> {
       state "home_administrador.html" as ADM_HOME
-      state "Veterinarios · CU-09" as LV
-      state "Recepcionistas · CU-11" as LR
-      state "Servicios · CU-10" as LS
+      state "M6 · Veterinarios · CU-09" as VETS {
+        state "veterinario_listar.html" as LV
+        state "veterinario_nuevo.html" as NV
+        state "veterinario_detalle.html" as DV
+        state "veterinario_editar.html" as EV
+        state "veterinario_eliminar.html" as XV
+      }
+      state "M6 · Recepcionistas · CU-11" as RECEPTIONISTS {
+        state "recepcionista_listar.html" as LR
+        state "recepcionista_nuevo.html" as NR
+        state "recepcionista_detalle.html" as DR
+        state "recepcionista_editar.html" as ER
+        state "recepcionista_eliminar.html" as XR
+      }
+      state "M7 · Catálogo de servicios · CU-10" as SERVICES {
+        state "servicio_listar.html" as LS
+        state "servicio_nuevo.html" as NS
+        state "servicio_detalle.html" as DS
+        state "servicio_editar.html" as ES
+        state "servicio_eliminar.html" as XS
+      }
       state "Bitácora de auditoría" as LAU
       state "Detalle de auditoría" as DAU
       ADM_HOME -[#1565C0]-> LV : Personal Veterinario
       ADM_HOME -[#1565C0]-> LR : Personal Recepcionista
       ADM_HOME -[#1565C0]-> LS : Catálogo de servicios
       ADM_HOME -[#1565C0]-> LAU : Bitácora
-      LV -[#00796B]-> LV : Gestionar veterinarios
-      LR -[#00796B]-> LR : Gestionar recepcionistas
-      LS -[#00796B]-> LS : Gestionar servicios
+
+      LV -[#1565C0]-> LR : Enlace «Personal recepcionista»
+      LV -[#1565C0]-> LS : Enlace «Catálogo servicios»
+      LV -[#1565C0]-> LAU : Enlace «Bitácora y auditoría»
+      LR -[#1565C0]-> LV : Enlace «Personal veterinario»
+      LR -[#1565C0]-> LS : Enlace «Catálogo servicios»
+      LR -[#1565C0]-> LAU : Enlace «Bitácora y auditoría»
+      LS -[#1565C0]-> LV : Enlace «Personal veterinario»
+      LS -[#1565C0]-> LR : Enlace «Personal recepcionista»
+      LS -[#1565C0]-> LAU : Enlace «Bitácora y auditoría»
+      LAU -[#1565C0]-> LV : Enlace «Personal veterinario»
+      LAU -[#1565C0]-> LR : Enlace «Personal recepcionista»
+      LAU -[#1565C0]-> LS : Enlace «Catálogo servicios»
+
+      LV -[#00796B]-> NV : Registrar
+      LV -[#00796B]-> DV : Ver detalle
+      LV -[#00796B]-> EV : Editar
+      LV -[#00796B]-> XV : Dar de baja
+      LV -[#2E7D32]-> LV : Buscar [hay coincidencias] / mostrar resultados
+      LV -[#ED8B00,dashed]-> LV : Buscar [sin coincidencias] / mostrar aviso
+      LV -[#ED8B00,dashed]-> LV : Ver detalle [registro no disponible] / mostrar aviso
+      NV -[#2E7D32]-> LV : Guardar [datos válidos]
+      NV -[#ED8B00,dashed]-> NV : Guardar [campos inválidos] / señalar errores
+      NV -[#ED8B00,dashed]-> NV : Guardar [cédula duplicada] / informar duplicado
+      NV -[#6B7280,dashed]-> LV : Cancelar
+      DV -[#6B7280,dashed]-> LV : Volver al listado
+      DV -[#00796B]-> EV : Editar
+      EV -[#2E7D32]-> LV : Guardar [datos válidos]
+      EV -[#ED8B00,dashed]-> EV : Guardar [campos inválidos] / señalar errores
+      EV -[#ED8B00,dashed]-> EV : Guardar [cédula en uso] / informar conflicto
+      EV -[#6B7280,dashed]-> LV : Cancelar
+      XV -[#2E7D32]-> LV : Confirmar baja [baja permitida]
+      XV -[#ED8B00,dashed]-> XV : Confirmar baja [tiene citas o atenciones asignadas] / mostrar bloqueo
+      XV -[#ED8B00,dashed]-> XV : Confirmar baja [motivo inválido] / señalar motivo
+      XV -[#6B7280,dashed]-> LV : Cancelar
+
+
+      LR -[#00796B]-> NR : Registrar
+      LR -[#00796B]-> DR : Ver detalle
+      LR -[#00796B]-> ER : Editar
+      LR -[#00796B]-> XR : Dar de baja
+      LR -[#2E7D32]-> LR : Buscar [hay coincidencias] / mostrar resultados
+      LR -[#ED8B00,dashed]-> LR : Buscar [sin coincidencias] / mostrar aviso
+      LR -[#ED8B00,dashed]-> LR : Ver detalle [registro no disponible] / mostrar aviso
+      NR -[#2E7D32]-> LR : Guardar [datos válidos]
+      NR -[#ED8B00,dashed]-> NR : Guardar [campos inválidos] / señalar errores
+      NR -[#ED8B00,dashed]-> NR : Guardar [cédula duplicada] / informar duplicado
+      NR -[#6B7280,dashed]-> LR : Cancelar
+      DR -[#6B7280,dashed]-> LR : Volver al listado
+      DR -[#00796B]-> ER : Editar
+      ER -[#2E7D32]-> LR : Guardar [datos válidos]
+      ER -[#ED8B00,dashed]-> ER : Guardar [campos inválidos] / señalar errores
+      ER -[#ED8B00,dashed]-> ER : Guardar [cédula en uso] / informar conflicto
+      ER -[#6B7280,dashed]-> LR : Cancelar
+      XR -[#2E7D32]-> LR : Confirmar baja [baja permitida]
+      XR -[#ED8B00,dashed]-> XR : Confirmar baja [único recepcionista activo] / mostrar bloqueo
+      XR -[#ED8B00,dashed]-> XR : Confirmar baja [motivo inválido] / señalar motivo
+      XR -[#6B7280,dashed]-> LR : Cancelar
+
+      LS -[#00796B]-> NS : Registrar
+      LS -[#00796B]-> DS : Ver detalle
+      LS -[#00796B]-> ES : Editar
+      LS -[#00796B]-> XS : Dar de baja
+      LS -[#2E7D32]-> LS : Buscar [hay coincidencias] / mostrar resultados
+      LS -[#ED8B00,dashed]-> LS : Buscar [sin coincidencias] / mostrar aviso
+      LS -[#ED8B00,dashed]-> LS : Ver detalle [registro no disponible] / mostrar aviso
+      NS -[#2E7D32]-> LS : Guardar [datos válidos]
+      NS -[#ED8B00,dashed]-> NS : Guardar [campos inválidos] / señalar errores
+      NS -[#ED8B00,dashed]-> NS : Guardar [nombre duplicado] / informar duplicado
+      NS -[#6B7280,dashed]-> LS : Cancelar
+      DS -[#6B7280,dashed]-> LS : Volver al listado
+      DS -[#00796B]-> ES : Editar
+      ES -[#2E7D32]-> LS : Guardar [datos válidos]
+      ES -[#ED8B00,dashed]-> ES : Guardar [campos inválidos] / señalar errores
+      ES -[#ED8B00,dashed]-> ES : Guardar [nombre en uso] / informar conflicto
+      ES -[#6B7280,dashed]-> LS : Cancelar
+      XS -[#2E7D32]-> LS : Confirmar baja [baja permitida]
+      XS -[#ED8B00,dashed]-> XS : Confirmar baja [tiene citas agendadas] / mostrar bloqueo
+      XS -[#ED8B00,dashed]-> XS : Confirmar baja [motivo inválido] / señalar motivo
+      XS -[#6B7280,dashed]-> LS : Cancelar
+
       LAU -[#00796B]-> DAU : Ver detalle
     }
 
