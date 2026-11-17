@@ -20,6 +20,9 @@
   --radio-caja: 12px;
   --radio-control: 8px;
   --ancho-contenido: 1100px;
+  --color-velo-modal: rgba(16, 38, 36, 0.6);
+  --sombra-modal: 0 18px 40px rgba(10, 30, 28, 0.35);
+  --ancho-modal: 760px;
 }
 
 /* Regla base de dimensionamiento */
@@ -442,3 +445,82 @@ a.tarjeta span {
 .espacio-abajo {
   margin-bottom: 18px;
 }
+
+
+/* Componentes compartidos: navegación por rol y ventanas emergentes */
+.navegacion--barra {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+}
+.navegacion--barra .usuario-sesion { order: 1; margin-left: auto; }
+.barra-navegacion {
+  order: 2;
+  width: 100%;
+  flex-basis: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  padding-top: 8px;
+  border-top: 1px solid var(--color-borde);
+}
+.barra-navegacion a,
+.barra-navegacion button {
+  display: inline-flex;
+  flex: 1 1 auto;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 14px;
+  border: 0;
+  border-radius: var(--radio-control);
+  background: transparent;
+  color: var(--color-principal-oscuro);
+  font: inherit;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+.barra-navegacion a:hover,
+.barra-navegacion button:hover { background-color: #e8f3f0; text-decoration: none; }
+.barra-navegacion [aria-current="page"] {
+  background-color: #e8f3f0;
+  box-shadow: inset 0 -3px 0 var(--color-principal);
+}
+.barra-navegacion a[href$="index.html"] { color: var(--color-error); }
+
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 16px;
+  overflow-y: auto;
+  background-color: var(--color-velo-modal);
+}
+.modal:target,
+.modal--visible { display: flex; }
+.modal--superior { align-items: flex-start; }
+.modal__ventana {
+  width: 100%;
+  max-width: var(--ancho-modal);
+  padding: 28px;
+  box-shadow: var(--sombra-modal);
+}
+.modal__ventana--incrustada { padding: 0; overflow: hidden; }
+.modal__ventana iframe {
+  display: block;
+  width: 100%;
+  height: 600px;
+  border: 0;
+  background: #fff;
+}
+.modal__titulo { margin: 0 0 4px; font-size: 24px; color: var(--color-texto); }
+.modal__ventana .botonera { justify-content: flex-end; margin-top: 8px; }
+.fondo-modal { user-select: none; }

@@ -125,6 +125,7 @@
         <a href="#tema-colores">2. Colores y Variables</a>
         <a href="#tema-contenedor">3. El Contenedor</a>
         <a href="#tema-header">4. Encabezado y Avatar</a>
+        <a href="#tema-componentes">Componentes compartidos: menú y ventana</a>
         <a href="#tema-titulos">5. Títulos y Textos</a>
         <a href="#tema-tarjetas">6. Tarjetas y Paneles</a>
         <a href="#tema-botones">7. Botones</a>
@@ -292,6 +293,35 @@
     &lt;/div&gt;
   &lt;/div&gt;
 &lt;/header&gt;</pre>
+    </article>
+
+    <article id="tema-componentes" class="tarjeta panel espacio-abajo">
+      <span class="etiqueta-seccion">Componentes compartidos</span>
+      <h2>Menú de navegación y ventanas emergentes</h2>
+      <div class="explicacion-caja">
+        Estos componentes están definidos en <code>css/estilos.css</code> para que se reutilicen en las pantallas de todos los roles. Agrega las clases comunes al HTML; no copies sus reglas a una hoja por pantalla. Si una pantalla necesita un estilo propio, coloca solo esas reglas particulares en <code>css/paginas/</code>.
+      </div>
+      <p><strong>Barra de navegación</strong></p>
+      <pre class="codigo-bloque">&lt;div class="navegacion navegacion--barra"&gt;
+  &lt;div class="usuario-sesion"&gt;...&lt;/div&gt;
+  &lt;nav class="barra-navegacion" aria-label="Navegación principal"&gt;
+    &lt;a href="propietarios-listado.html" aria-current="page"&gt;Propietarios&lt;/a&gt;
+    &lt;button type="button"&gt;Mascotas&lt;/button&gt;
+    &lt;a href="servicios.html"&gt;Servicios&lt;/a&gt;
+    &lt;a href="index.html"&gt;Cerrar sesión&lt;/a&gt;
+  &lt;/nav&gt;
+&lt;/div&gt;</pre>
+      <p><strong>Ventana emergente cargada desde una página propia</strong></p>
+      <p>El enlace apunta al identificador de la ventana. <code>:target</code> muestra la ventana correspondiente; el contenido puede cargarse desde otro HTML dentro del iframe. El marco, fondo y dimensiones usan las clases generales.</p>
+      <pre class="codigo-bloque">&lt;a href="#ventana-nuevo"&gt;Nuevo&lt;/a&gt;
+
+&lt;div id="ventana-nuevo" class="modal" role="dialog" aria-modal="true"
+     aria-label="Registrar elemento"&gt;
+  &lt;section class="modal__ventana modal__ventana--incrustada tarjeta"&gt;
+    &lt;iframe src="elemento-nuevo.html" title="Registrar elemento"&gt;&lt;/iframe&gt;
+  &lt;/section&gt;
+&lt;/div&gt;</pre>
+      <p>Las clases <code>.modal</code>, <code>.modal__ventana</code> y <code>.modal__ventana--incrustada</code> son reutilizables. No requieren JavaScript ni reglas <code>@media</code>.</p>
     </article>
 
     <!-- TEMA 5: TÍTULOS Y TEXTOS -->
@@ -814,6 +844,12 @@
               <td>Círculo verde que muestra la inicial del usuario</td>
               <td>En <code>&lt;div&gt;</code></td>
             </tr>
+            <tr><td><code>.barra-navegacion</code></td><td>Barra común de enlaces y botones entre módulos</td><td>En <code>&lt;nav&gt;</code></td></tr>
+            <tr><td><code>.navegacion--barra</code></td><td>Acomoda el usuario y la barra común en el encabezado</td><td>En el contenedor de ambos elementos</td></tr>
+            <tr><td><code>.modal</code></td><td>Fondo superpuesto que se muestra al apuntar a su identificador</td><td>En el contenedor de la ventana</td></tr>
+            <tr><td><code>.modal__ventana</code></td><td>Caja visual del popup</td><td>En <code>&lt;section&gt;</code></td></tr>
+            <tr><td><code>.modal__ventana--incrustada</code></td><td>Adapta el popup para mostrar otra página en un iframe</td><td>Junto a <code>.modal__ventana</code></td></tr>
+
             <tr>
               <td><code>.titulo-pagina</code></td>
               <td>Título grande y destacado de la pantalla</td>
