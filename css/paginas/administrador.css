@@ -20,17 +20,17 @@ body.contenido-modal .botonera {
 /* Altura de cada iframe según su contenido (medida con el ancho del modal, 760px).
    Sin JS el iframe no se ajusta solo: si cambias el contenido, ajusta aquí la altura.
    En pantallas angostas el contenido crece y aparece scroll dentro del modal. */
-iframe[src="veterinario_nuevo.html"],
+iframe[src="veterinario_registrar.html"],
 iframe[src="veterinario_editar.html"] { height: 772px; }
 iframe[src="veterinario_detalle.html"] { height: 460px; }
 iframe[src="veterinario_dar_baja.html"] { height: 712px; }
 
-iframe[src="servicio_nuevo.html"],
+iframe[src="servicio_registrar.html"],
 iframe[src="servicio_editar.html"] { height: 606px; }
 iframe[src="servicio_detalle.html"] { height: 442px; }
 iframe[src="servicio_dar_baja.html"] { height: 696px; }
 
-iframe[src="recepcionista_nuevo.html"],
+iframe[src="recepcionista_registrar.html"],
 iframe[src="recepcionista_editar.html"] { height: 676px; }
 iframe[src="recepcionista_detalle.html"] { height: 462px; }
 iframe[src="recepcionista_dar_baja.html"] { height: 716px; }
