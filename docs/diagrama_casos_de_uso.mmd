@@ -1,0 +1,96 @@
+---
+title: Diagrama de Casos de Uso · VetCare (UML 2.5)
+---
+flowchart LR
+    %% ==========================================
+    %% ACTORES DEL SISTEMA
+    %% ==========================================
+    actor_usuario["Usuario del Sistema<br/><i>(Abstracto)</i>"]
+    actor_rec["<b>Recepcionista</b><br/>(Actor)"]
+    actor_vet["<b>Veterinario</b><br/>(Actor)"]
+    actor_admin["<b>Administrador</b><br/>(Actor)"]
+    actor_sistema["<b>Sistema</b><br/><i>(Automático)</i>"]
+    actor_prop["<b>Propietario</b><br/><i>(Interesado)</i>"]
+
+    %% Herencia de roles
+    actor_rec -->|Hereda de| actor_usuario
+    actor_vet -->|Hereda de| actor_usuario
+    actor_admin -->|Hereda de| actor_usuario
+
+    %% ==========================================
+    %% LÍMITE DEL SISTEMA: VETCARE
+    %% ==========================================
+    subgraph VETCARE["Sistema Web VetCare (Clínica Huellitas)"]
+        
+        subgraph MOD_ACCESO["Módulo de Acceso"]
+            CU01(["<b>CU-01</b><br/>Iniciar sesión"])
+        end
+
+        subgraph MOD_PROPIETARIOS_MASCOTAS["Módulo de Pacientes y Clientes"]
+            CU02(["<b>CU-02</b><br/>Gestionar propietarios"])
+            CU03(["<b>CU-03</b><br/>Gestionar mascotas"])
+        end
+
+        subgraph MOD_CITAS["Módulo de Citas y Turnos"]
+            CU04(["<b>CU-04</b><br/>Agendar cita"])
+            CU05(["<b>CU-05</b><br/>Gestionar citas"])
+            CU14(["<b>CU-14</b><br/>Consultar disponibilidad<br/>de turnos"])
+        end
+
+        subgraph MOD_ATENCION["Módulo de Atención Médica"]
+            CU06(["<b>CU-06</b><br/>Consultar agenda del día"])
+            CU07(["<b>CU-07</b><br/>Registrar atención médica"])
+            CU08(["<b>CU-08</b><br/>Consultar historia clínica"])
+        end
+
+        subgraph MOD_ADMIN["Módulo de Administración y Auditoría"]
+            CU09(["<b>CU-09</b><br/>Gestionar veterinarios"])
+            CU10(["<b>CU-10</b><br/>Gestionar servicios"])
+            CU11(["<b>CU-11</b><br/>Gestionar recepcionistas"])
+            CU12(["<b>CU-12</b><br/>Consultar bitácora de auditoría"])
+        end
+
+        subgraph MOD_SERVICIOS["Módulo de Consultas"]
+            CU13(["<b>CU-13</b><br/>Consultar catálogo de servicios"])
+        end
+    end
+
+    %% ==========================================
+    %% ASOCIACIONES ACTOR -> CASOS DE USO
+    %% ==========================================
+    actor_usuario --- CU01
+
+    %% Recepcionista
+    actor_rec --- CU02
+    actor_rec --- CU03
+    actor_rec --- CU04
+    actor_rec --- CU05
+    actor_rec --- CU13
+    actor_rec --- CU14
+
+    %% Veterinario
+    actor_vet --- CU06
+    actor_vet --- CU07
+    actor_vet --- CU08
+
+    %% Administrador
+    actor_admin --- CU09
+    actor_admin --- CU10
+    actor_admin --- CU11
+    actor_admin --- CU12
+
+    %% Sistema (Cierre automático de turnos y bitácora)
+    actor_sistema --- CU05
+    actor_sistema --- CU12
+
+    %% Propietario (Interesado indirecto representado en Citas/Atención)
+    actor_prop -.- CU04
+    actor_prop -.- CU13
+
+    %% ==========================================
+    %% RELACIONES INCLUDE Y EXTEND
+    %% ==========================================
+    CU04 -.->|"<<include>>"| CU14
+    CU07 -.->|"<<extend>> (desde detalle)"| CU06
+    CU04 -.->|"<<extend>> (desde listado)"| CU05
+    CU03 -.->|"<<extend>> (crea historial)"| CU08
