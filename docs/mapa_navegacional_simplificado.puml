@@ -43,11 +43,11 @@ state "Sesión autenticada" as AUTH <<sesion>> {
 
     state "Recepcionista" as RECEPTION <<recepcion>> {
       state "M2 · Propietarios · CU-02" as OWNERS {
-        state "propietarios-listado.html" as LP
-        state "propietarios-nuevo.html" as NP
-        state "propietarios-detalle.html" as DP
-        state "propietarios-editar.html" as EP
-        state "propietarios-eliminar.html" as XP
+        state "propietario_listado.html" as LP
+        state "propietario_registrar.html" as NP
+        state "propietario_detalle.html" as DP
+        state "propietario_editar.html" as EP
+        state "propietario_dar_baja.html" as XP
       }
       state "M3 · Mascotas · CU-03" as PETS {
         state "mascota-listado.html" as LM

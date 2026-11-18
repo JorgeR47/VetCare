@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Editar propietario | VetCare</title>
+  <link rel="stylesheet" href="../../../css/estilos.css">
+</head>
+
+<body>
+  <main class="contenedor seccion-principal popup-propietario">
+    <div class="encabezado-pagina">
+      <h1 class="titulo-pagina">Editar Propietario</h1>
+      <p class="texto-secundario">Modifica los datos del registro de María Fernanda Torres Salgado.</p>
+    </div>
+
+    <!-- Formulario con datos cargados -->
+    <form class="tarjeta panel formulario" action="propietario_listado.html" method="get" target="_top">
+      <fieldset class="cuadricula cuadricula--tres">
+        <legend class="etiqueta">Datos Personales</legend>
+
+        <div class="campo">
+          <label for="cedula">Cédula de Identidad</label>
+          <input id="cedula" name="cedula" type="text" inputmode="numeric" pattern="[0-9]{10}" minlength="10" maxlength="10" title="La cédula debe contener exactamente 10 números, sin espacios ni letras." autocomplete="off" value="0105489632" required>
+        </div>
+
+        <div class="campo">
+          <label for="celular">Teléfono Celular</label>
+          <input id="celular" name="celular" type="tel" inputmode="numeric" pattern="09[0-9]{8}" minlength="10" maxlength="10" title="El celular debe tener 10 números, comenzar con 09 y no incluir espacios ni letras." autocomplete="tel" value="0998451230" required>
+        </div>
+
+        <div class="campo">
+          <label for="nombres">Nombres</label>
+          <input id="nombres" name="nombres" type="text" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ ]{2,50}" minlength="2" maxlength="50" title="Escribe entre 2 y 50 caracteres usando solo letras y espacios; no ingreses números ni símbolos." autocomplete="given-name" value="María Fernanda" required>
+        </div>
+
+        <div class="campo">
+          <label for="apellidos">Apellidos</label>
+          <input id="apellidos" name="apellidos" type="text" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ ]{2,50}" minlength="2" maxlength="50" title="Escribe entre 2 y 50 caracteres usando solo letras y espacios; no ingreses números ni símbolos." autocomplete="family-name" value="Torres Salgado" required>
+        </div>
+
+        <div class="campo">
+          <label for="correo">Correo Electrónico</label>
+          <input id="correo" name="correo" type="email" maxlength="254" autocomplete="email" value="maria.torres@gmail.com" required>
+        </div>
+
+        <div class="campo">
+          <label for="direccion">Dirección Domiciliaria</label>
+          <input id="direccion" name="direccion" type="text" maxlength="150" autocomplete="street-address" value="Av. 12 de Octubre y Cordero, Edif. Los Pinos #4B" required>
+        </div>
+      </fieldset>
+
+      <div class="botonera">
+        <button class="boton" type="submit">Guardar cambios</button>
+        <a class="boton boton--secundario" href="propietario_listado.html" target="_top">Cancelar</a>
+      </div>
+    </form>
+  </main>
+</body>
+
+</html>
