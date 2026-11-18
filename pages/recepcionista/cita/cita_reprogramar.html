@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reprogramar cita | VetCare</title>
+<link rel="stylesheet" href="../../../css/estilos.css">
+<link rel="stylesheet" href="../../../css/paginas/recepcionista.css">
+</head>
+<body>
+<a class="salto" href="#contenido">Saltar al contenido</a>
+<header class="encabezado"><div class="contenedor encabezado__interior"><a class="marca" href="../recepcionista_inicio.html"><span class="marca__simbolo" aria-hidden="true">V</span>VetCare</a><div class="navegacion--barra"><div class="usuario-sesion"><div class="usuario-avatar" aria-hidden="true">R</div><div class="usuario-info"><span class="usuario-nombre">Recepción</span><span class="usuario-rol">recepcionista</span></div></div><nav class="barra-navegacion" aria-label="Navegación de recepción"><a href="../cita/cita_listado.html" aria-current="page">Citas</a><a href="../propietario/propietario_listado.html">Propietarios</a><a href="../servicios/servicio_listado.html">Servicios</a><a href="../mascota/mascota_listado.html">Mascotas</a><a href="../../../index.html">Cerrar sesión</a></nav></div></div></header>
+<div class="contenedor disposicion">
+<main id="contenido">
+<div class="encabezado-pagina"><h1 class="titulo-pagina">Reprogramar cita</h1><p class="texto-secundario">Modifique veterinario, fecha u hora e indique el motivo.</p></div><article class="tarjeta panel"><form class="formulario" action="cita_listado.html#reprogramada" method="get"><fieldset class="rejilla"><legend>Datos de la cita</legend><div class="campo"><label for="mascota">Mascota</label><input id="mascota" type="text" value="Firulais" readonly></div><div class="campo"><label for="servicio">Servicio</label><input id="servicio" type="text" value="Consulta general" readonly></div><div class="campo"><label for="estado">Estado</label><input id="estado" type="text" value="Programada" readonly></div></fieldset><fieldset class="rejilla"><legend>Nueva programación</legend><div class="campo"><label for="vet">Veterinario</label><select id="vet" required><option value="ana" selected>Dra. Ana Torres</option><option value="luis">Dr. Luis Mora</option></select></div><div class="campo"><label for="fecha">Fecha</label><input id="fecha" type="date" required min="2026-11-17" max="2027-05-17" value="2026-11-25"></div><div class="campo"><label for="hora">Hora</label><input id="hora" type="time" required min="08:00" max="17:30" step="1800" list="horas-libres" value="09:30"><datalist id="horas-libres"><option value="08:00"><option value="08:30"><option value="09:30"><option value="10:00"><option value="11:00"><option value="11:30"><option value="12:00"><option value="14:00"><option value="14:30"><option value="16:00"><option value="16:30"><option value="17:00"><option value="17:30"></datalist></div></fieldset><fieldset><legend>Motivo</legend><div class="campo"><label for="motivo">Motivo de reprogramación</label><textarea id="motivo" required="True" minlength="10" maxlength="200" autocomplete="off" placeholder="Explique por qué se reprograma (10 a 200 caracteres)"></textarea></div></fieldset><div class="botonera"><button class="boton" type="submit">Guardar cambios</button><a class="boton boton--secundario" href="cita_listado.html">Volver</a></div></form></article>
+</main>
+<aside class="aside" aria-labelledby="t-aside"><h2 id="t-aside">Reglas</h2><ul><li>Solo si la cita está Programada y faltan 24 horas o más.</li><li>La nueva fecha no puede superar seis meses ni caer en domingo.</li><li>La cita se mantiene en estado Programada.</li></ul></aside>
+</div>
+<footer class="pie contenedor"><p>VetCare · Sistema de recepción</p></footer>
+</body>
+</html>
