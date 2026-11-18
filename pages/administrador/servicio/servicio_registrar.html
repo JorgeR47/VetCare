@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Registrar servicio | VetCare</title>
+  <link rel="stylesheet" href="../../../css/estilos.css">
+  <link rel="stylesheet" href="../../../css/paginas/administrador.css">
+</head>
+
+<!-- Contenido que se muestra dentro del iframe del modal de servicio_listar.html.
+     Los enlaces y formularios usan target="_top" para volver a la ventana completa. -->
+<body class="contenido-modal">
+  <h2 class="modal__titulo">Registrar servicio</h2>
+  <p class="texto-secundario">Completa los datos del nuevo servicio de la clínica.</p>
+
+  <form class="formulario" action="servicio_listar.html" method="get" target="_top">
+    <fieldset>
+      <legend class="etiqueta">Datos del servicio</legend>
+
+      <div class="cuadricula cuadricula--dos">
+        <div class="campo">
+          <label for="nombre">Nombre</label>
+          <input id="nombre" name="nombre" type="text" minlength="3" maxlength="60"
+            pattern="[A-Za-zÁÉÍÓÚÜÑáéíóúüñ0-9 ]{3,60}" title="Letras, números y espacios (3 a 60 caracteres)"
+            placeholder="Ej. Consulta general" required>
+        </div>
+
+        <div class="campo">
+          <label for="precio">Precio (USD)</label>
+          <input id="precio" name="precio" type="number" min="0.01" max="1000" step="0.01"
+            placeholder="Ej. 25.00" required>
+        </div>
+      </div>
+
+      <div class="campo">
+        <label for="descripcion">Descripción <span class="texto-secundario">(opcional)</span></label>
+        <textarea id="descripcion" name="descripcion" maxlength="200"
+          placeholder="Describe brevemente el servicio (hasta 200 caracteres)"></textarea>
+      </div>
+
+      <div class="campo">
+        <label for="requisitos">Requisitos previos <span class="texto-secundario">(opcional)</span></label>
+        <textarea id="requisitos" name="requisitos" minlength="5" maxlength="300"
+          placeholder="Una condición por línea. Ej. Orden de un veterinario"></textarea>
+      </div>
+    </fieldset>
+
+    <div class="botonera">
+      <button class="boton" type="submit">Guardar</button>
+      <a class="boton boton--secundario" href="servicio_listar.html" target="_top">Cancelar</a>
+    </div>
+  </form>
+</body>
+
+</html>
