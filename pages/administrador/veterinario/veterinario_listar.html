@@ -52,7 +52,7 @@
         <button class="boton" type="submit">Buscar</button>
       </form>
 
-      <a class="boton" href="veterinario_nuevo.html">+ Registrar</a>
+      <a class="boton" href="#ventana-nuevo">+ Registrar</a>
     </div>
 
     <!-- Tabla de veterinarios -->
@@ -75,9 +75,9 @@
             <td>Paredes Luna</td>
             <td>Medicina general</td>
             <td>
-              <a href="veterinario_detalle.html">Ver detalle</a> |
-              <a href="veterinario_editar.html">Editar</a> |
-              <a href="veterinario_dar_baja.html">Dar de baja</a>
+              <a href="#ventana-detalle">Ver detalle</a> |
+              <a href="#ventana-editar">Editar</a> |
+              <a href="#ventana-dar-baja">Dar de baja</a>
             </td>
           </tr>
           <tr>
@@ -86,9 +86,9 @@
             <td>Mora Andrade</td>
             <td>Cirugía</td>
             <td>
-              <a href="veterinario_detalle.html">Ver detalle</a> |
-              <a href="veterinario_editar.html">Editar</a> |
-              <a href="veterinario_dar_baja.html">Dar de baja</a>
+              <a href="#ventana-detalle">Ver detalle</a> |
+              <a href="#ventana-editar">Editar</a> |
+              <a href="#ventana-dar-baja">Dar de baja</a>
             </td>
           </tr>
           <tr>
@@ -97,9 +97,9 @@
             <td>Cevallos Ruiz</td>
             <td>Dermatología</td>
             <td>
-              <a href="veterinario_detalle.html">Ver detalle</a> |
-              <a href="veterinario_editar.html">Editar</a> |
-              <a href="veterinario_dar_baja.html">Dar de baja</a>
+              <a href="#ventana-detalle">Ver detalle</a> |
+              <a href="#ventana-editar">Editar</a> |
+              <a href="#ventana-dar-baja">Dar de baja</a>
             </td>
           </tr>
           <tr>
@@ -108,9 +108,9 @@
             <td>Ortiz Vega</td>
             <td>Cardiología</td>
             <td>
-              <a href="veterinario_detalle.html">Ver detalle</a> |
-              <a href="veterinario_editar.html">Editar</a> |
-              <a href="veterinario_dar_baja.html">Dar de baja</a>
+              <a href="#ventana-detalle">Ver detalle</a> |
+              <a href="#ventana-editar">Editar</a> |
+              <a href="#ventana-dar-baja">Dar de baja</a>
             </td>
           </tr>
           <tr>
@@ -119,9 +119,9 @@
             <td>Salazar Pinto</td>
             <td>Odontología</td>
             <td>
-              <a href="veterinario_detalle.html">Ver detalle</a> |
-              <a href="veterinario_editar.html">Editar</a> |
-              <a href="veterinario_dar_baja.html">Dar de baja</a>
+              <a href="#ventana-detalle">Ver detalle</a> |
+              <a href="#ventana-editar">Editar</a> |
+              <a href="#ventana-dar-baja">Dar de baja</a>
             </td>
           </tr>
         </tbody>
@@ -132,6 +132,29 @@
   <footer class="contenedor pie">
     VetCare · Clínica Veterinaria Huellitas
   </footer>
+
+
+  <!-- Ventanas emergentes: se muestran con :target al hacer clic en href="#id" -->
+  <div class="modal" id="ventana-nuevo" role="dialog" aria-modal="true" aria-label="Registrar veterinario">
+    <section class="modal__ventana modal__ventana--incrustada tarjeta">
+      <iframe src="veterinario_registrar.html" title="Registrar veterinario"></iframe>
+    </section>
+  </div>
+  <div class="modal" id="ventana-detalle" role="dialog" aria-modal="true" aria-label="Detalle del veterinario">
+    <section class="modal__ventana modal__ventana--incrustada tarjeta">
+      <iframe src="veterinario_detalle.html" title="Detalle del veterinario"></iframe>
+    </section>
+  </div>
+  <div class="modal" id="ventana-editar" role="dialog" aria-modal="true" aria-label="Editar veterinario">
+    <section class="modal__ventana modal__ventana--incrustada tarjeta">
+      <iframe src="veterinario_editar.html" title="Editar veterinario"></iframe>
+    </section>
+  </div>
+  <div class="modal" id="ventana-dar-baja" role="dialog" aria-modal="true" aria-label="Dar de baja veterinario">
+    <section class="modal__ventana modal__ventana--incrustada tarjeta">
+      <iframe src="veterinario_dar_baja.html" title="Dar de baja veterinario"></iframe>
+    </section>
+  </div>
 </body>
 
 </html>

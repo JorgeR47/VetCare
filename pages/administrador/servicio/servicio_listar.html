@@ -52,7 +52,7 @@
         <button class="boton" type="submit">Buscar</button>
       </form>
 
-      <a class="boton" href="servicio_nuevo.html">+ Registrar</a>
+      <a class="boton" href="#ventana-nuevo">+ Registrar</a>
     </div>
 
     <!-- Tabla de servicios -->
@@ -71,45 +71,45 @@
             <td><strong>Consulta general</strong></td>
             <td>$ 25.00</td>
             <td>
-              <a href="servicio_detalle.html">Ver detalle</a> |
-              <a href="servicio_editar.html">Editar</a> |
-              <a href="servicio_dar_baja.html">Dar de baja</a>
+              <a href="#ventana-detalle">Ver detalle</a> |
+              <a href="#ventana-editar">Editar</a> |
+              <a href="#ventana-dar-baja">Dar de baja</a>
             </td>
           </tr>
           <tr>
             <td><strong>Vacunación</strong></td>
             <td>$ 18.00</td>
             <td>
-              <a href="servicio_detalle.html">Ver detalle</a> |
-              <a href="servicio_editar.html">Editar</a> |
-              <a href="servicio_dar_baja.html">Dar de baja</a>
+              <a href="#ventana-detalle">Ver detalle</a> |
+              <a href="#ventana-editar">Editar</a> |
+              <a href="#ventana-dar-baja">Dar de baja</a>
             </td>
           </tr>
           <tr>
             <td><strong>Desparasitación</strong></td>
             <td>$ 12.50</td>
             <td>
-              <a href="servicio_detalle.html">Ver detalle</a> |
-              <a href="servicio_editar.html">Editar</a> |
-              <a href="servicio_dar_baja.html">Dar de baja</a>
+              <a href="#ventana-detalle">Ver detalle</a> |
+              <a href="#ventana-editar">Editar</a> |
+              <a href="#ventana-dar-baja">Dar de baja</a>
             </td>
           </tr>
           <tr>
             <td><strong>Cirugía menor</strong></td>
             <td>$ 150.00</td>
             <td>
-              <a href="servicio_detalle.html">Ver detalle</a> |
-              <a href="servicio_editar.html">Editar</a> |
-              <a href="servicio_dar_baja.html">Dar de baja</a>
+              <a href="#ventana-detalle">Ver detalle</a> |
+              <a href="#ventana-editar">Editar</a> |
+              <a href="#ventana-dar-baja">Dar de baja</a>
             </td>
           </tr>
           <tr>
             <td><strong>Traumatología</strong></td>
             <td>$ 60.00</td>
             <td>
-              <a href="servicio_detalle.html">Ver detalle</a> |
-              <a href="servicio_editar.html">Editar</a> |
-              <a href="servicio_dar_baja.html">Dar de baja</a>
+              <a href="#ventana-detalle">Ver detalle</a> |
+              <a href="#ventana-editar">Editar</a> |
+              <a href="#ventana-dar-baja">Dar de baja</a>
             </td>
           </tr>
         </tbody>
@@ -120,6 +120,29 @@
   <footer class="contenedor pie">
     VetCare · Clínica Veterinaria Huellitas
   </footer>
+
+
+  <!-- Ventanas emergentes: se muestran con :target al hacer clic en href="#id" -->
+  <div class="modal" id="ventana-nuevo" role="dialog" aria-modal="true" aria-label="Registrar servicio">
+    <section class="modal__ventana modal__ventana--incrustada tarjeta">
+      <iframe src="servicio_registrar.html" title="Registrar servicio"></iframe>
+    </section>
+  </div>
+  <div class="modal" id="ventana-detalle" role="dialog" aria-modal="true" aria-label="Detalle del servicio">
+    <section class="modal__ventana modal__ventana--incrustada tarjeta">
+      <iframe src="servicio_detalle.html" title="Detalle del servicio"></iframe>
+    </section>
+  </div>
+  <div class="modal" id="ventana-editar" role="dialog" aria-modal="true" aria-label="Editar servicio">
+    <section class="modal__ventana modal__ventana--incrustada tarjeta">
+      <iframe src="servicio_editar.html" title="Editar servicio"></iframe>
+    </section>
+  </div>
+  <div class="modal" id="ventana-dar-baja" role="dialog" aria-modal="true" aria-label="Dar de baja servicio">
+    <section class="modal__ventana modal__ventana--incrustada tarjeta">
+      <iframe src="servicio_dar_baja.html" title="Dar de baja servicio"></iframe>
+    </section>
+  </div>
 </body>
 
 </html>

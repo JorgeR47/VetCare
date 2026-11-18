@@ -1,4 +1,56 @@
 /* ===================================================
+   CONTENIDO DE LOS MODALES (páginas cargadas en un iframe)
+   El marco, el velo y el tamaño del modal vienen de estilos.css
+   (.modal, .modal__ventana--incrustada). Aquí solo el interior.
+   =================================================== */
+
+/* Fondo blanco como la ventana y el mismo relleno que .modal__ventana */
+body.contenido-modal {
+  background-color: var(--color-superficie);
+  padding: 28px;
+}
+
+/* Botones alineados a la derecha, como en .modal__ventana (esa regla de
+   estilos.css no llega aquí porque el contenido está dentro del iframe) */
+body.contenido-modal .botonera {
+  justify-content: flex-end;
+  margin-top: 8px;
+}
+
+/* Altura de cada iframe según su contenido (medida con el ancho del modal, 760px).
+   Sin JS el iframe no se ajusta solo: si cambias el contenido, ajusta aquí la altura.
+   En pantallas angostas el contenido crece y aparece scroll dentro del modal. */
+iframe[src="veterinario_nuevo.html"],
+iframe[src="veterinario_editar.html"] { height: 772px; }
+iframe[src="veterinario_detalle.html"] { height: 460px; }
+iframe[src="veterinario_dar_baja.html"] { height: 712px; }
+
+iframe[src="servicio_nuevo.html"],
+iframe[src="servicio_editar.html"] { height: 606px; }
+iframe[src="servicio_detalle.html"] { height: 442px; }
+iframe[src="servicio_dar_baja.html"] { height: 696px; }
+
+iframe[src="recepcionista_nuevo.html"],
+iframe[src="recepcionista_editar.html"] { height: 676px; }
+iframe[src="recepcionista_detalle.html"] { height: 462px; }
+iframe[src="recepcionista_dar_baja.html"] { height: 716px; }
+
+iframe[src="auditoria_detalle.html"] { height: 458px; }
+
+@media (max-width: 768px) {
+  body.contenido-modal {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  body.contenido-modal .botonera {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+}
+
+/* ===================================================
    MÓDULO PERSONAL VETERINARIO (M6 · CU-09)
    =================================================== */
 
