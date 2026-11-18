@@ -4,20 +4,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Eliminar propietario | VetCare</title>
+  <title>Dar de baja propietario | VetCare</title>
   <link rel="stylesheet" href="../../../css/estilos.css">
-  <link rel="stylesheet" href="../../../css/paginas/propietarios.css">
 </head>
 
 <body>
   <main class="contenedor seccion-principal popup-propietario">
     <div class="encabezado-pagina">
-      <p class="texto-secundario">Propietarios &gt; Confirmar eliminación</p>
-      <h1 class="titulo-pagina">Eliminar Propietario</h1>
-      <p class="texto-secundario">¿Estás seguro de que deseas dar de baja este registro del sistema?</p>
+      <h1 class="titulo-pagina">Dar de baja propietario</h1>
+      <p class="texto-secundario">¿Confirmas la baja de este propietario?</p>
     </div>
 
-    <!-- Confirmación de eliminación -->
+    <!-- Confirmación de baja lógica -->
     <section class="tarjeta panel">
       <dl class="datos">
         <div>
@@ -43,13 +41,19 @@
       </dl>
 
       <p class="mensaje mensaje--error">
-        Advertencia: Al dar de baja a este propietario se conservará el historial médico de sus pacientes por
-        normatividad sanitaria.
+        El propietario pasará al estado <strong>INACTIVO</strong>. Sus datos y el historial médico de sus mascotas
+        se conservarán, pero ya no podrá agendar citas.
       </p>
 
-      <form action="propietarios-listado.html" method="get" class="botonera" target="_top">
-        <button class="boton boton--peligro" type="submit">Confirmar baja de registro</button>
-        <a class="boton boton--secundario" href="propietarios-listado.html" target="_top">Cancelar</a>
+      <form action="propietario_listado.html" method="get" target="_top">
+        <div class="campo espacio-abajo">
+          <label for="motivo">Motivo de la baja</label>
+          <textarea id="motivo" name="motivo" rows="3" maxlength="200" title="Describe el motivo de la baja en un máximo de 200 caracteres."></textarea>
+        </div>
+        <div class="botonera">
+        <button class="boton boton--peligro" type="submit">Confirmar baja</button>
+        <a class="boton boton--secundario" href="propietario_listado.html" target="_top">Cancelar</a>
+        </div>
       </form>
     </section>
   </main>
