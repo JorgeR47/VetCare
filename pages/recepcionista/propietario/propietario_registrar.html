@@ -23,32 +23,44 @@
 
         <div class="campo">
           <label for="cedula">Cédula de Identidad</label>
-          <input id="cedula" name="cedula" type="text" inputmode="numeric" pattern="[0-9]{10}" minlength="10" maxlength="10" title="La cédula debe contener exactamente 10 números, sin espacios ni letras." autocomplete="off" placeholder="Ej. 0912345678" required>
+          <input id="cedula" name="cedula" type="text" inputmode="numeric" pattern="[0-9]{10}" minlength="10"
+            maxlength="10" title="La cédula debe contener exactamente 10 números, sin espacios ni letras."
+            autocomplete="off" placeholder="Ej. 0912345678" required>
         </div>
 
         <div class="campo">
           <label for="celular">Teléfono Celular</label>
-          <input id="celular" name="celular" type="tel" inputmode="numeric" pattern="09[0-9]{8}" minlength="10" maxlength="10" title="El celular debe tener 10 números, comenzar con 09 y no incluir espacios ni letras." autocomplete="tel" placeholder="Ej. 0991234567" required>
+          <input id="celular" name="celular" type="tel" inputmode="numeric" pattern="09[0-9]{8}" minlength="10"
+            maxlength="10" title="El celular debe tener 10 números, comenzar con 09 y no incluir espacios ni letras."
+            autocomplete="tel" placeholder="Ej. 0991234567" required>
         </div>
 
         <div class="campo">
           <label for="nombres">Nombres</label>
-          <input id="nombres" name="nombres" type="text" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ ]{2,50}" minlength="2" maxlength="50" title="Escribe entre 2 y 50 caracteres usando solo letras y espacios; no ingreses números ni símbolos." autocomplete="given-name" placeholder="Ej. María Fernanda" required>
+          <input id="nombres" name="nombres" type="text" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ ]{2,50}" minlength="2"
+            maxlength="50"
+            title="Escribe entre 2 y 50 caracteres usando solo letras y espacios; no ingreses números ni símbolos."
+            autocomplete="given-name" placeholder="Ej. María Fernanda" required>
         </div>
 
         <div class="campo">
           <label for="apellidos">Apellidos</label>
-          <input id="apellidos" name="apellidos" type="text" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ ]{2,50}" minlength="2" maxlength="50" title="Escribe entre 2 y 50 caracteres usando solo letras y espacios; no ingreses números ni símbolos." autocomplete="family-name" placeholder="Ej. Pérez Torres" required>
+          <input id="apellidos" name="apellidos" type="text" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ ]{2,50}" minlength="2"
+            maxlength="50"
+            title="Escribe entre 2 y 50 caracteres usando solo letras y espacios; no ingreses números ni símbolos."
+            autocomplete="family-name" placeholder="Ej. Pérez Torres" required>
         </div>
 
         <div class="campo">
           <label for="correo">Correo Electrónico</label>
-          <input id="correo" name="correo" type="email" maxlength="254" autocomplete="email" placeholder="usuario@correo.com" required>
+          <input id="correo" name="correo" type="email" maxlength="254" autocomplete="email"
+            placeholder="usuario@correo.com" required>
         </div>
 
         <div class="campo">
           <label for="direccion">Dirección Domiciliaria</label>
-          <input id="direccion" name="direccion" type="text" maxlength="150" autocomplete="street-address" placeholder="Ej. Av. América y Shyris #104" required>
+          <input id="direccion" name="direccion" type="text" maxlength="150" placeholder="Ej. Av. América y Shyris #104"
+            required>
         </div>
       </fieldset>
 
