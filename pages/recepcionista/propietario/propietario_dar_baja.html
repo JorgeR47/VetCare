@@ -35,6 +35,10 @@
           <dd>maria.torres@gmail.com</dd>
         </div>
         <div>
+          <dt>Dirección domiciliaria</dt>
+          <dd>Av. 12 de Octubre y Cordero, Edif. Los Pinos #4B</dd>
+        </div>
+        <div>
           <dt>Mascotas asociadas</dt>
           <dd><strong>Luna (Siberian Husky), Misi (Gato común)</strong></dd>
         </div>
@@ -48,8 +52,8 @@
       <form action="propietario_listado.html" method="get" target="_top">
         <div class="campo espacio-abajo">
           <label for="motivo">Motivo de la baja</label>
-          <textarea id="motivo" name="motivo" rows="3" maxlength="200"
-            title="Describe el motivo de la baja en un máximo de 200 caracteres."></textarea>
+          <textarea id="motivo" name="motivo" rows="3" minlength="10" maxlength="200"
+            title="Escribe el motivo de la baja con al menos 10 y máximo 200 caracteres." required></textarea>
         </div>
         <div class="botonera">
           <button class="boton boton--peligro" type="submit">Confirmar baja</button>
