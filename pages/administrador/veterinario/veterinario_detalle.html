@@ -4,187 +4,55 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Detalle de veterinario | VetCare</title>
+  <title>Detalle del veterinario | VetCare</title>
   <link rel="stylesheet" href="../../../css/estilos.css">
   <link rel="stylesheet" href="../../../css/paginas/administrador.css">
 </head>
 
-<body>
-  <!-- Fondo: el listado queda visible pero desactivado mientras la ventana está abierta -->
-  <div class="fondo-modal" inert>
-    <header class="encabezado">
-      <div class="contenedor encabezado__interior">
-        <a class="marca" href="../home_administrador.html">
-          <span class="marca__simbolo">V</span>
-          <span class="marca__texto">VetCare</span>
-        </a>
-        <div class="navegacion navegacion--barra">
-          <nav class="barra-navegacion" aria-label="Navegación del administrador">
-            <a href="../home_administrador.html">Inicio</a>
-            <a href="../servicio/servicio_listar.html">Catálogo servicios</a>
-            <a href="../veterinario/veterinario_listar.html" aria-current="page">Personal veterinario</a>
-            <a href="../recepcionista/recepcionista_listar.html">Personal recepcionista</a>
-            <a href="../auditoria/auditoria_listar.html">Bitácora y auditoría</a>
-            <a href="../../../index.html">Cerrar sesión</a>
-          </nav>
-          <div class="usuario-sesion">
-            <div class="usuario-avatar" title="Carlos Valdivieso">C</div>
-            <div class="usuario-info">
-              <span class="usuario-nombre">Carlos Valdivieso</span>
-              <span class="usuario-rol">Administrador</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </header>
-  
-    <main class="contenedor seccion-principal">
-      <div class="encabezado-pagina">
-        <p class="texto-secundario">Administrador &gt; Personal veterinario</p>
-        <h1 class="titulo-pagina">Personal Veterinario</h1>
-        <p class="texto-secundario">Consulta y administra los médicos veterinarios de la clínica.</p>
-      </div>
-  
-      <div class="barra-acciones espacio-abajo">
-        <!-- Buscador -->
-        <form class="buscador" action="veterinario_listar.html" method="get">
-          <div class="campo">
-            <label for="buscar">Buscar veterinario</label>
-            <input id="buscar" name="q" type="search" placeholder="Cédula, nombres, apellidos o especialidad">
-          </div>
-          <button class="boton" type="submit">Buscar</button>
-        </form>
-  
-        <a class="boton" href="veterinario_nuevo.html">+ Registrar</a>
-      </div>
-  
-      <!-- Tabla de veterinarios -->
-      <div class="tabla-contenedor">
-        <table class="tabla tabla--listado tabla-veterinarios">
-          <caption>Veterinarios registrados</caption>
-          <thead>
-            <tr>
-              <th scope="col">Cédula</th>
-              <th scope="col">Nombres</th>
-              <th scope="col">Apellidos</th>
-              <th scope="col">Especialidad</th>
-              <th scope="col">Teléfono</th>
-              <th scope="col">Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>1712345678</strong></td>
-              <td>Andrés Sebastián</td>
-              <td>Paredes Luna</td>
-              <td>Medicina general</td>
-              <td>0991234567</td>
-              <td>
-                <a href="veterinario_detalle.html">Ver detalle</a> |
-                <a href="veterinario_editar.html">Editar</a> |
-                <a href="veterinario_eliminar.html">Eliminar</a>
-              </td>
-            </tr>
-            <tr>
-              <td><strong>0923456781</strong></td>
-              <td>Valeria Cristina</td>
-              <td>Mora Andrade</td>
-              <td>Cirugía</td>
-              <td>0987456123</td>
-              <td>
-                <a href="veterinario_detalle.html">Ver detalle</a> |
-                <a href="veterinario_editar.html">Editar</a> |
-                <a href="veterinario_eliminar.html">Eliminar</a>
-              </td>
-            </tr>
-            <tr>
-              <td><strong>1104567892</strong></td>
-              <td>Diego Alejandro</td>
-              <td>Cevallos Ruiz</td>
-              <td>Dermatología</td>
-              <td>0995678234</td>
-              <td>
-                <a href="veterinario_detalle.html">Ver detalle</a> |
-                <a href="veterinario_editar.html">Editar</a> |
-                <a href="veterinario_eliminar.html">Eliminar</a>
-              </td>
-            </tr>
-            <tr>
-              <td><strong>0602345673</strong></td>
-              <td>Gabriela Estefanía</td>
-              <td>Ortiz Vega</td>
-              <td>Cardiología</td>
-              <td>0983456712</td>
-              <td>
-                <a href="veterinario_detalle.html">Ver detalle</a> |
-                <a href="veterinario_editar.html">Editar</a> |
-                <a href="veterinario_eliminar.html">Eliminar</a>
-              </td>
-            </tr>
-            <tr>
-              <td><strong>1305678904</strong></td>
-              <td>Martín Esteban</td>
-              <td>Salazar Pinto</td>
-              <td>Odontología</td>
-              <td>0976543218</td>
-              <td>
-                <a href="veterinario_detalle.html">Ver detalle</a> |
-                <a href="veterinario_editar.html">Editar</a> |
-                <a href="veterinario_eliminar.html">Eliminar</a>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </main>
-  
-    <footer class="contenedor pie">
-      VetCare · Clínica Veterinaria Huellitas
-    </footer>
-  </div>
+<!-- Contenido que se muestra dentro del iframe del modal de veterinario_listar.html.
+     Los enlaces y formularios usan target="_top" para volver a la ventana completa. -->
+<body class="contenido-modal">
+  <h1 class="modal__titulo">Detalle del veterinario</h1>
+  <p class="texto-secundario">Información registrada del médico veterinario.</p>
 
-  <!-- Ventana flotante -->
-  <div class="modal modal--visible modal--superior" role="dialog" aria-modal="true" aria-labelledby="titulo-modal">
-    <section class="modal__ventana tarjeta">
-      <h2 id="titulo-modal" class="modal__titulo">Detalle del veterinario</h2>
-      <p class="texto-secundario">Información registrada del médico veterinario.</p>
-
-        <dl class="datos">
-          <div>
-            <dt>Cédula</dt>
-            <dd>1712345678</dd>
-          </div>
-          <div>
-            <dt>Nombres</dt>
-            <dd>Andrés Sebastián</dd>
-          </div>
-          <div>
-            <dt>Apellidos</dt>
-            <dd>Paredes Luna</dd>
-          </div>
-          <div>
-            <dt>Celular</dt>
-            <dd>0991234567</dd>
-          </div>
-          <div>
-            <dt>Correo electrónico</dt>
-            <dd>andres.paredes@vetcare.ec</dd>
-          </div>
-          <div>
-            <dt>Especialidad</dt>
-            <dd>Medicina general</dd>
-          </div>
-          <div>
-            <dt>Dirección de domicilio</dt>
-            <dd>Av. 6 de Diciembre N34-120 y Portugal, Quito</dd>
-          </div>
-        </dl>
-
-      <div class="botonera">
-        <a class="boton" href="veterinario_editar.html">Editar</a>
-        <a class="boton boton--secundario" href="veterinario_listar.html">Volver</a>
+    <dl class="datos">
+      <div>
+        <dt>Cédula</dt>
+        <dd>1712345678</dd>
       </div>
-    </section>
+      <div>
+        <dt>Nombres</dt>
+        <dd>Andrés Sebastián</dd>
+      </div>
+      <div>
+        <dt>Apellidos</dt>
+        <dd>Paredes Luna</dd>
+      </div>
+      <div>
+        <dt>Especialidad</dt>
+        <dd>Medicina general</dd>
+      </div>
+      <div>
+        <dt>Número de teléfono de celular</dt>
+        <dd>0991234567</dd>
+      </div>
+      <div>
+        <dt>Correo electrónico</dt>
+        <dd>andres.paredes@vetcare.ec</dd>
+      </div>
+      <div>
+        <dt>Dirección de domicilio</dt>
+        <dd>Av. 6 de Diciembre N34-120 y Portugal, Quito</dd>
+      </div>
+      <div>
+        <dt>Estado</dt>
+        <dd><span class="estado">Activo</span></dd>
+      </div>
+    </dl>
+
+  <div class="botonera">
+    <a class="boton" href="veterinario_listar.html#ventana-editar" target="_top">Editar</a>
+    <a class="boton boton--secundario" href="veterinario_listar.html" target="_top">Volver</a>
   </div>
 </body>
 

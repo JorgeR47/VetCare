@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dar de baja propietario | VetCare</title>
+  <link rel="stylesheet" href="../../../css/estilos.css">
+</head>
+
+<body>
+  <main class="contenedor seccion-principal popup-propietario">
+    <div class="encabezado-pagina">
+      <h1 class="titulo-pagina">Dar de baja propietario</h1>
+      <p class="texto-secundario">¿Confirmas la baja de este propietario?</p>
+    </div>
+
+    <!-- Confirmación de baja lógica -->
+    <div class="tarjeta panel">
+      <dl class="datos">
+        <div>
+          <dt>Cédula</dt>
+          <dd>0105489632</dd>
+        </div>
+        <div>
+          <dt>Nombre completo</dt>
+          <dd>María Fernanda Torres Salgado</dd>
+        </div>
+        <div>
+          <dt>Celular</dt>
+          <dd>0998451230</dd>
+        </div>
+        <div>
+          <dt>Correo electrónico</dt>
+          <dd>maria.torres@gmail.com</dd>
+        </div>
+        <div>
+          <dt>Dirección domiciliaria</dt>
+          <dd>Av. 12 de Octubre y Cordero, Edif. Los Pinos #4B</dd>
+        </div>
+        <div>
+          <dt>Mascotas asociadas</dt>
+          <dd><strong>Luna (Siberian Husky), Misi (Gato común)</strong></dd>
+        </div>
+      </dl>
+
+      <p class="mensaje mensaje--error">
+        El propietario pasará al estado <strong>INACTIVO</strong>. Sus datos y el historial médico de sus mascotas
+        se conservarán, pero ya no podrá agendar citas.
+      </p>
+
+      <form action="propietario_listado.html" method="get" target="_top">
+        <div class="campo espacio-abajo">
+          <label for="motivo">Motivo de la baja</label>
+          <textarea id="motivo" name="motivo" rows="3" minlength="10" maxlength="200"
+            title="Escribe el motivo de la baja con al menos 10 y máximo 200 caracteres." required></textarea>
+        </div>
+        <div class="botonera">
+          <button class="boton boton--peligro" type="submit">Confirmar baja</button>
+          <a class="boton boton--secundario" href="propietario_listado.html" target="_top">Cancelar</a>
+        </div>
+      </form>
+    </div>
+  </main>
+</body>
+
+</html>

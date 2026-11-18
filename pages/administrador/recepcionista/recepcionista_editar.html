@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Editar recepcionista | VetCare</title>
+  <link rel="stylesheet" href="../../../css/estilos.css">
+  <link rel="stylesheet" href="../../../css/paginas/administrador.css">
+</head>
+
+<!-- Contenido que se muestra dentro del iframe del modal de recepcionista_listar.html.
+     Los enlaces y formularios usan target="_top" para volver a la ventana completa. -->
+<body class="contenido-modal">
+  <h1 class="modal__titulo">Editar recepcionista</h1>
+  <p class="texto-secundario">Modifica los datos y guarda los cambios.</p>
+
+  <form class="formulario" action="recepcionista_listar.html" method="get" target="_top">
+    <fieldset class="cuadricula cuadricula--dos">
+      <legend class="etiqueta">Datos de la recepcionista</legend>
+
+      <div class="campo">
+        <label for="cedula">Cédula</label>
+        <input id="cedula" name="cedula" type="text" inputmode="numeric" pattern="[0-9]{10}" maxlength="10"
+          title="La cédula debe tener exactamente 10 dígitos" placeholder="Ej. 1718452369" value="1718452369" required>
+      </div>
+
+      <div class="campo">
+        <label for="nombres">Nombres</label>
+        <input id="nombres" name="nombres" type="text" pattern="[A-Za-zÁÉÍÓÚÜÑáéíóúüñ ]{2,50}" minlength="2"
+          maxlength="50" title="Solo letras y espacios" placeholder="Ej. Camila Andrea"
+          autocomplete="given-name" value="Camila Andrea" required>
+      </div>
+
+      <div class="campo">
+        <label for="apellidos">Apellidos</label>
+        <input id="apellidos" name="apellidos" type="text" pattern="[A-Za-zÁÉÍÓÚÜÑáéíóúüñ ]{2,50}" minlength="2"
+          maxlength="50" title="Solo letras y espacios" placeholder="Ej. Silva Torres"
+          autocomplete="family-name" value="Silva Torres" required>
+      </div>
+
+      <div class="campo">
+        <label for="celular">Número de teléfono de celular</label>
+        <input id="celular" name="celular" type="tel" pattern="09[0-9]{8}" maxlength="10"
+          title="10 dígitos que empiezan con 09" placeholder="Ej. 0987456321" value="0987456321" required>
+      </div>
+
+      <div class="campo">
+        <label for="correo">Correo electrónico</label>
+        <input id="correo" name="correo" type="email" placeholder="usuario@vetcare.ec"
+          autocomplete="username" value="camila.silva@vetcare.ec" required>
+      </div>
+
+      <div class="campo">
+        <label for="direccion">Dirección de domicilio</label>
+        <input id="direccion" name="direccion" type="text" minlength="5" maxlength="150"
+          placeholder="Ej. Av. Amazonas N24-56 y Colón" autocomplete="address-line1" value="Av. Amazonas N24-56 y Colón, Quito" required>
+      </div>
+    </fieldset>
+
+    <fieldset class="cuadricula cuadricula--dos">
+      <legend class="etiqueta">Datos de acceso</legend>
+
+      <div class="campo">
+        <label for="contrasena">Nueva contraseña</label>
+        <input id="contrasena" name="contrasena" type="password" minlength="8"
+          pattern="(?=.*[A-Za-z])(?=.*[0-9]).{8,}" title="Mínimo 8 caracteres con al menos una letra y un número"
+          placeholder="Déjala vacía para conservar la actual" autocomplete="new-password">
+      </div>
+    </fieldset>
+
+    <div class="botonera">
+      <button class="boton" type="submit">Guardar cambios</button>
+      <a class="boton boton--secundario" href="recepcionista_listar.html" target="_top">Cancelar</a>
+    </div>
+  </form>
+</body>
+
+</html>

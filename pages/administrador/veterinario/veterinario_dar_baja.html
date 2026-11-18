@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dar de baja veterinario | VetCare</title>
+  <link rel="stylesheet" href="../../../css/estilos.css">
+  <link rel="stylesheet" href="../../../css/paginas/administrador.css">
+</head>
+
+<!-- Contenido que se muestra dentro del iframe del modal de veterinario_listar.html.
+     Los enlaces y formularios usan target="_top" para volver a la ventana completa. -->
+<body class="contenido-modal">
+  <h1 class="modal__titulo">Dar de baja veterinario</h1>
+  <p class="texto-secundario">Revisa la información antes de confirmar la baja.</p>
+
+    <dl class="datos">
+      <div>
+        <dt>Cédula</dt>
+        <dd>1712345678</dd>
+      </div>
+      <div>
+        <dt>Nombres</dt>
+        <dd>Andrés Sebastián</dd>
+      </div>
+      <div>
+        <dt>Apellidos</dt>
+        <dd>Paredes Luna</dd>
+      </div>
+      <div>
+        <dt>Especialidad</dt>
+        <dd>Medicina general</dd>
+      </div>
+      <div>
+        <dt>Número de teléfono de celular</dt>
+        <dd>0991234567</dd>
+      </div>
+      <div>
+        <dt>Correo electrónico</dt>
+        <dd>andres.paredes@vetcare.ec</dd>
+      </div>
+      <div>
+        <dt>Dirección de domicilio</dt>
+        <dd>Av. 6 de Diciembre N34-120 y Portugal, Quito</dd>
+      </div>
+      <div>
+        <dt>Estado</dt>
+        <dd><span class="estado">Activo</span></dd>
+      </div>
+    </dl>
+
+  <form class="formulario" action="veterinario_listar.html" method="get" target="_top">
+    <div class="campo">
+      <label for="motivo">Motivo de baja</label>
+      <textarea id="motivo" name="motivo" minlength="10" maxlength="200"
+        placeholder="Describe el motivo (10 a 200 caracteres)" required></textarea>
+    </div>
+
+    <p class="mensaje mensaje--error">El veterinario y su cuenta de acceso pasarán a estado Inactivo.</p>
+
+    <div class="botonera">
+      <button class="boton boton--peligro" type="submit">Confirmar</button>
+      <a class="boton boton--secundario" href="veterinario_listar.html" target="_top">Cancelar</a>
+    </div>
+  </form>
+</body>
+
+</html>

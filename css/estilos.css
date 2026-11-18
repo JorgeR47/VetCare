@@ -418,8 +418,10 @@ a.tarjeta span {
   margin: 2px 4px;
 }
 
-/* Enlace «Eliminar» en color de peligro (sirve para eliminar.html y #ventana-eliminar) */
-.tabla--listado td:last-child a[href*="eliminar"] {
+/* Enlace «Eliminar» / «Dar de baja» en color de peligro
+   (detecta eliminar.html, #ventana-eliminar, dar_baja.html, etc.) */
+.tabla--listado td:last-child a[href*="eliminar"],
+.tabla--listado td:last-child a[href*="baja"] {
   color: var(--color-error);
 }
 
@@ -600,7 +602,7 @@ body:has(.modal--visible) {
 .modal__ventana iframe {
   display: block;
   width: 100%;
-  height: 600px;
+  height: 90vh;
   border: 0;
   background: #fff;
 }

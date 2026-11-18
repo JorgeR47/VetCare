@@ -6,18 +6,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Propietarios | VetCare</title>
   <link rel="stylesheet" href="../../../css/estilos.css">
-  <link rel="stylesheet" href="../../../css/paginas/propietarios.css">
 </head>
 
 <body>
   <!-- Encabezado con navegación estándar y avatar -->
   <header class="encabezado">
     <div class="contenedor encabezado__interior">
-      <a class="marca" href="propietarios-listado.html"><span class="marca__simbolo">V</span><span
+      <a class="marca" href="propietario_listado.html"><span class="marca__simbolo">V</span><span
           class="marca__texto">VetCare</span></a>
       <div class="navegacion navegacion--barra">
         <nav class="barra-navegacion" aria-label="Navegación de recepción">
-          <a href="propietarios-listado.html" aria-current="page">Propietarios</a>
+          <a href="propietario_listado.html" aria-current="page">Propietarios</a>
           <button type="button">Mascotas</button>
           <button type="button">Citas</button>
           <a href="../servicios/servicios.html">Servicios</a>
@@ -40,10 +39,11 @@
 
     <div class="barra-acciones espacio-abajo">
       <!-- Buscador -->
-      <form class="buscador" action="propietarios-listado.html" method="get">
+      <form class="buscador" action="propietario_listado.html" method="get">
         <div class="campo">
           <label for="buscar">Buscar propietario</label>
-          <input id="buscar" name="q" type="search" placeholder="Cédula, nombre, apellido, teléfono o correo">
+          <input id="buscar" name="q" type="search" maxlength="100"
+            placeholder="Cédula, nombre, apellido, teléfono o correo">
         </div>
         <button class="boton" type="submit">Buscar</button>
       </form> 
@@ -62,6 +62,7 @@
             <th scope="col">Apellidos</th>
             <th scope="col">Celular</th>
             <th scope="col">Correo</th>
+            <th scope="col">Dirección</th>
             <th scope="col">Acciones</th>
           </tr>
         </thead>
@@ -72,10 +73,11 @@
             <td>Torres Salgado</td>
             <td>0998451230</td>
             <td>maria.torres@gmail.com</td>
+            <td>Av. 12 de Octubre y Cordero, Edif. Los Pinos #4B</td>
             <td>
               <a href="#ventana-detalle">Ver</a> |
               <a href="#ventana-editar">Editar</a> |
-              <a href="#ventana-eliminar">Eliminar</a>
+              <a href="#ventana-eliminar">Dar de baja</a>
             </td>
           </tr>
           <tr>
@@ -84,10 +86,11 @@
             <td>Mendoza Véliz</td>
             <td>0987654321</td>
             <td>carlos.mendoza@hotmail.com</td>
+            <td>Av. América y Shyris #104</td>
             <td>
               <a href="#ventana-detalle">Ver</a> |
               <a href="#ventana-editar">Editar</a> |
-              <a href="#ventana-eliminar">Eliminar</a>
+              <a href="#ventana-eliminar">Dar de baja</a>
             </td>
           </tr>
           <tr>
@@ -96,10 +99,11 @@
             <td>Gómez Paredes</td>
             <td>0995123456</td>
             <td>ana.gomez@yahoo.com</td>
+            <td>Av. Amazonas y Naciones Unidas</td>
             <td>
               <a href="#ventana-detalle">Ver</a> |
               <a href="#ventana-editar">Editar</a> |
-              <a href="#ventana-eliminar">Eliminar</a>
+              <a href="#ventana-eliminar">Dar de baja</a>
             </td>
           </tr>
           <tr>
@@ -108,10 +112,11 @@
             <td>Zambrano Castro</td>
             <td>0984123987</td>
             <td>javier.zambrano@outlook.com</td>
+            <td>Av. 6 de Diciembre y Gaspar de Villarroel</td>
             <td>
               <a href="#ventana-detalle">Ver</a> |
               <a href="#ventana-editar">Editar</a> |
-              <a href="#ventana-eliminar">Eliminar</a>
+              <a href="#ventana-eliminar">Dar de baja</a>
             </td>
           </tr>
           <tr>
@@ -120,10 +125,11 @@
             <td>Herrera Morales</td>
             <td>0993214567</td>
             <td>sofia.herrera@gmail.com</td>
+            <td>Calle de los Cipreses N45-120</td>
             <td>
               <a href="#ventana-detalle">Ver</a> |
               <a href="#ventana-editar">Editar</a> |
-              <a href="#ventana-eliminar">Eliminar</a>
+              <a href="#ventana-eliminar">Dar de baja</a>
             </td>
           </tr>
           <tr>
@@ -132,37 +138,36 @@
             <td>Rivadeneira Paz</td>
             <td>0982563412</td>
             <td>diego.riva@gmail.com</td>
+            <td>Av. 10 de Agosto y República</td>
             <td>
               <a href="#ventana-detalle">Ver</a> |
               <a href="#ventana-editar">Editar</a> |
-              <a href="#ventana-eliminar">Eliminar</a>
+              <a href="#ventana-eliminar">Dar de baja</a>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
   </main>
-
-
-  <div class="modal" id="ventana-nuevo" role="dialog" aria-modal="true" aria-label="Registrar propietario">
-    <section class="modal__ventana modal__ventana--incrustada tarjeta">
-      <iframe src="propietarios-nuevo.html" title="Registrar propietario"></iframe>
-    </section>
+  <div class="modal" id="ventana-nuevo">
+    <div class="modal__ventana modal__ventana--incrustada tarjeta">
+      <iframe src="propietario_registrar.html" title="Registrar propietario"></iframe>
+    </div>
   </div>
-  <div class="modal" id="ventana-detalle" role="dialog" aria-modal="true" aria-label="Detalle de propietario">
-    <section class="modal__ventana modal__ventana--incrustada tarjeta">
-      <iframe src="propietarios-detalle.html" title="Detalle de propietario"></iframe>
-    </section>
+  <div class="modal" id="ventana-detalle">
+    <div class="modal__ventana modal__ventana--incrustada tarjeta">
+      <iframe src="propietario_detalle.html" title="Detalle de propietario"></iframe>
+    </div>
   </div>
-  <div class="modal" id="ventana-editar" role="dialog" aria-modal="true" aria-label="Editar propietario">
-    <section class="modal__ventana modal__ventana--incrustada tarjeta">
-      <iframe src="propietarios-editar.html" title="Editar propietario"></iframe>
-    </section>
+  <div class="modal" id="ventana-editar">
+    <div class="modal__ventana modal__ventana--incrustada tarjeta">
+      <iframe src="propietario_editar.html" title="Editar propietario"></iframe>
+    </div>
   </div>
-  <div class="modal" id="ventana-eliminar" role="dialog" aria-modal="true" aria-label="Eliminar propietario">
-    <section class="modal__ventana modal__ventana--incrustada tarjeta">
-      <iframe src="propietarios-eliminar.html" title="Eliminar propietario"></iframe>
-    </section>
+  <div class="modal" id="ventana-eliminar">
+    <div class="modal__ventana modal__ventana--incrustada tarjeta">
+      <iframe src="propietario_dar_baja.html" title="Dar de baja a un propietario"></iframe>
+    </div>
   </div>
 
   <footer class="contenedor pie">

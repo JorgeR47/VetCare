@@ -12,10 +12,10 @@
 <body>
   <header class="encabezado">
     <div class="contenedor encabezado__interior">
-      <a class="marca" href="../home_administrador.html">
+      <div class="marca">
         <span class="marca__simbolo">V</span>
         <span class="marca__texto">VetCare</span>
-      </a>
+      </div>
       <div class="navegacion navegacion--barra">
         <nav class="barra-navegacion" aria-label="Navegación del administrador">
           <a href="../servicio/servicio_listar.html" aria-current="page">Catálogo servicios</a>
@@ -25,9 +25,9 @@
           <a href="../../../index.html">Cerrar sesión</a>
         </nav>
         <div class="usuario-sesion">
-          <div class="usuario-avatar" title="Carlos Valdivieso">C</div>
+          <div class="usuario-avatar" title="Aquiles Brinco">A</div>
           <div class="usuario-info">
-            <span class="usuario-nombre">Carlos Valdivieso</span>
+            <span class="usuario-nombre">Aquiles Brinco</span>
             <span class="usuario-rol">Administrador</span>
           </div>
         </div>
@@ -39,47 +39,78 @@
     <div class="encabezado-pagina">
       <p class="texto-secundario">Administrador &gt; Catálogo servicios</p>
       <h1 class="titulo-pagina">Catálogo de Servicios</h1>
-      <p class="texto-secundario">Consulta los servicios que ofrece la clínica y sus precios.</p>
+      <p class="texto-secundario">Consulta y administra los servicios que ofrece la clínica y sus precios.</p>
     </div>
 
-    <p class="mensaje aviso-borrador espacio-abajo">Vista de referencia para la navegación: las acciones de este
-      módulo se implementarán más adelante.</p>
+    <div class="barra-acciones espacio-abajo">
+      <!-- Buscador -->
+      <form class="buscador" action="servicio_listar.html" method="get">
+        <div class="campo">
+          <label for="buscar">Buscar servicio</label>
+          <input id="buscar" name="q" type="search" maxlength="60" placeholder="Nombre del servicio">
+        </div>
+        <button class="boton" type="submit">Buscar</button>
+      </form>
 
+      <a class="boton" href="#ventana-nuevo">+ Registrar</a>
+    </div>
+
+    <!-- Tabla de servicios -->
     <div class="tabla-contenedor">
-      <table class="tabla tabla-basica">
-        <caption>Catálogo de Servicios</caption>
+      <table class="tabla tabla--listado tabla-servicios">
+        <caption>Servicios registrados</caption>
         <thead>
           <tr>
-            <th scope="col">Código</th>
-            <th scope="col">Servicio</th>
-            <th scope="col">Duración</th>
+            <th scope="col">Nombre</th>
             <th scope="col">Precio (USD)</th>
+            <th scope="col">Acciones</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>SRV-001</td>
-            <td>Consulta general</td>
-            <td>30 min</td>
-            <td>25,00</td>
+            <td><strong>Consulta general</strong></td>
+            <td>$ 25.00</td>
+            <td>
+              <a href="#ventana-detalle">Ver detalle</a> |
+              <a href="#ventana-editar">Editar</a> |
+              <a href="#ventana-dar-baja">Dar de baja</a>
+            </td>
           </tr>
           <tr>
-            <td>SRV-002</td>
-            <td>Vacunación</td>
-            <td>30 min</td>
-            <td>18,00</td>
+            <td><strong>Vacunación</strong></td>
+            <td>$ 18.00</td>
+            <td>
+              <a href="#ventana-detalle">Ver detalle</a> |
+              <a href="#ventana-editar">Editar</a> |
+              <a href="#ventana-dar-baja">Dar de baja</a>
+            </td>
           </tr>
           <tr>
-            <td>SRV-003</td>
-            <td>Desparasitación</td>
-            <td>30 min</td>
-            <td>12,50</td>
+            <td><strong>Desparasitación</strong></td>
+            <td>$ 12.50</td>
+            <td>
+              <a href="#ventana-detalle">Ver detalle</a> |
+              <a href="#ventana-editar">Editar</a> |
+              <a href="#ventana-dar-baja">Dar de baja</a>
+            </td>
           </tr>
           <tr>
-            <td>SRV-004</td>
-            <td>Cirugía menor</td>
-            <td>90 min</td>
-            <td>150,00</td>
+            <td><strong>Cirugía menor</strong></td>
+            <td>$ 150.00</td>
+            <td>
+              <a href="#ventana-detalle">Ver detalle</a> |
+              <a href="#ventana-editar">Editar</a> |
+              <a href="#ventana-dar-baja">Dar de baja</a>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>Traumatología</strong></td>
+            <td>$ 60.00</td>
+            <td>
+              <a href="#ventana-detalle">Ver detalle</a> |
+              <a href="#ventana-editar">Editar</a> |
+              <a href="#ventana-dar-baja">Dar de baja</a>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -89,6 +120,29 @@
   <footer class="contenedor pie">
     VetCare · Clínica Veterinaria Huellitas
   </footer>
+
+
+  <!-- Ventanas emergentes: se muestran con :target al hacer clic en href="#id" -->
+  <div class="modal" id="ventana-nuevo" role="dialog" aria-modal="true" aria-label="Registrar servicio">
+    <div class="modal__ventana modal__ventana--incrustada tarjeta">
+      <iframe src="servicio_registrar.html" title="Registrar servicio"></iframe>
+    </div>
+  </div>
+  <div class="modal" id="ventana-detalle" role="dialog" aria-modal="true" aria-label="Detalle del servicio">
+    <div class="modal__ventana modal__ventana--incrustada tarjeta">
+      <iframe src="servicio_detalle.html" title="Detalle del servicio"></iframe>
+    </div>
+  </div>
+  <div class="modal" id="ventana-editar" role="dialog" aria-modal="true" aria-label="Editar servicio">
+    <div class="modal__ventana modal__ventana--incrustada tarjeta">
+      <iframe src="servicio_editar.html" title="Editar servicio"></iframe>
+    </div>
+  </div>
+  <div class="modal" id="ventana-dar-baja" role="dialog" aria-modal="true" aria-label="Dar de baja servicio">
+    <div class="modal__ventana modal__ventana--incrustada tarjeta">
+      <iframe src="servicio_dar_baja.html" title="Dar de baja servicio"></iframe>
+    </div>
+  </div>
 </body>
 
 </html>
