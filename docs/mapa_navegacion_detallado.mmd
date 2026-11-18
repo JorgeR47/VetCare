@@ -1,126 +1,68 @@
 ---
-title: Mapa Navegacional Detallado · VetCare (Actualizado)
+title: Mapa Navegacional Detallado · VetCare
 ---
 flowchart TD
     %% ==========================================
-    %% INICIO DE SESIÓN Y ACCESO AL SISTEMA
+    %% INICIO DE SESIÓN
     %% ==========================================
-    START((Inicio)) --> LOGIN["index.html<br/><b>Inicio de sesión principal</b>"]
+    START((Inicio)) --> LOGIN["index.html<br/><b>Inicio de sesión</b>"]
 
     LOGIN -.->|"Credenciales inválidas"| LOGIN
     LOGIN -->|"Formulario submit / Chip Recepcionista"| R_PROP_LIST
     LOGIN -->|"Chip Veterinario"| V_AGENDA
     LOGIN -->|"Chip Administrador"| A_SERV_LIST
 
-    %% Acceso alterno recepcionista
-    R_LOGIN_ALT["pages/recepcionista/servicios/index.html<br/><b>Login Recepción alterno</b>"] -->|"Ingresar"| R_INICIO
-
     %% ==========================================
-    %% ROL: RECEPCIONISTA (COMPLETO)
+    %% ROL: RECEPCIONISTA
     %% ==========================================
-    subgraph ROL_RECEPCIONISTA["Área de Recepción (CU-01, CU-02, CU-03, CU-04, CU-05, CU-13, CU-14)"]
-        R_INICIO["pages/recepcionista/recepcionista_inicio.html<br/><b>Panel de Recepción (Menú)</b>"]
+    subgraph ROL_RECEPCIONISTA["Área de Recepción"]
+        R_PROP_LIST["pages/recepcionista/propietario/propietario_listado.html<br/><b>Listado de Propietarios</b>"]
+        R_SERV["pages/recepcionista/servicios/servicios.html<br/><b>Catálogo de Servicios</b>"]
 
-        %% Módulo Propietarios (CU-02)
-        subgraph MOD_PROPIETARIOS["Módulo Propietarios (CU-02)"]
-            R_PROP_LIST["pages/recepcionista/propietario/propietario_listado.html<br/><b>Listado de Propietarios</b>"]
+        %% Modales / Iframes de Propietario
+        subgraph MODALES_PROPIETARIO["Modales incrustados (target='_top')"]
             R_PROP_NEW["propietario_registrar.html<br/><b>+ Nuevo propietario</b>"]
-            R_PROP_DET["propietario_detalle.html<br/><b>Detalle propietario</b>"]
+            R_PROP_DET["propietario_detalle.html<br/><b>Ver detalle</b>"]
             R_PROP_EDIT["propietario_editar.html<br/><b>Editar propietario</b>"]
-            R_PROP_DEL["propietario_dar_baja.html<br/><b>Dar de baja propietario</b>"]
-
-            R_PROP_LIST -->|"#ventana-nuevo"| R_PROP_NEW
-            R_PROP_LIST -->|"#ventana-detalle"| R_PROP_DET
-            R_PROP_LIST -->|"#ventana-editar"| R_PROP_EDIT
-            R_PROP_LIST -->|"#ventana-eliminar"| R_PROP_DEL
-
-            R_PROP_NEW -->|"Guardar / Cancelar"| R_PROP_LIST
-            R_PROP_DET -->|"Volver"| R_PROP_LIST
-            R_PROP_DET -->|"Editar"| R_PROP_EDIT
-            R_PROP_EDIT -->|"Guardar / Cancelar"| R_PROP_LIST
-            R_PROP_DEL -->|"Confirmar / Cancelar"| R_PROP_LIST
+            R_PROP_DEL["propietario_dar_baja.html<br/><b>Dar de baja</b>"]
         end
 
-        %% Módulo Mascotas (CU-03)
-        subgraph MOD_MASCOTAS["Módulo Mascotas (CU-03)"]
-            R_MASC_LIST["pages/recepcionista/mascota/mascota_listado.html<br/><b>Listado de Mascotas</b>"]
-            R_MASC_NEW["mascota_nuevo.html<br/><b>+ Registrar mascota</b>"]
-            R_MASC_DET["mascota_detalle.html<br/><b>Detalle de la mascota</b>"]
-            R_MASC_EDIT["mascota_editar.html<br/><b>Editar mascota</b>"]
-            R_MASC_DEL["mascota_dar_baja.html<br/><b>Dar de baja mascota</b>"]
+        %% Enlaces barra de navegación recepción
+        R_PROP_LIST -->|"Nav: 'Servicios'"| R_SERV
+        R_SERV -->|"Nav: 'Propietarios'"| R_PROP_LIST
+        R_PROP_LIST -->|"Buscador (q=...)"| R_PROP_LIST
 
-            R_MASC_LIST -->|"Registrar mascota"| R_MASC_NEW
-            R_MASC_LIST -->|"Ver"| R_MASC_DET
-            R_MASC_LIST -->|"Editar"| R_MASC_EDIT
-            R_MASC_LIST -->|"Dar de baja"| R_MASC_DEL
+        %% Acciones a Modales
+        R_PROP_LIST -->|"#ventana-nuevo"| R_PROP_NEW
+        R_PROP_LIST -->|"#ventana-detalle"| R_PROP_DET
+        R_PROP_LIST -->|"#ventana-editar"| R_PROP_EDIT
+        R_PROP_LIST -->|"#ventana-eliminar"| R_PROP_DEL
 
-            R_MASC_NEW -->|"Guardar (#registrada) / Cancelar"| R_MASC_LIST
-            R_MASC_DET -->|"Volver"| R_MASC_LIST
-            R_MASC_DET -->|"Editar"| R_MASC_EDIT
-            R_MASC_EDIT -->|"Guardar cambios (#editada) / Cancelar"| R_MASC_LIST
-            R_MASC_DEL -->|"Confirmar (#baja) / Cancelar"| R_MASC_LIST
-        end
-
-        %% Módulo Citas y Turnos (CU-04, CU-05, CU-14)
-        subgraph MOD_CITAS["Módulo Citas y Turnos (CU-04, CU-05, CU-14)"]
-            R_CITA_LIST["pages/recepcionista/cita/cita_listado.html<br/><b>Listado de Citas & Turnos</b>"]
-            R_CITA_NEW["cita_nueva.html<br/><b>Agendar cita (CU-04)</b>"]
-            R_CITA_DET["cita_detalle.html<br/><b>Detalle de la cita</b>"]
-            R_CITA_REP["cita_reprogramar.html<br/><b>Reprogramar cita</b>"]
-            R_CITA_CAN["cita_cancelar.html<br/><b>Cancelar cita</b>"]
-
-            R_CITA_LIST -->|"Agendar cita"| R_CITA_NEW
-            R_CITA_LIST -->|"Ver"| R_CITA_DET
-            R_CITA_LIST -->|"Reprogramar"| R_CITA_REP
-            R_CITA_LIST -->|"Cancelar"| R_CITA_CAN
-            R_CITA_LIST -->|"Seleccionar turno libre (CU-14)"| R_CITA_NEW
-
-            R_CITA_NEW -->|"Agendar (#agendada) / Volver"| R_CITA_LIST
-            R_CITA_DET -->|"Volver"| R_CITA_LIST
-            R_CITA_DET -->|"Reprogramar"| R_CITA_REP
-            R_CITA_DET -->|"Cancelar cita"| R_CITA_CAN
-            R_CITA_REP -->|"Guardar cambios (#reprogramada) / Volver"| R_CITA_LIST
-            R_CITA_CAN -->|"Confirmar (#cancelada) / Volver"| R_CITA_LIST
-        end
-
-        %% Módulo Servicios Recepcionista (CU-13)
-        subgraph MOD_SERVICIOS_REC["Catálogo de Servicios (CU-13)"]
-            R_SERV_LIST["pages/recepcionista/servicios/servicio_listado.html<br/><b>Catálogo (Tabla & Búsqueda)</b>"]
-            R_SERV_CARDS["pages/recepcionista/servicios/servicios.html<br/><b>Catálogo (Tarjetas y Precios)</b>"]
-        end
-
-        %% Navegación desde el Panel de Recepción
-        R_INICIO -->|"Enlace 'Citas'"| R_CITA_LIST
-        R_INICIO -->|"Enlace 'Propietarios'"| R_PROP_LIST
-        R_INICIO -->|"Enlace 'Servicios'"| R_SERV_LIST
-        R_INICIO -->|"Enlace 'Mascotas'"| R_MASC_LIST
-
-        %% Barra común de navegación en cabecera de Recepción
-        R_CITA_LIST <-->|"Nav: Propietarios / Citas"| R_PROP_LIST
-        R_CITA_LIST <-->|"Nav: Mascotas / Citas"| R_MASC_LIST
-        R_CITA_LIST <-->|"Nav: Servicios / Citas"| R_SERV_LIST
-        R_PROP_LIST <-->|"Nav: Mascotas / Propietarios"| R_MASC_LIST
-        R_PROP_LIST <-->|"Nav: Servicios / Propietarios"| R_SERV_LIST
-        R_MASC_LIST <-->|"Nav: Servicios / Mascotas"| R_SERV_LIST
-
-        %% Retorno al inicio con clic en el logo VetCare
-        R_CITA_LIST & R_MASC_LIST & R_SERV_LIST -->|"Clic en logotipo 'VetCare'"| R_INICIO
+        %% Retornos y guardados
+        R_PROP_NEW -->|"Guardar / Cancelar"| R_PROP_LIST
+        R_PROP_DET -->|"Volver"| R_PROP_LIST
+        R_PROP_DET -->|"Editar"| R_PROP_EDIT
+        R_PROP_EDIT -->|"Guardar cambios / Cancelar"| R_PROP_LIST
+        R_PROP_DEL -->|"Confirmar baja / Cancelar"| R_PROP_LIST
     end
 
     %% ==========================================
-    %% ROL: VETERINARIO (CU-06, CU-07, CU-08)
+    %% ROL: VETERINARIO
     %% ==========================================
-    subgraph ROL_VETERINARIO["Área Clínica - Veterinario (CU-06, CU-07, CU-08)"]
-        V_AGENDA["pages/veterinario/veterinario-agenda-lista.html<br/><b>Agenda del día (CU-06)</b>"]
+    subgraph ROL_VETERINARIO["Área Clínica (Veterinario)"]
+        V_AGENDA["pages/veterinario/veterinario-agenda-lista.html<br/><b>Agenda del día</b>"]
         V_DET_CITA["pages/veterinario/veterinario-detalle-cita.html<br/><b>Detalle de la cita</b>"]
-        V_REG_ATEN["pages/veterinario/veterinario-registrar-atencion.html<br/><b>Registrar atención (CU-07)</b>"]
-        V_HIST_LIST["pages/veterinario/veterinario-historial-clinico.html<br/><b>Historia clínica - Lista (CU-08)</b>"]
-        V_HIST_DET["pages/veterinario/veterinario-historia-clinica-detalle.html<br/><b>Detalle antecedentes médicos</b>"]
+        V_REG_ATEN["pages/veterinario/veterinario-registrar-atencion.html<br/><b>Registrar atención médica</b>"]
+        V_HIST_LIST["pages/veterinario/veterinario-historial-clinico.html<br/><b>Historia clínica (Listado)</b>"]
+        V_HIST_DET["pages/veterinario/veterinario-historia-clinica-detalle.html<br/><b>Detalle de historia clínica</b>"]
 
         %% Navegación interna veterinario
-        V_AGENDA <-->|"Nav"| V_HIST_LIST
-        V_AGENDA <-->|"Nav"| V_REG_ATEN
-        V_HIST_LIST <-->|"Nav"| V_REG_ATEN
+        V_AGENDA -->|"Nav: 'Historia clínica'"| V_HIST_LIST
+        V_AGENDA -->|"Nav: 'Registrar atención'"| V_REG_ATEN
+        V_HIST_LIST -->|"Nav: 'Agenda del día'"| V_AGENDA
+        V_HIST_LIST -->|"Nav: 'Registrar atención'"| V_REG_ATEN
+        V_REG_ATEN -->|"Nav: 'Agenda del día'"| V_AGENDA
+        V_REG_ATEN -->|"Nav: 'Historia clínica'"| V_HIST_LIST
 
         %% Flujo de Agenda y Atención
         V_AGENDA -->|"Consultar fecha (GET)"| V_AGENDA
@@ -128,26 +70,27 @@ flowchart TD
         V_AGENDA -->|"#ventana-registrar-atencion"| V_REG_ATEN
         V_DET_CITA -->|"Registrar atención"| V_REG_ATEN
         V_DET_CITA -->|"Volver"| V_AGENDA
-        V_REG_ATEN -->|"Guardar -> Confirmación"| V_AGENDA
+        V_REG_ATEN -->|"Modal confirmación -> Guardar"| V_AGENDA
         V_REG_ATEN -->|"Volver / Cancelar"| V_DET_CITA
 
         %% Flujo Historia Clínica
         V_HIST_LIST -->|"Buscador (q=...)"| V_HIST_LIST
-        V_HIST_LIST -->|"Ver historia (#historia-xxx)"| V_HIST_DET
+        V_HIST_LIST -->|"Ver historia clínica (#historia-xxx)"| V_HIST_DET
         V_HIST_DET -->|"Volver al listado"| V_HIST_LIST
     end
 
     %% ==========================================
-    %% ROL: ADMINISTRADOR (CU-09, CU-10, CU-11, CU-12)
+    %% ROL: ADMINISTRADOR
     %% ==========================================
-    subgraph ROL_ADMINISTRADOR["Área de Administración (CU-09, CU-10, CU-11, CU-12)"]
-        A_SERV_LIST["pages/administrador/servicio/servicio_listar.html<br/><b>Catálogo de servicios (CU-10)</b>"]
-        A_VET_LIST["pages/administrador/veterinario/veterinario_listar.html<br/><b>Personal veterinario (CU-09)</b>"]
-        A_REC_LIST["pages/administrador/recepcionista/recepcionista_listar.html<br/><b>Personal recepcionista (CU-11)</b>"]
-        A_AUD_LIST["pages/administrador/auditoria/auditoria_listar.html<br/><b>Bitácora y auditoría (CU-12)</b>"]
+    subgraph ROL_ADMINISTRADOR["Área de Administración"]
+        %% Páginas listado principales
+        A_SERV_LIST["pages/administrador/servicio/servicio_listar.html<br/><b>Catálogo de servicios</b>"]
+        A_VET_LIST["pages/administrador/veterinario/veterinario_listar.html<br/><b>Personal veterinario</b>"]
+        A_REC_LIST["pages/administrador/recepcionista/recepcionista_listar.html<br/><b>Personal recepcionista</b>"]
+        A_AUD_LIST["pages/administrador/auditoria/auditoria_listar.html<br/><b>Bitácora y auditoría</b>"]
 
         %% Modales Servicios
-        subgraph MODALES_SERVICIOS["Modales Servicios (CRUD)"]
+        subgraph MODALES_SERVICIOS["Modales Servicios"]
             A_SERV_NEW["servicio_registrar.html"]
             A_SERV_DET["servicio_detalle.html"]
             A_SERV_EDIT["servicio_editar.html"]
@@ -155,7 +98,7 @@ flowchart TD
         end
 
         %% Modales Veterinarios
-        subgraph MODALES_VETERINARIOS["Modales Veterinarios (CRUD)"]
+        subgraph MODALES_VETERINARIOS["Modales Veterinarios"]
             A_VET_NEW["veterinario_registrar.html"]
             A_VET_DET["veterinario_detalle.html"]
             A_VET_EDIT["veterinario_editar.html"]
@@ -163,7 +106,7 @@ flowchart TD
         end
 
         %% Modales Recepcionistas
-        subgraph MODALES_RECEPCIONISTAS["Modales Recepcionistas (CRUD)"]
+        subgraph MODALES_RECEPCIONISTAS["Modales Recepcionistas"]
             A_REC_NEW["recepcionista_registrar.html"]
             A_REC_DET["recepcionista_detalle.html"]
             A_REC_EDIT["recepcionista_editar.html"]
@@ -171,55 +114,67 @@ flowchart TD
         end
 
         %% Modal Auditoría
-        A_AUD_DET["auditoria_detalle.html<br/><b>Detalle del registro</b>"]
+        A_AUD_DET["auditoria_detalle.html<br/><b>Ver detalle del registro</b>"]
 
         %% Barra común de navegación administrador
-        A_SERV_LIST <-->|"Nav"| A_VET_LIST
-        A_SERV_LIST <-->|"Nav"| A_REC_LIST
-        A_SERV_LIST <-->|"Nav"| A_AUD_LIST
-        A_VET_LIST <-->|"Nav"| A_REC_LIST
-        A_VET_LIST <-->|"Nav"| A_AUD_LIST
-        A_REC_LIST <-->|"Nav"| A_AUD_LIST
+        A_SERV_LIST -->|"Nav"| A_VET_LIST
+        A_VET_LIST -->|"Nav"| A_SERV_LIST
+        A_SERV_LIST -->|"Nav"| A_REC_LIST
+        A_REC_LIST -->|"Nav"| A_SERV_LIST
+        A_SERV_LIST -->|"Nav"| A_AUD_LIST
+        A_AUD_LIST -->|"Nav"| A_SERV_LIST
+        A_VET_LIST -->|"Nav"| A_REC_LIST
+        A_REC_LIST -->|"Nav"| A_VET_LIST
+        A_VET_LIST -->|"Nav"| A_AUD_LIST
+        A_AUD_LIST -->|"Nav"| A_VET_LIST
+        A_REC_LIST -->|"Nav"| A_AUD_LIST
+        A_AUD_LIST -->|"Nav"| A_REC_LIST
 
         %% Acciones Servicios
         A_SERV_LIST -->|"#ventana-nuevo"| A_SERV_NEW
         A_SERV_LIST -->|"#ventana-detalle"| A_SERV_DET
         A_SERV_LIST -->|"#ventana-editar"| A_SERV_EDIT
         A_SERV_LIST -->|"#ventana-dar-baja"| A_SERV_DEL
-        A_SERV_NEW & A_SERV_DET & A_SERV_EDIT & A_SERV_DEL -->|"Guardar / Volver"| A_SERV_LIST
+        A_SERV_NEW -->|"Guardar / Cancelar"| A_SERV_LIST
+        A_SERV_DET -->|"Guardar / Cancelar"| A_SERV_LIST
+        A_SERV_EDIT -->|"Guardar / Cancelar"| A_SERV_LIST
+        A_SERV_DEL -->|"Guardar / Cancelar"| A_SERV_LIST
 
         %% Acciones Veterinarios
         A_VET_LIST -->|"#ventana-nuevo"| A_VET_NEW
         A_VET_LIST -->|"#ventana-detalle"| A_VET_DET
         A_VET_LIST -->|"#ventana-editar"| A_VET_EDIT
         A_VET_LIST -->|"#ventana-dar-baja"| A_VET_DEL
-        A_VET_NEW & A_VET_DET & A_VET_EDIT & A_VET_DEL -->|"Guardar / Volver"| A_VET_LIST
+        A_VET_NEW -->|"Guardar / Cancelar"| A_VET_LIST
+        A_VET_DET -->|"Guardar / Cancelar"| A_VET_LIST
+        A_VET_EDIT -->|"Guardar / Cancelar"| A_VET_LIST
+        A_VET_DEL -->|"Guardar / Cancelar"| A_VET_LIST
 
         %% Acciones Recepcionistas
         A_REC_LIST -->|"#ventana-nuevo"| A_REC_NEW
         A_REC_LIST -->|"#ventana-detalle"| A_REC_DET
         A_REC_LIST -->|"#ventana-editar"| A_REC_EDIT
         A_REC_LIST -->|"#ventana-dar-baja"| A_REC_DEL
-        A_REC_NEW & A_REC_DET & A_REC_EDIT & A_REC_DEL -->|"Guardar / Volver"| A_REC_LIST
+        A_REC_NEW -->|"Guardar / Cancelar"| A_REC_LIST
+        A_REC_DET -->|"Guardar / Cancelar"| A_REC_LIST
+        A_REC_EDIT -->|"Guardar / Cancelar"| A_REC_LIST
+        A_REC_DEL -->|"Guardar / Cancelar"| A_REC_LIST
 
         %% Acciones Auditoría
-        A_AUD_LIST -->|"Filtrar / Limpiar"| A_AUD_LIST
+        A_AUD_LIST -->|"Filtrar / Limpiar filtros"| A_AUD_LIST
         A_AUD_LIST -->|"#ventana-detalle"| A_AUD_DET
         A_AUD_DET -->|"Cerrar modal"| A_AUD_LIST
     end
 
     %% ==========================================
-    %% CIERRE DE SESIÓN GLOBAL (A index.html)
+    %% CIERRE DE SESIÓN GLOBAL
     %% ==========================================
-    R_INICIO -.->|"Cerrar sesión"| LOGIN
-    R_PROP_LIST -.->|"Cerrar sesión"| LOGIN
-    R_MASC_LIST -.->|"Cerrar sesión"| LOGIN
-    R_CITA_LIST -.->|"Cerrar sesión"| LOGIN
-    R_SERV_LIST -.->|"Cerrar sesión"| LOGIN
-    V_AGENDA -.->|"Cerrar sesión"| LOGIN
-    V_HIST_LIST -.->|"Cerrar sesión"| LOGIN
-    V_REG_ATEN -.->|"Cerrar sesión"| LOGIN
-    A_SERV_LIST -.->|"Cerrar sesión"| LOGIN
-    A_VET_LIST -.->|"Cerrar sesión"| LOGIN
-    A_REC_LIST -.->|"Cerrar sesión"| LOGIN
-    A_AUD_LIST -.->|"Cerrar sesión"| LOGIN
+    R_PROP_LIST -.->|"Enlace 'Cerrar sesión'"| LOGIN
+    R_SERV -.->|"Enlace 'Cerrar sesión'"| LOGIN
+    V_AGENDA -.->|"Enlace 'Cerrar sesión'"| LOGIN
+    V_HIST_LIST -.->|"Enlace 'Cerrar sesión'"| LOGIN
+    V_REG_ATEN -.->|"Enlace 'Cerrar sesión'"| LOGIN
+    A_SERV_LIST -.->|"Enlace 'Cerrar sesión'"| LOGIN
+    A_VET_LIST -.->|"Enlace 'Cerrar sesión'"| LOGIN
+    A_REC_LIST -.->|"Enlace 'Cerrar sesión'"| LOGIN
+    A_AUD_LIST -.->|"Enlace 'Cerrar sesión'"| LOGIN
