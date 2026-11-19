@@ -9,324 +9,111 @@
     <link rel="stylesheet" href="../../css/estilos.css">
     <link rel="stylesheet" href="../../css/paginas/veterinario.css">
 </head>
-
 <body>
-
 <header class="encabezado">
     <div class="contenedor encabezado__interior">
-
         <!-- Marca -->
         <a href="veterinario-agenda-lista.html" class="marca">
             <span class="marca__simbolo">V</span>
             <span>VetCare</span>
         </a>
-
         <!-- Navegación -->
         <div class="navegacion navegacion--barra">
-
             <!-- Usuario -->
             <div class="usuario-sesion">
                 <div class="usuario-avatar" title="Dr. Mateo Ríos">M</div>
-
                 <div class="usuario-info">
                     <span class="usuario-nombre">Dr. Mateo Ríos</span>
                     <span class="usuario-rol">Veterinario</span>
                 </div>
             </div>
-
             <nav class="barra-navegacion" aria-label="Navegación de veterinario">
-
-                <a href="veterinario-agenda-lista.html">
-                    Agenda del día
-                </a>
-
-                <a href="veterinario-historial-clinico.html"
-                   aria-current="page">
-                    Historia clínica
-                </a>
-
-                <a href="veterinario-registrar-atencion.html">
-                    Registrar atención
-                </a>
-
-                <a href="../../index.html">
-                    Cerrar sesión
-                </a>
-
+                <a href="../veterinario/veterinario-agenda-lista.html">Agenda del día</a>
+                <a href="../veterinario/veterinario-historial-clinico.html" aria-current="page">Historia clínica</a>
+                <a href="../../index.html">Cerrar sesión</a>
             </nav>
-
         </div>
     </div>
 </header>
 
-
 <main class="contenedor seccion-principal">
-
     <!-- Encabezado -->
     <div class="encabezado-pagina">
-
-        <h1 class="titulo-pagina">
-            Historia clínica
-        </h1>
-
-        <p class="texto-secundario">
-            Consulta el historial de atenciones médicas de las mascotas registradas.
-        </p>
-
+        <h1 class="titulo-pagina">Historia clínica</h1>
+        <p class="texto-secundario">Consulta el historial de atenciones médicas de las mascotas registradas.</p>
     </div>
-
 
     <!-- Buscador -->
     <div class="barra-acciones espacio-abajo">
-
-        <form class="buscador"
-              action="veterinario-historial-clinico.html"
-              method="get">
-
+        <form class="buscador" action="veterinario-historial-clinico.html" method="get">
             <div class="campo">
-
-                <label for="buscar">
-                    Buscar mascota
-                </label>
-
-                <input
-                    id="buscar"
-                    name="q"
-                    type="search"
-                    maxlength="60"
-                    placeholder="Nombre, N.º HC o cédula del propietario"
-                    aria-describedby="ayuda-busqueda">
-
-                <small id="ayuda-busqueda">Máximo 60 caracteres. Puedes buscar por mascota, N.º HC o cédula del propietario.</small>
-
+                <label for="buscar">Buscar mascota</label>
+                <input id="buscar" name="q" type="search" placeholder="Nombre, N.º HC o propietario">
             </div>
-
-            <button class="boton" type="submit">
-                Buscar
-            </button>
-
+            <button class="boton" type="submit">Buscar</button>
         </form>
-
     </div>
-
 
     <!-- Tabla -->
     <div class="tabla-contenedor">
-
         <table class="tabla tabla--listado">
-
-            <caption>
-                Mascotas registradas
-            </caption>
-
+            <caption>Mascotas registradas</caption>
             <thead>
-
                 <tr>
-
-                    <th scope="col">
-                        N.º HC
-                    </th>
-
-                    <th scope="col">
-                        Mascota
-                    </th>
-
-                    <th scope="col">
-                        Especie
-                    </th>
-
-                    <th scope="col">
-                        Raza
-                    </th>
-
-                    <th scope="col">
-                        Propietario
-                    </th>
-
-                    <th scope="col">
-                        Estado
-                    </th>
-
-                    <th scope="col">
-                        Acciones
-                    </th>
-
+                    <th scope="col">N.º HC</th>
+                    <th scope="col">Mascota</th>
+                    <th scope="col">Especie</th>
+                    <th scope="col">Raza</th>
+                    <th scope="col">Propietario</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col">Acciones</th>
                 </tr>
-
             </thead>
 
-
             <tbody>
-
                 <tr>
-
-                    <td>
-                        <strong>HC-001</strong>
-                    </td>
-
-                    <td>
-                        Luna
-                    </td>
-
-                    <td>
-                        Canina
-                    </td>
-
-                    <td>
-                        Labrador
-                    </td>
-
-                    <td>
-                        María Torres <small>CI: 0105489632</small>
-                    </td>
-
-                    <td>
-                        <span class="estado estado--programada">
-                            Activa
-                        </span>
-                    </td>
-
-                    <td>
-
-                        <a href="veterinario-historia-clinica-detalle.html#historia-luna">
-                            Ver historia clínica
-                        </a>
-
-                    </td>
-
+                    <td><strong>HC-001</strong></td>
+                    <td>Luna</td>
+                    <td>Canina</td>
+                    <td>Labrador</td>
+                    <td>María Torres</td>
+                    <td><span class="estado estado--programada">Activa</span></td>
+                    <td><a href="veterinario-historia-clinica-detalle.html">Ver historia clínica</a></td>
                 </tr>
 
-
                 <tr>
-
-                    <td>
-                        <strong>HC-002</strong>
-                    </td>
-
-                    <td>
-                        Max
-                    </td>
-
-                    <td>
-                        Canina
-                    </td>
-
-                    <td>
-                        Golden Retriever
-                    </td>
-
-                    <td>
-                        Carlos Mendoza <small>CI: 0912345678</small>
-                    </td>
-
-                    <td>
-                        <span class="estado estado--programada">
-                            Activa
-                        </span>
-                    </td>
-
-                    <td>
-
-                        <a href="veterinario-historia-clinica-detalle.html#historia-max">
-                            Ver historia clínica
-                        </a>
-
-                    </td>
-
+                    <td><strong>HC-002</strong></td>
+                    <td>Max</td>
+                    <td>Canina</td>
+                    <td>Golden Retriever</td>
+                    <td>Carlos Mendoza</td>
+                    <td><span class="estado estado--programada">Activa</span></td>
+                    <td><a href="veterinario-historia-clinica-detalle.html">Ver historia clínica</a></td>
                 </tr>
 
-
                 <tr>
-
-                    <td>
-                        <strong>HC-003</strong>
-                    </td>
-
-                    <td>
-                        Milo
-                    </td>
-
-                    <td>
-                        Felina
-                    </td>
-
-                    <td>
-                        Mestizo
-                    </td>
-
-                    <td>
-                        Ana Gómez <small>CI: 0107896541</small>
-                    </td>
-
-                    <td>
-                        <span class="estado estado--programada">
-                            Activa
-                        </span>
-                    </td>
-
-                    <td>
-
-                        <a href="veterinario-historia-clinica-detalle.html#historia-milo">
-                            Ver historia clínica
-                        </a>
-
-                    </td>
-
+                    <td><strong>HC-003</strong></td>
+                    <td>Milo</td>
+                    <td>Felina</td>
+                    <td>Mestizo</td>
+                    <td>Ana Gómez</td>
+                    <td><span class="estado estado--programada">Activa</span></td>
+                    <td><a href="veterinario-historia-clinica-detalle.html">Ver historia clínica</a></td>
                 </tr>
 
-
                 <tr>
-
-                    <td>
-                        <strong>HC-004</strong>
-                    </td>
-
-                    <td>
-                        Kiara
-                    </td>
-
-                    <td>
-                        Canina
-                    </td>
-
-                    <td>
-                        Poodle
-                    </td>
-
-                    <td>
-                        Sofía Herrera <small>CI: 0703652148</small>
-                    </td>
-
-                    <td>
-                        <span class="estado estado--inactiva">
-                            Inactiva
-                        </span>
-                    </td>
-
-                    <td>
-
-                        <a href="veterinario-historia-clinica-detalle.html#historia-kiara">
-                            Ver historia clínica
-                        </a>
-
-                    </td>
-
+                    <td><strong>HC-004</strong></td>
+                    <td>Kiara</td>
+                    <td>Canina</td>
+                    <td>Poodle</td>
+                    <td>Sofía Herrera</td>
+                    <td><span class="estado estado--inactiva">Inactiva</span></td>
+                    <td><a href="veterinario-historia-clinica-detalle.html">Ver historia clínica</a></td>
                 </tr>
-
             </tbody>
-
         </table>
-
     </div>
-
-    <details class="estado-vacio espacio-arriba">
-        <summary>Vista alternativa: no hay coincidencias</summary>
-        <p class="mensaje">No se encontraron mascotas con ese término. Prueba con el nombre, N.º HC o cédula del propietario.</p>
-    </details>
-
 </main>
-
-
 <footer class="contenedor pie">
     VetCare · Clínica Veterinaria Huellitas
 </footer>

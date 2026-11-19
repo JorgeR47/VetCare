@@ -71,8 +71,14 @@
 
 .confirmacion {
     max-width: 500px;
+    padding: 28px;
     margin: 0 auto;
     text-align: center;
+}
+
+.confirmacion--compacta {
+    max-width: 100%;
+    padding: 24px;
 }
 
 .confirmacion__icono {
@@ -123,39 +129,6 @@
   color: #795b12;
 }
 
-.estado-vacio {
-  padding: 14px 16px;
-  border: 1px dashed var(--color-borde);
-  border-radius: var(--radio-control);
-  background: var(--color-superficie);
-}
-
-.estado-vacio summary {
-  color: var(--color-principal-oscuro);
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.estado-vacio .mensaje {
-  margin: 12px 0 0;
-}
-
-.historia-mascota {
-  display: none;
-}
-
-.historia-mascota--predeterminada {
-  display: block;
-}
-
-.historia-detalle:has(.historia-mascota:target) .historia-mascota--predeterminada {
-  display: none;
-}
-
-.historia-mascota:target {
-  display: block;
-}
-
 .historia-detalle .tabla {
   min-width: 950px;
 }
@@ -184,38 +157,24 @@
   padding: 22px;
 }
 
-.confirmacion-modal {
-  display: none;
-  position: fixed;
-  inset: 0;
-  z-index: 1000;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  background: var(--color-velo-modal);
+/* El formulario se muestra dentro del modal sin la navegación global. */
+.registro-atencion .datos > div {
+  min-width: 0;
 }
 
-.confirmacion-modal:target {
-  display: flex;
+.modal--notificacion {
+  padding: 24px 16px;
 }
 
-/* Si se intenta confirmar con datos inválidos, deja visible el formulario para corregirlos. */
-body:has(#formulario-atencion :user-invalid) .confirmacion-modal:target {
-  display: none;
+.modal__ventana--notificacion {
+  max-width: 570px;
 }
 
-.confirmacion-modal__contenido {
-  width: min(100%, 500px);
-  padding: 28px;
+.modal__ventana--notificacion iframe {
+  height: 100px;
 }
 
-/* En el iframe angosto del modal se muestra el formulario sin la navegación global. */
 @media (max-width: 768px) {
-  .encabezado,
-  body > .pie {
-    display: none;
-  }
-
   .seccion-principal {
     padding: 18px 0;
   }
@@ -226,6 +185,18 @@ body:has(#formulario-atencion :user-invalid) .confirmacion-modal:target {
 
   .registro-atencion {
     padding: 16px;
+  }
+
+  .modal--notificacion {
+    padding: 16px 12px;
+  }
+
+  .modal__ventana--notificacion iframe {
+    height: 320px;
+  }
+
+  .confirmacion--compacta {
+    padding: 20px;
   }
 }
 
@@ -238,7 +209,3 @@ body:has(#formulario-atencion :user-invalid) .confirmacion-modal:target {
 }
 
 
-/* Texto */
-.confirmacion__texto {
-    margin-bottom: 24px;
-}
