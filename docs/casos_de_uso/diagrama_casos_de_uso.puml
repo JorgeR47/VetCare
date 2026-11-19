@@ -1,169 +1,121 @@
 @startuml diagrama_casos_de_uso
-' ==============================================================================
-' VetCare — Diagrama de Casos de Uso (UML 2.5)
-' Clínica Veterinaria "Huellitas" · Aplicaciones Web (GR2SW) · EPN
-' Docente: Ing. Carlos Iñiguez · Fecha: 18/11/2026
-' Cobertura completa de los 14 Casos de Uso (CU-01 a CU-14)
-' ==============================================================================
+' VetCare · Diagrama de casos de uso
+' Cubre los casos CU-01 a CU-14 definidos en el documento de casos de uso.
 
-title Figura 1. Diagrama de Casos de Uso de VetCare (UML 2.5)
-
+title Casos de uso de VetCare
 left to right direction
+
 skinparam shadowing false
-skinparam defaultFontName "Segoe UI, Arial, sans-serif"
 skinparam packageStyle rectangle
-skinparam nodesep 28
-skinparam ranksep 60
+skinparam linetype ortho
+skinparam nodesep 35
+skinparam ranksep 55
+skinparam defaultFontName "Segoe UI"
+skinparam defaultFontSize 13
+skinparam ArrowColor #475569
+skinparam ArrowFontColor #334155
+skinparam ActorBorderColor #334155
+skinparam ActorFontColor #0F172A
+skinparam UsecaseBorderColor #2563EB
+skinparam UsecaseBackgroundColor #F8FAFC
+skinparam UsecaseFontColor #0F172A
+skinparam PackageBorderColor #94A3B8
+skinparam PackageBackgroundColor #FFFFFF
+skinparam PackageFontColor #1E293B
 
-' Estilos generales
-skinparam actor {
-    BackgroundColor #FFFFFF
-    BorderColor #1E293B
-    FontColor #0F172A
-    FontSize 13
-}
+' Actores externos
+actor "Usuario autenticado" as Usuario <<abstract>>
+actor Recepcionista as Recepcionista
+actor Veterinario as Veterinario
+actor Administrador as Administrador
 
-skinparam usecase {
-    BackgroundColor #FFFFFF
-    BorderColor #2563EB
-    FontColor #0F172A
-    FontSize 12
-    ArrowColor #334155
-    ArrowFontSize 10
-}
-
-skinparam package {
-    BackgroundColor #F8FAFC
-    BorderColor #94A3B8
-    FontColor #1E293B
-    FontStyle bold
-    FontSize 13
-}
-
-skinparam rectangle {
-    BackgroundColor #FFFFFF
-    BorderColor #0F172A
-    BorderThickness 1.5
-    FontSize 14
-    FontStyle bold
-}
-
-' ------------------------------------------------------------------------------
-' ACTORES
-' ------------------------------------------------------------------------------
-actor "Usuario\nAutenticado" as Usuario <<abstracto>> #F1F5F9
-actor "Recepcionista" as Recepcionista #D1FAE5
-actor "Veterinario" as Veterinario #EDE9FE
-actor "Administrador" as Administrador #FFEDD5
-
-' Actores secundarios / externos
-actor "Sistema" as Sistema <<secundario>> #E0F2FE
-actor "Propietario" as Propietario <<interesado>> #F3F4F6
-
-' Generalización de usuarios (herencia de acceso CU-01)
+' Generalización de roles: todo el personal accede mediante CU-01.
 Usuario <|-- Recepcionista
 Usuario <|-- Veterinario
 Usuario <|-- Administrador
 
-' ------------------------------------------------------------------------------
-' LÍMITE DEL SISTEMA: VETCARE
-' ------------------------------------------------------------------------------
-rectangle "VetCare — Sistema de Gestión Veterinaria" {
-
-    package "M1 · Control de Acceso" {
+rectangle "Sistema de gestión veterinaria VetCare" {
+    package "M1 · Acceso" {
         usecase "CU-01\nIniciar sesión" as CU01
     }
 
-    package "M2 · Gestión de Propietarios" {
+    package "M2 · Propietarios" {
         usecase "CU-02\nGestionar propietarios" as CU02
     }
 
-    package "M3 · Gestión de Mascotas" {
+    package "M3 · Mascotas" {
         usecase "CU-03\nGestionar mascotas" as CU03
     }
 
-    package "M4 · Gestión de Citas y Turnos" {
+    package "M4 · Citas y turnos" {
         usecase "CU-04\nAgendar cita" as CU04
         usecase "CU-05\nGestionar citas" as CU05
         usecase "CU-14\nConsultar disponibilidad\nde turnos" as CU14
     }
 
-    package "M5 · Atención Médica e Historial" {
+    package "M5 · Atención clínica" {
         usecase "CU-06\nConsultar agenda del día" as CU06
         usecase "CU-07\nRegistrar atención médica" as CU07
         usecase "CU-08\nConsultar historia clínica" as CU08
     }
 
-    package "M6 · Administración de Personal" {
+    package "M6 · Administración" {
         usecase "CU-09\nGestionar veterinarios" as CU09
         usecase "CU-11\nGestionar recepcionistas" as CU11
-        usecase "CU-12\nConsultar bitácora\nde auditoría" as CU12
+        usecase "CU-12\nConsultar bitácora de auditoría" as CU12
     }
 
-    package "M7 · Catálogo de Servicios" {
+    package "M7 · Servicios" {
         usecase "CU-10\nGestionar servicios" as CU10
-        usecase "CU-13\nConsultar catálogo\nde servicios" as CU13
+        usecase "CU-13\nConsultar catálogo de servicios" as CU13
     }
 }
 
-' ------------------------------------------------------------------------------
-' ASOCIACIONES ACTOR -> CASO DE USO
-' ------------------------------------------------------------------------------
-' Acceso común heredado
-Usuario --> CU01
+' Asociaciones actor-caso de uso según los actores definidos para cada caso.
+Usuario -- CU01
 
-' Recepcionista
-Recepcionista --> CU02
-Recepcionista --> CU03
-Recepcionista --> CU04
-Recepcionista --> CU05
-Recepcionista --> CU13
-Recepcionista --> CU14
+Recepcionista -- CU02
+Recepcionista -- CU03
+Recepcionista -- CU04
+Recepcionista -- CU05
+Recepcionista -- CU13
+Recepcionista -- CU14
 
-' Veterinario
-Veterinario --> CU06
-Veterinario --> CU07
-Veterinario --> CU08
+Veterinario -- CU06
+Veterinario -- CU07
+Veterinario -- CU08
 
-' Administrador
-Administrador --> CU09
-Administrador --> CU10
-Administrador --> CU11
-Administrador --> CU12
+Administrador -- CU09
+Administrador -- CU10
+Administrador -- CU11
+Administrador -- CU12
 
-' Sistema automático (tareas de cierre a las 23:59 y logs de auditoría)
-Sistema --> CU05
-Sistema --> CU12
+' Relaciones entre casos de uso.
+CU04 ..> CU14 : <<include>>
+CU07 ..> CU06 : <<extend>>\n(opción desde la agenda)
 
-' Propietario (beneficiario externo)
-Propietario ..> CU04 : solicita cita
-Propietario ..> CU13 : consulta tarifas
+' Comportamientos automáticos internos: no son actores externos de VetCare.
+note right of CU03
+  Al registrar una mascota,
+  el sistema crea su historia clínica.
+end note
 
-' ------------------------------------------------------------------------------
-' RELACIONES <<include>> Y <<extend>>
-' ------------------------------------------------------------------------------
-' Agendar cita incluye obligatoriamente verificar disponibilidad de turnos
-CU04 .> CU14 : <<include>>
+note right of CU04
+  Al finalizar el día, una cita
+  sin atención pasa a No asistió.
+end note
 
-' Registrar atención extiende la consulta de agenda (desde el detalle de la cita)
-CU07 .> CU06 : <<extend>>\n(desde detalle)
+note right of CU12
+  La bitácora también muestra
+  el cambio automático a No asistió.
+end note
 
-' Agendar cita puede ejecutarse como extensión desde el listado de citas
-CU04 .> CU05 : <<extend>>\n(desde listado)
-
-' Registrar mascota crea automáticamente la historia clínica consultable en CU-08
-CU03 .> CU08 : <<extend>>\n(crea historia clínica)
-
-' ------------------------------------------------------------------------------
-' NOTAS Y LEYENDA UML
-' ------------------------------------------------------------------------------
 legend bottom
-    **Convenciones UML 2.5:**
-    * **Actor abstracto (Usuario):** Define el inicio de sesión único (CU-01) heredado por Recepcionista, Veterinario y Administrador.
-    * **<<include>>:** El agendamiento (CU-04) incluye indispensablemente la verificación de disponibilidad (CU-14).
-    * **<<extend>>:** Puntos de extensión opcionales o condicionales entre casos de uso (CU-07 desde CU-06; CU-04 desde CU-05).
-    * **Sistema:** Actor secundario automático que ejecuta el cambio a 'No asistió' a las 23:59 y registra auditoría.
-    * **Fuera de alcance:** Pagos en línea, notificaciones SMS/correo y facturación electrónica SRI.
+  **Relaciones UML**
+  <<include>>: CU-04 consulta la disponibilidad de turnos de CU-14.
+  <<extend>>: CU-07 puede iniciarse desde una cita de la agenda de CU-06.
+  Los cambios automáticos descritos en notas ocurren dentro de VetCare;
+  no se modelan como actores externos.
 endlegend
 
 @enduml
