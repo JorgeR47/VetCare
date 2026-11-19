@@ -1,23 +1,118 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Editar mascota | VetCare</title>
-<link rel="stylesheet" href="../../../css/estilos.css">
-<link rel="stylesheet" href="../../../css/paginas/recepcionista.css">
-</head>
-<body>
-<a class="salto" href="#contenido">Saltar al contenido</a>
-<header class="encabezado"><div class="contenedor encabezado__interior"><a class="marca" href="../recepcionista_inicio.html"><span class="marca__simbolo" aria-hidden="true">V</span>VetCare</a><div class="navegacion--barra"><div class="usuario-sesion"><div class="usuario-avatar" aria-hidden="true">R</div><div class="usuario-info"><span class="usuario-nombre">Recepción</span><span class="usuario-rol">recepcionista</span></div></div><nav class="barra-navegacion" aria-label="Navegación de recepción"><a href="../cita/cita_listado.html">Citas</a><a href="../propietario/propietario_listado.html">Propietarios</a><a href="../servicios/servicio_listado.html">Servicios</a><a href="../mascota/mascota_listado.html" aria-current="page">Mascotas</a><a href="../../../index.html">Cerrar sesión</a></nav></div></div></header>
-<div class="contenedor disposicion">
-<main id="contenido">
-<div class="encabezado-pagina"><h1 class="titulo-pagina">Editar mascota</h1><p class="texto-secundario">El N.º HC no se modifica. El propietario solo puede cambiarse a otro ya registrado.</p></div><article class="tarjeta panel"><h2>Formulario de edición de mascota</h2>
 
-    <form class="formulario" action="mascota_listado.html#editada" method="get"><fieldset><legend>Historia clínica</legend><div class="campo"><label for="hc">N.º HC</label><input id="hc" type="text" value="HC-0001" readonly></div></fieldset><fieldset><legend>Propietario</legend><div class="campo"><label for="propietario">Propietario</label><input id="propietario" type="search" list="propietarios" required autocomplete="off" placeholder="Cédula o apellidos" value="1712345678 - Pérez Marcela"><datalist id="propietarios"><option value="1712345678 - Pérez Marcela"><option value="1798765432 - Andrade Carlos"></datalist></div></fieldset><fieldset class="rejilla"><legend>Datos de la mascota</legend><div class="campo"><label for="nombre">Nombre de la mascota</label><input id="nombre" type="text" required minlength="2" maxlength="40" pattern="[A-Za-zÁÉÍÓÚÜÑáéíóúüñ' \-]{2,40}" title="Solo letras, espacios, apóstrofe o guion, entre 2 y 40 caracteres. Ejemplo: Firulais" placeholder="Ej.: Firulais" autocomplete="off" value="Firulais"></div><div class="campo"><label for="especie">Especie</label><select id="especie" required><option value="">Seleccione una especie</option><option value="Perro" selected>Perro</option><option value="Gato">Gato</option><option value="Ave">Ave</option><option value="Roedor">Roedor</option><option value="Otro">Otro</option></select></div><div class="campo campo-otra"><label for="otra">Especifique la especie</label><input id="otra" type="text" maxlength="40" placeholder="Solo si eligió Otro" autocomplete="off"></div><div class="campo"><label for="raza">Raza (opcional)</label><input id="raza" type="text" list="razas" maxlength="40" autocomplete="off" placeholder="Ej.: Labrador" value="Labrador"><datalist id="razas"><option value="Labrador"><option value="Siamés"><option value="Mestizo"></datalist></div><fieldset class="sin-borde"><legend>Sexo</legend><div class="opciones"><div class="opcion"><input id="sexo-macho" type="radio" name="sexo" value="Macho" required checked><label for="sexo-macho">Macho</label></div><div class="opcion"><input id="sexo-hembra" type="radio" name="sexo" value="Hembra"><label for="sexo-hembra">Hembra</label></div></div></fieldset><div class="campo"><label for="nac">Fecha de nacimiento</label><input id="nac" type="date" required min="2000-01-01" max="2026-11-17" value="2020-05-14"></div><div class="campo"><label for="peso">Peso (kg)</label><input id="peso" type="number" required min="0.1" max="120" step="0.1" placeholder="Ej.: 12.5" value="28.5"></div><fieldset class="sin-borde"><legend>Esterilizada</legend><div class="opcion"><input id="esterilizada" type="checkbox" checked><label for="esterilizada">La mascota está esterilizada</label></div></fieldset></fieldset><fieldset><legend>Observaciones</legend><div class="campo"><label for="obs">Observaciones (opcional)</label><textarea id="obs" maxlength="300" autocomplete="off" placeholder="Alergias, cuidados, comportamiento…">Alérgico a la penicilina.</textarea></div></fieldset><div class="botonera"><button class="boton" type="submit">Guardar cambios</button><a class="boton boton--secundario" href="mascota_listado.html">Cancelar</a></div></form></article>
-</main>
-<aside class="aside" aria-labelledby="t-aside"><h2 id="t-aside">Validaciones</h2><ul><li>El nombre admite solo letras, espacios, apóstrofe o guion.</li><li>Con la especie Otro, complete “Especifique la especie”.</li><li>No puede existir otra mascota con el mismo propietario, nombre y especie.</li></ul></aside>
-</div>
-<footer class="pie contenedor"><p>VetCare · Sistema de recepción</p></footer>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Editar mascota | VetCare</title>
+    <link rel="stylesheet" href="../../../css/estilos.css">
+    <link rel="stylesheet" href="../../../css/paginas/recepcionista.css">
+</head>
+
+<body>
+    <a class="salto" href="#contenido">Saltar al contenido</a>
+    <header class="encabezado">
+        <div class="contenedor encabezado__interior"><a class="marca" href="../recepcionista_inicio.html"><span
+                    class="marca__simbolo" aria-hidden="true">V</span>VetCare</a>
+            <div class="navegacion--barra">
+                <div class="usuario-sesion">
+                    <div class="usuario-avatar" aria-hidden="true">R</div>
+                    <div class="usuario-info"><span class="usuario-nombre">Recepción</span><span
+                            class="usuario-rol">recepcionista</span></div>
+                </div>
+                <nav class="barra-navegacion" aria-label="Navegación de recepción"><a
+                        href="../cita/cita_listado.html">Citas</a><a
+                        href="../propietario/propietario_listado.html">Propietarios</a><a
+                        href="../servicios/servicio_listado.html">Servicios</a><a href="../mascota/mascota_listado.html"
+                        aria-current="page">Mascotas</a><a href="../../../index.html">Cerrar sesión</a></nav>
+            </div>
+        </div>
+    </header>
+    <div class="contenedor disposicion">
+        <main id="contenido">
+            <div class="encabezado-pagina">
+                <h1 class="titulo-pagina">Editar mascota</h1>
+                <p class="texto-secundario">El N.º HC no se modifica. El propietario solo puede cambiarse a otro ya
+                    registrado.</p>
+            </div>
+            <article class="tarjeta panel">
+                <h2>Formulario de edición de mascota</h2>
+
+                <form class="formulario" action="mascota_listado.html#editada" method="get">
+                    <fieldset>
+                        <legend>Historia clínica</legend>
+                        <div class="campo"><label for="hc">N.º HC</label><input id="hc" type="text" value="HC-0001"
+                                readonly></div>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Propietario</legend>
+                        <div class="campo"><label for="propietario">Propietario</label><input id="propietario"
+                                type="search" list="propietarios" required autocomplete="off"
+                                placeholder="Cédula o apellidos" value="1712345678 - Pérez Marcela"><datalist
+                                id="propietarios">
+                                <option value="1712345678 - Pérez Marcela">
+                                <option value="1798765432 - Andrade Carlos">
+                            </datalist></div>
+                    </fieldset>
+                    <fieldset class="rejilla">
+                        <legend>Datos de la mascota</legend>
+                        <div class="campo"><label for="nombre">Nombre de la mascota</label><input id="nombre"
+                                type="text" required minlength="2" maxlength="40"
+                                pattern="[A-Za-zÁÉÍÓÚÜÑáéíóúüñ' \-]{2,40}"
+                                title="Solo letras, espacios, apóstrofe o guion, entre 2 y 40 caracteres. Ejemplo: Firulais"
+                                placeholder="Ej.: Firulais" autocomplete="off" value="Firulais"></div>
+                        <div class="campo"><label for="especie">Especie</label><select id="especie" required>
+                                <option value="">Seleccione una especie</option>
+                                <option value="Perro" selected>Perro</option>
+                                <option value="Gato">Gato</option>
+                                <option value="Ave">Ave</option>
+                                <option value="Roedor">Roedor</option>
+                                <option value="Otro">Otro</option>
+                            </select></div>
+                        <div class="campo campo-otra"><label for="otra">Especifique la especie</label><input id="otra"
+                                type="text" maxlength="40" placeholder="Solo si eligió Otro" autocomplete="off"></div>
+                        <div class="campo"><label for="raza">Raza (opcional)</label><input id="raza" type="text"
+                                list="razas" maxlength="40" autocomplete="off" placeholder="Ej.: Labrador"
+                                value="Labrador"><datalist id="razas">
+                                <option value="Labrador">
+                                <option value="Siamés">
+                                <option value="Mestizo">
+                            </datalist></div>
+                        <fieldset class="sin-borde">
+                            <legend>Sexo</legend>
+                            <div class="opciones">
+                                <div class="opcion"><input id="sexo-macho" type="radio" name="sexo" value="Macho"
+                                        required checked><label for="sexo-macho">Macho</label></div>
+                                <div class="opcion"><input id="sexo-hembra" type="radio" name="sexo"
+                                        value="Hembra"><label for="sexo-hembra">Hembra</label></div>
+                            </div>
+                        </fieldset>
+                        <div class="campo"><label for="nac">Fecha de nacimiento</label><input id="nac" type="date"
+                                required min="2000-01-01" max="2026-11-17" value="2020-05-14"></div>
+                        <div class="campo"><label for="peso">Peso (kg)</label><input id="peso" type="number" required
+                                min="0.1" max="120" step="0.1" placeholder="Ej.: 12.5" value="28.5"></div>
+                        <fieldset class="sin-borde">
+                            <legend>Esterilizada</legend>
+                            <div class="opcion"><input id="esterilizada" type="checkbox" checked><label
+                                    for="esterilizada">La mascota está esterilizada</label></div>
+                        </fieldset>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Observaciones</legend>
+                        <div class="campo"><label for="obs">Observaciones (opcional)</label><textarea id="obs"
+                                maxlength="300" autocomplete="off"
+                                placeholder="Alergias, cuidados, comportamiento…">Alérgico a la penicilina.</textarea>
+                        </div>
+                    </fieldset>
+                    <div class="botonera"><button class="boton" type="submit">Guardar cambios</button><a
+                            class="boton boton--secundario" href="mascota_listado.html">Cancelar</a></div>
+                </form>
+            </article>
+        </main>
+    </div>
+    <footer class="pie contenedor">
+        <p>VetCare · Sistema de recepción</p>
+    </footer>
 </body>
+
 </html>
