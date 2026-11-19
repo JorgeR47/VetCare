@@ -6,14 +6,21 @@ config:
     mergeEdges: false
     nodePlacementStrategy: NETWORK_SIMPLEX
   theme: base
+  themeCSS: ".titleText, .nodeLabel, .nodeLabel *, .edgeLabel, .edgeLabel *, .cluster-label, .cluster-label *, .label, .label * { color: #000000 !important; fill: #000000 !important; }"
   themeVariables:
     fontFamily: "Segoe UI, Helvetica, Arial, sans-serif"
     fontSize: 14px
+    primaryTextColor: "#000000"
+    secondaryTextColor: "#000000"
+    tertiaryTextColor: "#000000"
+    textColor: "#000000"
+    nodeTextColor: "#000000"
+    labelTextColor: "#000000"
     lineColor: "#475569"
     edgeLabelBackground: "#FFFFFF"
     clusterBkg: "#F8FAFC"
     clusterBorder: "#CBD5E1"
-    titleColor: "#0F172A"
+    titleColor: "#000000"
   flowchart:
     curve: linear
     htmlLabels: true
@@ -24,16 +31,12 @@ config:
     wrappingWidth: 220
 ---
 flowchart LR
-    %% Mapa de navegación a nivel de negocio: solo nombres de páginas y botones.
-
-    START((" "))
+    %% Mapa de navegación a nivel de negocio: solo pantallas y nombres de botones o enlaces.
 
     LOGIN["Inicio de sesión"]
-    ROLE{"Rol seleccionado"}
 
     subgraph RECEPCION["Recepcionista"]
         direction LR
-        MENU_R["Barra de navegación<br/>del recepcionista"]
 
         subgraph PROPIETARIOS["Propietarios"]
             direction LR
@@ -70,7 +73,6 @@ flowchart LR
 
     subgraph VETERINARIO["Veterinario"]
         direction LR
-        MENU_V["Barra de navegación<br/>del veterinario"]
 
         subgraph AGENDA["Agenda y atención"]
             direction LR
@@ -90,7 +92,6 @@ flowchart LR
 
     subgraph ADMINISTRADOR["Administrador"]
         direction LR
-        MENU_A["Barra de navegación<br/>del administrador"]
 
         subgraph SERVICIOS_A["Catálogo de servicios"]
             direction LR
@@ -127,18 +128,27 @@ flowchart LR
     end
 
     %% ── Inicio de sesión ──
-    START --> LOGIN
-    LOGIN -->|"Ingresar al sistema"| ROLE
-    ROLE -->|"Recepcionista"| P_L
-    ROLE -->|"Veterinario"| V_AG
-    ROLE -->|"Administrador"| A_SL
+    LOGIN -->|"Ingresar al sistema"| P_L
+    LOGIN -->|"Ingresar al sistema"| V_AG
+    LOGIN -->|"Ingresar al sistema"| A_SL
 
-    %% ── Recepcionista: barra de navegación ──
-    MENU_R -->|"Propietarios"| P_L
-    MENU_R -->|"Mascotas"| M_L
-    MENU_R -->|"Citas"| C_L
-    MENU_R -->|"Servicios"| S_R
-    MENU_R -.->|"Cerrar sesión"| LOGIN
+    %% ── Recepcionista: enlaces de la barra entre pantallas principales ──
+    P_L -->|"Mascotas"| M_L
+    P_L -->|"Citas"| C_L
+    P_L -->|"Servicios"| S_R
+    M_L -->|"Propietarios"| P_L
+    M_L -->|"Citas"| C_L
+    M_L -->|"Servicios"| S_R
+    C_L -->|"Propietarios"| P_L
+    C_L -->|"Mascotas"| M_L
+    C_L -->|"Servicios"| S_R
+    S_R -->|"Propietarios"| P_L
+    S_R -->|"Mascotas"| M_L
+    S_R -->|"Citas"| C_L
+    P_L -.->|"Cerrar sesión"| LOGIN
+    M_L -.->|"Cerrar sesión"| LOGIN
+    C_L -.->|"Cerrar sesión"| LOGIN
+    S_R -.->|"Cerrar sesión"| LOGIN
 
     %% ── Propietarios ──
     P_L -->|"Buscar"| P_L
@@ -191,10 +201,13 @@ flowchart LR
     %% ── Servicios (consulta) ──
     S_R -->|"Buscar"| S_R
 
-    %% ── Veterinario: barra de navegación ──
-    MENU_V -->|"Agenda del día"| V_AG
-    MENU_V -->|"Historia clínica"| V_HC
-    MENU_V -.->|"Cerrar sesión"| LOGIN
+    %% ── Veterinario: enlaces de la barra entre pantallas principales ──
+    V_AG -->|"Historia clínica"| V_HC
+    V_HC -->|"Agenda del día"| V_AG
+    V_HCD -->|"Agenda del día"| V_AG
+    V_AG -.->|"Cerrar sesión"| LOGIN
+    V_HC -.->|"Cerrar sesión"| LOGIN
+    V_HCD -.->|"Cerrar sesión"| LOGIN
 
     %% ── Agenda y atención ──
     V_AG -->|"Consultar agenda"| V_AG
@@ -214,12 +227,23 @@ flowchart LR
     V_HCD -.->|"Volver a historias clínicas"| V_HC
     V_AD -.->|"Volver a la historia clínica"| V_HCD
 
-    %% ── Administrador: barra de navegación ──
-    MENU_A -->|"Catálogo servicios"| A_SL
-    MENU_A -->|"Personal veterinario"| A_VL
-    MENU_A -->|"Personal recepcionista"| A_RL
-    MENU_A -->|"Bitácora y auditoría"| A_BL
-    MENU_A -.->|"Cerrar sesión"| LOGIN
+    %% ── Administrador: enlaces de la barra entre pantallas principales ──
+    A_SL -->|"Personal veterinario"| A_VL
+    A_SL -->|"Personal recepcionista"| A_RL
+    A_SL -->|"Bitácora y auditoría"| A_BL
+    A_VL -->|"Catálogo servicios"| A_SL
+    A_VL -->|"Personal recepcionista"| A_RL
+    A_VL -->|"Bitácora y auditoría"| A_BL
+    A_RL -->|"Catálogo servicios"| A_SL
+    A_RL -->|"Personal veterinario"| A_VL
+    A_RL -->|"Bitácora y auditoría"| A_BL
+    A_BL -->|"Catálogo servicios"| A_SL
+    A_BL -->|"Personal veterinario"| A_VL
+    A_BL -->|"Personal recepcionista"| A_RL
+    A_SL -.->|"Cerrar sesión"| LOGIN
+    A_VL -.->|"Cerrar sesión"| LOGIN
+    A_RL -.->|"Cerrar sesión"| LOGIN
+    A_BL -.->|"Cerrar sesión"| LOGIN
 
     %% ── Catálogo de servicios ──
     A_SL -->|"Buscar"| A_SL
@@ -272,36 +296,30 @@ flowchart LR
     A_BL -->|"Ver detalle"| A_BD
     A_BD -.->|"Volver"| A_BL
 
-    %% Páginas: colores intensos con texto blanco
-    classDef login fill:#1D4ED8,stroke:#1E3A8A,stroke-width:2px,color:#FFFFFF,font-weight:bold
-    classDef rec fill:#15803D,stroke:#14532D,stroke-width:1.5px,color:#FFFFFF
-    classDef vet fill:#7C3AED,stroke:#4C1D95,stroke-width:1.5px,color:#FFFFFF
-    classDef adm fill:#EA580C,stroke:#9A3412,stroke-width:1.5px,color:#FFFFFF
-    classDef menu fill:#FACC15,stroke:#A16207,stroke-width:1.5px,color:#1F2937,font-weight:bold
-    classDef choice fill:#0EA5E9,stroke:#075985,stroke-width:1.5px,color:#FFFFFF,font-weight:bold
-    classDef inicio fill:#0F172A,stroke:#0F172A
+    %% Pantallas: colores visibles con letra negra
+    classDef login fill:#60A5FA,stroke:#1E3A8A,stroke-width:2px,color:#000000,font-weight:bold
+    classDef rec fill:#4ADE80,stroke:#166534,stroke-width:1.5px,color:#000000
+    classDef vet fill:#A78BFA,stroke:#4C1D95,stroke-width:1.5px,color:#000000
+    classDef adm fill:#FB923C,stroke:#9A3412,stroke-width:1.5px,color:#000000
     class LOGIN login
-    class ROLE choice
-    class MENU_R,MENU_V,MENU_A menu
     class P_L,P_N,P_D,P_E,P_X,M_L,M_N,M_D,M_E,M_X,C_L,C_N,C_D,C_R,C_X,S_R rec
     class V_AG,V_DC,V_RA,V_CA,V_HC,V_HCD,V_AD vet
     class A_SL,A_SN,A_SD,A_SE,A_SX,A_VL,A_VN,A_VD,A_VE,A_VX,A_RL,A_RN,A_RD,A_RE,A_RX,A_BL,A_BD adm
-    class START inicio
 
     %% Paquetes: tonos pastel
-    style RECEPCION fill:#E6F6EC,stroke:#7FC49B,stroke-width:1.5px,color:#1F2937
-    style PROPIETARIOS fill:#F3FBF6,stroke:#7FC49B,stroke-width:1px,stroke-dasharray:4 3,color:#1F2937
-    style MASCOTAS fill:#F3FBF6,stroke:#7FC49B,stroke-width:1px,stroke-dasharray:4 3,color:#1F2937
-    style CITAS fill:#F3FBF6,stroke:#7FC49B,stroke-width:1px,stroke-dasharray:4 3,color:#1F2937
-    style SERVICIOS_R fill:#F3FBF6,stroke:#7FC49B,stroke-width:1px,stroke-dasharray:4 3,color:#1F2937
-    style VETERINARIO fill:#F1EAFB,stroke:#B39DDB,stroke-width:1.5px,color:#1F2937
-    style AGENDA fill:#F8F4FD,stroke:#B39DDB,stroke-width:1px,stroke-dasharray:4 3,color:#1F2937
-    style HISTORIA fill:#F8F4FD,stroke:#B39DDB,stroke-width:1px,stroke-dasharray:4 3,color:#1F2937
-    style ADMINISTRADOR fill:#FDEEE2,stroke:#F0B48A,stroke-width:1.5px,color:#1F2937
-    style SERVICIOS_A fill:#FFF7F0,stroke:#F0B48A,stroke-width:1px,stroke-dasharray:4 3,color:#1F2937
-    style VETERINARIOS fill:#FFF7F0,stroke:#F0B48A,stroke-width:1px,stroke-dasharray:4 3,color:#1F2937
-    style RECEPCIONISTAS fill:#FFF7F0,stroke:#F0B48A,stroke-width:1px,stroke-dasharray:4 3,color:#1F2937
-    style BITACORA fill:#FFF7F0,stroke:#F0B48A,stroke-width:1px,stroke-dasharray:4 3,color:#1F2937
+    style RECEPCION fill:#E6F6EC,stroke:#7FC49B,stroke-width:1.5px,color:#000000
+    style PROPIETARIOS fill:#F3FBF6,stroke:#7FC49B,stroke-width:1px,stroke-dasharray:4 3,color:#000000
+    style MASCOTAS fill:#F3FBF6,stroke:#7FC49B,stroke-width:1px,stroke-dasharray:4 3,color:#000000
+    style CITAS fill:#F3FBF6,stroke:#7FC49B,stroke-width:1px,stroke-dasharray:4 3,color:#000000
+    style SERVICIOS_R fill:#F3FBF6,stroke:#7FC49B,stroke-width:1px,stroke-dasharray:4 3,color:#000000
+    style VETERINARIO fill:#F1EAFB,stroke:#B39DDB,stroke-width:1.5px,color:#000000
+    style AGENDA fill:#F8F4FD,stroke:#B39DDB,stroke-width:1px,stroke-dasharray:4 3,color:#000000
+    style HISTORIA fill:#F8F4FD,stroke:#B39DDB,stroke-width:1px,stroke-dasharray:4 3,color:#000000
+    style ADMINISTRADOR fill:#FDEEE2,stroke:#F0B48A,stroke-width:1.5px,color:#000000
+    style SERVICIOS_A fill:#FFF7F0,stroke:#F0B48A,stroke-width:1px,stroke-dasharray:4 3,color:#000000
+    style VETERINARIOS fill:#FFF7F0,stroke:#F0B48A,stroke-width:1px,stroke-dasharray:4 3,color:#000000
+    style RECEPCIONISTAS fill:#FFF7F0,stroke:#F0B48A,stroke-width:1px,stroke-dasharray:4 3,color:#000000
+    style BITACORA fill:#FFF7F0,stroke:#F0B48A,stroke-width:1px,stroke-dasharray:4 3,color:#000000
 
     %% Tuberías: un solo color
-    linkStyle default stroke:#475569,stroke-width:1.6px,color:#0F172A
+    linkStyle default stroke:#475569,stroke-width:1.6px,color:#000000
