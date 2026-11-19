@@ -1,0 +1,307 @@
+---
+title: Mapa de navegación · VetCare
+config:
+  layout: elk
+  elk:
+    mergeEdges: false
+    nodePlacementStrategy: NETWORK_SIMPLEX
+  theme: base
+  themeVariables:
+    fontFamily: "Segoe UI, Helvetica, Arial, sans-serif"
+    fontSize: 14px
+    lineColor: "#475569"
+    edgeLabelBackground: "#FFFFFF"
+    clusterBkg: "#F8FAFC"
+    clusterBorder: "#CBD5E1"
+    titleColor: "#0F172A"
+  flowchart:
+    curve: linear
+    htmlLabels: true
+    nodeSpacing: 70
+    rankSpacing: 110
+    padding: 24
+    diagramPadding: 24
+    wrappingWidth: 220
+---
+flowchart LR
+    %% Mapa de navegación a nivel de negocio: solo nombres de páginas y botones.
+
+    START((" "))
+
+    LOGIN["Inicio de sesión"]
+    ROLE{"Rol seleccionado"}
+
+    subgraph RECEPCION["Recepcionista"]
+        direction LR
+        MENU_R["Barra de navegación<br/>del recepcionista"]
+
+        subgraph PROPIETARIOS["Propietarios"]
+            direction LR
+            P_L["Listado de Propietarios"]
+            P_N["Registrar Propietario"]
+            P_D["Ficha del Propietario"]
+            P_E["Editar Propietario"]
+            P_X["Dar de baja propietario"]
+        end
+
+        subgraph MASCOTAS["Mascotas"]
+            direction LR
+            M_L["Mascotas"]
+            M_N["Registrar mascota"]
+            M_D["Detalle de la mascota"]
+            M_E["Editar mascota"]
+            M_X["Dar de baja a una mascota"]
+        end
+
+        subgraph CITAS["Citas"]
+            direction LR
+            C_L["Citas"]
+            C_N["Agendar cita"]
+            C_D["Detalle de la cita"]
+            C_R["Reprogramar cita"]
+            C_X["Cancelar cita"]
+        end
+
+        subgraph SERVICIOS_R["Servicios"]
+            direction LR
+            S_R["Catálogo de servicios"]
+        end
+    end
+
+    subgraph VETERINARIO["Veterinario"]
+        direction LR
+        MENU_V["Barra de navegación<br/>del veterinario"]
+
+        subgraph AGENDA["Agenda y atención"]
+            direction LR
+            V_AG["Agenda del día"]
+            V_DC["Detalle de la cita"]
+            V_RA["Registrar atención médica"]
+            V_CA["Confirmar atención"]
+        end
+
+        subgraph HISTORIA["Historia clínica"]
+            direction LR
+            V_HC["Historia clínica"]
+            V_HCD["Historia clínica de la mascota"]
+            V_AD["Detalle de atención médica"]
+        end
+    end
+
+    subgraph ADMINISTRADOR["Administrador"]
+        direction LR
+        MENU_A["Barra de navegación<br/>del administrador"]
+
+        subgraph SERVICIOS_A["Catálogo de servicios"]
+            direction LR
+            A_SL["Catálogo de Servicios"]
+            A_SN["Registrar servicio"]
+            A_SD["Detalle del servicio"]
+            A_SE["Editar servicio"]
+            A_SX["Dar de baja servicio"]
+        end
+
+        subgraph VETERINARIOS["Personal veterinario"]
+            direction LR
+            A_VL["Personal Veterinario"]
+            A_VN["Registrar veterinario"]
+            A_VD["Detalle del veterinario"]
+            A_VE["Editar veterinario"]
+            A_VX["Dar de baja veterinario"]
+        end
+
+        subgraph RECEPCIONISTAS["Personal recepcionista"]
+            direction LR
+            A_RL["Personal Recepcionista"]
+            A_RN["Registrar recepcionista"]
+            A_RD["Detalle de la recepcionista"]
+            A_RE["Editar recepcionista"]
+            A_RX["Dar de baja recepcionista"]
+        end
+
+        subgraph BITACORA["Bitácora y auditoría"]
+            direction LR
+            A_BL["Bitácora y Auditoría"]
+            A_BD["Detalle del registro"]
+        end
+    end
+
+    %% ── Inicio de sesión ──
+    START --> LOGIN
+    LOGIN -->|"Ingresar al sistema"| ROLE
+    ROLE -->|"Recepcionista"| P_L
+    ROLE -->|"Veterinario"| V_AG
+    ROLE -->|"Administrador"| A_SL
+
+    %% ── Recepcionista: barra de navegación ──
+    MENU_R -->|"Propietarios"| P_L
+    MENU_R -->|"Mascotas"| M_L
+    MENU_R -->|"Citas"| C_L
+    MENU_R -->|"Servicios"| S_R
+    MENU_R -.->|"Cerrar sesión"| LOGIN
+
+    %% ── Propietarios ──
+    P_L -->|"Buscar"| P_L
+    P_L -->|"+ Nuevo propietario"| P_N
+    P_L -->|"Ver"| P_D
+    P_L -->|"Editar"| P_E
+    P_L -->|"Dar de baja"| P_X
+    P_N -->|"Guardar propietario"| P_L
+    P_N -.->|"Cancelar"| P_L
+    P_D -->|"Editar Propietario"| P_E
+    P_D -.->|"Volver al listado"| P_L
+    P_E -->|"Guardar cambios"| P_L
+    P_E -.->|"Cancelar"| P_L
+    P_X -->|"Confirmar baja"| P_L
+    P_X -.->|"Cancelar"| P_L
+
+    %% ── Mascotas ──
+    M_L -->|"Buscar"| M_L
+    M_L -->|"Registrar mascota"| M_N
+    M_L -->|"Ver"| M_D
+    M_L -->|"Editar"| M_E
+    M_L -->|"Dar de baja"| M_X
+    M_N -->|"Guardar"| M_L
+    M_N -.->|"Cancelar"| M_L
+    M_D -->|"Editar"| M_E
+    M_D -.->|"Volver"| M_L
+    M_E -->|"Guardar cambios"| M_L
+    M_E -.->|"Cancelar"| M_L
+    M_X -->|"Confirmar baja"| M_L
+    M_X -.->|"Cancelar"| M_L
+
+    %% ── Citas ──
+    C_L -->|"Buscar"| C_L
+    C_L -->|"Consultar turnos libres"| C_L
+    C_L -->|"Agendar cita"| C_N
+    C_L -->|"Elegir horario libre"| C_N
+    C_L -->|"Ver"| C_D
+    C_L -->|"Reprogramar"| C_R
+    C_L -->|"Cancelar"| C_X
+    C_N -->|"Agendar cita"| C_L
+    C_N -.->|"Volver"| C_L
+    C_D -->|"Reprogramar"| C_R
+    C_D -->|"Cancelar cita"| C_X
+    C_D -.->|"Volver"| C_L
+    C_R -->|"Guardar cambios"| C_L
+    C_R -.->|"Volver"| C_L
+    C_X -->|"Confirmar cancelación"| C_L
+    C_X -.->|"Volver"| C_L
+
+    %% ── Servicios (consulta) ──
+    S_R -->|"Buscar"| S_R
+
+    %% ── Veterinario: barra de navegación ──
+    MENU_V -->|"Agenda del día"| V_AG
+    MENU_V -->|"Historia clínica"| V_HC
+    MENU_V -.->|"Cerrar sesión"| LOGIN
+
+    %% ── Agenda y atención ──
+    V_AG -->|"Consultar agenda"| V_AG
+    V_AG -->|"Ver detalle"| V_DC
+    V_AG -->|"Registrar atención"| V_RA
+    V_DC -.->|"Volver"| V_AG
+    V_RA -->|"Guardar atención"| V_CA
+    V_RA -.->|"Cancelar"| V_AG
+    V_CA -->|"Confirmar atención"| V_AG
+    V_CA -.->|"Continuar editando"| V_RA
+    V_CA -.->|"Cancelar"| V_AG
+
+    %% ── Historia clínica ──
+    V_HC -->|"Buscar"| V_HC
+    V_HC -->|"Ver historia clínica"| V_HCD
+    V_HCD -->|"Ver detalle"| V_AD
+    V_HCD -.->|"Volver a historias clínicas"| V_HC
+    V_AD -.->|"Volver a la historia clínica"| V_HCD
+
+    %% ── Administrador: barra de navegación ──
+    MENU_A -->|"Catálogo servicios"| A_SL
+    MENU_A -->|"Personal veterinario"| A_VL
+    MENU_A -->|"Personal recepcionista"| A_RL
+    MENU_A -->|"Bitácora y auditoría"| A_BL
+    MENU_A -.->|"Cerrar sesión"| LOGIN
+
+    %% ── Catálogo de servicios ──
+    A_SL -->|"Buscar"| A_SL
+    A_SL -->|"+ Registrar"| A_SN
+    A_SL -->|"Ver detalle"| A_SD
+    A_SL -->|"Editar"| A_SE
+    A_SL -->|"Dar de baja"| A_SX
+    A_SN -->|"Guardar"| A_SL
+    A_SN -.->|"Cancelar"| A_SL
+    A_SD -->|"Editar"| A_SE
+    A_SD -.->|"Volver"| A_SL
+    A_SE -->|"Guardar cambios"| A_SL
+    A_SE -.->|"Cancelar"| A_SL
+    A_SX -->|"Confirmar"| A_SL
+    A_SX -.->|"Cancelar"| A_SL
+
+    %% ── Personal veterinario ──
+    A_VL -->|"Buscar"| A_VL
+    A_VL -->|"+ Registrar"| A_VN
+    A_VL -->|"Ver detalle"| A_VD
+    A_VL -->|"Editar"| A_VE
+    A_VL -->|"Dar de baja"| A_VX
+    A_VN -->|"Guardar"| A_VL
+    A_VN -.->|"Cancelar"| A_VL
+    A_VD -->|"Editar"| A_VE
+    A_VD -.->|"Volver"| A_VL
+    A_VE -->|"Guardar cambios"| A_VL
+    A_VE -.->|"Cancelar"| A_VL
+    A_VX -->|"Confirmar"| A_VL
+    A_VX -.->|"Cancelar"| A_VL
+
+    %% ── Personal recepcionista ──
+    A_RL -->|"Buscar"| A_RL
+    A_RL -->|"+ Registrar"| A_RN
+    A_RL -->|"Ver detalle"| A_RD
+    A_RL -->|"Editar"| A_RE
+    A_RL -->|"Dar de baja"| A_RX
+    A_RN -->|"Guardar"| A_RL
+    A_RN -.->|"Cancelar"| A_RL
+    A_RD -->|"Editar"| A_RE
+    A_RD -.->|"Volver"| A_RL
+    A_RE -->|"Guardar cambios"| A_RL
+    A_RE -.->|"Cancelar"| A_RL
+    A_RX -->|"Confirmar"| A_RL
+    A_RX -.->|"Cancelar"| A_RL
+
+    %% ── Bitácora y auditoría ──
+    A_BL -->|"Filtrar"| A_BL
+    A_BL -->|"Limpiar filtros"| A_BL
+    A_BL -->|"Ver detalle"| A_BD
+    A_BD -.->|"Volver"| A_BL
+
+    %% Páginas: colores intensos con texto blanco
+    classDef login fill:#1D4ED8,stroke:#1E3A8A,stroke-width:2px,color:#FFFFFF,font-weight:bold
+    classDef rec fill:#15803D,stroke:#14532D,stroke-width:1.5px,color:#FFFFFF
+    classDef vet fill:#7C3AED,stroke:#4C1D95,stroke-width:1.5px,color:#FFFFFF
+    classDef adm fill:#EA580C,stroke:#9A3412,stroke-width:1.5px,color:#FFFFFF
+    classDef menu fill:#FACC15,stroke:#A16207,stroke-width:1.5px,color:#1F2937,font-weight:bold
+    classDef choice fill:#0EA5E9,stroke:#075985,stroke-width:1.5px,color:#FFFFFF,font-weight:bold
+    classDef inicio fill:#0F172A,stroke:#0F172A
+    class LOGIN login
+    class ROLE choice
+    class MENU_R,MENU_V,MENU_A menu
+    class P_L,P_N,P_D,P_E,P_X,M_L,M_N,M_D,M_E,M_X,C_L,C_N,C_D,C_R,C_X,S_R rec
+    class V_AG,V_DC,V_RA,V_CA,V_HC,V_HCD,V_AD vet
+    class A_SL,A_SN,A_SD,A_SE,A_SX,A_VL,A_VN,A_VD,A_VE,A_VX,A_RL,A_RN,A_RD,A_RE,A_RX,A_BL,A_BD adm
+    class START inicio
+
+    %% Paquetes: tonos pastel
+    style RECEPCION fill:#E6F6EC,stroke:#7FC49B,stroke-width:1.5px,color:#1F2937
+    style PROPIETARIOS fill:#F3FBF6,stroke:#7FC49B,stroke-width:1px,stroke-dasharray:4 3,color:#1F2937
+    style MASCOTAS fill:#F3FBF6,stroke:#7FC49B,stroke-width:1px,stroke-dasharray:4 3,color:#1F2937
+    style CITAS fill:#F3FBF6,stroke:#7FC49B,stroke-width:1px,stroke-dasharray:4 3,color:#1F2937
+    style SERVICIOS_R fill:#F3FBF6,stroke:#7FC49B,stroke-width:1px,stroke-dasharray:4 3,color:#1F2937
+    style VETERINARIO fill:#F1EAFB,stroke:#B39DDB,stroke-width:1.5px,color:#1F2937
+    style AGENDA fill:#F8F4FD,stroke:#B39DDB,stroke-width:1px,stroke-dasharray:4 3,color:#1F2937
+    style HISTORIA fill:#F8F4FD,stroke:#B39DDB,stroke-width:1px,stroke-dasharray:4 3,color:#1F2937
+    style ADMINISTRADOR fill:#FDEEE2,stroke:#F0B48A,stroke-width:1.5px,color:#1F2937
+    style SERVICIOS_A fill:#FFF7F0,stroke:#F0B48A,stroke-width:1px,stroke-dasharray:4 3,color:#1F2937
+    style VETERINARIOS fill:#FFF7F0,stroke:#F0B48A,stroke-width:1px,stroke-dasharray:4 3,color:#1F2937
+    style RECEPCIONISTAS fill:#FFF7F0,stroke:#F0B48A,stroke-width:1px,stroke-dasharray:4 3,color:#1F2937
+    style BITACORA fill:#FFF7F0,stroke:#F0B48A,stroke-width:1px,stroke-dasharray:4 3,color:#1F2937
+
+    %% Tuberías: un solo color
+    linkStyle default stroke:#475569,stroke-width:1.6px,color:#0F172A
