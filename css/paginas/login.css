@@ -1,194 +1,202 @@
-/* ESTILOS DE LA PÁGINA DE LOGIN (index.html) */
-
-.pagina-acceso {
+/* Página centrada y tarjeta de dos columnas. */
+.pagina-login {
   min-height: 100vh;
-  margin: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #eaf1ee;
-  padding: 16px;
+  padding: 20px;
+  background: #eaf1ee;
 }
 
-/* Tarjeta principal con envoltorio flexible */
-.acceso {
+.tarjeta-login {
   display: flex;
-  flex-wrap: wrap;
   width: 100%;
   max-width: 960px;
-  background-color: #ffffff;
-  border-radius: 16px;
-  box-shadow: 0 16px 40px rgba(11, 107, 104, 0.12);
-  border: 1px solid var(--color-borde);
   overflow: hidden;
+  border-radius: 16px;
+  background: white;
+  box-shadow: 0 16px 40px #0b6b681f;
 }
 
-/* Columna izquierda: Imagen de apoyo y bienvenida */
-.acceso__marca {
-  flex: 1 1 380px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+/* La foto está en el HTML; el fondo verde se ve si no carga. */
+.bienvenida-login {
+  position: relative;
+  width: 50%;
   padding: 32px;
-  background-color: #0b6b68;
-  background-image: linear-gradient(rgba(11, 107, 104, 0.82), rgba(8, 76, 75, 0.88)),
-    url('https://picsum.photos/id/1025/900/1000');
-  background-size: cover;
-  background-position: center;
-  color: #ffffff;
+  background: #084c4b;
+  color: white;
 }
 
-.marca--acceso {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  color: #ffffff;
-  text-decoration: none;
+.imagen-perro {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.2;
+}
+
+.logo-login,
+.texto-bienvenida {
+  position: relative;
+}
+
+.logo-login {
+  color: white;
+  font-size: 24px;
   font-weight: bold;
-  font-size: 20px;
 }
 
-.marca--acceso .marca__simbolo {
-  background-color: #ffffff;
-  color: var(--color-principal);
-  font-weight: bold;
+.texto-bienvenida {
+  margin-top: 64px;
 }
 
-.acceso__marca-info {
-  margin-top: 40px;
-  margin-bottom: 20px;
-}
-
-.acceso__ceja {
-  margin: 0 0 6px 0;
+.nombre-clinica {
+  color: #f3bd55;
   font-size: 13px;
   font-weight: bold;
-  letter-spacing: 1px;
-  color: var(--color-secundario);
 }
 
-.acceso__marca h1 {
-  margin: 0 0 14px 0;
+.texto-bienvenida h1 {
   font-size: 32px;
   line-height: 1.2;
-  color: #ffffff;
 }
 
-.acceso__descripcion {
-  margin: 0;
+.texto-bienvenida p {
   font-size: 15px;
-  line-height: 1.6;
-  color: #e2f0ed;
 }
 
-.acceso__detalle {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-top: 20px;
-  font-size: 14px;
+/* Formulario: reutiliza los campos y botones de estilos.css. */
+.panel-login {
+  width: 50%;
+  padding: 40px 32px;
+  align-self: center;
+}
+
+.saludo-login {
+  color: #0b6b68;
+  font-size: 13px;
   font-weight: bold;
-  color: #ffffff;
-  background-color: rgba(255, 255, 255, 0.15);
-  padding: 8px 14px;
-  border-radius: 8px;
-  width: fit-content;
 }
 
-/* Columna derecha: Formulario */
-.acceso__panel {
-  flex: 1 1 320px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 32px 24px;
-  background-color: #ffffff;
-}
-
-.acceso__formulario {
-  width: 100%;
-  max-width: 380px;
-}
-
-.acceso__formulario .acceso__ceja {
-  color: var(--color-principal);
-}
-
-.acceso__formulario h2 {
-  margin: 0 0 4px 0;
+.panel-login h2 {
+  margin: 0;
   font-size: 26px;
-  color: var(--color-texto);
 }
 
-.acceso__formulario form {
+#formulario-login {
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  margin-top: 18px;
+  gap: 16px;
+  margin-top: 24px;
 }
 
-.boton--ancho {
-  width: 100%;
-  margin-top: 8px;
+/* En celulares las columnas se colocan una debajo de la otra. */
+@media (max-width: 700px) {
+  .tarjeta-login {
+    flex-direction: column;
+  }
+
+  .bienvenida-login,
+  .panel-login {
+    width: 100%;
+    padding: 24px;
+  }
+
+  .texto-bienvenida {
+    margin-top: 24px;
+  }
 }
 
-.acceso__registro {
-  margin: 16px 0 8px 0;
-  text-align: center;
-  font-size: 14px;
-}
-
-.acceso__registro a {
-  font-weight: bold;
-}
-
-/* Enlaces de selección de cuentas */
-.acceso__usuarios-prueba {
-  margin-top: 18px;
-  padding: 14px;
-  border: 1px dashed var(--color-borde);
-  border-radius: 10px;
-  background-color: #f7faf9;
-}
-
-.acceso__usuarios-titulo {
-  margin: 0 0 8px 0;
-  font-size: 13px;
-  color: var(--color-texto);
-}
-
-.usuarios-chips {
-  display: flex;
-  flex-direction: column;
+/* Solo aparece el botón que corresponde al rol marcado. */
+.selector-rol {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 6px;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
 }
 
-.chip-usuario {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  padding: 8px 12px;
-  background-color: #ffffff;
-  border: 1px solid var(--color-borde);
-  border-radius: 8px;
-  font-size: 13px;
-  color: var(--color-texto);
-  text-decoration: none;
-}
-
-.chip-usuario:hover {
-  background-color: #e8f3f0;
-  border-color: var(--color-principal);
-}
-
-.chip-rol {
+.selector-rol legend {
+  margin-bottom: 8px;
   font-weight: bold;
-  color: var(--color-principal-oscuro);
-  text-transform: capitalize;
 }
 
-.chip-nombre {
-  color: var(--color-texto-suave);
+.selector-rol .boton {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  display: none;
+  width: 100%;
+  margin-top: 12px;
+}
+
+#rol-recepcionista:checked ~ .ingreso-recepcionista,
+#rol-veterinario:checked ~ .ingreso-veterinario,
+#rol-administrador:checked ~ .ingreso-administrador {
+  display: block;
+}
+
+/* Opciones con un área amplia para hacer clic y foco de teclado visible. */
+.selector-rol input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+}
+
+.selector-rol label {
+  grid-row: 1;
+  display: block;
+  padding: 7px 3px;
+  margin: 0;
   font-size: 12px;
+  text-align: center;
+  border: 1px solid #d7e2df;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.selector-rol label:hover {
+  background: #f5f8f6;
+  border-color: #0b6b68;
+}
+
+.selector-rol input:checked + label {
+  background: #e8f3f0;
+  border-color: #0b6b68;
+  color: #084c4b;
+  font-weight: bold;
+}
+
+.selector-rol input:focus-visible + label {
+  outline: 2px solid #0b6b68;
+  outline-offset: 2px;
+}
+
+.selector-rol .ingreso-pendiente {
+  display: block;
+  background: #e5ebe8;
+  color: #5e706e;
+  cursor: not-allowed;
+}
+
+.selector-rol input:checked ~ .ingreso-pendiente {
+  display: none;
+}
+
+
+
+
+/* Cada rol ocupa una columna fija de la misma fila. */
+.selector-rol label[for="rol-recepcionista"] {
+  grid-column: 1;
+}
+
+.selector-rol label[for="rol-veterinario"] {
+  grid-column: 2;
+}
+
+.selector-rol label[for="rol-administrador"] {
+  grid-column: 3;
 }
