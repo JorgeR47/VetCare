@@ -1,74 +1,144 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Historia clínica | VetCare</title>
-  <link rel="stylesheet" href="../../css/estilos.css">
-  <link rel="stylesheet" href="../../css/paginas/veterinario.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Historia clínica de Luna | VetCare</title>
+
+    <link rel="stylesheet" href="../../css/estilos.css">
+    <link rel="stylesheet" href="../../css/paginas/veterinario.css">
 </head>
+
 <body>
-  <header class="encabezado">
+    <header class="encabezado">
     <div class="contenedor encabezado__interior">
-      <a href="veterinario-agenda-lista.html" class="marca"><span class="marca__simbolo">V</span><span>VetCare</span></a>
-      <div class="navegacion navegacion--barra">
-        <div class="usuario-sesion"><div class="usuario-avatar">M</div><div class="usuario-info"><span class="usuario-nombre">Dr. Mateo Ríos</span><span class="usuario-rol">Veterinario</span></div></div>
-        <nav class="barra-navegacion" aria-label="Navegación de veterinario">
-          <a href="veterinario-agenda-lista.html">Agenda del día</a>
-          <a href="veterinario-historial-clinico.html" aria-current="page">Historia clínica</a>
-          <a href="veterinario-registrar-atencion.html">Registrar atención</a>
-          <a href="../../index.html">Cerrar sesión</a>
-        </nav>
-      </div>
-    </div>
-  </header>
+        <!-- Marca -->
+        <a href="../veterinario/veterinario-agenda-lista.html" class="marca">
+            <span class="marca__simbolo">V</span>
+            <span>VetCare</span>
+        </a>
 
-  <main class="contenedor seccion-principal historia-detalle">
+        <!-- Navegación -->
+        <div class="navegacion navegacion--barra">
+            <div class="usuario-sesion">
+                <div class="usuario-avatar">M</div>
+                <div class="usuario-info">
+                    <span class="usuario-nombre">Dr. Mateo Ríos</span>
+                    <span class="usuario-rol">Veterinario</span>
+                </div>
+            </div>
+            <nav class="barra-navegacion" aria-label="Navegación de veterinario">
+                <a href="../veterinario/veterinario-agenda-lista.html">Agenda del día</a>
+                <a href="../veterinario/veterinario-historial-clinico.html"ria-current="page">Historia clínica</a>
+                <a href="../../index.html"> Cerrar sesión</a>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<main class="contenedor seccion-principal">
+    <!-- Encabezado -->
     <div class="encabezado-pagina">
-      <p class="texto-secundario">Historia clínica › Detalle</p>
-      <h1 class="titulo-pagina">Historia clínica de la mascota</h1>
-      <p class="texto-secundario">Atenciones médicas en orden de la más reciente a la más antigua. Consulta de solo lectura.</p>
+        <p class="texto-secundario">Historia clínica › Luna</p>
+        <h1 class="titulo-pagina"> Historia clínica de Luna</h1>
+        <p class="texto-secundario">Consulta las atenciones médicas registradas para la mascota.</p>
     </div>
 
-    <article class="historia-mascota historia-mascota--predeterminada tarjeta panel" id="historia-luna">
-      <h2 class="titulo-seccion">Luna · HC-001</h2>
-      <dl class="datos">
-        <div><dt>Especie</dt><dd>Canina</dd></div><div><dt>Raza</dt><dd>Labrador</dd></div>
-        <div><dt>Propietario</dt><dd>María Torres · CI 0105489632</dd></div><div><dt>Estado</dt><dd>Activa</dd></div>
-      </dl>
-      <div class="tabla-contenedor"><table class="tabla tabla--listado">
-        <caption>Atenciones registradas</caption>
-        <thead><tr><th>Fecha</th><th>Servicio</th><th>Veterinario</th><th>Diagnóstico</th><th>Tratamiento</th><th>Peso</th></tr></thead>
-        <tbody>
-          <tr><td>17/11/2026</td><td>Consulta general</td><td>Dr. Mateo Ríos</td><td>Signos compatibles con infección gastrointestinal leve.</td><td>Tratamiento cada 12 horas por siete días; control de alimentación e hidratación.</td><td>12.5 kg</td></tr>
-          <tr><td>05/10/2026</td><td>Vacunación</td><td>Dra. Ana López</td><td>Paciente estable, apta para vacunación.</td><td>Aplicación de vacuna y control anual.</td><td>12.8 kg</td></tr>
-          <tr><td>12/08/2026</td><td>Consulta general</td><td>Dr. Mateo Ríos</td><td>Control preventivo sin novedades.</td><td>Mantener calendario de controles.</td><td>11.8 kg</td></tr>
-        </tbody>
-      </table></div>
-      <a class="boton boton--secundario espacio-arriba" href="veterinario-historial-clinico.html">Volver al listado</a>
-    </article>
+    <!-- Información de la mascota -->
+    <section class="tarjeta panel">
+        <h2 class="titulo-seccion">Información de la mascota</h2>
+        <dl class="datos">
+            <div>
+                <dt>N.º HC</dt>
+                <dd>HC-001</dd>
+            </div>
+            <div>
+                <dt>Mascota</dt>
+                <dd>Luna</dd>
+            </div>
+            <div>
+                <dt>Especie</dt>
+                <dd>Canina</dd>
+            </div>
+            <div>
+                <dt>Raza</dt>
+                <dd>Labrador</dd>
+            </div>
+            <div>
+                <dt>Propietario</dt>
+                <dd>María Torres</dd>
+            </div>
+        </dl>
+    </section>
 
-    <article class="historia-mascota tarjeta panel" id="historia-max">
-      <h2 class="titulo-seccion">Max · HC-002</h2>
-      <dl class="datos"><div><dt>Especie</dt><dd>Canina</dd></div><div><dt>Raza</dt><dd>Golden Retriever</dd></div><div><dt>Propietario</dt><dd>Carlos Mendoza · CI 0912345678</dd></div><div><dt>Estado</dt><dd>Activa</dd></div></dl>
-      <p class="mensaje">No existen atenciones médicas registradas para Max.</p>
-      <a class="boton boton--secundario espacio-arriba" href="veterinario-historial-clinico.html">Volver al listado</a>
-    </article>
+    <!-- Atenciones -->
+    <section class="tarjeta panel">
+        <h2 class="titulo-seccion"> Atenciones médicas</h2>
+        <div class="tabla-contenedor">
+            <table class="tabla tabla--listado">
+                <caption>Registro de atenciones</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">Fecha</th>
+                        <th scope="col"> Servicio</th>
+                        <th scope="col">Veterinario</th>
+                        <th scope="col">Peso</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Acción </th>
+                    </tr>
+                </thead>
 
-    <article class="historia-mascota tarjeta panel" id="historia-milo">
-      <h2 class="titulo-seccion">Milo · HC-003</h2>
-      <dl class="datos"><div><dt>Especie</dt><dd>Felina</dd></div><div><dt>Raza</dt><dd>Mestizo</dd></div><div><dt>Propietario</dt><dd>Ana Gómez · CI 0107896541</dd></div><div><dt>Estado</dt><dd>Activa</dd></div></dl>
-      <p class="mensaje">No existen atenciones médicas registradas para Milo.</p>
-      <a class="boton boton--secundario espacio-arriba" href="veterinario-historial-clinico.html">Volver al listado</a>
-    </article>
+                <tbody>
+                    <tr>
+                        <td>17/11/2026</td>
+                        <td>Consulta general</td>
+                        <td>Dr. Mateo Ríos</td>
+                        <td>12.5 kg </td>
+                        <td><span class="estado estado--atendida">Atendida</span></td>
+                        <td><a href="#ventana-detalle-atencion">Ver detalle</a></td>
+                    </tr>
+                    <tr>
+                        <td>05/10/2026</td>
+                        <td>Vacunación</td>
+                        <td>Dra. Ana López</td>
+                        <td>12.8 kg</td>
+                        <td><span class="estado estado--atendida">Atendida</span></td>
+                        <td><a href="#ventana-detalle-atencion">Ver detalle </a></td>
+                    </tr>
+                    <tr>
+                        <td>12/08/2026</td>
+                        <td>Consulta general</td>
+                        <td>Dr. Mateo Ríos</td>
+                        <td>11.8 kg</td>
+                        <td><span class="estado estado--atendida">Atendida </span></td>
+                        <td><a href="#ventana-detalle-atencion">Ver detalle </a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <br>
+        <!-- Volver -->
+        <div class="botonera">
+            <a class="boton boton--secundario"
+            href="veterinario-historial-clinico.html">Volver a historias clínicas
+            </a>
+        </div>
 
-    <article class="historia-mascota tarjeta panel" id="historia-kiara">
-      <h2 class="titulo-seccion">Kiara · HC-004</h2>
-      <dl class="datos"><div><dt>Especie</dt><dd>Canina</dd></div><div><dt>Raza</dt><dd>Poodle</dd></div><div><dt>Propietario</dt><dd>Sofía Herrera · CI 0703652148</dd></div><div><dt>Estado</dt><dd>Inactiva</dd></div></dl>
-      <p class="mensaje">No existen atenciones médicas registradas para Kiara. La historia clínica se conserva como antecedente.</p>
-      <a class="boton boton--secundario espacio-arriba" href="veterinario-historial-clinico.html">Volver al listado</a>
-    </article>
-  </main>
-  <footer class="contenedor pie">VetCare · Clínica Veterinaria Huellitas</footer>
+    </section>
+</main>
+
+
+<!-- Popup -->
+  <div class="modal modal--notificacion" id="ventana-detalle-atencion" role="dialog" aria-modal="true" aria-label="Detalle de atención médica">
+    <section class="modal__ventana modal__ventana--incrustada tarjeta">
+      <iframe src="veterinario-atencion-detalle.html" title="Detalle de atención médica"></iframe>
+    </section>
+  </div>
+
+<footer class="contenedor pie">
+    VetCare · Clínica Veterinaria Huellitas
+</footer>
 </body>
 </html>

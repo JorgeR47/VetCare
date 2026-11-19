@@ -30,9 +30,8 @@
               </div>
               <!-- Navegación -->
               <nav class="barra-navegacion">
-                  <a href="veterinario-agenda-lista.html" aria-current="page">Agenda del día</a>
-                  <a href="veterinario-historial-clinico.html">Historia clínica</a>
-                  <a href="veterinario-registrar-atencion.html">Registrar atención</a>
+                  <a href="../veterinario/veterinario-agenda-lista.html" aria-current="page">Agenda del día</a>
+                  <a href="../veterinario/veterinario-historial-clinico.html">Historia clínica</a>
                   <a href="../../index.html">Cerrar sesión</a>
               </nav>
           </div>
@@ -48,10 +47,10 @@
     
     <!--Barra de busqueda(fecha seleccionada)-->
     <div class="barra-acciones espacio-abajo barra-busqueda-agenda">
-        <form action="veterinario-agenda-lista.html" method="GET">
+        <form action="../veterinario/veterinario-agenda-lista.html" method="GET">
             <div class="campo">
-                <label for="fecha">Fecha de consulta:</label>
-                <input type="date" id="fecha" name="fecha" value="2026-11-17" required>
+                <label for="fecha">Buscar cita:</label>
+                <input type="date" id="fecha" name="fecha" value="2026-11-17">
             </div>
             <button type="submit" class="boton">
                 Consultar agenda
@@ -63,7 +62,7 @@
     <div class="tabla-contenedor">
         <table class="tabla tabla--listado tabla-agenda">
             <caption>
-                Citas asignadas al Dr. Mateo Ríos
+                Citas asignadas
             </caption>
             <thead>
                 <tr>
@@ -87,7 +86,7 @@
                         </span>
                     </td>
                     <td>
-                        <a href="veterinario-detalle-cita.html#cita-luna">Ver detalle</a> |
+                        <a href="#ventana-detalle">Ver detalle</a> |
                         <a href="#ventana-registrar-atencion">Registrar atención</a>
                     </td>
                 </tr>
@@ -102,7 +101,7 @@
                         </span>
                     </td>
                     <td>
-                        <a href="veterinario-detalle-cita.html#cita-max">Ver detalle</a> |
+                        <a href="#ventana-detalle">Ver detalle</a> |
                         <a href="#ventana-registrar-atencion">Registrar atención</a>
                     </td>
                 </tr>
@@ -117,7 +116,7 @@
                         </span>
                     </td>
                     <td>
-                        <a href="veterinario-detalle-cita.html#cita-milo">Ver detalle</a> |
+                        <a href="#ventana-detalle">Ver detalle</a> |
                         <a href="#ventana-registrar-atencion">Registrar atención</a>
                     </td>
                 </tr>
@@ -132,7 +131,7 @@
                         </span>
                     </td>
                     <td>
-                        <a href="veterinario-detalle-cita.html#cita-kiara">Ver detalle</a> |
+                        <a href="#ventana-detalle">Ver detalle</a> |
                         <a href="#ventana-registrar-atencion">Registrar atención</a>
                     </td>
                 </tr>
@@ -147,37 +146,22 @@
                         </span>
                     </td>
                     <td>
-                        <a href="veterinario-detalle-cita.html#cita-rocky">Ver detalle</a>
+                        <a href="#ventana-detalle">Ver detalle</a>
                     </td>
-                </tr>
-                <tr>
-                    <td>16:00 - 16:30</td>
-                    <td>Canela</td>
-                    <td>Jorge Ruiz</td>
-                    <td>Control</td>
-                    <td><span class="estado estado--cancelada">Cancelada</span></td>
-                    <td><a href="veterinario-detalle-cita.html#cita-canela">Ver detalle</a></td>
-                </tr>
-                <tr>
-                    <td>16:30 - 17:00</td>
-                    <td>Toby</td>
-                    <td>Elena Paredes</td>
-                    <td>Consulta general</td>
-                    <td><span class="estado estado--no-asistio">No asistió</span></td>
-                    <td><a href="veterinario-detalle-cita.html#cita-toby">Ver detalle</a></td>
                 </tr>
             </tbody>
         </table>
     </div>
-    <details class="estado-vacio espacio-arriba">
-      <summary>Vista alternativa: no hay citas para la fecha</summary>
-      <p class="mensaje">No tienes citas asignadas para esta fecha. Selecciona otra fecha para consultar la agenda.</p>
-    </details>
   </main>
 
-  <div class="modal" id="ventana-registrar-atencion" role="dialog" aria-modal="true" aria-label="Registrar atención medica">
+  <div class="modal" id="ventana-detalle" role="dialog" aria-modal="true" aria-label="Detalle de la cita">
     <section class="modal__ventana modal__ventana--incrustada tarjeta">
-      <iframe src="veterinario-registrar-atencion.html" title="Registrar atención medica"></iframe>
+      <iframe src="veterinario-detalle-cita.html" title="Detalle de la cita"></iframe>
+    </section>
+  </div>
+  <div class="modal" id="ventana-registrar-atencion" role="dialog" aria-modal="true" aria-label="Registrar atención">
+    <section class="modal__ventana modal__ventana--incrustada tarjeta">
+      <iframe src="veterinario-registrar-atencion.html" title="Registrar atención"></iframe>
     </section>
   </div>
 
