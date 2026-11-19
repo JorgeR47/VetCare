@@ -1,21 +1,95 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Mascotas | VetCare</title>
-<link rel="stylesheet" href="../../../css/estilos.css">
-<link rel="stylesheet" href="../../../css/paginas/recepcionista.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mascotas | VetCare</title>
+    <link rel="stylesheet" href="../../../css/estilos.css">
+    <link rel="stylesheet" href="../../../css/paginas/recepcionista.css">
 </head>
+
 <body>
-<a class="salto" href="#contenido">Saltar al contenido</a>
-<header class="encabezado"><div class="contenedor encabezado__interior"><a class="marca" href="../recepcionista_inicio.html"><span class="marca__simbolo" aria-hidden="true">V</span>VetCare</a><div class="navegacion--barra"><div class="usuario-sesion"><div class="usuario-avatar" aria-hidden="true">R</div><div class="usuario-info"><span class="usuario-nombre">Recepción</span><span class="usuario-rol">recepcionista</span></div></div><nav class="barra-navegacion" aria-label="Navegación de recepción"><a href="../cita/cita_listado.html">Citas</a><a href="../propietario/propietario_listado.html">Propietarios</a><a href="../servicios/servicio_listado.html">Servicios</a><a href="../mascota/mascota_listado.html" aria-current="page">Mascotas</a><a href="../../../index.html">Cerrar sesión</a></nav></div></div></header>
-<div class="contenedor disposicion">
-<main id="contenido">
-<div class="encabezado-pagina"><h1 class="titulo-pagina">Mascotas</h1><p class="texto-secundario">Mascotas activas y su propietario.</p></div><p id="registrada" class="mensaje mensaje--exito destino" role="status">Mascota registrada. Su historia clínica se creó con el N.º HC HC-0003.</p><p id="editada" class="mensaje mensaje--exito destino" role="status">Cambios guardados. El N.º HC se mantiene.</p><p id="baja" class="mensaje mensaje--exito destino" role="status">Mascota dada de baja. Ahora está en estado inactivo.</p><section aria-labelledby="t-lista"><h2 id="t-lista" class="solo-lectores">Listado de mascotas</h2><div class="barra-acciones"><form class="buscador" role="search" action="mascota_listado.html" method="get"><div class="campo"><label for="q">Buscar mascota</label><input id="q" type="search" name="q" maxlength="60" placeholder="Nombre, N.º HC o cédula del propietario" autocomplete="off"></div><button class="boton" type="submit">Buscar</button></form><a class="boton" href="mascota_nuevo.html">Registrar mascota</a></div><div class="tabla-contenedor"><table class="tabla tabla--listado"><caption>Mascotas registradas</caption><thead><tr><th scope="col">N.º HC</th><th scope="col">Nombre</th><th scope="col">Especie</th><th scope="col">Raza</th><th scope="col">Propietario</th><th scope="col">Acciones</th></tr></thead><tbody><tr><th scope="row">HC-0001</th><td>Firulais</td><td>Perro</td><td>Labrador</td><td>Marcela Pérez (1712345678)</td><td><a href="mascota_detalle.html">Ver</a><a href="mascota_editar.html">Editar</a><a href="mascota_dar_baja.html">Dar de baja</a></td></tr><tr><th scope="row">HC-0002</th><td>Misu</td><td>Gato</td><td>Siamés</td><td>Carlos Andrade (1798765432)</td><td><a href="mascota_detalle.html">Ver</a><a href="mascota_editar.html">Editar</a><a href="mascota_dar_baja.html">Dar de baja</a></td></tr></tbody></table></div></section>
-</main>
-<aside class="aside" aria-labelledby="t-aside"><h2 id="t-aside">Reglas</h2><ul><li>Busque por nombre, N.º HC o cédula del propietario.</li><li>Dar de baja no elimina el registro: la mascota queda inactiva.</li><li>Una mascota con citas Programadas no puede darse de baja.</li></ul></aside>
-</div>
-<footer class="pie contenedor"><p>VetCare · Sistema de recepción</p></footer>
+    <a class="salto" href="#contenido">Saltar al contenido</a>
+    <header class="encabezado">
+        <div class="contenedor encabezado__interior"><a class="marca" href="../recepcionista_inicio.html"><span
+                    class="marca__simbolo" aria-hidden="true">V</span>VetCare</a>
+            <div class="navegacion--barra">
+                <div class="usuario-sesion">
+                    <div class="usuario-avatar" aria-hidden="true">R</div>
+                    <div class="usuario-info"><span class="usuario-nombre">Recepción</span><span
+                            class="usuario-rol">recepcionista</span></div>
+                </div>
+                <nav class="barra-navegacion" aria-label="Navegación de recepción"><a
+                        href="../cita/cita_listado.html">Citas</a><a
+                        href="../propietario/propietario_listado.html">Propietarios</a><a
+                        href="../servicios/servicio_listado.html">Servicios</a><a href="../mascota/mascota_listado.html"
+                        aria-current="page">Mascotas</a><a href="../../../index.html">Cerrar sesión</a></nav>
+            </div>
+        </div>
+    </header>
+    <div class="contenedor disposicion">
+        <main id="contenido">
+            <div class="encabezado-pagina">
+                <h1 class="titulo-pagina">Mascotas</h1>
+                <p class="texto-secundario">Mascotas activas y su propietario.</p>
+            </div>
+            <p id="registrada" class="mensaje mensaje--exito destino" role="status">Mascota registrada. Su historia
+                clínica se creó con el N.º HC HC-0003.</p>
+            <p id="editada" class="mensaje mensaje--exito destino" role="status">Cambios guardados. El N.º HC se
+                mantiene.</p>
+            <p id="baja" class="mensaje mensaje--exito destino" role="status">Mascota dada de baja. Ahora está en estado
+                inactivo.</p>
+            <section aria-labelledby="t-lista">
+                <h2 id="t-lista" class="solo-lectores">Listado de mascotas</h2>
+                <div class="barra-acciones">
+                    <form class="buscador" role="search" action="mascota_listado.html" method="get">
+                        <div class="campo"><label for="q">Buscar mascota</label><input id="q" type="search" name="q"
+                                maxlength="60" placeholder="Nombre, N.º HC o cédula del propietario" autocomplete="off">
+                        </div><button class="boton" type="submit">Buscar</button>
+                    </form><a class="boton" href="mascota_nuevo.html">Registrar mascota</a>
+                </div>
+                <div class="tabla-contenedor">
+                    <table class="tabla tabla--listado">
+                        <caption>Mascotas registradas</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">N.º HC</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Especie</th>
+                                <th scope="col">Raza</th>
+                                <th scope="col">Propietario</th>
+                                <th scope="col">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">HC-0001</th>
+                                <td>Firulais</td>
+                                <td>Perro</td>
+                                <td>Labrador</td>
+                                <td>Marcela Pérez (1712345678)</td>
+                                <td><a href="mascota_detalle.html">Ver</a><a href="mascota_editar.html">Editar</a><a
+                                        href="mascota_dar_baja.html">Dar de baja</a></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">HC-0002</th>
+                                <td>Misu</td>
+                                <td>Gato</td>
+                                <td>Siamés</td>
+                                <td>Carlos Andrade (1798765432)</td>
+                                <td><a href="mascota_detalle.html">Ver</a><a href="mascota_editar.html">Editar</a><a
+                                        href="mascota_dar_baja.html">Dar de baja</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+    <footer class="pie contenedor">
+        <p>VetCare · Sistema de recepción</p>
+    </footer>
 </body>
+
 </html>

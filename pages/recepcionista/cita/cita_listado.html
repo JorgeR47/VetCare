@@ -1,21 +1,194 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Citas | VetCare</title>
-<link rel="stylesheet" href="../../../css/estilos.css">
-<link rel="stylesheet" href="../../../css/paginas/recepcionista.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Citas | VetCare</title>
+    <link rel="stylesheet" href="../../../css/estilos.css">
+    <link rel="stylesheet" href="../../../css/paginas/recepcionista.css">
 </head>
+
 <body>
-<a class="salto" href="#contenido">Saltar al contenido</a>
-<header class="encabezado"><div class="contenedor encabezado__interior"><a class="marca" href="../recepcionista_inicio.html"><span class="marca__simbolo" aria-hidden="true">V</span>VetCare</a><div class="navegacion--barra"><div class="usuario-sesion"><div class="usuario-avatar" aria-hidden="true">R</div><div class="usuario-info"><span class="usuario-nombre">Recepción</span><span class="usuario-rol">recepcionista</span></div></div><nav class="barra-navegacion" aria-label="Navegación de recepción"><a href="../cita/cita_listado.html" aria-current="page">Citas</a><a href="../propietario/propietario_listado.html">Propietarios</a><a href="../servicios/servicio_listado.html">Servicios</a><a href="../mascota/mascota_listado.html">Mascotas</a><a href="../../../index.html">Cerrar sesión</a></nav></div></div></header>
-<div class="contenedor disposicion">
-<main id="contenido">
-<div class="encabezado-pagina"><h1 class="titulo-pagina">Citas</h1><p class="texto-secundario">Busque, filtre y gestione las citas registradas.</p></div><p id="agendada" class="mensaje mensaje--exito destino" role="status">Cita agendada en estado Programada.</p><p id="reprogramada" class="mensaje mensaje--exito destino" role="status">Cita reprogramada. Sigue en estado Programada.</p><p id="cancelada" class="mensaje mensaje--exito destino" role="status">Cita cancelada. Su horario quedó libre.</p><section aria-labelledby="t-lista"><h2 id="t-lista" class="solo-lectores">Listado de citas</h2><div class="barra-acciones"><form class="buscador" role="search" action="cita_listado.html" method="get"><div class="campo"><label for="q">Buscar cita</label><input id="q" type="search" name="q" maxlength="60" placeholder="Mascota o veterinario" autocomplete="off"></div><button class="boton" type="submit">Buscar</button></form><a class="boton" href="cita_nueva.html">Agendar cita</a></div><div class="lista-citas"><fieldset class="filtros"><legend>Filtros</legend><div class="campo"><label for="ffecha">Fecha (opcional)</label><input id="ffecha" type="date"></div><div class="campo"><label for="festado">Estado</label><select id="festado"><option value="">Todos</option><option value="programada">Programada</option><option value="atendida">Atendida</option><option value="cancelada">Cancelada</option><option value="noasistio">No asistió</option></select></div><div class="campo"><label for="fvet">Veterinario (opcional)</label><select id="fvet"><option value="">Todos</option><option value="ana">Dra. Ana Torres</option><option value="luis">Dr. Luis Mora</option></select></div></fieldset><div class="tabla-contenedor"><table class="tabla tabla--listado"><caption>Citas registradas</caption><thead><tr><th scope="col">Fecha</th><th scope="col">Hora</th><th scope="col">Mascota</th><th scope="col">Propietario</th><th scope="col">Veterinario</th><th scope="col">Servicio</th><th scope="col">Estado</th><th scope="col">Acciones</th></tr></thead><tbody><tr data-estado="programada" data-vet="ana"><th scope="row">2026-11-25</th><td>09:30</td><td>Firulais</td><td>Marcela Pérez</td><td>Dra. Ana Torres</td><td>Consulta general</td><td><span class="estado estado--programada">Programada</span></td><td><a href="cita_detalle.html">Ver</a><a href="cita_reprogramar.html">Reprogramar</a><a href="cita_cancelar.html">Cancelar</a></td></tr><tr data-estado="programada" data-vet="luis"><th scope="row">2026-11-27</th><td>11:00</td><td>Misu</td><td>Carlos Andrade</td><td>Dr. Luis Mora</td><td>Vacunación</td><td><span class="estado estado--programada">Programada</span></td><td><a href="cita_detalle.html">Ver</a><a href="cita_reprogramar.html">Reprogramar</a><a href="cita_cancelar.html">Cancelar</a></td></tr><tr data-estado="atendida" data-vet="ana"><th scope="row">2026-11-10</th><td>08:30</td><td>Firulais</td><td>Marcela Pérez</td><td>Dra. Ana Torres</td><td>Vacunación</td><td><span class="estado">Atendida</span></td><td><a href="cita_detalle.html">Ver</a></td></tr><tr data-estado="cancelada" data-vet="luis"><th scope="row">2026-11-05</th><td>16:00</td><td>Misu</td><td>Carlos Andrade</td><td>Dr. Luis Mora</td><td>Consulta general</td><td><span class="estado estado--cancelada">Cancelada</span></td><td><a href="cita_detalle.html">Ver</a></td></tr><tr data-estado="noasistio" data-vet="luis"><th scope="row">2026-11-03</th><td>14:00</td><td>Firulais</td><td>Marcela Pérez</td><td>Dr. Luis Mora</td><td>Consulta general</td><td><span class="estado estado--noasistio">No asistió</span></td><td><a href="cita_detalle.html">Ver</a></td></tr></tbody></table></div></div></section><section id="disponibilidad" class="tarjeta panel" aria-labelledby="t-disp"><h2 id="t-disp" class="modal__titulo">Disponibilidad de turnos</h2><p class="texto-secundario">Consulte los turnos libres de un veterinario (lunes a sábado, 08:00 a 17:30, bloques de 30 minutos).</p><form class="formulario" action="cita_listado.html#turnos-libres" method="get"><fieldset class="rejilla"><legend>Consulta</legend><div class="campo"><label for="dvet">Veterinario</label><select id="dvet" required><option value="">Seleccione un veterinario</option><option value="ana">Dra. Ana Torres</option><option value="luis">Dr. Luis Mora</option></select></div><div class="campo"><label for="dfecha">Fecha</label><input id="dfecha" type="date" required min="2026-11-17" max="2027-05-17"></div></fieldset><div class="botonera"><button class="boton" type="submit">Consultar</button></div></form><article id="turnos-libres" class="destino" aria-labelledby="t-turnos"><h3 id="t-turnos">Turnos libres (ejemplo)</h3><p class="texto-secundario">Elija un turno para continuar con “Agendar cita”.</p><h4>Dra. Ana Torres</h4><ul class="turnos"><li><a class="turno" href="cita_nueva.html">08:00</a></li><li><a class="turno" href="cita_nueva.html">08:30</a></li><li><a class="turno" href="cita_nueva.html">09:30</a></li><li><a class="turno" href="cita_nueva.html">10:00</a></li><li><a class="turno" href="cita_nueva.html">11:00</a></li><li><a class="turno" href="cita_nueva.html">11:30</a></li></ul><h4>Dr. Luis Mora</h4><ul class="turnos"><li><a class="turno" href="cita_nueva.html">08:30</a></li><li><a class="turno" href="cita_nueva.html">09:00</a></li><li><a class="turno" href="cita_nueva.html">10:00</a></li><li><a class="turno" href="cita_nueva.html">14:00</a></li><li><a class="turno" href="cita_nueva.html">14:30</a></li><li><a class="turno" href="cita_nueva.html">16:00</a></li></ul></article></section>
-</main>
-<aside class="aside" aria-labelledby="t-aside"><h2 id="t-aside">Reglas</h2><ul><li>Busque por mascota o veterinario y filtre por fecha, estado o veterinario.</li><li>Solo se reprograma o cancela una cita Programada con 24 horas o más de anticipación.</li><li>Atención de lunes a sábado, de 08:00 a 18:00; el último turno inicia a las 17:30.</li></ul></aside>
-</div>
-<footer class="pie contenedor"><p>VetCare · Sistema de recepción</p></footer>
+    <a class="salto" href="#contenido">Saltar al contenido</a>
+    <header class="encabezado">
+        <div class="contenedor encabezado__interior"><a class="marca" href="../recepcionista_inicio.html"><span
+                    class="marca__simbolo" aria-hidden="true">V</span>VetCare</a>
+            <div class="navegacion--barra">
+                <div class="usuario-sesion">
+                    <div class="usuario-avatar" aria-hidden="true">R</div>
+                    <div class="usuario-info"><span class="usuario-nombre">Recepción</span><span
+                            class="usuario-rol">recepcionista</span></div>
+                </div>
+                <nav class="barra-navegacion" aria-label="Navegación de recepción"><a href="../cita/cita_listado.html"
+                        aria-current="page">Citas</a><a
+                        href="../propietario/propietario_listado.html">Propietarios</a><a
+                        href="../servicios/servicio_listado.html">Servicios</a><a
+                        href="../mascota/mascota_listado.html">Mascotas</a><a href="../../../index.html">Cerrar
+                        sesión</a></nav>
+            </div>
+        </div>
+    </header>
+    <div class="contenedor disposicion">
+        <main id="contenido">
+            <div class="encabezado-pagina">
+                <h1 class="titulo-pagina">Citas</h1>
+                <p class="texto-secundario">Busque, filtre y gestione las citas registradas.</p>
+            </div>
+            <p id="agendada" class="mensaje mensaje--exito destino" role="status">Cita agendada en estado Programada.
+            </p>
+            <p id="reprogramada" class="mensaje mensaje--exito destino" role="status">Cita reprogramada. Sigue en estado
+                Programada.</p>
+            <p id="cancelada" class="mensaje mensaje--exito destino" role="status">Cita cancelada. Su horario quedó
+                libre.</p>
+            <section aria-labelledby="t-lista">
+                <h2 id="t-lista" class="solo-lectores">Listado de citas</h2>
+                <div class="barra-acciones">
+                    <form class="buscador" role="search" action="cita_listado.html" method="get">
+                        <div class="campo"><label for="q">Buscar cita</label><input id="q" type="search" name="q"
+                                maxlength="60" placeholder="Mascota o veterinario" autocomplete="off"></div><button
+                            class="boton" type="submit">Buscar</button>
+                    </form><a class="boton" href="cita_nueva.html">Agendar cita</a>
+                </div>
+                <div class="lista-citas">
+                    <fieldset class="filtros">
+                        <legend>Filtros</legend>
+                        <div class="campo"><label for="ffecha">Fecha (opcional)</label><input id="ffecha" type="date">
+                        </div>
+                        <div class="campo"><label for="festado">Estado</label><select id="festado">
+                                <option value="">Todos</option>
+                                <option value="programada">Programada</option>
+                                <option value="atendida">Atendida</option>
+                                <option value="cancelada">Cancelada</option>
+                                <option value="noasistio">No asistió</option>
+                            </select></div>
+                        <div class="campo"><label for="fvet">Veterinario (opcional)</label><select id="fvet">
+                                <option value="">Todos</option>
+                                <option value="ana">Dra. Ana Torres</option>
+                                <option value="luis">Dr. Luis Mora</option>
+                            </select></div>
+                    </fieldset>
+                    <div class="tabla-contenedor">
+                        <table class="tabla tabla--listado">
+                            <caption>Citas registradas</caption>
+                            <thead>
+                                <tr>
+                                    <th scope="col">Fecha</th>
+                                    <th scope="col">Hora</th>
+                                    <th scope="col">Mascota</th>
+                                    <th scope="col">Propietario</th>
+                                    <th scope="col">Veterinario</th>
+                                    <th scope="col">Servicio</th>
+                                    <th scope="col">Estado</th>
+                                    <th scope="col">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr data-estado="programada" data-vet="ana">
+                                    <th scope="row">2026-11-25</th>
+                                    <td>09:30</td>
+                                    <td>Firulais</td>
+                                    <td>Marcela Pérez</td>
+                                    <td>Dra. Ana Torres</td>
+                                    <td>Consulta general</td>
+                                    <td><span class="estado estado--programada">Programada</span></td>
+                                    <td><a href="cita_detalle.html">Ver</a><a
+                                            href="cita_reprogramar.html">Reprogramar</a><a
+                                            href="cita_cancelar.html">Cancelar</a></td>
+                                </tr>
+                                <tr data-estado="programada" data-vet="luis">
+                                    <th scope="row">2026-11-27</th>
+                                    <td>11:00</td>
+                                    <td>Misu</td>
+                                    <td>Carlos Andrade</td>
+                                    <td>Dr. Luis Mora</td>
+                                    <td>Vacunación</td>
+                                    <td><span class="estado estado--programada">Programada</span></td>
+                                    <td><a href="cita_detalle.html">Ver</a><a
+                                            href="cita_reprogramar.html">Reprogramar</a><a
+                                            href="cita_cancelar.html">Cancelar</a></td>
+                                </tr>
+                                <tr data-estado="atendida" data-vet="ana">
+                                    <th scope="row">2026-11-10</th>
+                                    <td>08:30</td>
+                                    <td>Firulais</td>
+                                    <td>Marcela Pérez</td>
+                                    <td>Dra. Ana Torres</td>
+                                    <td>Vacunación</td>
+                                    <td><span class="estado">Atendida</span></td>
+                                    <td><a href="cita_detalle.html">Ver</a></td>
+                                </tr>
+                                <tr data-estado="cancelada" data-vet="luis">
+                                    <th scope="row">2026-11-05</th>
+                                    <td>16:00</td>
+                                    <td>Misu</td>
+                                    <td>Carlos Andrade</td>
+                                    <td>Dr. Luis Mora</td>
+                                    <td>Consulta general</td>
+                                    <td><span class="estado estado--cancelada">Cancelada</span></td>
+                                    <td><a href="cita_detalle.html">Ver</a></td>
+                                </tr>
+                                <tr data-estado="noasistio" data-vet="luis">
+                                    <th scope="row">2026-11-03</th>
+                                    <td>14:00</td>
+                                    <td>Firulais</td>
+                                    <td>Marcela Pérez</td>
+                                    <td>Dr. Luis Mora</td>
+                                    <td>Consulta general</td>
+                                    <td><span class="estado estado--noasistio">No asistió</span></td>
+                                    <td><a href="cita_detalle.html">Ver</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+            <section id="disponibilidad" class="tarjeta panel" aria-labelledby="t-disp">
+                <h2 id="t-disp" class="modal__titulo">Disponibilidad de turnos</h2>
+                <p class="texto-secundario">Consulte los turnos libres de un veterinario (lunes a sábado, 08:00 a 17:30,
+                    bloques de 30 minutos).</p>
+                <form class="formulario" action="cita_listado.html#turnos-libres" method="get">
+                    <fieldset class="rejilla">
+                        <legend>Consulta</legend>
+                        <div class="campo"><label for="dvet">Veterinario</label><select id="dvet" required>
+                                <option value="">Seleccione un veterinario</option>
+                                <option value="ana">Dra. Ana Torres</option>
+                                <option value="luis">Dr. Luis Mora</option>
+                            </select></div>
+                        <div class="campo"><label for="dfecha">Fecha</label><input id="dfecha" type="date" required
+                                min="2026-11-17" max="2027-05-17"></div>
+                    </fieldset>
+                    <div class="botonera"><button class="boton" type="submit">Consultar</button></div>
+                </form>
+                <article id="turnos-libres" class="destino" aria-labelledby="t-turnos">
+                    <h3 id="t-turnos">Turnos libres (ejemplo)</h3>
+                    <p class="texto-secundario">Elija un turno para continuar con “Agendar cita”.</p>
+                    <h4>Dra. Ana Torres</h4>
+                    <ul class="turnos">
+                        <li><a class="turno" href="cita_nueva.html">08:00</a></li>
+                        <li><a class="turno" href="cita_nueva.html">08:30</a></li>
+                        <li><a class="turno" href="cita_nueva.html">09:30</a></li>
+                        <li><a class="turno" href="cita_nueva.html">10:00</a></li>
+                        <li><a class="turno" href="cita_nueva.html">11:00</a></li>
+                        <li><a class="turno" href="cita_nueva.html">11:30</a></li>
+                    </ul>
+                    <h4>Dr. Luis Mora</h4>
+                    <ul class="turnos">
+                        <li><a class="turno" href="cita_nueva.html">08:30</a></li>
+                        <li><a class="turno" href="cita_nueva.html">09:00</a></li>
+                        <li><a class="turno" href="cita_nueva.html">10:00</a></li>
+                        <li><a class="turno" href="cita_nueva.html">14:00</a></li>
+                        <li><a class="turno" href="cita_nueva.html">14:30</a></li>
+                        <li><a class="turno" href="cita_nueva.html">16:00</a></li>
+                    </ul>
+                </article>
+            </section>
+        </main>
+       
+    </div>
+    <footer class="pie contenedor">
+        <p>VetCare · Sistema de recepción</p>
+    </footer>
 </body>
+
 </html>
