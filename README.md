@@ -1,116 +1,182 @@
-Enlace al scalidraw (Máquina de estado finito):
-https://excalidraw.com/#json=YbF_A7ISNs3vLGCvKSCF3,lDGJdwUF3RhgjqsRTLj-7g
+# VetCare — Clínica Veterinaria “Huellitas”
 
-Enlace al asistente: https://claude.ai/share/c88d3908-f7ce-4aad-af42-2f903bdbbf1a 
+> **Sistema web de gestión de citas y pacientes para la clínica veterinaria “Huellitas”.**  
+> Prototipo web estático navegable desarrollado con **HTML5 semántico** y **CSS3 puro**.
 
+---
 
-Se pueden agregar los CU:
-- CU-11 Recuperar contraseña
-- CU-16 Registrar cobro de atención, presencial y con comprobante; los pagos en línea siguen fuera del alcance.
-- CU-18 Emitir receta médica
+## 📋 Información Académica
 
+* **Institución:** Escuela Politécnica Nacional (EPN)
+* **Facultad:** Facultad de Ingeniería de Sistemas
+* **Materia:** Aplicaciones Web (GR2SW)
+* **Docente:** Ing. Carlos Iñiguez
+* **Fecha de Entrega:** 18 de noviembre de 2026
 
+### 👥 Integrantes del Equipo
 
-# VetCare
+| Integrante | Rol / Responsabilidad Principal | Casos de Uso |
+| :--- | :--- | :--- |
+| **Luis Diaz** | Acceso, navegación base y módulo de propietarios | CU-01, CU-05, CU-09, CU-13 |
+| **Jorge Revelo** | Citas, disponibilidad de turnos y catálogo de servicios | CU-02, CU-06, CU-10, CU-14 |
+| **Mayerly Chavez** | Mascotas, historia clínica y atención veterinaria | CU-03, CU-07, CU-11 |
+| **Anderson Pilataxi** | Administración, bitácora de auditoría y cuentas de usuario | CU-04, CU-08, CU-12 |
 
-**Sistema web de gestión de citas y pacientes para la clínica veterinaria “Huellitas”.**
+---
 
-Proyecto del **primer bimestre de Desarrollo de Aplicaciones Web**. VetCare representa, mediante una interfaz web estática, los procesos de registro de propietarios y mascotas, agendamiento de citas, consulta de agenda e historial clínico, registro de atenciones y administración de veterinarios y servicios.
+## 🎯 Problema y Objetivo
 
-## Problema y objetivo
+### Situación actual
+La clínica veterinaria **Huellitas**, ubicada en **Quito**, atiende un promedio de **40 mascotas diarias** con **tres veterinarios y una recepcionista**. La gestión manual en cuadernos y expedientes físicos provoca citas duplicadas, errores de contacto, desorganización en agendas y dificultades para consultar el historial clínico.
 
-La clínica veterinaria **Huellitas**, ubicada en **Quito**, atiende aproximadamente **40 mascotas al día** con **tres veterinarios y una recepcionista**. La gestión manual de citas y expedientes ocasiona duplicaciones, datos incompletos y dificultades para consultar antecedentes clínicos.
+### Objetivo del sistema
+Diseñar y presentar una **interfaz web navegable** que modele de forma centralizada los procesos de atención veterinaria de la clínica, validando las entradas mediante formularios **HTML5 nativos** y estilos con **CSS3 puro** (Mobile-First, Flexbox y Grid).
 
-El objetivo de VetCare es **diseñar y presentar una interfaz navegable** que modele estos procesos y valide los datos de entrada mediante formularios HTML5. La transacción central representada es **agendar una cita**, vinculando propietario, mascota, servicio, veterinario, fecha y hora.
+> **Alcance académico:** Esta versión no requiere backend, base de datos ni JavaScript. Todas las operaciones CRUD, autenticación y transiciones se representan mediante páginas enlazadas y ventanas modales incrustadas con datos de ejemplo coherentes.
 
-> **Alcance académico:** esta versión usa únicamente **HTML5 y CSS/CSS3**. No emplea JavaScript, backend, base de datos ni frameworks de CSS. Por tanto, el inicio de sesión, los cambios de estado y las operaciones CRUD son **simulaciones con páginas y datos de ejemplo**, no operaciones persistentes.
+---
 
-## Inicio de sesión del prototipo (CU-01)
+## 🔐 Control de Acceso y Simulación de Roles (CU-01)
 
-La selección de rol es provisional debido al uso exclusivo de HTML y CSS. Para ingresar, el usuario completa el correo y la contraseña, selecciona Recepcionista, Veterinario o Administrador y pulsa **Ingresar al sistema**. Recepcionista aparece seleccionado de forma predeterminada.
+El prototipo simula el acceso al sistema desde `index.html`:
+* Valida campos obligatorios de correo (`type="email"`) y contraseña (`type="password"`).
+* Permite el ingreso inmediato a través de **chips de acceso directo** según el perfil del personal:
+  * 🟢 **Recepcionista:** `pages/recepcionista/propietario/propietario_listado.html` o `pages/recepcionista/recepcionista_inicio.html`.
+  * 🟣 **Veterinario:** `pages/veterinario/veterinario-agenda-lista.html`.
+  * 🟠 **Administrador:** `pages/administrador/servicio/servicio_listar.html`.
+* Todas las pantallas cuentan con enlace superior directo para **Cerrar sesión** y volver a `index.html`.
 
-HTML5 comprueba que el correo no esté vacío y tenga un formato válido, y que la contraseña no esté vacía. No se verifican las credenciales ni el estado de la cuenta, y no se establece una sesión autenticada; únicamente se abre la página del rol seleccionado:
+---
 
-- **Recepcionista:** `pages/recepcionista/propietario/propietario_listado.html`.
-- **Veterinario:** `pages/veterinario/veterinario-agenda-lista.html`.
-- **Administrador:** `pages/administrador/servicio/servicio_listar.html`.
+## 📦 Cobertura de Casos de Uso (100% Implementado)
 
-En la versión final, el acceso se realizará únicamente con correo y contraseña. El sistema verificará las credenciales y el estado de la cuenta, establecerá la sesión e identificará automáticamente el rol, sin selección manual.
+El prototipo cubre la totalidad de los **14 Casos de Uso** definidos en el Documento de Visión v0.9:
 
-## Usuarios
+| ID | Caso de Uso | Actor | Ubicación de Pantallas | Estado |
+| :--- | :--- | :--- | :--- | :---: |
+| **CU-01** | Iniciar sesión | Todos | `index.html`<br>`pages/recepcionista/servicios/index.html` | ✅ Conforme |
+| **CU-02** | Gestionar propietarios | Recepcionista | `pages/recepcionista/propietario/` (5 pantallas/modales) | ✅ Conforme |
+| **CU-03** | Gestionar mascotas | Recepcionista | `pages/recepcionista/mascota/` (5 pantallas) | ✅ Conforme |
+| **CU-04** | Agendar cita | Recepcionista | `pages/recepcionista/cita/cita_nueva.html` | ✅ Conforme |
+| **CU-05** | Gestionar citas | Recepcionista | `pages/recepcionista/cita/` (listado, reprogramar, cancelar, detalle) | ✅ Conforme |
+| **CU-06** | Consultar agenda del día | Veterinario | `pages/veterinario/veterinario-agenda-lista.html`<br>`veterinario-detalle-cita.html` | ✅ Conforme |
+| **CU-07** | Registrar atención médica | Veterinario | `pages/veterinario/veterinario-registrar-atencion.html`<br>`veterinario-atencion-confirmar.html` | ✅ Conforme |
+| **CU-08** | Consultar historia clínica | Veterinario | `pages/veterinario/veterinario-historial-clinico.html`<br>`veterinario-historia-clinica-detalle.html`<br>`veterinario-atencion-detalle.html` | ✅ Conforme |
+| **CU-09** | Gestionar veterinarios | Administrador | `pages/administrador/veterinario/` (5 pantallas/modales) | ✅ Conforme |
+| **CU-10** | Gestionar servicios | Administrador | `pages/administrador/servicio/` (5 pantallas/modales) | ✅ Conforme |
+| **CU-11** | Gestionar recepcionistas | Administrador | `pages/administrador/recepcionista/` (5 pantallas/modales) | ✅ Conforme |
+| **CU-12** | Consultar bitácora de auditoría | Administrador | `pages/administrador/auditoria/` (listado con filtros y detalle) | ✅ Conforme |
+| **CU-13** | Consultar catálogo de servicios | Recepcionista | `pages/recepcionista/servicios/servicio_listado.html`<br>`pages/recepcionista/servicios/servicios.html` | ✅ Conforme |
+| **CU-14** | Consultar disponibilidad de turnos | Recepcionista | `pages/recepcionista/cita/cita_listado.html#disponibilidad` | ✅ Conforme |
 
-| Rol | Funcionalidades representadas |
-| --- | --- |
-| **Recepcionista** | Gestionar propietarios y mascotas; agendar, reprogramar y cancelar citas |
-| **Veterinario** | Consultar agenda, registrar atención médica y revisar el historial clínico |
-| **Administrador** | Gestionar veterinarios y catálogo de servicios |
+---
 
-## Integrantes y distribución del trabajo
-
-| Estudiante | Módulos | Casos de uso | Responsabilidad |
-| --- | --- | --- | --- |
-| **Luis** | **M1, M2** | CU-01, CU-02 | Acceso simulado, plantilla base, menús por rol y CRUD de propietarios |
-| **Jorge** | **M3, M4** | CU-03, CU-04, CU-05 | Mascotas, estructura de historial clínico y gestión de citas |
-| **Mayerly** | **M5** | CU-06, CU-07, CU-08 | Agenda del veterinario, atención médica e historial clínico |
-| **Anderson** | **M6, M7** | CU-09, CU-10; CU-11 pendiente | Gestión de veterinarios, servicios y alcance adicional de personal sujeto a especificación |
-
-
-
-## Módulos del sistema
-
-| ID | Módulo | Entidades de referencia | Operaciones y alcance |
-| --- | --- | --- | --- |
-| M1 | Acceso y seguridad | Usuario | Inicio de sesión y menú visual por rol (CU-01) |
-| M2 | Propietarios | Propietario | CRUD simulado (CU-02) |
-| M3 | Mascotas e historia clínica | Mascota, HistoriaClinica | CRUD de mascotas (CU-03); estructura y navegación clínica coordinadas con M5 |
-| M4 | Citas | Cita | Agendar, consultar, reprogramar y cancelar (CU-04, CU-05) |
-| M5 | Atención clínica | Atencion | Consultar agenda, registrar atención y consultar historial (CU-06, CU-07, CU-08) |
-| M6 | Personal | Veterinario, Recepcionista | CRUD de veterinarios (CU-09); CU-11 pendiente de definición |
-| M7 | Catálogo de servicios | Servicio | CRUD simulado de servicios y precios (CU-10) |
-
-**Dependencias:** el agendamiento de citas (**M4**) requiere información de **M2, M3, M6 y M7**. **M5** utiliza información de mascotas y citas aportada por **M3 y M4**. La plantilla de **M1** se comparte entre todas las pantallas. La consulta de historial clínico del veterinario corresponde funcionalmente a **M5 (CU-08)**, en coordinación con M3.
-
-## Reglas de negocio principales
-
-- **Propietario:** cédula de 10 dígitos; celular de 10 dígitos iniciado en `09`; correo válido; nombres y apellidos obligatorios de 2 a 50 caracteres, con letras y espacios.
-- **Mascota:** pertenece a un propietario; especie **Perro, Gato, Ave, Roedor u Otro**; peso entre **0,1 y 120 kg**, con un decimal; fecha de nacimiento no futura.
-- **Citas:** lunes a sábado, de **08:00 a 18:00**, en intervalos de **30 minutos**; no se admiten fechas pasadas. Estados: **Programada, Atendida o Cancelada**; cancelar requiere un motivo de hasta 200 caracteres.
-- **Servicios:** nombre único y precio entre **USD 1 y USD 500**.
-
-Los controles y atributos HTML5 representan las validaciones que permite una página estática. Reglas dependientes de la fecha actual, cruces entre registros o detección de citas duplicadas no pueden verificarse completamente sin lógica de aplicación; se documentan y representan mediante ejemplos coherentes.
-
-## Tecnologías y estructura del repositorio
-
-- **HTML5:** estructura semántica, navegación, formularios y validaciones nativas.
-- **CSS/CSS3:** estilos externos, variables, Flexbox, Grid, diseño responsive y estados visuales.
-- **Git y GitHub:** colaboración con Issues, ramas y Pull Requests.
-- **GitHub Pages:** publicación del sitio estático.
-
-**Estructura sugerida por el enunciado** (las carpetas deberán existir en el repositorio conforme avance la implementación):
+## 📂 Estructura del Repositorio
 
 ```text
 VetCare/
-├── index.html                  # Inicio de sesión 
+├── index.html                               # Página de inicio de sesión principal
+├── README.md                                # Documentación general del proyecto
+├── css/
+│   ├── estilos.css                          # Hoja de estilos global (variables, layout, botones)
+│   ├── guia-estilos.html                    # Guía de componentes y tokens de diseño
+│   └── paginas/
+│       ├── administrador.css                # Estilos específicos de administración
+│       ├── cita.css                         # Estilos de gestión de citas y turnos
+│       ├── login.css                        # Estilos de la pantalla de acceso
+│       ├── propietario.css                  # Estilos del módulo de propietarios
+│       ├── recepcionista.css                # Estilos generales del área de recepción
+│       └── veterinario.css                  # Estilos de atención clínica y agenda
+├── docs/
+│   ├── mapa_navegacion_detallado.mmd        # Mapa navegacional tipo tubería en Mermaid
+│   └── casos_de_uso/
+│       └── diagrama_casos_de_uso.mmd        # Diagrama UML de casos de uso en Mermaid
+└── pages/
+    ├── administrador/                       # Área de Administración
+    │   ├── auditoria/
+    │   │   ├── auditoria_detalle.html
+    │   │   └── auditoria_listar.html
+    │   ├── recepcionista/
+    │   │   ├── recepcionista_dar_baja.html
+    │   │   ├── recepcionista_detalle.html
+    │   │   ├── recepcionista_editar.html
+    │   │   ├── recepcionista_listar.html
+    │   │   └── recepcionista_registrar.html
+    │   ├── servicio/
+    │   │   ├── servicio_dar_baja.html
+    │   │   ├── servicio_detalle.html
+    │   │   ├── servicio_editar.html
+    │   │   ├── servicio_listar.html
+    │   │   └── servicio_registrar.html
+    │   └── veterinario/
+    │       ├── veterinario_dar_baja.html
+    │       ├── veterinario_detalle.html
+    │       ├── veterinario_editar.html
+    │       ├── veterinario_listar.html
+    │       └── veterinario_registrar.html
+    ├── recepcionista/                       # Área de Recepción
+    │   ├── recepcionista_inicio.html        # Menú principal de recepción
+    │   ├── cita/
+    │   │   ├── cita_cancelar.html
+    │   │   ├── cita_detalle.html
+    │   │   ├── cita_listado.html            # Listado de citas y turnos disponibles
+    │   │   ├── cita_nueva.html              # Formulario de agendamiento
+    │   │   └── cita_reprogramar.html
+    │   ├── mascota/
+    │   │   ├── mascota_dar_baja.html
+    │   │   ├── mascota_detalle.html
+    │   │   ├── mascota_editar.html
+    │   │   ├── mascota_listado.html
+    │   │   └── mascota_nuevo.html
+    │   ├── propietario/
+    │   │   ├── propietario_dar_baja.html
+    │   │   ├── propietario_detalle.html
+    │   │   ├── propietario_editar.html
+    │   │   ├── propietario_listado.html
+    │   │   └── propietario_registrar.html
+    │   └── servicios/
+    │       ├── index.html                   # Acceso alternativo
+    │       ├── servicio_listado.html        # Catálogo en tabla con requisitos
+    │       └── servicios.html               # Catálogo en tarjetas visuales
+    └── veterinario/                         # Área Clínica
+        ├── veterinario-agenda-lista.html    # Agenda de citas diarias
+        ├── veterinario-atencion-confirmar.html
+        ├── veterinario-atencion-detalle.html
+        ├── veterinario-detalle-cita.html
+        ├── veterinario-historia-clinica-detalle.html
+        ├── veterinario-historial-clinico.html
+        └── veterinario-registrar-atencion.html
 ```
 
-## Ejecución local
+---
 
-1. Clonar el repositorio desde su URL de GitHub.
-2. Abrir `index.html` en **Google Chrome** o **Mozilla Firefox**.
-3. Navegar por los menús y formularios de ejemplo según el rol representado.
+## 📊 Diagramas del Sistema (Formato Mermaid)
 
-No se necesita instalar dependencias ni levantar un servidor para consultar las pantallas estáticas. El resultado de un formulario conduce a otra página del mapa navegacional **si los campos cumplen las validaciones HTML5**, pero no guarda datos reales.
+Los diagramas oficiales en formato Mermaid (`.mmd`) se encuentran en la carpeta `docs/`:
 
+1. **Mapa Navegacional Tipo Tubería:** [`docs/mapa_navegacion_detallado.mmd`](./docs/mapa_navegacion_detallado.mmd)
+   * Detalla todas las transiciones, enlaces de barra superior, formularios con método GET, botones modales (`:target` con `iframe`) y acciones de retorno y cierre de sesión.
+   * Utiliza una paleta de colores por rol: Azul (Login), Verde (Recepción), Morado (Veterinaria), Naranja (Administración) y Rojo (Bajas/Cancelaciones/Cierre de sesión).
+2. **Diagrama de Casos de Uso UML 2.5:** [`docs/casos_de_uso/diagrama_casos_de_uso.mmd`](./docs/casos_de_uso/diagrama_casos_de_uso.mmd)
+   * Modela los 14 Casos de Uso agrupados por subsistema, la generalización del actor base `Usuario Autenticado`, los actores primarios (`Recepcionista`, `Veterinario`, `Administrador`), el actor secundario `Sistema` y las relaciones de inclusión (`<<include>>`) y extensión (`<<extend>>`).
 
+---
 
-## Publicación y fecha de entrega
+## ⚙️ Reglas de Negocio y Validaciones HTML5
 
-- **Fecha límite:** miércoles **18 de noviembre de 2026, 23:59**.
-- **Repositorio GitHub:** pendiente de incorporar la URL oficial del equipo.
-- **Sitio GitHub Pages:** pendiente de publicar e incorporar la URL.
-- **Entrega académica:** compartir ambas URLs en el aula virtual, con el PDF de documentación alojado en `docs/`.
+* **Propietarios:** Cédula ecuatoriana de 10 dígitos numéricos (`pattern="[0-9]{10}"`), celular de 10 dígitos que inicia con `09` (`pattern="09[0-9]{8}"`), nombres y apellidos solo con letras y espacios (`minlength="2" maxlength="50"`).
+* **Mascotas:** Especie tipificada (`Perro`, `Gato`, `Ave`, `Roedor` u `Otro` con especificación obligatoria), peso decimal entre 0.1 y 120 kg (`step="0.1"`), fecha de nacimiento no futura, y N.º de Historia Clínica de solo lectura (`readonly`).
+* **Citas y Turnos:** Horarios de atención de lunes a sábado de 08:00 a 18:00 en bloques de 30 minutos (`step="1800"`, último turno a las 17:30). Rango de fechas seleccionable de hasta 6 meses a futuro. Estado inicial fijado en `Programada`.
+* **Políticas de Cancelación / Reprogramación / Bajas:** Toda baja lógica, cancelación o reprogramación requiere de un motivo justificado obligatorio de entre 10 y 200 caracteres (`minlength="10" maxlength="200"`). Solo se cancelan o reprograman citas en estado `Programada` con al menos 24 horas de anticipación.
+* **Servicios:** Tarifas en dólares estadounidenses (USD) mayores a cero y hasta USD 1000 con dos decimales (`step="0.01"`).
 
-## Colaboración
+---
 
-Las normas de trabajo, dependencias, calendario propuesto, estrategia de ramas y revisión están disponibles en [CONTRIBUTING.md](./CONTRIBUTING.md). Para integrar cambios debe utilizarse [PULL_REQUEST_TEMPLATE.md](./PULL_REQUEST_TEMPLATE.md).
+## 🚀 Ejecución y Visualización Local
 
+1. Clonar el repositorio:
+   ```bash
+   git clone https://github.com/JorgeR47/VetCare.git
+   ```
+2. Abrir el archivo `index.html` directamente en cualquier navegador web moderno (**Google Chrome** o **Mozilla Firefox**).
+3. Para previsualizar o exportar los diagramas `.mmd`, abrir los archivos en un editor con soporte para Mermaid (como VS Code con la extensión *Markdown Preview Mermaid Support*) o copiar su contenido en [Mermaid Live Editor](https://mermaid.live/).
