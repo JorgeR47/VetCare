@@ -116,3 +116,16 @@ iframe[src="auditoria_detalle.html"] { height: 458px; }
 .tabla-auditoria td:last-child {
   text-align: center;
 }
+
+/* ===================================================
+   MENSAJES DE CONFIRMACIÓN (registrar, editar, dar de baja)
+   Ocultos por defecto; aparecen cuando la URL termina en su id,
+   por ejemplo veterinario_listar.html#msj-registrado (sin JS).
+   =================================================== */
+.aviso-accion {
+  display: none;
+}
+
+.aviso-accion:target {
+  display: block;
+}

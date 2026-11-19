@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Propietarios | VetCare</title>
   <link rel="stylesheet" href="../../../css/estilos.css">
+  <link rel="stylesheet" href="../../../css/paginas/propietario.css">
 </head>
 
 <body>
@@ -30,6 +31,11 @@
       <h1 class="titulo-pagina">Listado de Propietarios</h1>
       <p class="texto-secundario">Busca y administra la información de contacto y mascotas de los clientes.</p>
     </div>
+
+    <!-- Mensajes de confirmación: se muestran con :target al volver de un formulario (action="...#msj-...") -->
+    <p id="msj-registrado" class="mensaje mensaje--exito aviso-accion espacio-abajo" role="status">Propietario registrado correctamente.</p>
+    <p id="msj-editado" class="mensaje mensaje--exito aviso-accion espacio-abajo" role="status">Cambios del propietario guardados correctamente.</p>
+    <p id="msj-baja" class="mensaje mensaje--exito aviso-accion espacio-abajo" role="status">Propietario dado de baja correctamente.</p>
 
     <div class="barra-acciones espacio-abajo">
       <!-- Buscador -->

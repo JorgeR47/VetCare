@@ -1,0 +1,15 @@
+/* ===================================================
+   VETCARE - ESTILOS PROPIOS DE PROPIETARIOS (CU-02)
+   Agrega aquí solo reglas exclusivas de las pantallas de propietarios.
+   =================================================== */
+
+/* Mensajes de confirmación (registrar, editar, dar de baja)
+   Ocultos por defecto; aparecen cuando la URL termina en su id,
+   por ejemplo propietario_listado.html#msj-registrado (sin JS). */
+.aviso-accion {
+  display: none;
+}
+
+.aviso-accion:target {
+  display: block;
+}
