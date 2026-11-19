@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Personal veterinario | VetCare</title>
+  <link rel="stylesheet" href="../../../css/estilos.css">
+  <link rel="stylesheet" href="../../../css/paginas/administrador.css">
+</head>
+
+<body>
+  <header class="encabezado">
+    <div class="contenedor encabezado__interior">
+      <div class="marca">
+        <span class="marca__simbolo">V</span>
+        <span class="marca__texto">VetCare</span>
+      </div>
+      <div class="navegacion navegacion--barra">
+        <nav class="barra-navegacion" aria-label="Navegación del administrador">
+          <a href="../servicio/servicio_listar.html">Catálogo servicios</a>
+          <a href="../veterinario/veterinario_listar.html" aria-current="page">Personal veterinario</a>
+          <a href="../recepcionista/recepcionista_listar.html">Personal recepcionista</a>
+          <a href="../auditoria/auditoria_listar.html">Bitácora y auditoría</a>
+          <a href="../../../index.html">Cerrar sesión</a>
+        </nav>
+        <div class="usuario-sesion">
+          <div class="usuario-avatar" title="Aquiles Brinco">A</div>
+          <div class="usuario-info">
+            <span class="usuario-nombre">Aquiles Brinco</span>
+            <span class="usuario-rol">Administrador</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="contenedor seccion-principal">
+    <div class="encabezado-pagina">
+      <p class="texto-secundario">Administrador &gt; Personal veterinario</p>
+      <h1 class="titulo-pagina">Personal Veterinario</h1>
+      <p class="texto-secundario">Consulta y administra los médicos veterinarios de la clínica.</p>
+    </div>
+
+    <!-- Mensajes de confirmación: se muestran con :target al volver de un formulario (action="...#msj-...") -->
+    <p id="msj-registrado" class="mensaje mensaje--exito aviso-accion espacio-abajo" role="status">Veterinario registrado correctamente.</p>
+    <p id="msj-editado" class="mensaje mensaje--exito aviso-accion espacio-abajo" role="status">Cambios del veterinario guardados correctamente.</p>
+    <p id="msj-baja" class="mensaje mensaje--exito aviso-accion espacio-abajo" role="status">Veterinario dado de baja correctamente.</p>
+
+    <div class="barra-acciones espacio-abajo">
+      <!-- Buscador -->
+      <form class="buscador" action="veterinario_listar.html" method="get">
+        <div class="campo">
+          <label for="buscar">Buscar veterinario</label>
+          <input id="buscar" name="q" type="search" maxlength="60" placeholder="Cédula o nombres">
+        </div>
+        <button class="boton" type="submit">Buscar</button>
+      </form>
+
+      <a class="boton" href="#ventana-nuevo">+ Registrar</a>
+    </div>
+
+    <!-- Tabla de veterinarios -->
+    <div class="tabla-contenedor">
+      <table class="tabla tabla--listado tabla-veterinarios">
+        <caption>Veterinarios registrados</caption>
+        <thead>
+          <tr>
+            <th scope="col">Cédula</th>
+            <th scope="col">Nombres</th>
+            <th scope="col">Apellidos</th>
+            <th scope="col">Especialidad</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>1712345678</strong></td>
+            <td>Andrés Sebastián</td>
+            <td>Paredes Luna</td>
+            <td>Medicina general</td>
+            <td>
+              <a href="#ventana-detalle">Ver detalle</a> |
+              <a href="#ventana-editar">Editar</a> |
+              <a href="#ventana-dar-baja">Dar de baja</a>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>0923456781</strong></td>
+            <td>Valeria Cristina</td>
+            <td>Mora Andrade</td>
+            <td>Cirugía</td>
+            <td>
+              <a href="#ventana-detalle">Ver detalle</a> |
+              <a href="#ventana-editar">Editar</a> |
+              <a href="#ventana-dar-baja">Dar de baja</a>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>1104567892</strong></td>
+            <td>Diego Alejandro</td>
+            <td>Cevallos Ruiz</td>
+            <td>Dermatología</td>
+            <td>
+              <a href="#ventana-detalle">Ver detalle</a> |
+              <a href="#ventana-editar">Editar</a> |
+              <a href="#ventana-dar-baja">Dar de baja</a>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>0602345673</strong></td>
+            <td>Gabriela Estefanía</td>
+            <td>Ortiz Vega</td>
+            <td>Cardiología</td>
+            <td>
+              <a href="#ventana-detalle">Ver detalle</a> |
+              <a href="#ventana-editar">Editar</a> |
+              <a href="#ventana-dar-baja">Dar de baja</a>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>1305678904</strong></td>
+            <td>Martín Esteban</td>
+            <td>Salazar Pinto</td>
+            <td>Odontología</td>
+            <td>
+              <a href="#ventana-detalle">Ver detalle</a> |
+              <a href="#ventana-editar">Editar</a> |
+              <a href="#ventana-dar-baja">Dar de baja</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <footer class="contenedor pie">
+    VetCare · Clínica Veterinaria Huellitas
+  </footer>
+
+
+  <!-- Ventanas emergentes: se muestran con :target al hacer clic en href="#id" -->
+  <div class="modal" id="ventana-nuevo" role="dialog" aria-modal="true" aria-label="Registrar veterinario">
+    <div class="modal__ventana modal__ventana--incrustada tarjeta">
+      <iframe src="veterinario_registrar.html" title="Registrar veterinario"></iframe>
+    </div>
+  </div>
+  <div class="modal" id="ventana-detalle" role="dialog" aria-modal="true" aria-label="Detalle del veterinario">
+    <div class="modal__ventana modal__ventana--incrustada tarjeta">
+      <iframe src="veterinario_detalle.html" title="Detalle del veterinario"></iframe>
+    </div>
+  </div>
+  <div class="modal" id="ventana-editar" role="dialog" aria-modal="true" aria-label="Editar veterinario">
+    <div class="modal__ventana modal__ventana--incrustada tarjeta">
+      <iframe src="veterinario_editar.html" title="Editar veterinario"></iframe>
+    </div>
+  </div>
+  <div class="modal" id="ventana-dar-baja" role="dialog" aria-modal="true" aria-label="Dar de baja veterinario">
+    <div class="modal__ventana modal__ventana--incrustada tarjeta">
+      <iframe src="veterinario_dar_baja.html" title="Dar de baja veterinario"></iframe>
+    </div>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Registrar atención | VetCare</title>
+  <link rel="stylesheet" href="../../css/estilos.css">
+  <link rel="stylesheet" href="../../css/paginas/veterinario.css">
+</head>
+<body>
+  <main class="contenedor seccion-principal">
+    <div class="encabezado-pagina">
+      <p class="texto-secundario">Agenda del día › Registrar atención</p>
+      <h1 class="titulo-pagina">Registrar atención médica</h1>
+      <p class="texto-secundario">Registra la atención, el diagnóstico y el tratamiento de la mascota.</p>
+    </div>
+
+    <section class="tarjeta registro-atencion" aria-labelledby="cita-titulo">
+      <h2 id="cita-titulo" class="titulo-seccion">Información de la cita · datos de ejemplo</h2>
+      <dl class="datos">
+        <div><dt>Fecha</dt><dd>17 de noviembre de 2026</dd></div>
+        <div><dt>Hora</dt><dd>09:00 - 09:30</dd></div>
+        <div><dt>Mascota</dt><dd>Luna</dd></div>
+        <div><dt>Propietario</dt><dd>María Torres</dd></div>
+        <div><dt>Servicio</dt><dd>Consulta general</dd></div>
+        <div><dt>Estado</dt><dd><span class="estado estado--programada">Programada</span></dd></div>
+      </dl>
+
+      <form class="formulario" action="#ventana-confirmar-atencion" method="get">
+        <fieldset>
+          <legend class="etiqueta">Datos de la atención</legend>
+          <div class="campo">
+            <label for="diagnostico">Diagnóstico</label>
+            <textarea id="diagnostico" name="diagnostico" rows="4" minlength="5" maxlength="500" placeholder="Ingrese el diagnóstico de la mascota" required></textarea>
+          </div>
+          <div class="campo">
+            <label for="tratamiento">Tratamiento</label>
+            <textarea id="tratamiento" name="tratamiento" rows="4" minlength="5" maxlength="500" placeholder="Describa el tratamiento indicado" required></textarea>
+          </div>
+          <div class="campo campo--peso">
+            <label for="peso">Peso (kg)</label>
+            <input type="number" id="peso" name="peso" min="0.1" max="120" step="0.1" placeholder="Ej. 12.5" required>
+          </div>
+        </fieldset>
+        <div class="botonera">
+          <a class="boton boton--secundario" href="veterinario-agenda-lista.html" target="_top">Cancelar</a>
+          <button class="boton" type="submit">Guardar atención</button>
+        </div>
+      </form>
+    </section>
+  </main>
+  <div class="modal modal--notificacion" id="ventana-confirmar-atencion" role="dialog" aria-modal="true" aria-label="Confirmar atención">
+    <section class="modal__ventana modal__ventana--incrustada modal__ventana--notificacion tarjeta">
+      <iframe src="veterinario-atencion-confirmar.html" title="Confirmar atención"></iframe>
+    </section>
+  </div>
+</body>
+</html>

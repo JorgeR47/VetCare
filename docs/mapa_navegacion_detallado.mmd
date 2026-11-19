@@ -1,0 +1,299 @@
+---
+title: Mapa Navegacional Tipo Tubería · VetCare (Nombres Limpios e Interacciones Completas)
+---
+flowchart TD
+    %% ==========================================
+    %% DEFINICIÓN DE CLASES Y COLORES (ESTILO TUBERÍA)
+    %% ==========================================
+    classDef login fill:#1E40AF,stroke:#1D4ED8,color:#FFFFFF,stroke-width:2px;
+    classDef recepcion fill:#065F46,stroke:#047857,color:#FFFFFF,stroke-width:2px;
+    classDef veterinario fill:#5B21B6,stroke:#6D28D9,color:#FFFFFF,stroke-width:2px;
+    classDef admin fill:#9A3412,stroke:#C2410C,color:#FFFFFF,stroke-width:2px;
+    classDef modal fill:#FEF3C7,stroke:#D97706,color:#78350F,stroke-width:1.5px;
+    classDef accion fill:#E0F2FE,stroke:#0284C7,color:#0369A1,stroke-width:1.5px;
+    classDef danger fill:#FEE2E2,stroke:#DC2626,color:#991B1B,stroke-width:1.5px;
+    classDef start fill:#0F172A,stroke:#334155,color:#FFFFFF,stroke-width:2px;
+
+    %% ==========================================
+    %% 1. ACCESO Y LOGIN (TUBERÍA DE ENTRADA)
+    %% ==========================================
+    INICIO((Inicio)):::start -->|"Abrir navegador"| LOGIN["<b>Inicio de Sesión Principal</b><br/>[Campos: correo, contraseña]"]:::login
+
+    LOGIN -.->|"[Validación] Credenciales inválidas o campos vacíos"| LOGIN
+    LOGIN -->|"[Botón submit] Ingresar al sistema"| R_PROP_LIST
+    LOGIN -->|"[Chip acceso] Perfil Recepcionista"| R_PROP_LIST
+    LOGIN -->|"[Chip acceso] Perfil Veterinario"| V_AGENDA
+    LOGIN -->|"[Chip acceso] Perfil Administrador"| A_SERV_LIST
+    LOGIN -->|"[Enlace] Logotipo VetCare"| LOGIN
+
+    %% Login Alterno Recepción
+    R_LOGIN_ALT["<b>Ingreso Recepción Alterno</b><br/>[Campos: usuario, clave]"]:::login
+    R_LOGIN_ALT -.->|"[Validación] Datos inválidos"| R_LOGIN_ALT
+    R_LOGIN_ALT -->|"[Botón submit] Ingresar"| R_INICIO
+    R_LOGIN_ALT -->|"[Enlace] Logotipo VetCare"| R_LOGIN_ALT
+
+    %% ==========================================
+    %% 2. ROL RECEPCIONISTA (TUBERÍA VERDE ESMERALDA)
+    %% ==========================================
+    subgraph ROL_REC["Tubería de Recepción (CU 01 al CU 05, CU 13, CU 14)"]
+        direction TB
+
+        %% Panel Central
+        R_INICIO["<b>Panel de Recepción</b><br/>Menú de navegación principal"]:::recepcion
+
+        %% Módulo Propietarios (CU-02)
+        subgraph MOD_PROP["Módulo Propietarios (CU 02)"]
+            R_PROP_LIST["<b>Listado de Propietarios</b><br/>[Buscador: cédula, nombre, teléfono, correo]"]:::recepcion
+            R_PROP_NEW["<b>Registrar Propietario</b><br/>[Campos: cédula, celular, nombres, apellidos, correo, dirección]"]:::modal
+            R_PROP_DET["<b>Detalle del Propietario</b><br/>[Datos personales y mascotas asociadas]"]:::modal
+            R_PROP_EDIT["<b>Editar Propietario</b><br/>[Campos precargados modificables]"]:::modal
+            R_PROP_DEL["<b>Dar de Baja Propietario</b><br/>[Textarea: motivo de baja obligatorio]"]:::danger
+
+            R_PROP_LIST -->|"[Botón submit] Buscar propietario"| R_PROP_LIST
+            R_PROP_LIST -->|"[Botón enlace] + Nuevo propietario"| R_PROP_NEW
+            R_PROP_LIST -->|"[Enlace tabla] Ver detalle"| R_PROP_DET
+            R_PROP_LIST -->|"[Enlace tabla] Editar"| R_PROP_EDIT
+            R_PROP_LIST -->|"[Enlace tabla] Dar de baja"| R_PROP_DEL
+
+            R_PROP_NEW -->|"[Botón submit] Guardar propietario"| R_PROP_LIST
+            R_PROP_NEW -.->|"[Botón enlace] Cancelar"| R_PROP_LIST
+            R_PROP_DET -->|"[Enlace] Editar propietario"| R_PROP_EDIT
+            R_PROP_DET -.->|"[Enlace] Volver al listado"| R_PROP_LIST
+            R_PROP_EDIT -->|"[Botón submit] Guardar cambios"| R_PROP_LIST
+            R_PROP_EDIT -.->|"[Botón enlace] Cancelar"| R_PROP_LIST
+            R_PROP_DEL -->|"[Botón submit] Confirmar baja"| R_PROP_LIST
+            R_PROP_DEL -.->|"[Botón enlace] Cancelar"| R_PROP_LIST
+        end
+
+        %% Módulo Mascotas (CU-03)
+        subgraph MOD_MASC["Módulo Mascotas (CU 03)"]
+            R_MASC_LIST["<b>Listado de Mascotas</b><br/>[Buscador: nombre, historia clínica, cédula]"]:::recepcion
+            R_MASC_NEW["<b>Registrar Mascota</b><br/>[Campos: propietario, nombre, especie, raza, sexo, fecha nacimiento, peso, esterilizada, observaciones]"]:::modal
+            R_MASC_DET["<b>Detalle de Mascota</b><br/>[Ficha clínica y atenciones registradas]"]:::modal
+            R_MASC_EDIT["<b>Editar Mascota</b><br/>[Historia clínica fija y datos modificables]"]:::modal
+            R_MASC_DEL["<b>Dar de Baja Mascota</b><br/>[Textarea: motivo de baja obligatorio]"]:::danger
+
+            R_MASC_LIST -->|"[Botón submit] Buscar mascota"| R_MASC_LIST
+            R_MASC_LIST -->|"[Botón enlace] Registrar mascota"| R_MASC_NEW
+            R_MASC_LIST -->|"[Enlace tabla] Ver"| R_MASC_DET
+            R_MASC_LIST -->|"[Enlace tabla] Editar"| R_MASC_EDIT
+            R_MASC_LIST -->|"[Enlace tabla] Dar de baja"| R_MASC_DEL
+
+            R_MASC_NEW -->|"[Botón submit] Guardar y confirmar"| R_MASC_LIST
+            R_MASC_NEW -.->|"[Botón enlace] Cancelar"| R_MASC_LIST
+            R_MASC_DET -->|"[Botón enlace] Editar"| R_MASC_EDIT
+            R_MASC_DET -.->|"[Botón enlace] Volver"| R_MASC_LIST
+            R_MASC_EDIT -->|"[Botón submit] Guardar cambios"| R_MASC_LIST
+            R_MASC_EDIT -.->|"[Botón enlace] Cancelar"| R_MASC_LIST
+            R_MASC_DEL -->|"[Botón submit] Confirmar y dar de baja"| R_MASC_LIST
+            R_MASC_DEL -.->|"[Botón enlace] Cancelar"| R_MASC_LIST
+        end
+
+        %% Módulo Citas y Turnos (CU-04, CU-05, CU-14)
+        subgraph MOD_CITAS["Módulo Citas y Turnos (CU 04, CU 05, CU 14)"]
+            R_CITA_LIST["<b>Listado de Citas y Turnos</b><br/>[Filtros: fecha, estado, veterinario | Consulta turnos]"]:::recepcion
+            R_CITA_NEW["<b>Agendar Cita</b><br/>[Campos: mascota, servicio, veterinario, fecha, hora bloques 30m, teléfono, notas]"]:::modal
+            R_CITA_DET["<b>Detalle de la Cita</b><br/>[Ficha completa de la cita agendada]"]:::modal
+            R_CITA_REP["<b>Reprogramar Cita</b><br/>[Campos: fecha, hora, veterinario, motivo reprogramación]"]:::modal
+            R_CITA_CAN["<b>Cancelar Cita</b><br/>[Textarea: motivo de cancelación obligatorio]"]:::danger
+
+            R_CITA_LIST -->|"[Botón submit] Buscar cita"| R_CITA_LIST
+            R_CITA_LIST -->|"[Botón enlace] Agendar cita"| R_CITA_NEW
+            R_CITA_LIST -->|"[Enlace tabla] Ver"| R_CITA_DET
+            R_CITA_LIST -->|"[Enlace tabla] Reprogramar"| R_CITA_REP
+            R_CITA_LIST -->|"[Enlace tabla] Cancelar"| R_CITA_CAN
+            R_CITA_LIST -->|"[Botón submit] Consultar disponibilidad"| R_CITA_LIST
+            R_CITA_LIST -->|"[Enlace turno libre] Seleccionar horario disponible"| R_CITA_NEW
+
+            R_CITA_NEW -->|"[Botón submit] Agendar cita"| R_CITA_LIST
+            R_CITA_NEW -.->|"[Botón enlace] Volver"| R_CITA_LIST
+            R_CITA_DET -->|"[Botón enlace] Reprogramar"| R_CITA_REP
+            R_CITA_DET -->|"[Botón enlace] Cancelar cita"| R_CITA_CAN
+            R_CITA_DET -.->|"[Botón enlace] Volver"| R_CITA_LIST
+            R_CITA_REP -->|"[Botón submit] Guardar cambios"| R_CITA_LIST
+            R_CITA_REP -.->|"[Botón enlace] Volver"| R_CITA_LIST
+            R_CITA_CAN -->|"[Botón submit] Confirmar cancelación"| R_CITA_LIST
+            R_CITA_CAN -.->|"[Botón enlace] Volver"| R_CITA_LIST
+        end
+
+        %% Módulo Catálogo Servicios Recepcionista (CU-13)
+        subgraph MOD_SERV_REC["Catálogo de Servicios (CU 13)"]
+            R_SERV_LIST["<b>Catálogo de Servicios Tabla</b><br/>[Buscador de servicios, precios USD y requisitos]"]:::recepcion
+            R_SERV_CARDS["<b>Catálogo de Servicios Tarjetas</b><br/>[Vista visual con tarjetas informativas]"]:::recepcion
+
+            R_SERV_LIST -->|"[Botón submit] Buscar servicio"| R_SERV_LIST
+        end
+
+        %% Enlaces del Menú Vertical de Recepcionista
+        R_INICIO -->|"[Tarjeta menú] Citas"| R_CITA_LIST
+        R_INICIO -->|"[Tarjeta menú] Propietarios"| R_PROP_LIST
+        R_INICIO -->|"[Tarjeta menú] Servicios"| R_SERV_LIST
+        R_INICIO -->|"[Tarjeta menú] Mascotas"| R_MASC_LIST
+
+        %% Barra común de navegación superior entre páginas de Recepción
+        R_CITA_LIST <-->|"[Navegación] Propietarios y Citas"| R_PROP_LIST
+        R_CITA_LIST <-->|"[Navegación] Mascotas y Citas"| R_MASC_LIST
+        R_CITA_LIST <-->|"[Navegación] Servicios y Citas"| R_SERV_LIST
+        R_PROP_LIST <-->|"[Navegación] Mascotas y Propietarios"| R_MASC_LIST
+        R_PROP_LIST <-->|"[Navegación] Servicios y Propietarios"| R_SERV_LIST
+        R_MASC_LIST <-->|"[Navegación] Servicios y Mascotas"| R_SERV_LIST
+
+        %% Retorno al inicio con clic en el Logotipo VetCare
+        R_CITA_LIST & R_MASC_LIST & R_SERV_LIST -->|"[Logo] Clic VetCare"| R_INICIO
+    end
+
+    %% ==========================================
+    %% 3. ROL VETERINARIO (TUBERÍA PÚRPURA / VIOLETA)
+    %% ==========================================
+    subgraph ROL_VET["Tubería Clínica - Veterinario (CU 01, CU 06, CU 07, CU 08)"]
+        direction TB
+
+        V_AGENDA["<b>Agenda del Día</b><br/>[Buscador: fecha de atención médica]"]:::veterinario
+        V_DET_CITA["<b>Detalle de la Cita Médica</b><br/>[Ficha informativa de la cita]"]:::modal
+        V_REG_ATEN["<b>Registrar Atención Médica</b><br/>[Campos: diagnóstico, tratamiento, peso en kg]"]:::modal
+        V_CONF_ATEN["<b>Confirmar Atención Médica</b><br/>[Ventana de validación previa al guardado]"]:::modal
+
+        V_HIST_LIST["<b>Historia Clínica Listado</b><br/>[Buscador: mascota, historia clínica, cédula]"]:::veterinario
+        V_HIST_DET["<b>Historia Clínica Detalle</b><br/>[Ficha paciente y tabla de atenciones pasadas]"]:::veterinario
+        V_HIST_ATEN_DET["<b>Detalle de Atención Pasada</b><br/>[Diagnóstico y tratamiento registrado]"]:::modal
+
+        %% Flujo Agenda y Atención
+        V_AGENDA -->|"[Botón submit] Consultar agenda"| V_AGENDA
+        V_AGENDA -->|"[Enlace tabla] Ver detalle"| V_DET_CITA
+        V_AGENDA -->|"[Enlace tabla] Registrar atención"| V_REG_ATEN
+        V_DET_CITA -->|"[Botón enlace] Registrar atención"| V_REG_ATEN
+        V_DET_CITA -.->|"[Botón enlace] Volver a la agenda"| V_AGENDA
+        V_REG_ATEN -->|"[Botón submit] Guardar atención"| V_CONF_ATEN
+        V_REG_ATEN -.->|"[Botón enlace] Cancelar"| V_AGENDA
+        V_CONF_ATEN -->|"[Botón enlace] Confirmar atención"| V_AGENDA
+        V_CONF_ATEN -.->|"[Botón enlace] Continuar editando"| V_REG_ATEN
+        V_CONF_ATEN -.->|"[Botón enlace] Cancelar"| V_AGENDA
+
+        %% Flujo Historia Clínica
+        V_HIST_LIST -->|"[Botón submit] Buscar mascota"| V_HIST_LIST
+        V_HIST_LIST -->|"[Enlace tabla] Ver historia clínica"| V_HIST_DET
+        V_HIST_DET -->|"[Enlace tabla] Ver detalle atención"| V_HIST_ATEN_DET
+        V_HIST_DET -.->|"[Botón enlace] Volver a historias clínicas"| V_HIST_LIST
+        V_HIST_ATEN_DET -.->|"[Botón enlace] Volver a la historia clínica"| V_HIST_DET
+
+        %% Barra de navegación superior Veterinario
+        V_AGENDA <-->|"[Navegación] Historia clínica y Agenda"| V_HIST_LIST
+        V_AGENDA -->|"[Logo] Clic VetCare"| V_AGENDA
+        V_HIST_LIST -->|"[Logo] Clic VetCare"| V_AGENDA
+        V_HIST_DET -->|"[Logo] Clic VetCare"| V_AGENDA
+    end
+
+    %% ==========================================
+    %% 4. ROL ADMINISTRADOR (TUBERÍA NARANJA / ÁMBAR)
+    %% ==========================================
+    subgraph ROL_ADM["Tubería de Administración (CU 01, CU 09 al CU 12)"]
+        direction TB
+
+        %% Módulo Servicios (CU-10)
+        subgraph ADM_SERV["Módulo Servicios (CU 10)"]
+            A_SERV_LIST["<b>Catálogo de Servicios Administrador</b><br/>[Buscador: nombre de servicio]"]:::admin
+            A_SERV_NEW["<b>Registrar Servicio</b><br/>[Campos: nombre, precio USD, descripción, requisitos]"]:::modal
+            A_SERV_DET["<b>Detalle del Servicio</b><br/>[Ficha completa del servicio]"]:::modal
+            A_SERV_EDIT["<b>Editar Servicio</b><br/>[Campos precargados modificables]"]:::modal
+            A_SERV_DEL["<b>Dar de Baja Servicio</b><br/>[Textarea: motivo de baja obligatorio]"]:::danger
+
+            A_SERV_LIST -->|"[Botón submit] Buscar servicio"| A_SERV_LIST
+            A_SERV_LIST -->|"[Botón enlace] + Registrar servicio"| A_SERV_NEW
+            A_SERV_LIST -->|"[Enlace tabla] Ver detalle"| A_SERV_DET
+            A_SERV_LIST -->|"[Enlace tabla] Editar"| A_SERV_EDIT
+            A_SERV_LIST -->|"[Enlace tabla] Dar de baja"| A_SERV_DEL
+
+            A_SERV_NEW -->|"[Botón submit] Guardar"| A_SERV_LIST
+            A_SERV_NEW -.->|"[Botón enlace] Cancelar"| A_SERV_LIST
+            A_SERV_DET -->|"[Enlace] Editar servicio"| A_SERV_EDIT
+            A_SERV_DET -.->|"[Enlace] Volver al listado"| A_SERV_LIST
+            A_SERV_EDIT -->|"[Botón submit] Guardar cambios"| A_SERV_LIST
+            A_SERV_EDIT -.->|"[Botón enlace] Cancelar"| A_SERV_LIST
+            A_SERV_DEL -->|"[Botón submit] Confirmar baja"| A_SERV_LIST
+            A_SERV_DEL -.->|"[Botón enlace] Cancelar"| A_SERV_LIST
+        end
+
+        %% Módulo Veterinarios (CU-09)
+        subgraph ADM_VET["Módulo Personal Veterinario (CU 09)"]
+            A_VET_LIST["<b>Personal Veterinario Listado</b><br/>[Buscador: cédula o nombres]"]:::admin
+            A_VET_NEW["<b>Registrar Veterinario</b><br/>[Campos: cédula, nombres, especialidad, celular, correo, dirección, contraseña]"]:::modal
+            A_VET_DET["<b>Detalle del Veterinario</b><br/>[Ficha profesional y de cuenta]"]:::modal
+            A_VET_EDIT["<b>Editar Veterinario</b><br/>[Campos precargados y cambio de clave]"]:::modal
+            A_VET_DEL["<b>Dar de Baja Veterinario</b><br/>[Textarea: motivo de baja obligatorio]"]:::danger
+
+            A_VET_LIST -->|"[Botón submit] Buscar veterinario"| A_VET_LIST
+            A_VET_LIST -->|"[Botón enlace] + Registrar veterinario"| A_VET_NEW
+            A_VET_LIST -->|"[Enlace tabla] Ver detalle"| A_VET_DET
+            A_VET_LIST -->|"[Enlace tabla] Editar"| A_VET_EDIT
+            A_VET_LIST -->|"[Enlace tabla] Dar de baja"| A_VET_DEL
+
+            A_VET_NEW -->|"[Botón submit] Guardar"| A_VET_LIST
+            A_VET_NEW -.->|"[Botón enlace] Cancelar"| A_VET_LIST
+            A_VET_DET -->|"[Enlace] Editar veterinario"| A_VET_EDIT
+            A_VET_DET -.->|"[Enlace] Volver al listado"| A_VET_LIST
+            A_VET_EDIT -->|"[Botón submit] Guardar cambios"| A_VET_LIST
+            A_VET_EDIT -.->|"[Botón enlace] Cancelar"| A_VET_LIST
+            A_VET_DEL -->|"[Botón submit] Confirmar baja"| A_VET_LIST
+            A_VET_DEL -.->|"[Botón enlace] Cancelar"| A_VET_LIST
+        end
+
+        %% Módulo Recepcionistas (CU-11)
+        subgraph ADM_REC["Módulo Personal Recepcionista (CU 11)"]
+            A_REC_LIST["<b>Personal Recepcionista Listado</b><br/>[Buscador: cédula o nombres]"]:::admin
+            A_REC_NEW["<b>Registrar Recepcionista</b><br/>[Campos: cédula, nombres, celular, correo, dirección, contraseña]"]:::modal
+            A_REC_DET["<b>Detalle Recepcionista</b><br/>[Ficha personal y de cuenta activa]"]:::modal
+            A_REC_EDIT["<b>Editar Recepcionista</b><br/>[Campos precargados y cambio de clave]"]:::modal
+            A_REC_DEL["<b>Dar de Baja Recepcionista</b><br/>[Textarea: motivo de baja obligatorio]"]:::danger
+
+            A_REC_LIST -->|"[Botón submit] Buscar recepcionista"| A_REC_LIST
+            A_REC_LIST -->|"[Botón enlace] + Registrar recepcionista"| A_REC_NEW
+            A_REC_LIST -->|"[Enlace tabla] Ver detalle"| A_REC_DET
+            A_REC_LIST -->|"[Enlace tabla] Editar"| A_REC_EDIT
+            A_REC_LIST -->|"[Enlace tabla] Dar de baja"| A_REC_DEL
+
+            A_REC_NEW -->|"[Botón submit] Guardar"| A_REC_LIST
+            A_REC_NEW -.->|"[Botón enlace] Cancelar"| A_REC_LIST
+            A_REC_DET -->|"[Enlace] Editar recepcionista"| A_REC_EDIT
+            A_REC_DET -.->|"[Enlace] Volver al listado"| A_REC_LIST
+            A_REC_EDIT -->|"[Botón submit] Guardar cambios"| A_REC_LIST
+            A_REC_EDIT -.->|"[Botón enlace] Cancelar"| A_REC_LIST
+            A_REC_DEL -->|"[Botón submit] Confirmar baja"| A_REC_LIST
+            A_REC_DEL -.->|"[Botón enlace] Cancelar"| A_REC_LIST
+        end
+
+        %% Módulo Bitácora de Auditoría (CU-12)
+        subgraph ADM_AUD["Módulo Bitácora y Auditoría (CU 12)"]
+            A_AUD_LIST["<b>Bitácora y Auditoría</b><br/>[Filtros: fecha desde y hasta, hora desde y hasta, rol, acción, módulo]"]:::admin
+            A_AUD_DET["<b>Detalle del Registro de Auditoría</b><br/>[Ficha: fecha, hora, usuario, rol, acción, módulo, motivo]"]:::modal
+
+            A_AUD_LIST -->|"[Botón submit] Filtrar registros"| A_AUD_LIST
+            A_AUD_LIST -->|"[Botón enlace] Limpiar filtros"| A_AUD_LIST
+            A_AUD_LIST -->|"[Enlace tabla] Ver detalle"| A_AUD_DET
+            A_AUD_DET -.->|"[Enlace cerrar] Volver al listado"| A_AUD_LIST
+        end
+
+        %% Barra de Navegación de Administrador (Todas interconectadas)
+        A_SERV_LIST <-->|"[Navegación] Catálogo y Veterinarios"| A_VET_LIST
+        A_SERV_LIST <-->|"[Navegación] Catálogo y Recepcionistas"| A_REC_LIST
+        A_SERV_LIST <-->|"[Navegación] Catálogo y Auditoría"| A_AUD_LIST
+        A_VET_LIST <-->|"[Navegación] Veterinarios y Recepcionistas"| A_REC_LIST
+        A_VET_LIST <-->|"[Navegación] Veterinarios y Auditoría"| A_AUD_LIST
+        A_REC_LIST <-->|"[Navegación] Recepcionistas y Auditoría"| A_AUD_LIST
+    end
+
+    %% ==========================================
+    %% 5. CIERRE DE SESIÓN GLOBAL (TUBERÍA ROJA)
+    %% ==========================================
+    R_INICIO -.->|"[Navegación] Cerrar sesión"| LOGIN
+    R_PROP_LIST -.->|"[Navegación] Cerrar sesión"| LOGIN
+    R_MASC_LIST -.->|"[Navegación] Cerrar sesión"| LOGIN
+    R_CITA_LIST -.->|"[Navegación] Cerrar sesión"| LOGIN
+    R_SERV_LIST -.->|"[Navegación] Cerrar sesión"| LOGIN
+    R_SERV_CARDS -.->|"[Navegación] Cerrar sesión"| LOGIN
+    V_AGENDA -.->|"[Navegación] Cerrar sesión"| LOGIN
+    V_HIST_LIST -.->|"[Navegación] Cerrar sesión"| LOGIN
+    V_HIST_DET -.->|"[Navegación] Cerrar sesión"| LOGIN
+    A_SERV_LIST -.->|"[Navegación] Cerrar sesión"| LOGIN
+    A_VET_LIST -.->|"[Navegación] Cerrar sesión"| LOGIN
+    A_REC_LIST -.->|"[Navegación] Cerrar sesión"| LOGIN
+    A_AUD_LIST -.->|"[Navegación] Cerrar sesión"| LOGIN

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Acceso al sistema VetCare de la clínica veterinaria Huellitas.">
+  <title>Iniciar sesión | VetCare</title>
+  <link rel="stylesheet" href="css/estilos.css">
+  <link rel="stylesheet" href="css/paginas/login.css">
+</head>
+<body class="pagina-login">
+  <main class="tarjeta-login">
+    <section class="bienvenida-login">
+      <img class="imagen-perro" src="https://picsum.photos/id/1025/900/1000" alt="" >
+      <a class="logo-login" href="index.html">VetCare</a>
+      <div class="texto-bienvenida">
+        <p class="nombre-clinica">CLÍNICA VETERINARIA HUELLITAS</p>
+        <h1>Cuidamos de quienes llenan tu vida de alegría.</h1>
+        <p>Sistema integral para el personal de la clínica. Ingresa con las credenciales asignadas a tu rol.</p>
+      </div>
+    </section>
+
+    <section class="panel-login" aria-labelledby="titulo-login">
+      <p class="saludo-login">BIENVENIDO/A</p>
+      <h2 id="titulo-login">Iniciar sesión</h2>
+
+      <form id="formulario-login" action="index.html" method="get">
+        <div class="campo">
+          <label for="correo">Correo electrónico</label>
+          <input id="correo" type="email" pattern="[^@\s]+@[^@\s]+\.[^@\s]+" title="Escribe un correo válido, por ejemplo: nombre@dominio.com" placeholder="Ingresa tu correo" value="ejemplo@dominio.com" autocomplete="username" required>
+        </div>
+        <div class="campo">
+          <label for="contrasena">Contraseña</label>
+          <input id="contrasena" type="password" placeholder="Ingresa tu contraseña" value="123456" autocomplete="current-password" required>
+        </div>
+        <small class="texto-secundario">Nota para el docente: la selección de rol es provisional, ya que este prototipo utiliza solo HTML y CSS. En la versión final se ingresará con correo y contraseña, y el sistema identificará el rol automáticamente.</small>
+        <fieldset class="selector-rol">
+          <legend>Selecciona tu rol</legend>
+          <input id="rol-recepcionista" type="radio" name="rol" value="recepcionista" required checked>
+          <label for="rol-recepcionista">Recepcionista</label>
+          <input id="rol-veterinario" type="radio" name="rol" value="veterinario" required>
+          <label for="rol-veterinario">Veterinario</label>
+          <input id="rol-administrador" type="radio" name="rol" value="administrador" required>
+          <label for="rol-administrador">Administrador</label>
+
+          <!-- El ingreso se habilita al seleccionar un rol. -->
+          <button class="boton ingreso-pendiente" type="submit" disabled>Selecciona un rol para ingresar</button>
+          <button class="boton ingreso-recepcionista" type="submit" formaction="pages/recepcionista/propietario/propietario_listado.html">Ingresar al sistema</button>
+          <button class="boton ingreso-veterinario" type="submit" formaction="pages/veterinario/veterinario-agenda-lista.html">Ingresar al sistema</button>
+          <button class="boton ingreso-administrador" type="submit" formaction="pages/administrador/servicio/servicio_listar.html">Ingresar al sistema</button>
+        </fieldset>
+      </form>
+    </section>
+  </main>
+</body>
+</html>
+
+
+
+
+
+
+

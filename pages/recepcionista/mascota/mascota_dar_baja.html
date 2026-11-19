@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dar de baja a una mascota | VetCare</title>
+    <link rel="stylesheet" href="../../../css/estilos.css">
+    <link rel="stylesheet" href="../../../css/paginas/recepcionista.css">
+</head>
+
+<body>
+    <a class="salto" href="#contenido">Saltar al contenido</a>
+
+    <header class="encabezado">
+        <div class="contenedor encabezado__interior">
+            <a class="marca" href="../recepcionista_inicio.html">
+                <span class="marca__simbolo" aria-hidden="true">V</span>VetCare
+            </a>
+            <div class="navegacion--barra">
+                <div class="usuario-sesion">
+                    <div class="usuario-avatar" aria-hidden="true">R</div>
+                    <div class="usuario-info">
+                        <span class="usuario-nombre">Recepción</span>
+                        <span class="usuario-rol">recepcionista</span>
+                    </div>
+                </div>
+                <nav class="barra-navegacion" aria-label="Navegación de recepción">
+                    <a href="../cita/cita_listar.html">Citas</a>
+                    <a href="../propietario/propietario_listado.html">Propietarios</a>
+                    <a href="../servicios/servicio_listar.html">Servicios</a>
+                    <a href="mascota_listar.html" aria-current="page">Mascotas</a>
+                    <a href="../../../index.html">Cerrar sesión</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <div class="contenedor disposicion">
+        <main id="contenido">
+            <div class="encabezado-pagina">
+                <h1 class="titulo-pagina">Dar de baja a una mascota</h1>
+                <p class="texto-secundario">La mascota pasará a estado inactivo; el registro no se elimina.</p>
+            </div>
+
+            <!-- Confirmación de baja lógica, siguiendo la estructura del propietario -->
+            <div class="tarjeta panel">
+                <dl class="datos">
+                    <div>
+                        <dt>N.º HC</dt>
+                        <dd>HC-0001</dd>
+                    </div>
+                    <div>
+                        <dt>Nombre de la mascota</dt>
+                        <dd>Firulais</dd>
+                    </div>
+                    <div>
+                        <dt>Especie</dt>
+                        <dd>Perro</dd>
+                    </div>
+                    <div>
+                        <dt>Raza</dt>
+                        <dd>Labrador</dd>
+                    </div>
+                    <div>
+                        <dt>Propietario</dt>
+                        <dd>Marcela Pérez (1712345678)</dd>
+                    </div>
+                </dl>
+
+                <form class="formulario" action="mascota_listar.html#baja" method="get">
+                    <fieldset>
+                        <legend>Confirmación de baja</legend>
+                        <div class="campo">
+                            <label for="motivo">Motivo de baja</label>
+                            <textarea id="motivo" name="motivo" rows="3" minlength="10" maxlength="200"
+                                autocomplete="off" placeholder="Explique por qué se da de baja (10 a 200 caracteres)"
+                                title="Escribe el motivo de la baja con al menos 10 y máximo 200 caracteres."
+                                required></textarea>
+                        </div>
+                    </fieldset>
+                    <div class="botonera">
+                        <button class="boton boton--peligro" type="submit">Confirmar baja</button>
+                        <a class="boton boton--secundario" href="mascota_listar.html">Cancelar</a>
+                    </div>
+                </form>
+            </div>
+        </main>
+
+    </div>
+
+    <footer class="pie contenedor">
+        <p>VetCare · Sistema de recepción</p>
+    </footer>
+</body>
+
+</html>

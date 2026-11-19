@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Registrar propietario | VetCare</title>
+  <link rel="stylesheet" href="../../../css/estilos.css">
+</head>
+
+<body>
+  <main class="contenedor seccion-principal popup-propietario">
+    <div class="encabezado-pagina">
+      <h1 class="titulo-pagina">Registrar Propietario</h1>
+      <p class="texto-secundario">Completa los datos personales del responsable de la mascota para darlo de alta en el
+        sistema.</p>
+    </div>
+
+    <!-- Formulario de registro -->
+    <form class="tarjeta panel formulario" action="propietario_listado.html#msj-registrado" method="get" target="_top">
+      <fieldset class="cuadricula cuadricula--tres">
+        <legend class="etiqueta">Datos Personales</legend>
+
+        <div class="campo">
+          <label for="cedula">Cédula de Identidad</label>
+          <input id="cedula" name="cedula" type="text" inputmode="numeric" pattern="[0-9]{10}" minlength="10"
+            maxlength="10" title="La cédula debe contener exactamente 10 números, sin espacios ni letras."
+            autocomplete="off" placeholder="Ej. 0912345678" required>
+        </div>
+
+        <div class="campo">
+          <label for="celular">Teléfono Celular</label>
+          <input id="celular" name="celular" type="tel" inputmode="numeric" pattern="09[0-9]{8}" minlength="10"
+            maxlength="10" title="El celular debe tener 10 números, comenzar con 09 y no incluir espacios ni letras."
+            autocomplete="tel" placeholder="Ej. 0991234567" required>
+        </div>
+
+        <div class="campo">
+          <label for="nombres">Nombres</label>
+          <input id="nombres" name="nombres" type="text" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ ]{2,50}" minlength="2"
+            maxlength="50"
+            title="Escribe entre 2 y 50 caracteres usando solo letras y espacios; no ingreses números ni símbolos."
+            autocomplete="given-name" placeholder="Ej. María Fernanda" required>
+        </div>
+
+        <div class="campo">
+          <label for="apellidos">Apellidos</label>
+          <input id="apellidos" name="apellidos" type="text" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ ]{2,50}" minlength="2"
+            maxlength="50"
+            title="Escribe entre 2 y 50 caracteres usando solo letras y espacios; no ingreses números ni símbolos."
+            autocomplete="family-name" placeholder="Ej. Pérez Torres" required>
+        </div>
+
+        <div class="campo">
+          <label for="correo">Correo Electrónico</label>
+          <input id="correo" name="correo" type="email" maxlength="254" autocomplete="email"
+            placeholder="usuario@correo.com" required>
+        </div>
+
+        <div class="campo">
+          <label for="direccion">Dirección Domiciliaria</label>
+          <input id="direccion" name="direccion" type="text" maxlength="150" placeholder="Ej. Av. América y Shyris #104"
+            required>
+        </div>
+      </fieldset>
+
+      <div class="botonera">
+        <button class="boton" type="submit">Guardar propietario</button>
+        <a class="boton boton--secundario" href="propietario_listado.html" target="_top">Cancelar</a>
+      </div>
+    </form>
+  </main>
+</body>
+
+</html>

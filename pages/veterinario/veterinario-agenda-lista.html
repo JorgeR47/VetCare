@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Agenda del veterinario | VetCare</title>
+  <link rel="stylesheet" href="../../css/estilos.css">
+  <link rel="stylesheet" href="../../css/paginas/veterinario.css">
+</head>
+
+<body>
+  <header class="encabezado">
+      <div class="contenedor encabezado__interior">
+          <!-- Marca -->
+          <a href="veterinario-agenda-lista.html" class="marca">
+              <span class="marca__simbolo">V</span>
+              <span>VetCare</span>
+          </a>
+          <!-- Componentes del usuario y navegación -->
+          <div class="navegacion--barra">
+              <!-- Usuario -->
+              <div class="usuario-sesion">
+                  <div class="usuario-avatar">M</div>
+
+                  <div class="usuario-info">
+                      <span class="usuario-nombre">Dr. Mateo Ríos</span>
+                      <span class="usuario-rol">Veterinario</span>
+                  </div>
+              </div>
+              <!-- Navegación -->
+              <nav class="barra-navegacion">
+                  <a href="../veterinario/veterinario-agenda-lista.html" aria-current="page">Agenda del día</a>
+                  <a href="../veterinario/veterinario-historial-clinico.html">Historia clínica</a>
+                  <a href="../../index.html">Cerrar sesión</a>
+              </nav>
+          </div>
+      </div>
+  </header>
+
+  <main class="contenedor seccion-principal">
+    <!--- Encabezado de la agenda-->
+    <div class="encabezado-pagina">
+      <h1 class="titulo-pagina">Agenda del día</h1>
+      <p class="texto-secundario">Consultar las citas asignadas para una fecha determinada.</p>
+    </div>
+    
+    <!--Barra de busqueda(fecha seleccionada)-->
+    <div class="barra-acciones espacio-abajo barra-busqueda-agenda">
+        <form action="../veterinario/veterinario-agenda-lista.html" method="GET">
+            <div class="campo">
+                <label for="fecha">Buscar cita:</label>
+                <input type="date" id="fecha" name="fecha" value="2026-11-17">
+            </div>
+            <button type="submit" class="boton">
+                Consultar agenda
+            </button>
+        </form>
+    </div>
+
+    <!-- Tabla de agenda -->
+    <div class="tabla-contenedor">
+        <table class="tabla tabla--listado tabla-agenda">
+            <caption>
+                Citas asignadas
+            </caption>
+            <thead>
+                <tr>
+                    <th scope="col">Hora</th>
+                    <th scope="col">Mascota</th>
+                    <th scope="col">Propietario</th>
+                    <th scope="col">Servicio</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>09:00 - 09:30</td>
+                    <td>Luna</td>
+                    <td>María Torres</td>
+                    <td>Consulta general</td>
+                    <td>
+                        <span class="estado estado--programada">
+                            Programada
+                        </span>
+                    </td>
+                    <td>
+                        <a href="#ventana-detalle">Ver detalle</a> |
+                        <a href="#ventana-registrar-atencion">Registrar atención</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>10:30 - 11:00</td>
+                    <td>Max</td>
+                    <td>Carlos Mendoza</td>
+                    <td>Vacunación</td>
+                    <td>
+                        <span class="estado estado--programada">
+                            Programada
+                        </span>
+                    </td>
+                    <td>
+                        <a href="#ventana-detalle">Ver detalle</a> |
+                        <a href="#ventana-registrar-atencion">Registrar atención</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>11:30 - 12:00</td>
+                    <td>Milo</td>
+                    <td>Ana Gómez</td>
+                    <td>Control de rutina</td>
+                    <td>
+                        <span class="estado estado--programada">
+                            Programada
+                        </span>
+                    </td>
+                    <td>
+                        <a href="#ventana-detalle">Ver detalle</a> |
+                        <a href="#ventana-registrar-atencion">Registrar atención</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>14:00 - 14:30</td>
+                    <td>Kiara</td>
+                    <td>Sofía Herrera</td>
+                    <td>Desparasitación</td>
+                    <td>
+                        <span class="estado estado--programada">
+                            Programada
+                        </span>
+                    </td>
+                    <td>
+                        <a href="#ventana-detalle">Ver detalle</a> |
+                        <a href="#ventana-registrar-atencion">Registrar atención</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>15:30 - 16:00</td>
+                    <td>Rocky</td>
+                    <td>Diego Rivadeneira</td>
+                    <td>Consulta general</td>
+                    <td>
+                        <span class="estado estado--atendida">
+                            Atendida
+                        </span>
+                    </td>
+                    <td>
+                        <a href="#ventana-detalle">Ver detalle</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+  </main>
+
+  <div class="modal" id="ventana-detalle" role="dialog" aria-modal="true" aria-label="Detalle de la cita">
+    <section class="modal__ventana modal__ventana--incrustada tarjeta">
+      <iframe src="veterinario-detalle-cita.html" title="Detalle de la cita"></iframe>
+    </section>
+  </div>
+  <div class="modal" id="ventana-registrar-atencion" role="dialog" aria-modal="true" aria-label="Registrar atención">
+    <section class="modal__ventana modal__ventana--incrustada tarjeta">
+      <iframe src="veterinario-registrar-atencion.html" title="Registrar atención"></iframe>
+    </section>
+  </div>
+
+  <footer class="contenedor pie">
+    VetCare · Clínica Veterinaria Huellitas
+  </footer>
+</body>
+</html>

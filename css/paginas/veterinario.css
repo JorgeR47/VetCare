@@ -1,0 +1,211 @@
+/* ===================================================
+   VETCARE - ESTILOS DEL MÓDULO PERSONAL VETERINARIO (M6 · CU-09)
+   =================================================== */
+
+/* Columna Cédula: sin cortes de línea */
+.tabla-veterinarios td:first-child {
+  white-space: nowrap;
+}
+
+/* Columna Especialidad (4ª) como etiqueta */
+.tabla-veterinarios td:nth-child(4) {
+  color: var(--color-principal-oscuro);
+  font-weight: bold;
+}
+
+/* Columna Acciones (última) */
+.tabla-veterinarios th:last-child,
+.tabla-veterinarios td:last-child {
+  min-width: 210px;
+  white-space: nowrap;
+}
+
+.tabla-veterinarios td:last-child a {
+  display: inline-block;
+  margin: 2px 4px;
+}
+
+/* Enlace «Eliminar» en color de peligro */
+.tabla-veterinarios td:last-child a[href$="eliminar.html"] {
+  color: var(--color-error);
+}
+
+/* Validación visual de los campos del formulario */
+.modal .campo input:user-invalid,
+.modal .campo select:user-invalid,
+.modal .campo textarea:user-invalid,
+.formulario .campo input:user-invalid,
+.formulario .campo select:user-invalid,
+.formulario .campo textarea:user-invalid {
+  border-color: var(--color-error);
+  background-color: var(--color-error-fondo);
+}
+
+.modal .campo input:user-valid,
+.modal .campo select:user-valid,
+.formulario .campo input:user-valid,
+.formulario .campo select:user-valid {
+  border-color: var(--color-exito);
+}
+
+/*Estilos de la barra de la fecha*/
+.barra-busqueda-agenda {
+    align-items: center;
+}
+
+/* Barra de búsqueda de fecha */
+.barra-busqueda-agenda form {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.barra-busqueda-agenda .boton {
+    margin-top: 24px;
+}
+
+/* Campo de peso - registrar atencion */
+.campo--peso {
+    max-width: 280px;
+}
+
+.confirmacion {
+    max-width: 500px;
+    padding: 28px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.confirmacion--compacta {
+    max-width: 100%;
+    padding: 24px;
+}
+
+.confirmacion__icono {
+    width: 64px;
+    height: 64px;
+
+    margin: 0 auto 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background-color: #e6f7f5;
+    color: #087f7a;
+
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.confirmacion__titulo {
+    margin-bottom: 12px;
+}
+
+.confirmacion__texto {
+    margin-bottom: 24px;
+}
+
+.tabla--listado td small {
+  display: block;
+  color: var(--color-texto-suave);
+  font-size: 12px;
+}
+
+.estado--inactiva {
+  background: #edf0f0;
+  color: #52615f;
+}
+
+.estado--cancelada {
+  background: #fff2f0;
+  color: var(--color-error);
+}
+
+.estado--no-asistio {
+  background: #fff6df;
+  color: #795b12;
+}
+
+.historia-detalle .tabla {
+  min-width: 950px;
+}
+
+.cita-detalle__registro {
+  display: none;
+}
+
+.cita-detalle__registro--predeterminada {
+  display: block;
+}
+
+.cita-detalle:has(.cita-detalle__registro:target) .cita-detalle__registro--predeterminada {
+  display: none;
+}
+
+.cita-detalle__registro:target {
+  display: block;
+}
+
+.titulo-seccion {
+  font-size: 22px;
+}
+
+.registro-atencion {
+  padding: 22px;
+}
+
+/* El formulario se muestra dentro del modal sin la navegación global. */
+.registro-atencion .datos > div {
+  min-width: 0;
+}
+
+.modal--notificacion {
+  padding: 24px 16px;
+}
+
+.modal__ventana--notificacion {
+  max-width: 570px;
+}
+
+.modal__ventana--notificacion iframe {
+  height: 100px;
+}
+
+@media (max-width: 768px) {
+  .seccion-principal {
+    padding: 18px 0;
+  }
+
+  .encabezado-pagina {
+    margin-bottom: 14px;
+  }
+
+  .registro-atencion {
+    padding: 16px;
+  }
+
+  .modal--notificacion {
+    padding: 16px 12px;
+  }
+
+  .modal__ventana--notificacion iframe {
+    height: 340px;
+  }
+
+  .confirmacion--compacta {
+    padding: 20px;
+  }
+}
+
+/* Botones de confirmación */
+.confirmacion__acciones {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+

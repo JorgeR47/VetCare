@@ -1,0 +1,118 @@
+---
+title: Diagrama de Casos de Uso · VetCare (UML 2.5 - Estilo Tubería con Colores)
+---
+flowchart LR
+    %% ==========================================
+    %% ESTILOS Y COLORES POR ROL Y MÓDULO
+    %% ==========================================
+    classDef baseActor fill:#334155,stroke:#1E293B,color:#FFFFFF,stroke-width:2px;
+    classDef recActor fill:#065F46,stroke:#047857,color:#FFFFFF,stroke-width:2px;
+    classDef vetActor fill:#5B21B6,stroke:#6D28D9,color:#FFFFFF,stroke-width:2px;
+    classDef admActor fill:#9A3412,stroke:#C2410C,color:#FFFFFF,stroke-width:2px;
+    classDef sisActor fill:#0369A1,stroke:#0284C7,color:#FFFFFF,stroke-width:2px;
+    classDef propActor fill:#475569,stroke:#334155,color:#FFFFFF,stroke-width:2px;
+
+    classDef cuAcceso fill:#EFF6FF,stroke:#2563EB,color:#1E3A8A,stroke-width:1.5px;
+    classDef cuRec fill:#ECFDF5,stroke:#059669,color:#064E3B,stroke-width:1.5px;
+    classDef cuVet fill:#F5F3FF,stroke:#7C3AED,color:#4C1D95,stroke-width:1.5px;
+    classDef cuAdm fill:#FFF7ED,stroke:#EA580C,color:#7C2D12,stroke-width:1.5px;
+    classDef cuServ fill:#FEF3C7,stroke:#D97706,color:#78350F,stroke-width:1.5px;
+
+    %% ==========================================
+    %% ACTORES DEL SISTEMA (TUBERÍA DE USUARIOS)
+    %% ==========================================
+    actor_usuario["<b>Usuario Autenticado</b><br/><i>(Rol Base Abstracto)</i>"]:::baseActor
+    actor_rec["<b>Recepcionista</b><br/><i>(Actor Primario)</i>"]:::recActor
+    actor_vet["<b>Veterinario</b><br/><i>(Actor Primario)</i>"]:::vetActor
+    actor_admin["<b>Administrador</b><br/><i>(Actor Primario)</i>"]:::admActor
+    actor_sistema["<b>Sistema Automático</b><br/><i>(Procesos 23:59 & Logs)</i>"]:::sisActor
+    actor_prop["<b>Propietario</b><br/><i>(Interesado Externo)</i>"]:::propActor
+
+    %% Herencia de roles
+    actor_rec -->|Hereda sesión| actor_usuario
+    actor_vet -->|Hereda sesión| actor_usuario
+    actor_admin -->|Hereda sesión| actor_usuario
+
+    %% ==========================================
+    %% LÍMITE DEL SISTEMA VETCARE
+    %% ==========================================
+    subgraph SISTEMA_VETCARE["Sistema Web VetCare (Clínica Huellitas)"]
+        
+        %% Módulo de Acceso
+        subgraph MOD_ACCESO["M1 · Tubería de Acceso y Sesión"]
+            CU01(["<b>CU-01</b><br/>Iniciar sesión"]):::cuAcceso
+        end
+
+        %% Módulo Propietarios y Mascotas
+        subgraph MOD_PACIENTES["M2 & M3 · Tubería de Clientes y Pacientes"]
+            CU02(["<b>CU-02</b><br/>Gestionar propietarios"]):::cuRec
+            CU03(["<b>CU-03</b><br/>Gestionar mascotas"]):::cuRec
+        end
+
+        %% Módulo Citas y Turnos
+        subgraph MOD_CITAS["M4 · Tubería de Agendamiento y Turnos"]
+            CU04(["<b>CU-04</b><br/>Agendar cita"]):::cuRec
+            CU05(["<b>CU-05</b><br/>Gestionar citas"]):::cuRec
+            CU14(["<b>CU-14</b><br/>Consultar disponibilidad<br/>de turnos"]):::cuRec
+        end
+
+        %% Módulo Atención Médica
+        subgraph MOD_ATENCION["M5 · Tubería de Atención Médica"]
+            CU06(["<b>CU-06</b><br/>Consultar agenda del día"]):::cuVet
+            CU07(["<b>CU-07</b><br/>Registrar atención médica"]):::cuVet
+            CU08(["<b>CU-08</b><br/>Consultar historia clínica"]):::cuVet
+        end
+
+        %% Módulo Administración
+        subgraph MOD_ADMIN["M6 · Tubería Administrativa y Auditoría"]
+            CU09(["<b>CU-09</b><br/>Gestionar veterinarios"]):::cuAdm
+            CU11(["<b>CU-11</b><br/>Gestionar recepcionistas"]):::cuAdm
+            CU12(["<b>CU-12</b><br/>Consultar bitácora de auditoría"]):::cuAdm
+        end
+
+        %% Módulo Catálogo de Servicios
+        subgraph MOD_SERVICIOS["M7 · Tubería de Servicios y Tarifas"]
+            CU10(["<b>CU-10</b><br/>Gestionar servicios (Admin)"]):::cuAdm
+            CU13(["<b>CU-13</b><br/>Consultar catálogo de servicios (Recepción)"]):::cuServ
+        end
+    end
+
+    %% ==========================================
+    %% ASOCIACIONES DIRECTAS ACTOR -> CASOS DE USO
+    %% ==========================================
+    actor_usuario --- CU01
+
+    %% Recepcionista
+    actor_rec --- CU02
+    actor_rec --- CU03
+    actor_rec --- CU04
+    actor_rec --- CU05
+    actor_rec --- CU13
+    actor_rec --- CU14
+
+    %% Veterinario
+    actor_vet --- CU06
+    actor_vet --- CU07
+    actor_vet --- CU08
+
+    %% Administrador
+    actor_admin --- CU09
+    actor_admin --- CU10
+    actor_admin --- CU11
+    actor_admin --- CU12
+
+    %% Sistema (Cierre automático de citas a No Asistió y Bitácora)
+    actor_sistema --- CU05
+    actor_sistema --- CU12
+
+    %% Propietario (Interesado sin cuenta directa en el prototipo)
+    actor_prop -.- CU04
+    actor_prop -.- CU13
+
+    %% ==========================================
+    %% RELACIONES INCLUDE Y EXTEND
+    %% ==========================================
+    CU04 -.->|"<<include>>"| CU14
+    CU07 -.->|"<<extend>> (desde detalle de cita)"| CU06
+    CU04 -.->|"<<extend>> (desde listado de citas)"| CU05
+    CU03 -.->|"<<extend>> (crea automáticamente historia)"| CU08
