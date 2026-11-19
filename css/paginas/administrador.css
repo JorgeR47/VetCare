@@ -1,0 +1,131 @@
+/* ===================================================
+   CONTENIDO DE LOS MODALES (páginas cargadas en un iframe)
+   El marco, el velo y el tamaño del modal vienen de estilos.css
+   (.modal, .modal__ventana--incrustada). Aquí solo el interior.
+   =================================================== */
+
+/* Fondo blanco como la ventana y el mismo relleno que .modal__ventana */
+body.contenido-modal {
+  background-color: var(--color-superficie);
+  padding: 28px;
+}
+
+/* Botones alineados a la derecha, como en .modal__ventana (esa regla de
+   estilos.css no llega aquí porque el contenido está dentro del iframe) */
+body.contenido-modal .botonera {
+  justify-content: flex-end;
+  margin-top: 8px;
+}
+
+/* Altura de cada iframe según su contenido (medida con el ancho del modal, 760px).
+   Sin JS el iframe no se ajusta solo: si cambias el contenido, ajusta aquí la altura.
+   En pantallas angostas el contenido crece y aparece scroll dentro del modal. */
+iframe[src="veterinario_registrar.html"],
+iframe[src="veterinario_editar.html"] { height: 772px; }
+iframe[src="veterinario_detalle.html"] { height: 460px; }
+iframe[src="veterinario_dar_baja.html"] { height: 712px; }
+
+iframe[src="servicio_registrar.html"],
+iframe[src="servicio_editar.html"] { height: 606px; }
+iframe[src="servicio_detalle.html"] { height: 442px; }
+iframe[src="servicio_dar_baja.html"] { height: 696px; }
+
+iframe[src="recepcionista_registrar.html"],
+iframe[src="recepcionista_editar.html"] { height: 676px; }
+iframe[src="recepcionista_detalle.html"] { height: 462px; }
+iframe[src="recepcionista_dar_baja.html"] { height: 716px; }
+
+iframe[src="auditoria_detalle.html"] { height: 458px; }
+
+@media (max-width: 768px) {
+  body.contenido-modal {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  body.contenido-modal .botonera {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+}
+
+/* ===================================================
+   MÓDULO PERSONAL VETERINARIO (M6 · CU-09)
+   =================================================== */
+
+/* Columna Especialidad (4ª) resaltada.
+   Cédula, Acciones y «Eliminar» vienen de .tabla--listado (estilos.css) */
+.tabla-veterinarios td:nth-child(4) {
+  color: var(--color-principal-oscuro);
+  font-weight: bold;
+}
+
+/* Columna Acciones (última): encabezado y enlaces centrados */
+.tabla-veterinarios   th:last-child,
+.tabla-veterinarios   td:last-child {
+  text-align: center;
+}
+
+
+/* ===================================================
+   MÓDULO CATÁLOGO DE SERVICIOS (CU-10)
+   =================================================== */
+
+/* Columna Precio (2ª): cifras alineadas a la derecha y sin cortes.
+   Nombre, Acciones y «Dar de baja» vienen de .tabla--listado (estilos.css) */
+.tabla-servicios th:nth-child(2),
+.tabla-servicios td:nth-child(2) {
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* Columna Acciones (última): encabezado y enlaces centrados */
+.tabla-servicios th:last-child,
+.tabla-servicios td:last-child {
+  text-align: center;
+}
+
+/* ===================================================
+   MÓDULO PERSONAL (CU-11)
+   =================================================== */
+
+/* Columna Acciones (última): encabezado y enlaces centrados */
+.tabla-recepcionistas  th:last-child,
+.tabla-recepcionistas  td:last-child {
+  text-align: center;
+}
+
+/* ===================================================
+   MÓDULO BITÁCORA Y AUDITORÍA (CU-12)
+   =================================================== */
+
+/* Filtros: 4 campos por fila en escritorio (fechas y horas arriba,
+   listas abajo); en pantallas pequeñas bajan solos a 2 o 1 por fila */
+.filtros-auditoria > .campo {
+  flex: 1 1 200px;
+}
+
+/* Columna Hora (2ª) sin cortes. Fecha y «Ver detalle» vienen de .tabla--listado */
+.tabla-auditoria td:nth-child(2) {
+  white-space: nowrap;
+}
+
+/* Columna Acciones (última): encabezado y enlace centrados */
+.tabla-auditoria th:last-child,
+.tabla-auditoria td:last-child {
+  text-align: center;
+}
+
+/* ===================================================
+   MENSAJES DE CONFIRMACIÓN (registrar, editar, dar de baja)
+   Ocultos por defecto; aparecen cuando la URL termina en su id,
+   por ejemplo veterinario_listar.html#msj-registrado (sin JS).
+   =================================================== */
+.aviso-accion {
+  display: none;
+}
+
+.aviso-accion:target {
+  display: block;
+}

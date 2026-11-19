@@ -1,0 +1,202 @@
+/* Página centrada y tarjeta de dos columnas. */
+.pagina-login {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: #eaf1ee;
+}
+
+.tarjeta-login {
+  display: flex;
+  width: 100%;
+  max-width: 960px;
+  overflow: hidden;
+  border-radius: 16px;
+  background: white;
+  box-shadow: 0 16px 40px #0b6b681f;
+}
+
+/* La foto está en el HTML; el fondo verde se ve si no carga. */
+.bienvenida-login {
+  position: relative;
+  width: 50%;
+  padding: 32px;
+  background: #084c4b;
+  color: white;
+}
+
+.imagen-perro {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.2;
+}
+
+.logo-login,
+.texto-bienvenida {
+  position: relative;
+}
+
+.logo-login {
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.texto-bienvenida {
+  margin-top: 64px;
+}
+
+.nombre-clinica {
+  color: #f3bd55;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.texto-bienvenida h1 {
+  font-size: 32px;
+  line-height: 1.2;
+}
+
+.texto-bienvenida p {
+  font-size: 15px;
+}
+
+/* Formulario: reutiliza los campos y botones de estilos.css. */
+.panel-login {
+  width: 50%;
+  padding: 40px 32px;
+  align-self: center;
+}
+
+.saludo-login {
+  color: #0b6b68;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.panel-login h2 {
+  margin: 0;
+  font-size: 26px;
+}
+
+#formulario-login {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+/* En celulares las columnas se colocan una debajo de la otra. */
+@media (max-width: 700px) {
+  .tarjeta-login {
+    flex-direction: column;
+  }
+
+  .bienvenida-login,
+  .panel-login {
+    width: 100%;
+    padding: 24px;
+  }
+
+  .texto-bienvenida {
+    margin-top: 24px;
+  }
+}
+
+/* Solo aparece el botón que corresponde al rol marcado. */
+.selector-rol {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.selector-rol legend {
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.selector-rol .boton {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  display: none;
+  width: 100%;
+  margin-top: 12px;
+}
+
+#rol-recepcionista:checked ~ .ingreso-recepcionista,
+#rol-veterinario:checked ~ .ingreso-veterinario,
+#rol-administrador:checked ~ .ingreso-administrador {
+  display: block;
+}
+
+/* Opciones con un área amplia para hacer clic y foco de teclado visible. */
+.selector-rol input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+}
+
+.selector-rol label {
+  grid-row: 1;
+  display: block;
+  padding: 7px 3px;
+  margin: 0;
+  font-size: 12px;
+  text-align: center;
+  border: 1px solid #d7e2df;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.selector-rol label:hover {
+  background: #f5f8f6;
+  border-color: #0b6b68;
+}
+
+.selector-rol input:checked + label {
+  background: #e8f3f0;
+  border-color: #0b6b68;
+  color: #084c4b;
+  font-weight: bold;
+}
+
+.selector-rol input:focus-visible + label {
+  outline: 2px solid #0b6b68;
+  outline-offset: 2px;
+}
+
+.selector-rol .ingreso-pendiente {
+  display: block;
+  background: #e5ebe8;
+  color: #5e706e;
+  cursor: not-allowed;
+}
+
+.selector-rol input:checked ~ .ingreso-pendiente {
+  display: none;
+}
+
+
+
+
+/* Cada rol ocupa una columna fija de la misma fila. */
+.selector-rol label[for="rol-recepcionista"] {
+  grid-column: 1;
+}
+
+.selector-rol label[for="rol-veterinario"] {
+  grid-column: 2;
+}
+
+.selector-rol label[for="rol-administrador"] {
+  grid-column: 3;
+}

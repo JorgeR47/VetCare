@@ -25,6 +25,18 @@ El objetivo de VetCare es **diseñar y presentar una interfaz navegable** que mo
 
 > **Alcance académico:** esta versión usa únicamente **HTML5 y CSS/CSS3**. No emplea JavaScript, backend, base de datos ni frameworks de CSS. Por tanto, el inicio de sesión, los cambios de estado y las operaciones CRUD son **simulaciones con páginas y datos de ejemplo**, no operaciones persistentes.
 
+## Inicio de sesión del prototipo (CU-01)
+
+La selección de rol es provisional debido al uso exclusivo de HTML y CSS. Para ingresar, el usuario completa el correo y la contraseña, selecciona Recepcionista, Veterinario o Administrador y pulsa **Ingresar al sistema**. Recepcionista aparece seleccionado de forma predeterminada.
+
+HTML5 comprueba que el correo no esté vacío y tenga un formato válido, y que la contraseña no esté vacía. No se verifican las credenciales ni el estado de la cuenta, y no se establece una sesión autenticada; únicamente se abre la página del rol seleccionado:
+
+- **Recepcionista:** `pages/recepcionista/propietario/propietario_listado.html`.
+- **Veterinario:** `pages/veterinario/veterinario-agenda-lista.html`.
+- **Administrador:** `pages/administrador/servicio/servicio_listar.html`.
+
+En la versión final, el acceso se realizará únicamente con correo y contraseña. El sistema verificará las credenciales y el estado de la cuenta, establecerá la sesión e identificará automáticamente el rol, sin selección manual.
+
 ## Usuarios
 
 | Rol | Funcionalidades representadas |
@@ -101,3 +113,4 @@ No se necesita instalar dependencias ni levantar un servidor para consultar las 
 ## Colaboración
 
 Las normas de trabajo, dependencias, calendario propuesto, estrategia de ramas y revisión están disponibles en [CONTRIBUTING.md](./CONTRIBUTING.md). Para integrar cambios debe utilizarse [PULL_REQUEST_TEMPLATE.md](./PULL_REQUEST_TEMPLATE.md).
+
