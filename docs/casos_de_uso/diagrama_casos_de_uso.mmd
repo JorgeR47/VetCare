@@ -2,56 +2,53 @@
 title: Diagrama de casos de uso VetCare
 ---
 flowchart LR
-    classDef actor fill:#FFFFFF,stroke:#334155,color:#0F172A,stroke-width:1.5px;
-    classDef usecase fill:#F8FAFC,stroke:#2563EB,color:#0F172A,stroke-width:1.5px;
-    classDef note fill:#FFF7ED,stroke:#D97706,color:#78350F,stroke-width:1px;
+    classDef actor fill:#FFFFFF,stroke:#5B3FA8,color:#2E1F5E,stroke-width:1.5px;
+    classDef usecase fill:#FFFFFF,stroke:#5B3FA8,color:#2E1F5E,stroke-width:1.5px;
+    classDef note fill:#F4F1FB,stroke:#8A75C2,color:#2E1F5E,stroke-width:1px;
 
     subgraph ACTORES["Actores"]
         direction TB
-        USUARIO["Usuario autenticado<br/>(abstracto)"]:::actor
+        EMPLEADO["Empleado<br/>(abstracto)"]:::actor
         RECEPCIONISTA["Recepcionista"]:::actor
         VETERINARIO["Veterinario"]:::actor
         ADMINISTRADOR["Administrador"]:::actor
-        RECEPCIONISTA -. "especializa" .-> USUARIO
-        VETERINARIO -. "especializa" .-> USUARIO
-        ADMINISTRADOR -. "especializa" .-> USUARIO
+        RECEPCIONISTA -. "especializa" .-> EMPLEADO
+        VETERINARIO -. "especializa" .-> EMPLEADO
+        ADMINISTRADOR -. "especializa" .-> EMPLEADO
     end
 
     subgraph VETCARE["Sistema de gestión veterinaria VetCare"]
         direction TB
 
-        subgraph M1["M1 · Acceso"]
+        subgraph M1["Acceso"]
             CU01(["CU-01<br/>Iniciar sesión"]):::usecase
         end
 
-        subgraph M2["M2 · Propietarios"]
+        subgraph M2["Propietarios y mascotas"]
             CU02(["CU-02<br/>Gestionar propietarios"]):::usecase
-        end
-
-        subgraph M3["M3 · Mascotas"]
             CU03(["CU-03<br/>Gestionar mascotas"]):::usecase
         end
 
-        subgraph M4["M4 · Citas y turnos"]
+        subgraph M4["Citas y turnos"]
             CU04(["CU-04<br/>Agendar cita"]):::usecase
             CU05(["CU-05<br/>Gestionar citas"]):::usecase
             CU14(["CU-14<br/>Consultar disponibilidad<br/>de turnos"]):::usecase
         end
 
-        subgraph M5["M5 · Atención clínica"]
+        subgraph M5["Atención médica"]
             CU06(["CU-06<br/>Consultar agenda del día"]):::usecase
             CU07(["CU-07<br/>Registrar atención médica"]):::usecase
             CU08(["CU-08<br/>Consultar historia clínica"]):::usecase
         end
 
-        subgraph M6["M6 · Administración"]
+        subgraph M6["Administración"]
             CU09(["CU-09<br/>Gestionar veterinarios"]):::usecase
+            CU10(["CU-10<br/>Gestionar servicios"]):::usecase
             CU11(["CU-11<br/>Gestionar recepcionistas"]):::usecase
             CU12(["CU-12<br/>Consultar bitácora de auditoría"]):::usecase
         end
 
-        subgraph M7["M7 · Servicios"]
-            CU10(["CU-10<br/>Gestionar servicios"]):::usecase
+        subgraph M7["Catálogo de servicios"]
             CU13(["CU-13<br/>Consultar catálogo de servicios"]):::usecase
         end
 
@@ -65,7 +62,7 @@ flowchart LR
         CU12 -.-> NOTA_AUTOMATICA
     end
 
-    USUARIO --- CU01
+    EMPLEADO --- CU01
 
     RECEPCIONISTA --- CU02
     RECEPCIONISTA --- CU03
@@ -83,5 +80,11 @@ flowchart LR
     ADMINISTRADOR --- CU11
     ADMINISTRADOR --- CU12
 
-    style VETCARE fill:#F8FAFC,stroke:#1E293B,stroke-width:2px
-    style ACTORES fill:#FFFFFF,stroke:#94A3B8,stroke-width:1px
+    style VETCARE fill:#FFFFFF,stroke:#2E1F5E,stroke-width:2px
+    style ACTORES fill:#FFFFFF,stroke:#8A75C2,stroke-width:1px
+    style M1 fill:#F4F1FB,stroke:#5B3FA8,color:#2E1F5E
+    style M2 fill:#F4F1FB,stroke:#5B3FA8,color:#2E1F5E
+    style M4 fill:#F4F1FB,stroke:#5B3FA8,color:#2E1F5E
+    style M5 fill:#F4F1FB,stroke:#5B3FA8,color:#2E1F5E
+    style M6 fill:#F4F1FB,stroke:#5B3FA8,color:#2E1F5E
+    style M7 fill:#F4F1FB,stroke:#5B3FA8,color:#2E1F5E
