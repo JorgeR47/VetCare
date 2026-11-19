@@ -1,100 +1,106 @@
 @startuml diagrama_casos_de_uso
-' VetCare · Diagrama de casos de uso
-' Cubre los casos CU-01 a CU-14 definidos en el documento de casos de uso.
+' VetCare · Diagrama de casos de uso UML 2.5
+' Organizado por módulos dentro del límite del sistema.
 
-title Casos de uso de VetCare
+title VetCare — Diagrama de casos de uso por módulos
 left to right direction
 
 skinparam shadowing false
+skinparam defaultFontName Arial
 skinparam packageStyle rectangle
-skinparam linetype ortho
-skinparam nodesep 35
-skinparam ranksep 55
-skinparam defaultFontName "Segoe UI"
-skinparam defaultFontSize 13
-skinparam ArrowColor #475569
-skinparam ArrowFontColor #334155
-skinparam ActorBorderColor #334155
-skinparam ActorFontColor #0F172A
-skinparam UsecaseBorderColor #2563EB
-skinparam UsecaseBackgroundColor #F8FAFC
-skinparam UsecaseFontColor #0F172A
-skinparam PackageBorderColor #94A3B8
-skinparam PackageBackgroundColor #FFFFFF
-skinparam PackageFontColor #1E293B
+skinparam nodesep 20
+skinparam ranksep 60
+skinparam usecase {
+  BackgroundColor #FFFFFF
+  BorderColor #5B3FA8
+  ArrowColor #444444
+  FontColor #2E1F5E
+}
+skinparam package {
+  BackgroundColor #F4F1FB
+  BorderColor #5B3FA8
+  FontColor #2E1F5E
+}
+skinparam rectangle {
+  BackgroundColor #FFFFFF
+  BorderColor #2E1F5E
+  FontSize 16
+}
+skinparam actor {
+  BackgroundColor #FFFFFF
+  BorderColor #2E1F5E
+  FontColor #2E1F5E
+}
 
-' Actores externos
-actor "Usuario autenticado" as Usuario <<abstract>>
+' Actores del personal de la clínica
+actor "Empleado" as Empleado <<abstracto>>
 actor Recepcionista as Recepcionista
 actor Veterinario as Veterinario
 actor Administrador as Administrador
 
-' Generalización de roles: todo el personal accede mediante CU-01.
-Usuario <|-- Recepcionista
-Usuario <|-- Veterinario
-Usuario <|-- Administrador
+' Generalización: los tres roles utilizan el acceso común de CU-01.
+Empleado <|-- Recepcionista
+Empleado <|-- Veterinario
+Empleado <|-- Administrador
 
-rectangle "Sistema de gestión veterinaria VetCare" {
-    package "M1 · Acceso" {
-        usecase "CU-01\nIniciar sesión" as CU01
-    }
+rectangle "VetCare" {
+  package "Acceso" {
+    usecase "CU-01\nIniciar sesión" as CU01
+  }
 
-    package "M2 · Propietarios" {
-        usecase "CU-02\nGestionar propietarios" as CU02
-    }
+  package "Propietarios y mascotas" {
+    usecase "CU-02\nGestionar propietarios" as CU02
+    usecase "CU-03\nGestionar mascotas" as CU03
+  }
 
-    package "M3 · Mascotas" {
-        usecase "CU-03\nGestionar mascotas" as CU03
-    }
+  package "Citas y turnos" {
+    usecase "CU-04\nAgendar cita" as CU04
+    usecase "CU-05\nGestionar citas" as CU05
+    usecase "CU-14\nConsultar disponibilidad\nde turnos" as CU14
+  }
 
-    package "M4 · Citas y turnos" {
-        usecase "CU-04\nAgendar cita" as CU04
-        usecase "CU-05\nGestionar citas" as CU05
-        usecase "CU-14\nConsultar disponibilidad\nde turnos" as CU14
-    }
+  package "Atención médica" {
+    usecase "CU-06\nConsultar agenda del día" as CU06
+    usecase "CU-07\nRegistrar atención médica" as CU07
+    usecase "CU-08\nConsultar historia clínica" as CU08
+  }
 
-    package "M5 · Atención clínica" {
-        usecase "CU-06\nConsultar agenda del día" as CU06
-        usecase "CU-07\nRegistrar atención médica" as CU07
-        usecase "CU-08\nConsultar historia clínica" as CU08
-    }
+  package "Administración" {
+    usecase "CU-09\nGestionar veterinarios" as CU09
+    usecase "CU-10\nGestionar servicios" as CU10
+    usecase "CU-11\nGestionar recepcionistas" as CU11
+    usecase "CU-12\nConsultar bitácora de auditoría" as CU12
+  }
 
-    package "M6 · Administración" {
-        usecase "CU-09\nGestionar veterinarios" as CU09
-        usecase "CU-11\nGestionar recepcionistas" as CU11
-        usecase "CU-12\nConsultar bitácora de auditoría" as CU12
-    }
-
-    package "M7 · Servicios" {
-        usecase "CU-10\nGestionar servicios" as CU10
-        usecase "CU-13\nConsultar catálogo de servicios" as CU13
-    }
+  package "Catálogo de servicios" {
+    usecase "CU-13\nConsultar catálogo de servicios" as CU13
+  }
 }
 
-' Asociaciones actor-caso de uso según los actores definidos para cada caso.
-Usuario -- CU01
+' Asociaciones de actores
+Empleado --> CU01
 
-Recepcionista -- CU02
-Recepcionista -- CU03
-Recepcionista -- CU04
-Recepcionista -- CU05
-Recepcionista -- CU13
-Recepcionista -- CU14
+Recepcionista --> CU02
+Recepcionista --> CU03
+Recepcionista --> CU04
+Recepcionista --> CU05
+Recepcionista --> CU13
+Recepcionista --> CU14
 
-Veterinario -- CU06
-Veterinario -- CU07
-Veterinario -- CU08
+Veterinario --> CU06
+Veterinario --> CU07
+Veterinario --> CU08
 
-Administrador -- CU09
-Administrador -- CU10
-Administrador -- CU11
-Administrador -- CU12
+Administrador --> CU09
+Administrador --> CU10
+Administrador --> CU11
+Administrador --> CU12
 
-' Relaciones entre casos de uso.
+' Relaciones entre casos de uso
 CU04 ..> CU14 : <<include>>
-CU07 ..> CU06 : <<extend>>\n(opción desde la agenda)
+CU07 .> CU06 : <<extend>>\n(opción desde la agenda)
 
-' Comportamientos automáticos internos: no son actores externos de VetCare.
+' Automatizaciones que forman parte de VetCare, no actores externos.
 note right of CU03
   Al registrar una mascota,
   el sistema crea su historia clínica.
@@ -106,16 +112,15 @@ note right of CU04
 end note
 
 note right of CU12
-  La bitácora también muestra
-  el cambio automático a No asistió.
+  La bitácora incluye los cambios
+  automáticos a No asistió.
 end note
 
 legend bottom
   **Relaciones UML**
   <<include>>: CU-04 consulta la disponibilidad de turnos de CU-14.
-  <<extend>>: CU-07 puede iniciarse desde una cita de la agenda de CU-06.
-  Los cambios automáticos descritos en notas ocurren dentro de VetCare;
-  no se modelan como actores externos.
+  <<extend>>: CU-07 es una acción opcional desde la agenda de CU-06.
+  Los actores y casos de uso corresponden al alcance documentado de VetCare.
 endlegend
 
 @enduml
