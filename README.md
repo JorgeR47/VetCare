@@ -90,7 +90,8 @@ VetCare/
 ├── docs/
 │   ├── mapa_navegacion_detallado.mmd        # Mapa navegacional tipo tubería en Mermaid
 │   └── casos_de_uso/
-│       └── diagrama_casos_de_uso.mmd        # Diagrama UML de casos de uso en Mermaid
+│       ├── diagrama_casos_de_uso.puml       # Diagrama oficial de Casos de Uso (PlantUML / UML 2.5)
+│       └── diagrama_casos_de_uso.mmd        # Diagrama de Casos de Uso en Mermaid
 └── pages/
     ├── administrador/                       # Área de Administración
     │   ├── auditoria/
@@ -150,15 +151,18 @@ VetCare/
 
 ---
 
-## 📊 Diagramas del Sistema (Formato Mermaid)
+## 📊 Diagramas del Sistema (UML 2.5 y Mermaid)
 
-Los diagramas oficiales en formato Mermaid (`.mmd`) se encuentran en la carpeta `docs/`:
+Los diagramas oficiales se encuentran disponibles en la carpeta `docs/`:
 
-1. **Mapa Navegacional Tipo Tubería:** [`docs/mapa_navegacion_detallado.mmd`](./docs/mapa_navegacion_detallado.mmd)
+1. **Diagrama de Casos de Uso Oficial (UML 2.5 en PlantUML):** [`docs/casos_de_uso/diagrama_casos_de_uso.puml`](./docs/casos_de_uso/diagrama_casos_de_uso.puml)
+   * Especificación formal bajo el estándar **UML 2.5** con paquetes por módulo, actores primarios, secundario (Sistema) e interesado (Propietario).
+   * Incorpora relaciones de herencia de credenciales (`<|--`), inclusiones (`<<include>>` para turnos en agendamiento) y extensiones (`<<extend>>` para atención médica, agendamiento desde listado y creación de historia clínica).
+2. **Diagrama de Casos de Uso (Formato Mermaid):** [`docs/casos_de_uso/diagrama_casos_de_uso.mmd`](./docs/casos_de_uso/diagrama_casos_de_uso.mmd)
+   * Versión visual interactiva renderizable directamente en GitHub o Mermaid Live.
+3. **Mapa Navegacional Tipo Tubería:** [`docs/mapa_navegacion_detallado.mmd`](./docs/mapa_navegacion_detallado.mmd)
    * Detalla todas las transiciones, enlaces de barra superior, formularios con método GET, botones modales (`:target` con `iframe`) y acciones de retorno y cierre de sesión.
    * Utiliza una paleta de colores por rol: Azul (Login), Verde (Recepción), Morado (Veterinaria), Naranja (Administración) y Rojo (Bajas/Cancelaciones/Cierre de sesión).
-2. **Diagrama de Casos de Uso UML 2.5:** [`docs/casos_de_uso/diagrama_casos_de_uso.mmd`](./docs/casos_de_uso/diagrama_casos_de_uso.mmd)
-   * Modela los 14 Casos de Uso agrupados por subsistema, la generalización del actor base `Usuario Autenticado`, los actores primarios (`Recepcionista`, `Veterinario`, `Administrador`), el actor secundario `Sistema` y las relaciones de inclusión (`<<include>>`) y extensión (`<<extend>>`).
 
 ---
 
