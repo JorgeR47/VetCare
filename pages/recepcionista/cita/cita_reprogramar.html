@@ -21,11 +21,11 @@
                     <div class="usuario-info"><span class="usuario-nombre">Recepción</span><span
                             class="usuario-rol">recepcionista</span></div>
                 </div>
-                <nav class="barra-navegacion" aria-label="Navegación de recepción"><a href="../cita/cita_listado.html"
+                <nav class="barra-navegacion" aria-label="Navegación de recepción"><a href="cita_listar.html"
                         aria-current="page">Citas</a><a
                         href="../propietario/propietario_listado.html">Propietarios</a><a
-                        href="../servicios/servicio_listado.html">Servicios</a><a
-                        href="../mascota/mascota_listado.html">Mascotas</a><a href="../../../index.html">Cerrar
+                        href="../servicios/servicio_listar.html">Servicios</a><a
+                        href="../mascota/mascota_listar.html">Mascotas</a><a href="../../../index.html">Cerrar
                         sesión</a></nav>
             </div>
         </div>
@@ -39,7 +39,7 @@
             </div>
             <article class="tarjeta panel" aria-labelledby="t-reprogramar-firulais">
                 <h2 id="t-reprogramar-firulais">Reprogramación de Firulais</h2>
-                <form class="formulario cita-formulario" action="cita_listado.html#reprogramada" method="get">
+                <form class="formulario cita-formulario" action="cita_listar.html#reprogramada" method="get">
                     <input type="hidden" name="historia_clinica" value="HC-0001">
                     <section aria-labelledby="turno-anterior">
                         <h3 id="turno-anterior" class="cita-titulo-seccion">Turno actual</h3>
@@ -87,7 +87,7 @@
                     <p class="mensaje cita-mensaje--informativo">La cita de Firulais está en estado Programada y puede simularse su reprogramación. La disponibilidad real, los días hábiles y los conflictos de horario deberán verificarse en una implementación funcional.</p>
                     <div class="botonera cita-botonera">
                         <button class="boton" type="submit">Guardar cambios</button>
-                        <a class="boton boton--secundario" href="cita_listado.html">Volver</a>
+                        <a class="boton boton--secundario" href="cita_listar.html">Volver</a>
                     </div>
                     <small class="cita-ayuda">Simulación HTML: al guardar se muestra una confirmación en el listado. Los datos visualizados en la tabla no se actualizan permanentemente.</small>
                 </form>
